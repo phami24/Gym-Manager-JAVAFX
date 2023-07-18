@@ -62,12 +62,13 @@ public class LoginController implements Initializable {
             // Lấy giá trị từ các cột trong ResultSet
             if (username.getText().equals("admin") && password.getText().equals("1234")) {
                 Stage mainStage = new Stage();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/gymmanagement/view/hello-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/gymmanagement/view/home.fxml"));
                 Parent root = loader.load();
-                Scene scene = new Scene(root,320, 240);
+                Scene scene = new Scene(root);
                 mainStage.setScene(scene);
                 mainStage.show();
                 stage.close();
+
 
 //            }
 
