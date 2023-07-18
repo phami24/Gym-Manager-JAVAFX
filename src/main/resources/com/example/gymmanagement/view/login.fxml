@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="396.0" prefWidth="558.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gymmanagement.controller.LoginController">
+   <AnchorPane layoutX="212.0" layoutY="96.0" prefHeight="200.0" prefWidth="327.0" style="-fx-background-color: white; -fx-background-radius: 25;">
+      <TextField id="username" fx:id="username" layoutX="106.0" layoutY="32.0" prefHeight="25.0" prefWidth="196.0" promptText="Username" />
+      <Button layoutX="175.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#authenticateLogin" prefHeight="31.0" prefWidth="58.0" style="-fx-background-radius: 20;" styleClass="colorBackground" stylesheets="@../css/color.css" text="Login" />
+      <PasswordField fx:id="password" layoutX="106.0" layoutY="75.0" prefHeight="25.0" prefWidth="196.0" promptText="Password" />
+   </AnchorPane>
+   <AnchorPane fx:id="sideBar" layoutX="28.0" layoutY="44.0" prefHeight="304.0" prefWidth="264.0" style="-fx-background-radius: 25;" styleClass="colorBackground" stylesheets="@../css/color.css">
+      <Button layoutX="216.0" minHeight="14.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#closeProgram" prefHeight="37.0" prefWidth="54.0" style="-fx-background-color: transparent;" text="X">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </AnchorPane>
+</AnchorPane>
