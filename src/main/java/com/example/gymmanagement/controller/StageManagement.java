@@ -1,4 +1,4 @@
-package com.example.gymmanagement.stage;
+package com.example.gymmanagement.controller;
 
 import com.example.gymmanagement.controller.HomeStageController;
 import com.example.gymmanagement.controller.LoginController;
