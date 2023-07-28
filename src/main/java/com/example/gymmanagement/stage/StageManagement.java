@@ -2,7 +2,7 @@ package com.example.gymmanagement.stage;
 
 import com.example.gymmanagement.controller.HomeStageController;
 import com.example.gymmanagement.controller.LoginController;
-import com.example.gymmanagement.scene.StageController;
+import com.example.gymmanagement.controller.StageController;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;

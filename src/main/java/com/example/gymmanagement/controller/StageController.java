@@ -1,4 +1,4 @@
-package com.example.gymmanagement.scene;
+package com.example.gymmanagement.controller;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
