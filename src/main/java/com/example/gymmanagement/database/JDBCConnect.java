@@ -69,5 +69,9 @@ public class JDBCConnect {
             System.out.println("Close PreparedStatement fails");
         }
     }
+    public static void main(String[] args){
+        JDBCConnect jdbcConnect = new JDBCConnect();
+        Connection connection = jdbcConnect.getJDBCConnection();
+    }
 
 }
