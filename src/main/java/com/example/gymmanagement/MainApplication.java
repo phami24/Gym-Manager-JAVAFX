@@ -1,5 +1,6 @@
 package com.example.gymmanagement;
 
+import com.example.gymmanagement.controller.LoginController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

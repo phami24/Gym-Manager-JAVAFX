@@ -1,7 +1,9 @@
 package com.example.gymmanagement.controller;
 
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * The StageManager class is used for managing JavaFX stages.
@@ -11,9 +13,11 @@ public class StageManager {
 
     // The current stage to manage
     private Stage currentStage;
+    private final SceneManager stageController = new SceneManager();
 
     /**
      * Set the scene for the current stage.
+     *
      * @param scene The scene to set on the current stage.
      */
     public void setSceneCurrentStage(Scene scene) {
@@ -22,6 +26,7 @@ public class StageManager {
 
     /**
      * Set the current stage.
+     *
      * @param currentStage The stage to set as the current stage.
      */
     public void setCurrentStage(Stage currentStage) {
@@ -44,6 +49,14 @@ public class StageManager {
     public void loadLoginStage() {
         // Implementation for loading the login stage goes here
         // For example: You can create a new scene for login and set it as the current scene.
+        LoginController loginController = new LoginController();
+        Scene loginScene = stageController.loadScene("/com/example/gymmanagement/view/login.fxml" + loginController);
+        loginController.setStage(currentStage);
+
+        setSceneCurrentStage(loginScene);
+        loginScene.setFill(Color.TRANSPARENT);
+        currentStage.initStyle(StageStyle.TRANSPARENT);
+        showStage();
     }
 
     /**
@@ -53,6 +66,13 @@ public class StageManager {
     public void loadHomeStage() {
         // Implementation for loading the home stage goes here
         // For example: You can create a new scene for the home screen and set it as the current scene.
+        Stage mainStage = new Stage();
+        HomeStageController homeStageController = new HomeStageController();
+        Scene homeStage = stageController.loadScene("/com/example/gymmanagement/view/home-stage.fxml" + homeStageController);
+        homeStageController.setStage(currentStage);
+        mainStage.setScene(homeStage);
+        setCurrentStage(mainStage);
+        showStage();
     }
 
 }
