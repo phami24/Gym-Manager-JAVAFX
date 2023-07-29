@@ -1,0 +1,16 @@
+// login page
+.left-side-background{
+    -fx-background-color:  lightblue;
+}
+.centered-border{
+    -fx-border-color: black;
+    -fx-border-width: 0 3 0 0;
+}
+.border{
+    -fx-border-color: black;
+    -fx-border-width: 2;
+}
+.right-border{
+    -fx-border-color: black;
+    -fx-border-width: 0 2 0 0;
+}

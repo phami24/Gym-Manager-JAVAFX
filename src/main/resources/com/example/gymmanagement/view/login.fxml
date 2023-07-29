@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="880.0" styleClass="border" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="880.0" styleClass="border" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="407.0" stylesheets="@../css/login.css">
+      <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="407.0" stylesheets="@../css/style.css">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -54,8 +60,8 @@
             </HBox>
          </children>
          <styleClass>
-            <String fx:value="centered-border" />
             <String fx:value="left-side-background" />
+            <String fx:value="centered-border" />
          </styleClass>
       </VBox>
       <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="588.0" styleClass="left-side-border" stylesheets="@../css/style.css">
@@ -70,9 +76,9 @@
                   <Label fx:id="ErrorMessageLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="474.0" text="ErrorMessage" textAlignment="CENTER" textFill="#da0f0f" />
                </children>
             </HBox>
-            <HBox prefHeight="40.0" prefWidth="423.0" styleClass="border" stylesheets="@../css/login.css">
+            <HBox prefHeight="40.0" prefWidth="423.0" styleClass="border" stylesheets="@../css/style.css">
                <children>
-                  <Pane prefHeight="36.0" prefWidth="48.0" styleClass="right-border" stylesheets="@../css/login.css">
+                  <Pane prefHeight="36.0" prefWidth="48.0" styleClass="right-border" stylesheets="@../css/style.css">
                      <children>
                         <ImageView fitHeight="54.0" fitWidth="46.0" layoutX="-1.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -94,9 +100,9 @@
                   <Insets />
                </opaqueInsets>
             </HBox>
-            <HBox prefHeight="40.0" prefWidth="447.0" styleClass="border" stylesheets="@../css/login.css">
+            <HBox prefHeight="40.0" prefWidth="447.0" styleClass="border" stylesheets="@../css/style.css">
                <children>
-                  <Pane prefHeight="36.0" prefWidth="48.0" styleClass="right-border" stylesheets="@../css/login.css">
+                  <Pane prefHeight="36.0" prefWidth="48.0" styleClass="right-border" stylesheets="@../css/style.css">
                      <children>
                         <ImageView fitHeight="36.0" fitWidth="68.0" layoutX="6.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -111,7 +117,7 @@
                   <Insets left="50.0" right="20.0" top="20.0" />
                </VBox.margin>
             </HBox>
-            <Button fx:id="btLogin" mnemonicParsing="false" prefHeight="43.0" prefWidth="200.0" styleClass="border" stylesheets="@../css/login.css" text="Login">
+            <Button fx:id="btLogin" mnemonicParsing="false" prefHeight="43.0" prefWidth="200.0" styleClass="border" stylesheets="@../css/style.css" text="Login">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>
