@@ -1,4 +1,4 @@
-package com.example.gymmanagement.database;
+package com.example.gymmanagement.image.database;
 
 
 import java.io.IOException;
