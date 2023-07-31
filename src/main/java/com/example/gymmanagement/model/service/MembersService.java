@@ -10,4 +10,5 @@ public interface MembersService {
     void deleteMember(int memberId);
     Members getMemberById(int memberId);
     List<Members> getAllMembers();
+    int getTotalMembers();
 }

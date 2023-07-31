@@ -1,5 +1,7 @@
 package com.example.gymmanagement;
 
+import com.example.gymmanagement.model.service.MembersService;
+import com.example.gymmanagement.model.service.impl.MembersServiceImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,9 +16,13 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
+        MembersService membersService = new MembersServiceImpl();
+        System.out.println(membersService.getTotalMembers());
     }
 
     public static void main(String[] args) {
         launch();
     }
+
+
 }
