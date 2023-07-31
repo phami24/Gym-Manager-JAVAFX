@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="804.0"
+            prefWidth="1034.0" stylesheets="/com/example/gymmanagement/css/style.css"
+            xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.gymmanagement.controller.HomePageController">
+    <children>
+        <AnchorPane prefHeight="111.0" prefWidth="1034.0" style="-fx-background-color: #1face1;">
+            <children>
+                <Pane layoutX="-17.0" layoutY="-5.0" prefHeight="120.0" prefWidth="200.0"
+                      style="-fx-background-color: #1face1; -fx-background-radius: 2em;">
+                    <children>
+                        <ImageView fitHeight="152.0" fitWidth="169.0" layoutX="24.0" layoutY="-33.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="@../image/pngwing.com.png"/>
+                            </image>
+                        </ImageView>
+                        <Label fx:id="logo" alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="45.0"
+                               prefHeight="73.0" prefWidth="189.0" text="Gym Management" textAlignment="CENTER"
+                               textFill="WHITE">
+                            <font>
+                                <Font size="19.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <Label fx:id="setting" layoutX="947.0" layoutY="11.0" prefHeight="74.0" prefWidth="73.0">
+                    <font>
+                        <Font name="Cooper Black" size="20.0"/>
+                    </font>
+                </Label>
+                <ImageView fitHeight="23.0" fitWidth="25.0" layoutX="1002.0" layoutY="9.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@../image/cross.png"/>
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="-1.0" layoutY="111.0" prefHeight="692.0" prefWidth="1034.0"
+                    style="-fx-background-color: #ffffff;"/>
+        <ImageView fitHeight="700.0" fitWidth="1040.0" layoutX="-5.0" layoutY="111.0" nodeOrientation="INHERIT"
+                   opacity="0.85" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-11.28570556640625"
+                   AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="-5.0" AnchorPane.topAnchor="111.0">
+            <image>
+                <Image url="@../image/xay-dung-phong-tap-gym-2.jpg"/>
+            </image>
+        </ImageView>
+        <FontAwesomeIcon fill="WHITE" iconName="GEAR" layoutX="12.0" layoutY="782.0" size="55px" text=""
+                         textAlignment="CENTER" wrappingWidth="66.35009765624977"/>
+        <Button fx:id="dashBoardButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="95.0" layoutY="357.0"
+                mnemonicParsing="false" onMouseClicked="#toDashBoard" prefHeight="128.0" prefWidth="154.0"
+                style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;" styleClass="buttonItems"
+                text="Dashboard" textAlignment="CENTER">
+            <font>
+                <Font name="Britannic Bold" size="20.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </Button>
+        <ImageView disable="true" fitHeight="97.0" fitWidth="114.0" layoutX="127.0" layoutY="348.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../image/dashboard.png"/>
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </ImageView>
+        <Button fx:id="membersButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="342.0" layoutY="354.0"
+                mnemonicParsing="false" onMouseClicked="#toMembers" prefHeight="128.0" prefWidth="154.0"
+                style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;" styleClass="buttonItems"
+                text="Members" textAlignment="CENTER">
+            <font>
+                <Font name="Britannic Bold" size="20.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </Button>
+        <ImageView disable="true" fitHeight="109.0" fitWidth="115.0" layoutX="365.0" layoutY="337.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../image/group.png"/>
+            </image>
+        </ImageView>
+        <Button fx:id="employeeButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="572.0" layoutY="351.0"
+                mnemonicParsing="false" onMouseClicked="#toEmployees" prefHeight="128.0" prefWidth="154.0"
+                style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;" styleClass="buttonItems"
+                text="Employees" textAlignment="CENTER">
+            <font>
+                <Font name="Britannic Bold" size="20.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </Button>
+        <ImageView disable="true" fitHeight="97.0" fitWidth="114.0" layoutX="601.0" layoutY="338.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../image/fitness.png"/>
+            </image>
+        </ImageView>
+        <Button fx:id="classButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="809.0" layoutY="348.0"
+                mnemonicParsing="false" onMouseClicked="#toClass" prefHeight="128.0" prefWidth="154.0"
+                style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;" styleClass="buttonItems"
+                text="Classes" textAlignment="CENTER">
+            <font>
+                <Font name="Britannic Bold" size="20.0"/>
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+        </Button>
+        <ImageView disable="true" fitHeight="97.0" fitWidth="114.0" layoutX="844.0" layoutY="337.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../image/grade.png"/>
+            </image>
+        </ImageView>
+        <FontAwesomeIcon fill="WHITE" iconName="GEAR" layoutX="13.0" layoutY="783.0" size="55px" text=""
+                         textAlignment="CENTER" wrappingWidth="66.35009765624977"/>
+    </children>
+</AnchorPane>

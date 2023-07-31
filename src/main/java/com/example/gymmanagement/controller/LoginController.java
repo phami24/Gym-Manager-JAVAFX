@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -62,9 +63,11 @@ public class LoginController implements Initializable {
         // Lấy giá trị từ các cột trong ResultSet
         if (username.getText().equals("admin") && password.getText().equals("1234")) {
             Stage mainStage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/gymmanagement/view/home.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/gymmanagement/view/home-page.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
+            //add css
+            scene.getStylesheets().add(this.getClass().getResource("/com/example/gymmanagement/css/style.css").toExternalForm());
             mainStage.setScene(scene);
             mainStage.show();
             stage.close();

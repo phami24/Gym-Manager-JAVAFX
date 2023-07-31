@@ -63,18 +63,21 @@ public class StageManager {
      * Example method to load the home stage.
      * You can call this method to load the home stage in your application.
      */
-    public void loadHomeStage() {
+    public void loadHomePage() {
         // Implementation for loading the home stage goes here
         // For example: You can create a new scene for the home screen and set it as the current scene.
         Stage mainStage = new Stage();
-        HomeStageController homeStageController = new HomeStageController();
-        Scene homeStage = stageController.loadScene("/com/example/gymmanagement/view/home-stage.fxml" + homeStageController);
-        homeStageController.setStage(currentStage);
+        HomePageController homePageController = new HomePageController();
+        Scene homeStage = stageController.loadScene("/com/example/gymmanagement/view/home-page.fxml" + homePageController);
+        //get css resource
+//        String css = this.getClass().getResource("com/example/gymmanagement/css/style.css").toExternalForm();
+//        homeStage.getStylesheets().add(css);
+
+        homePageController.setStage(currentStage);
         mainStage.setScene(homeStage);
         setCurrentStage(mainStage);
         showStage();
     }
-
 }
 
 
