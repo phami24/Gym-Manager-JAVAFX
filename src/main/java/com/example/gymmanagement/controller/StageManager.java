@@ -40,6 +40,7 @@ public class StageManager {
         currentStage.show();
     }
 
+
     // Write additional methods here .....
 
     /**

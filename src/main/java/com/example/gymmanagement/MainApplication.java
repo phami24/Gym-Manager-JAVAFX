@@ -14,17 +14,7 @@ import java.io.IOException;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("view/login.fxml"));
-        Parent root = loader.load();
-        LoginController controller = loader.getController();
 
-        Scene scene = new Scene(root);
-        scene.setFill(Color.TRANSPARENT);
-        stage.initStyle(StageStyle.TRANSPARENT);
-
-        stage.setScene(scene);
-        controller.setStage(stage);
-        stage.show();
     }
 
     public static void main(String[] args) {
