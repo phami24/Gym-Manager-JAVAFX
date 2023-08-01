@@ -253,7 +253,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="add_instructor_form" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/addmember.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="add_instructor_form" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/addmember.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="4.0" layoutY="273.0" prefHeight="320.0" prefWidth="890.0" styleClass="white-bg" stylesheets="@../css/style.css">
                                  <children>
@@ -333,18 +333,18 @@
                                     <TextField fx:id="address_input_i" layoutX="423.0" layoutY="140.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
                                     <TextField fx:id="phone_input_i" layoutX="711.0" layoutY="20.0" prefHeight="25.0" prefWidth="170.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
                                     <ComboBox fx:id="gender_input_i" layoutX="423.0" layoutY="60.0" prefHeight="25.0" prefWidth="105.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
-                                    <Button fx:id="inst_add_btn" layoutX="632.0" layoutY="167.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="65.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Add" />
+                                    <Button fx:id="inst_add_btn" layoutX="632.0" layoutY="167.0" mnemonicParsing="false" onAction="#addInstructor" prefHeight="28.0" prefWidth="65.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Add" />
                                     <Label layoutX="15.0" layoutY="23.0" text="experienceYears">
                                        <font>
                                           <Font name="Berlin Sans FB" size="16.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="inst_update_btn" layoutX="714.0" layoutY="165.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Update" />
-                                    <Button fx:id="inst_delete_btn" layoutX="805.0" layoutY="167.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="69.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Delete" />
+                                    <Button fx:id="inst_update_btn" layoutX="714.0" layoutY="165.0" mnemonicParsing="false" onAction="#updateInstructor" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Update" />
+                                    <Button fx:id="inst_delete_btn" layoutX="805.0" layoutY="167.0" mnemonicParsing="false" onAction="#deleteInstructor" prefHeight="28.0" prefWidth="69.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Delete" />
                                     <DatePicker fx:id="dob_input_i" layoutX="423.0" layoutY="20.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
                                     <DatePicker fx:id="hiredate_input_i" layoutX="711.0" layoutY="60.0" prefHeight="25.0" prefWidth="170.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
                                     <TextField fx:id="speci_input_i" layoutX="711.0" layoutY="100.0" prefHeight="25.0" prefWidth="170.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
-                                    <Button fx:id="inst_reset_btn" layoutX="633.0" layoutY="136.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="65.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Reset" />
+                                    <Button fx:id="inst_reset_btn" layoutX="633.0" layoutY="136.0" mnemonicParsing="false" onAction="#clearIns" prefHeight="28.0" prefWidth="65.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Reset" />
                                     <TextField fx:id="year_input_i" layoutX="143.0" layoutY="20.0" prefHeight="25.0" prefWidth="173.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
                                  </children>
                               </AnchorPane>
@@ -359,6 +359,110 @@
                                     <Font size="26.0" />
                                  </font>
                               </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="member_form" prefHeight="604.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="7.0" layoutY="31.0" prefHeight="320.0" prefWidth="890.0" styleClass="white-bg" stylesheets="@../css/style.css">
+                                 <children>
+                                    <TableView fx:id="member_tableView" prefHeight="566.0" prefWidth="886.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <columns>
+                                          <TableColumn fx:id="member_col_id" prefWidth="26.66668701171875" text="ID" />
+                                          <TableColumn fx:id="member_col_fullname" prefWidth="116.66664123535156" text="Full name" />
+                                          <TableColumn fx:id="member_col_dob" prefWidth="78.66668701171875" text="DOB" />
+                                          <TableColumn fx:id="member_col_gender" prefWidth="49.33331298828125" text="Gender" />
+                                          <TableColumn fx:id="member_col_email" prefWidth="111.33334350585938" text="Email" />
+                                          <TableColumn fx:id="member_col_address" prefWidth="107.33331298828125" text="Address" />
+                                          <TableColumn fx:id="member_col_phone" prefWidth="100.0" text="Phone number" />
+                                          <TableColumn fx:id="member_col_enddate" prefWidth="74.666748046875" text="End date" />
+                                          <TableColumn fx:id="member_col_joindate" prefWidth="78.6666259765625" text="Join date" />
+                                          <TableColumn fx:id="member_col_status" prefWidth="64.6666259765625" text="Status" />
+                                          <TableColumn fx:id="member_col_type" prefWidth="54.6666259765625" text="Type" />
+                                          <TableColumn fx:id="member_col_status1" prefWidth="88.0" text="Year" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="14.0" layoutY="380.0" prefHeight="195.0" prefWidth="890.0" styleClass="white-bg" stylesheets="@../css/style.css">
+                                 <children>
+                                    <Label layoutX="15.0" layoutY="60.0" text="Member ID">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="100.0" text="First name">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="140.0" text="Last name">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="334.0" layoutY="20.0" text="Date of birth">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="335.0" layoutY="60.0" text="Gender">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="335.0" layoutY="100.0" text="Email">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="335.0" layoutY="140.0" text="Address">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="620.0" layoutY="20.0" text="Phone">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="620.0" layoutY="100.0" text="Join date">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="620.0" layoutY="60.0" text="End date">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="id_input_m" layoutX="106.0" layoutY="72.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="firstname_input_m" layoutX="106.0" layoutY="113.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="lastname_input_m" layoutX="106.0" layoutY="140.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="email_input_m" layoutX="423.0" layoutY="100.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="address_input_m" layoutX="423.0" layoutY="140.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="phone_input_m" layoutX="711.0" layoutY="20.0" prefHeight="25.0" prefWidth="170.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <ComboBox fx:id="gender_input_m" layoutX="423.0" layoutY="60.0" prefHeight="25.0" prefWidth="105.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <Button fx:id="inst_add_btn1" layoutX="641.0" layoutY="159.0" mnemonicParsing="false" onAction="#addMember" prefHeight="28.0" prefWidth="65.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Add" />
+                                    <Button fx:id="inst_update_btn1" layoutX="729.0" layoutY="151.0" mnemonicParsing="false" onAction="#updateMember" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Update" />
+                                    <Button fx:id="inst_delete_btn1" layoutX="811.0" layoutY="153.0" mnemonicParsing="false" onAction="#deleteMember" prefHeight="28.0" prefWidth="69.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Delete" />
+                                    <DatePicker fx:id="dob_input_m" layoutX="423.0" layoutY="20.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <DatePicker fx:id="enddate_input_m" layoutX="711.0" layoutY="60.0" prefHeight="25.0" prefWidth="170.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <Button fx:id="inst_reset_btn1" layoutX="633.0" layoutY="126.0" mnemonicParsing="false" onAction="#clearMembers" prefHeight="28.0" prefWidth="65.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Reset" />
+                                    <DatePicker fx:id="joindate_input_m" layoutX="719.0" layoutY="97.0" prefHeight="25.0" prefWidth="170.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <Label layoutX="21.0" layoutY="35.0" text="Status">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="type_input_m" layoutX="106.0" layoutY="1.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <Label layoutX="31.0" layoutY="16.0" text="Type">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="status_input_m" layoutX="106.0" layoutY="32.0" prefHeight="25.0" prefWidth="105.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
                      </children>

@@ -13,6 +13,11 @@ public class MembersRepository {
     public MembersRepository() {
         this.jdbcConnect = new JDBCConnect();
     }
+    private Connection con = null;
+    private PreparedStatement ps = null;
+
+    private ResultSet rs = null;
+    private Statement statement = null;
 
     // Phương thức để thêm một thành viên vào cơ sở dữ liệu
 
@@ -35,52 +40,47 @@ public class MembersRepository {
 
     // Phương thức để xóa thành viên khỏi cơ sở dữ liệu
     public void deleteMember(int memberId) {
-        Connection connection = null;
-        PreparedStatement statement = null;
 
         try {
-            connection = jdbcConnect.getJDBCConnection();
+            con = com.example.gymmanagement.database.dao.JDBCConnect.getJDBCConnection();
             String query = "DELETE FROM members WHERE member_id = ?";
-            statement = connection.prepareStatement(query);
-            statement.setInt(1, memberId);
+            ps = con.prepareStatement(query);
+            ps.setInt(1, memberId);
 
-            statement.executeUpdate();
+            ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
-            jdbcConnect.closeConnection(connection);
-            jdbcConnect.closePreparedStatement(statement);
+            com.example.gymmanagement.database.dao.JDBCConnect.closeConnection(con);
+            com.example.gymmanagement.database.dao.JDBCConnect.closePreparedStatement(ps);
         }
     }
 
     // Phương thức để lấy thông tin thành viên dựa trên ID
     public Members getMemberById(int memberId) {
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
 
         Members member = null;
 
         try {
-            connection = jdbcConnect.getJDBCConnection();
+            con = com.example.gymmanagement.database.dao.JDBCConnect.getJDBCConnection();
             String query = "SELECT * FROM members WHERE member_id = ?";
-            statement = connection.prepareStatement(query);
-            statement.setInt(1, memberId);
+            ps = con.prepareStatement(query);
+            ps.setInt(1, memberId);
 
-            resultSet = statement.executeQuery();
+            rs = ps.executeQuery();
 
-            if (resultSet.next()) {
+            if (rs.next()) {
                 member = new Members();
-                member = fromResultSet(resultSet);
+                member = fromResultSet(rs);
             }
 
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
-            jdbcConnect.closeConnection(connection);
-            jdbcConnect.closeResultSet(resultSet);
-            jdbcConnect.closePreparedStatement(statement);
+            com.example.gymmanagement.database.dao.JDBCConnect.closeConnection(con);
+            com.example.gymmanagement.database.dao.JDBCConnect.closeResultSet(rs);
+            com.example.gymmanagement.database.dao.JDBCConnect.closePreparedStatement(ps);
         }
 
         return member;
@@ -88,36 +88,33 @@ public class MembersRepository {
 
     // Phương thức để lấy danh sách tất cả các thành viên
     public List<Members> getAllMembers() {
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet resultSet = null;
 
         List<Members> membersList = new ArrayList<>();
 
         try {
-            connection = jdbcConnect.getJDBCConnection();
+            con = com.example.gymmanagement.database.dao.JDBCConnect.getJDBCConnection();
             String query = "SELECT * FROM members";
-            statement = connection.prepareStatement(query);
+            ps = con.prepareStatement(query);
 
-            resultSet = statement.executeQuery();
+            rs = ps.executeQuery();
 
-            while (resultSet.next()) {
+            while (rs.next()) {
                 Members member = new Members();
-                member = fromResultSet(resultSet);
+                member = fromResultSet(rs);
 
                 membersList.add(member);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
-            jdbcConnect.closeConnection(connection);
-            jdbcConnect.closeResultSet(resultSet);
-            jdbcConnect.closePreparedStatement(statement);
+            com.example.gymmanagement.database.dao.JDBCConnect.closeConnection(con);
+            com.example.gymmanagement.database.dao.JDBCConnect.closeResultSet(rs);
+            com.example.gymmanagement.database.dao.JDBCConnect.closePreparedStatement(ps);
         }
         return membersList;
     }
 
-    //lấy từ database ra entity
+    //lấy từ database ra
     public Members fromResultSet(ResultSet resultSet) throws SQLException {
         Members member = new Members();
         member.setMember_id(resultSet.getInt("member_id"));
@@ -135,33 +132,54 @@ public class MembersRepository {
         return member;
     }
 
-    //lấy từ entity vào database
+    //lấy vào database
     public void executeMemberQuery(String query, Members member) {
-        Connection connection = null;
-        PreparedStatement statement = null;
 
         try {
-            connection = jdbcConnect.getJDBCConnection();
-            statement = connection.prepareStatement(query);
+            con = com.example.gymmanagement.database.dao.JDBCConnect.getJDBCConnection();
+            ps = con.prepareStatement(query);
 
-            statement.setString(1, member.getFirst_name());
-            statement.setString(2, member.getLast_name());
-            statement.setDate(3, Date.valueOf(member.getDob()));
-            statement.setString(4, member.getGender());
-            statement.setString(5, member.getEmail());
-            statement.setString(6, member.getPhone_number());
-            statement.setString(7, member.getAddress());
-            statement.setDate(8, Date.valueOf(member.getJoin_date()));
-            statement.setDate(9, Date.valueOf(member.getEnd_date()));
-            statement.setInt(10, member.getMembership_status_id());
-            statement.setInt(11, member.getMembership_type_id());
+            ps.setString(1, member.getFirst_name());
+            ps.setString(2, member.getLast_name());
+            ps.setDate(3, java.sql.Date.valueOf(member.getDob()));
+            ps.setString(4, member.getGender());
+            ps.setString(5, member.getEmail());
+            ps.setString(6, member.getPhone_number());
+            ps.setString(7, member.getAddress());
+            ps.setDate(8, java.sql.Date.valueOf(member.getJoin_date()));
+            ps.setDate(9, java.sql.Date.valueOf(member.getEnd_date()));
+            ps.setInt(10, member.getMembership_status_id());
+            ps.setInt(11, member.getMembership_type_id());
 
-            statement.executeUpdate();
+            ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
-            jdbcConnect.closeConnection(connection);
-            jdbcConnect.closePreparedStatement(statement);
+            com.example.gymmanagement.database.dao.JDBCConnect.closeConnection(con);
+            com.example.gymmanagement.database.dao.JDBCConnect.closePreparedStatement(ps);
         }
+    }
+    //set ID
+
+    public int getNextMemberID() {
+        int nextID = 0;
+
+        try {
+            con = com.example.gymmanagement.database.dao.JDBCConnect.getJDBCConnection();
+            statement = con.createStatement();
+            rs = statement.executeQuery("SELECT MAX(member_id) FROM members");
+
+            if (rs.next()) {
+                nextID = rs.getInt(1) + 1;
+            }
+
+            rs.close();
+            statement.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return nextID;
     }
 }

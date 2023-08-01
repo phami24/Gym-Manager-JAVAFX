@@ -9,7 +9,9 @@ import java.util.List;
 public interface InstructorsService {
     void addInstructor(Instructors instructor);
     void updateInstructor(Instructors instructor);
-    void deleteInstructor() throws IOException;
+
+    void deleteInstructor(int instructorId);
     Instructors getInstructorById(int instructorId);
-    ObservableList<Instructors> getAllInstructors();
+    List<Instructors> getAllInstructors();
+    int getNextMemberID();
 }

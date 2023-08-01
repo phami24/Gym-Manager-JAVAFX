@@ -5,7 +5,8 @@ import com.example.gymmanagement.model.repository.InstructorsRepository;
 import com.example.gymmanagement.model.service.InstructorsService;
 import javafx.collections.ObservableList;
 
-import java.io.IOException;
+
+import java.util.List;
 
 public class InstructorsServiceImpl implements InstructorsService {
     private final InstructorsRepository instructorsRepository;
@@ -25,9 +26,10 @@ public class InstructorsServiceImpl implements InstructorsService {
     }
 
     @Override
-    public void deleteInstructor() throws IOException {
-        instructorsRepository.deleteInstructor();
+    public void deleteInstructor(int instructorId) {
+        instructorsRepository.deleteInstructor(instructorId);
     }
+
 
     @Override
     public Instructors getInstructorById(int instructorId) {
@@ -35,7 +37,12 @@ public class InstructorsServiceImpl implements InstructorsService {
     }
 
     @Override
-    public ObservableList<Instructors> getAllInstructors() {
+    public List<Instructors> getAllInstructors() {
         return instructorsRepository.getAllInstructors();
+    }
+
+    @Override
+    public int getNextMemberID() {
+        return instructorsRepository.getNextMemberID();
     }
 }
