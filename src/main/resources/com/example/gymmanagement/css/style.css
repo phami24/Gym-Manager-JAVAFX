@@ -14,3 +14,89 @@
     -fx-border-color: black;
     -fx-border-width: 0 2 0 0;
 }
+
+ .left-form{
+      -fx-background-color: linear-gradient(to bottom right,#3b4f6e,#627ca3,#627ca3,#627ca3,#3b4f6e,);
+ }
+ .top-form{
+     -fx-background-color:#fff;
+     -fx-border-color:#000;
+     -fx-border-width: .0px .0px .2px .0px;
+ }
+ .top-label{
+     -fx-background-color:linear-gradient(#3b4f6e);
+
+ }
+ .header-label{
+     -fx-border-color:linear-gradient(to bottom,#86a2bf,#283747);
+     -fx-border-width:0 0 0 2.5px;
+     -fx-padding: 0 0 0 8px;
+     -fx-font-family:"Berlin Sans FB";
+ }
+ .close{
+     -fx-cursor:hand;
+     -fx-background-color:transparent;
+ }
+ .close:hover{
+     -fx-background-color:#cc1c16;
+ }
+ #btn{
+     -fx-cursor:hand;
+ }
+ .nav-btn{
+     -fx-background-color:transparent;
+     -fx-cursor:hand;
+     -fx-alignment:CENTER-LEFT;
+     -fx-font-size: 15px;
+     -fx-font-family:"Berlin Sans FB";
+     -fx-text-fill:#fff;
+     -fx-padding:0 0 0 40px;
+ }
+ .nav-btn:hover{
+     -fx-background-color: linear-gradient(to bottom,#88abd1,#4c6a8a);
+ }
+ .sign-out{
+     -fx-background-color:#86a2bf;
+     -fx-cursor:hand;
+     -fx-background-radius: 10px;
+ }
+ .sign-out:hover{
+     -fx-background-color:#627ca3;
+ }
+ .shadow{
+     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);
+ }
+ .white-bg{
+     -fx-background-color:#fff;
+     -fx-background-radius: 5px;
+      -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);
+ }
+ .nav-admin{
+     -fx-background-color:#fff;
+     -fx-border-color:linear-gradient(to bottom,#86a2bf,#283747);
+     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);
+     -fx-background-radius: 40px;
+     -fx-border-radius: 40px;
+ }
+ .admin-label{
+    -fx-border-color: #4d668f ;
+        -fx-border-width: 2 ;
+        -fx-border-style: segments(25, 25, 35, 25)  line-cap round ;
+        -fx-text-fill:#fff;
+ }
+
+.left-side-background{
+    -fx-background-color:  lightblue;
+}
+.centered-border{
+    -fx-border-color: black;
+    -fx-border-width: 0 3 0 0;
+}
+.border{
+    -fx-border-color: black;
+    -fx-border-width: 2;
+}
+.right-border{
+    -fx-border-color: black;
+    -fx-border-width: 0 2 0 0;
+}

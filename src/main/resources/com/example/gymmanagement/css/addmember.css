@@ -1,0 +1,48 @@
+.add-btn{
+    -fx-border-width:.5px;
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+    -fx-alignment:CENTER-LEFT;
+    -fx-border-color:#000;
+    -fx-font-size: 15px;
+    -fx-font-family:"Berlin Sans FB";
+}
+.add-btn:hover{
+    -fx-background-color:#627ca3;
+}
+.textfield{
+    -fx-background-color:#efefef;
+    -fx-background-radius:4px;
+    -fx-border-color:linear-gradient(to top right, #2c2c57,#392b78);
+    -fx-border-radius:4px;
+    -fx-border-width:.5px;
+    -fx-font-family:"Berlin Sans FB";
+}
+.textfield:focused{
+    -fx-background-color:#fff;
+    -fx-border-width:1px;
+}
+.table-view{
+    -fx-background-color:transparent;
+    -fx-border-color:linear-gradient(to top right,#86a2bf,#283747);
+    -fx-border-radius:8px;
+    -fx-border-width:2px
+    -fx-padding:0px;
+}
+.table-view .table-column{
+    -fx-alignment:CENTER;
+}
+.table-view .column-header-background{
+    -fx-background-color:linear-gradient(to top right,#86a2bf,#283747);
+    -fx-background-radius:8px 8px 0px 0px;
+}
+
+.table-view .column-header, .filter{
+    -fx-background-color:transparent;
+    -fx-size:40px;
+}
+
+.table-view .column-header .label{
+    -fx-text-fill:#fff;
+    -fx-font-family:"Berlin Sans FB";
+}

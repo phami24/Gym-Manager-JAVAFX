@@ -13,7 +13,18 @@ import java.io.IOException;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/gymmanagement/view/member.fxml"));
+        Scene scene = new Scene(root);
 
+//        MouseDragHandler mouseDragHandler = new MouseDragHandler(stage);
+//        root.setOnMousePressed(mouseDragHandler);
+//        root.setOnMouseDragged(mouseDragHandler);
+//        root.setOnMouseReleased(mouseDragHandler);
+
+
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public static void main(String[] args) {

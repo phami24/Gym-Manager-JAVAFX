@@ -15,9 +15,11 @@ public class MembersRepository {
     }
 
     // Phương thức để thêm một thành viên vào cơ sở dữ liệu
+
     public void addMember(Members member) {
         String query = "INSERT INTO members (first_name, last_name, dob, gender, email, phone_number, address, join_date, end_date, membership_status_id, membership_type_id) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
         executeMemberQuery(query, member);
     }
 
@@ -115,6 +117,7 @@ public class MembersRepository {
         return membersList;
     }
 
+    //lấy từ database ra entity
     public Members fromResultSet(ResultSet resultSet) throws SQLException {
         Members member = new Members();
         member.setMember_id(resultSet.getInt("member_id"));
@@ -132,6 +135,7 @@ public class MembersRepository {
         return member;
     }
 
+    //lấy từ entity vào database
     public void executeMemberQuery(String query, Members member) {
         Connection connection = null;
         PreparedStatement statement = null;
