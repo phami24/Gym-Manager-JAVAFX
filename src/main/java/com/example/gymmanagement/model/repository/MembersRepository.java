@@ -151,6 +151,10 @@ public class MembersRepository {
             ps.setInt(10, member.getMembership_status_id());
             ps.setInt(11, member.getMembership_type_id());
 
+            if (query.contains("UPDATE")) {
+                ps.setInt(12, member.getMember_id());
+            }
+
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

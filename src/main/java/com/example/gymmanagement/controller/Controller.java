@@ -941,7 +941,7 @@ public class Controller {
         if (result.isPresent() && result.get() == confirm) {
             if (classes != null) {
                 String className = classname_input.getText();
-                Integer insID = Integer.valueOf(instructorID_input.getText());
+                int insID = Integer.valueOf(instructorID_input.getText());
                 String schedule = schedule_input.getText();
                 int capacity = Integer.parseInt(capacity_input.getText());
 
@@ -1097,6 +1097,7 @@ public class Controller {
             }
         }
     }
+    @FXML
     private void clearEquipment(){
         id_input_equipment.clear();
         equipment_name_input.clear();
