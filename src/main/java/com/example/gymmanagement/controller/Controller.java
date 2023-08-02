@@ -334,7 +334,6 @@ public class Controller {
                 showInstructorDetails(newValue);
             }
         });
-
         loadInstructorsData();
         insGenderList(gender_input_i);
 
@@ -397,6 +396,7 @@ public class Controller {
 
     //clear text
     public void clearIns() {
+        id_input_i.clear();
         firstname_input_i.clear();
         lastname_input_i.clear();
         dob_input_i.setValue(null);
@@ -485,35 +485,44 @@ public class Controller {
 
     @FXML
     private void updateInstructor() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Update");
+        alert.setHeaderText("Bạn có chắc chắn muốn update instructor này?");
+        alert.setContentText("");
 
-        Instructors instructors = instructor_tableView.getSelectionModel().getSelectedItem();
-        if (instructors != null) {
-            String firstName = firstname_input_i.getText();
-            String lastName = lastname_input_i.getText();
-            LocalDate dob = dob_input_i.getValue();
-            String gender = gender_input_i.getValue();
-            String email = email_input_i.getText();
-            String phoneNumber = phone_input_i.getText();
-            String address = address_input_i.getText();
-            LocalDate hireDate = hiredate_input_i.getValue();
-            String specialization = speci_input_i.getText();
-            Integer experienceYears = Integer.valueOf(year_input_i.getText());
+        ButtonType confirm = new ButtonType("Update", ButtonBar.ButtonData.OK_DONE);
+        alert.getButtonTypes().setAll(confirm,ButtonType.CANCEL);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == confirm) {
+            Instructors instructors = instructor_tableView.getSelectionModel().getSelectedItem();
+            if (instructors != null) {
+                String firstName = firstname_input_i.getText();
+                String lastName = lastname_input_i.getText();
+                LocalDate dob = dob_input_i.getValue();
+                String gender = gender_input_i.getValue();
+                String email = email_input_i.getText();
+                String phoneNumber = phone_input_i.getText();
+                String address = address_input_i.getText();
+                LocalDate hireDate = hiredate_input_i.getValue();
+                String specialization = speci_input_i.getText();
+                Integer experienceYears = Integer.valueOf(year_input_i.getText());
 
-            instructors.setFirst_name(firstName);
-            instructors.setLast_name(lastName);
-            instructors.setDob(String.valueOf(dob));
-            instructors.setGender(gender);
-            instructors.setEmail(email);
-            instructors.setPhone_number(phoneNumber);
-            instructors.setAddress(address);
-            instructors.setHire_date(String.valueOf(hireDate));
-            instructors.setSpecialization(specialization);
-            instructors.setExperienceYears(experienceYears);
+                instructors.setFirst_name(firstName);
+                instructors.setLast_name(lastName);
+                instructors.setDob(String.valueOf(dob));
+                instructors.setGender(gender);
+                instructors.setEmail(email);
+                instructors.setPhone_number(phoneNumber);
+                instructors.setAddress(address);
+                instructors.setHire_date(String.valueOf(hireDate));
+                instructors.setSpecialization(specialization);
+                instructors.setExperienceYears(experienceYears);
 
-            instructorsService.updateInstructor(instructors);
+                instructorsService.updateInstructor(instructors);
 
-            instructor_tableView.refresh();
-            clearIns();
+                instructor_tableView.refresh();
+                clearIns();
+            }
         }
     }
 
@@ -521,16 +530,33 @@ public class Controller {
     @FXML
     private void deleteInstructor() {
         Instructors instructors = instructor_tableView.getSelectionModel().getSelectedItem();
-        if (instructors != null) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Xác nhận xóa");
+        alert.setHeaderText("Bạn có chắc chắn muốn xóa instructor này?");
+        alert.setContentText("");
+
+        ButtonType confirm = new ButtonType("Delete", ButtonBar.ButtonData.OK_DONE);
+        alert.getButtonTypes().setAll(confirm,ButtonType.CANCEL);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == confirm) {
             instructorsService.deleteInstructor(instructors.getInstructor_id());
+            // Cập nhật danh sách members sau khi xóa và hiển thị lại view
             instructor_tableView.getItems().remove(instructors);
         }
+
+
+//        Instructors instructors = instructor_tableView.getSelectionModel().getSelectedItem();
+//        if (instructors != null) {
+//            instructorsService.deleteInstructor(instructors.getInstructor_id());
+//            instructor_tableView.getItems().remove(instructors);
+//        }
     }
 
 
     //controller members
 
     public void clearMembers() {
+        id_input_m.clear();
         firstname_input_m.clear();
         lastname_input_m.clear();
         dob_input_m.setValue(null);
@@ -590,13 +616,13 @@ public class Controller {
     private void updateMember() {
         Members members = member_tableView.getSelectionModel().getSelectedItem();
         if (members != null) {
-            String firstName = firstname_input_i.getText();
-            String lastName = lastname_input_i.getText();
-            LocalDate dob = dob_input_i.getValue();
-            String gender = gender_input_i.getValue();
-            String email = email_input_i.getText();
-            String phoneNumber = phone_input_i.getText();
-            String address = address_input_i.getText();
+            String firstName = firstname_input_m.getText();
+            String lastName = lastname_input_m.getText();
+            LocalDate dob = dob_input_m.getValue();
+            String gender = gender_input_m.getValue();
+            String email = email_input_m.getText();
+            String phoneNumber = phone_input_m.getText();
+            String address = address_input_m.getText();
             LocalDate enddate = enddate_input_m.getValue();
             LocalDate joindate = joindate_input_m.getValue();
             String status = status_input_m.getValue();
