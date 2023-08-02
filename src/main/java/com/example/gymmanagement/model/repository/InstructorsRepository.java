@@ -165,7 +165,7 @@ public class InstructorsRepository {
     }
 //set ID
     public int getNextMemberID() {
-        int nextID = 0;
+        int nextID =1;
 
         try {
             con = com.example.gymmanagement.database.dao.JDBCConnect.getJDBCConnection();
