@@ -1,5 +1,6 @@
 package com.example.gymmanagement.model.entity;
 
+import javafx.scene.control.Button;
 import lombok.*;
 @Getter
 @Setter

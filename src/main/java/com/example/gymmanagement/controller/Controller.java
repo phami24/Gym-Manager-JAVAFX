@@ -4,6 +4,7 @@ import com.example.gymmanagement.model.entity.*;
 import com.example.gymmanagement.model.repository.InstructorsRepository;
 import com.example.gymmanagement.model.service.InstructorsService;
 import com.example.gymmanagement.model.service.impl.*;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -21,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.lang.reflect.Member;
@@ -101,8 +103,8 @@ public class Controller {
     private TableColumn<Instructors, String> ins_col_spec;
     @FXML
     private TableColumn<Instructors, String> ins_col_status;
-
-
+    @FXML
+    private TableColumn<Instructors, Void> delete_col;
     //fxml members
     @FXML
     private TableColumn<Member, String> member_col_address;
@@ -243,14 +245,9 @@ public class Controller {
     private TextArea note_input;
 
 
-
-
-
-
     //fxml user
     @FXML
     private Button user_btn;
-
 
 
     // Khởi tạo đối tượng Service
@@ -337,7 +334,7 @@ public class Controller {
                 insGenderList(gender_input_m);
                 memberStatusList(status_input_m);
             });
-        }else if (event.getSource() == class_btn) {
+        } else if (event.getSource() == class_btn) {
             executor.execute(() -> {
                 class_form.setVisible(true);
                 equipment_form.setVisible(false);
@@ -349,7 +346,7 @@ public class Controller {
                 insGenderList(gender_input_m);
                 memberStatusList(status_input_m);
             });
-        }else if (event.getSource() == equipment_btn) {
+        } else if (event.getSource() == equipment_btn) {
             executor.execute(() -> {
                 equipment_form.setVisible(true);
                 class_form.setVisible(false);
@@ -361,7 +358,7 @@ public class Controller {
                 insGenderList(gender_input_m);
                 memberStatusList(status_input_m);
             });
-        }else if (event.getSource() == user_btn) {
+        } else if (event.getSource() == user_btn) {
             executor.execute(() -> {
                 class_form.setVisible(true);
                 equipment_form.setVisible(false);
@@ -448,7 +445,7 @@ public class Controller {
     }
 
 
-//Main
+    //Main
     @FXML
     private void initialize() {
         // Load danh sách instructor và hiển thị lên TableView khi Controller được khởi tạo.
@@ -474,16 +471,16 @@ public class Controller {
 
 
         //load danh sach class
-        class_tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValueClass) ->{
-            if (newValueClass != null){
+        class_tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValueClass) -> {
+            if (newValueClass != null) {
                 showClass(newValueClass);
             }
         });
         loadClassData();
 
         //load danh sach equipment
-        equipment_tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValueEquipment) ->{
-            if (newValueEquipment != null){
+        equipment_tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValueEquipment) -> {
+            if (newValueEquipment != null) {
                 showEquipment(newValueEquipment);
             }
         });
@@ -527,11 +524,15 @@ public class Controller {
         ins_col_hiredate.setCellValueFactory(new PropertyValueFactory<>("hire_date"));
         ins_col_spec.setCellValueFactory(new PropertyValueFactory<>("specialization"));
         ins_col_status.setCellValueFactory(new PropertyValueFactory<>("experienceYears"));
+
+
         // Thực hiện truy vấn để lấy dữ liệu từ cơ sở dữ liệu
         // Giả định có phương thức để lấy danh sách giảng viên từ cơ sở dữ liệu
         List<Instructors> instructorsList = instructorsService.getAllInstructors();
         // Đổ dữ liệu vào TableView
         instructor_tableView.getItems().addAll(instructorsList);
+
+
     }
 
     //clear text
@@ -880,16 +881,17 @@ public class Controller {
     }
 
 
-//controller class
-    public void clearClass(){
+    //controller class
+    public void clearClass() {
         id_input_class.clear();
         classname_input.clear();
         instructorID_input.clear();
         schedule_input.clear();
         capacity_input.clear();
     }
+
     @FXML
-    private void addClass(){
+    private void addClass() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation message.");
         alert.setHeaderText("Are you sure you want to add this class?");
@@ -927,8 +929,9 @@ public class Controller {
 
         }
     }
+
     @FXML
-    private void updateClass(){
+    private void updateClass() {
         Classes classes = class_tableView.getSelectionModel().getSelectedItem();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation message.");
@@ -957,8 +960,9 @@ public class Controller {
             }
         }
     }
+
     @FXML
-    private void deleteClass(){
+    private void deleteClass() {
         Classes classes = class_tableView.getSelectionModel().getSelectedItem();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation message");
@@ -977,7 +981,7 @@ public class Controller {
         }
     }
 
-    private void showClass(Classes classes){
+    private void showClass(Classes classes) {
         id_input_class.setText(String.valueOf(classes.getClass_id()));
         classname_input.setText(classes.getClass_name());
         instructorID_input.setText(String.valueOf(classes.getInstructor_id()));
@@ -986,7 +990,7 @@ public class Controller {
 
     }
 
-    private void loadClassData(){
+    private void loadClassData() {
         classID_col.setCellValueFactory(new PropertyValueFactory<>("class_id"));
         className_col.setCellValueFactory(new PropertyValueFactory<>("class_name"));
         insID_col.setCellValueFactory(new PropertyValueFactory<>("instructor_id"));
@@ -999,9 +1003,9 @@ public class Controller {
         class_tableView.getItems().addAll(classesList);
     }
 
-//controller equipment
+    //controller equipment
     @FXML
-    private void addEquipment(){
+    private void addEquipment() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation message");
         alert.setHeaderText("Are you sure you want to add this equipment?");
@@ -1044,8 +1048,9 @@ public class Controller {
 
         }
     }
+
     @FXML
-    private void updateEquipment(){
+    private void updateEquipment() {
         Equipment equipment = equipment_tableView.getSelectionModel().getSelectedItem();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation message");
@@ -1078,8 +1083,9 @@ public class Controller {
             }
         }
     }
+
     @FXML
-    private void deleteEquipment(){
+    private void deleteEquipment() {
         Equipment equipment = equipment_tableView.getSelectionModel().getSelectedItem();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation message");
@@ -1097,8 +1103,9 @@ public class Controller {
             }
         }
     }
+
     @FXML
-    private void clearEquipment(){
+    private void clearEquipment() {
         id_input_equipment.clear();
         equipment_name_input.clear();
         category_input.clear();
@@ -1107,7 +1114,8 @@ public class Controller {
         purchase_date_input.setValue(null);
         note_input.clear();
     }
-    private void showEquipment(Equipment equipment){
+
+    private void showEquipment(Equipment equipment) {
         id_input_equipment.setText(String.valueOf(equipment.getEquipment_id()));
         equipment_name_input.setText(equipment.getEquipment_name());
         category_input.setText(equipment.getCategory());
@@ -1116,7 +1124,8 @@ public class Controller {
         purchase_date_input.setValue(LocalDate.parse(equipment.getPurchase_date()));
         note_input.setText(equipment.getNotes());
     }
-    private void loadEquipment(){
+
+    private void loadEquipment() {
         equipment_id_col.setCellValueFactory(new PropertyValueFactory<>("equipment_id"));
         equipment_name_col.setCellValueFactory(new PropertyValueFactory<>("equipment_name"));
         category_col.setCellValueFactory(new PropertyValueFactory<>("category"));
@@ -1132,9 +1141,9 @@ public class Controller {
     }
 
 
-//controller user
+    //controller user
     @FXML
-    private void addUser(){
+    private void addUser() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation message");
         alert.setHeaderText("Are you sure you want to add this user?");
@@ -1146,11 +1155,11 @@ public class Controller {
         if (result.isPresent() && result.get() == confirm) {
 
 
-
         }
     }
+
     @FXML
-    private void updateUser(){
+    private void updateUser() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation message");
         alert.setHeaderText("Are you sure you want to update this user?");
@@ -1163,8 +1172,9 @@ public class Controller {
 
         }
     }
+
     @FXML
-    private void deleteUser(){
+    private void deleteUser() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation message");
         alert.setHeaderText("Are you sure you want to delete this user?");
@@ -1177,13 +1187,16 @@ public class Controller {
 
         }
     }
-    private void clearUser(){
+
+    private void clearUser() {
 
     }
-    private void showUser(Users users){
+
+    private void showUser(Users users) {
 
     }
-    private void loadUser(){
+
+    private void loadUser() {
 
     }
 }

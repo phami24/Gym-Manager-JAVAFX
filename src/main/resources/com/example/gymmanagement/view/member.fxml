@@ -409,7 +409,8 @@
                                           <TableColumn fx:id="ins_col_hiredate" prefWidth="74.666748046875" text="Hire date" />
                                           <TableColumn fx:id="ins_col_spec" prefWidth="78.6666259765625" text="Specialization" />
                                           <TableColumn fx:id="ins_col_status" prefWidth="64.6666259765625" text="Year" />
-                                          <TableColumn prefWidth="77.3333740234375" />
+                                          <TableColumn fx:id="delete_col" prefWidth="54.6666259765625" />
+                                          <TableColumn fx:id="delete_col" prefWidth="101.33349609375" />
                                        </columns>
                                     </TableView>
                                  </children>
