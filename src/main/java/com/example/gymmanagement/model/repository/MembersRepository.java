@@ -132,6 +132,34 @@ public class MembersRepository {
         return member;
     }
 
+    public int getTotalMembers() {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        int totalMembers = 0;
+
+        try {
+            connection = jdbcConnect.getJDBCConnection();
+            String query = "select count(member_id) as count from members";
+            statement = connection.prepareStatement(query);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                totalMembers = resultSet.getInt("count");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            jdbcConnect.closeConnection(connection);
+            jdbcConnect.closeResultSet(resultSet);
+            jdbcConnect.closePreparedStatement(statement);
+        }
+        return totalMembers;
+    }
+
+
     public void executeMemberQuery(String query, Members member) {
         Connection connection = null;
         PreparedStatement statement = null;
