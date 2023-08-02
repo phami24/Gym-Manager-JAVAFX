@@ -1,5 +1,7 @@
 package com.example.gymmanagement;
 
+import com.example.gymmanagement.controller.LoginController;
+import com.example.gymmanagement.controller.StageManager;
 import com.example.gymmanagement.model.service.MembersService;
 import com.example.gymmanagement.model.service.impl.MembersServiceImpl;
 import javafx.application.Application;
@@ -15,9 +17,14 @@ import java.io.IOException;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        StageManager stageManager = new StageManager();
+        stageManager.setCurrentStage(stage);
+        stageManager.loadHomeStage();
+
 
         MembersService membersService = new MembersServiceImpl();
         System.out.println(membersService.getTotalMembers());
+
     }
 
     public static void main(String[] args) {
