@@ -1,6 +1,7 @@
 package com.example.gymmanagement;
 
 import com.example.gymmanagement.controller.LoginController;
+import com.example.gymmanagement.controller.StageManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,7 +15,9 @@ import java.io.IOException;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-
+        StageManager stageManager = new StageManager();
+        stageManager.setCurrentStage(stage);
+        stageManager.loadHomeStage();
     }
 
     public static void main(String[] args) {

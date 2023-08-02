@@ -62,6 +62,10 @@ public class HomePageController implements Initializable {
     public void toEmployees(MouseEvent mouseEvent) {
     }
 
-    public void toClass(MouseEvent mouseEvent) {
+    public void toClasses(MouseEvent mouseEvent) {
+    }
+
+    public void exit(MouseEvent mouseEvent) {
+        closeHomePage();
     }
 }

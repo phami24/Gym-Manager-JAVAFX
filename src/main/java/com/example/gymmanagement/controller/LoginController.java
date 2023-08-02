@@ -67,7 +67,9 @@ public class LoginController implements Initializable {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             //add css
-            scene.getStylesheets().add(this.getClass().getResource("/com/example/gymmanagement/css/style.css").toExternalForm());
+            String css = this.getClass().getResource("/com/example/gymmanagement/css/style.css").toExternalForm();
+            scene.getStylesheets().add(css);
+
             mainStage.setScene(scene);
             mainStage.show();
             stage.close();
