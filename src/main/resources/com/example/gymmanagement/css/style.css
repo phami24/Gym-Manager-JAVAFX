@@ -1,3 +1,17 @@
+
+.background-color{
+    -fx-background-color: #1face1;
+}
+.down-border{
+    -fx-border-color: black;
+    -fx-border-width: 0 0 2 0;
+}
+.round-border{
+    -fx-border-color: black;
+    -fx-border-radius:12px;
+    -fx-border-width: 1.5;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap%27');
 @import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap%27');
 
@@ -12,3 +26,4 @@
     outline-offset: 15px;
     text-shadow: 1px 1px 2px #427388;
 }
+

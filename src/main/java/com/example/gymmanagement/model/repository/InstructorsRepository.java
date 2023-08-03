@@ -28,7 +28,7 @@ public class InstructorsRepository {
     public void updateInstructor(Instructors instructor) {
         String query = "UPDATE instructors " +
                 "SET first_name = ?, last_name = ?, dob = ?, gender = ?, email = ?, phone_number = ?, address = ?, hire_date = ?, specialization = ?, experience_years = ? " +
-                "WHERE instructor_id = ?";
+                "WHERE instructo r_id = ?";
         executeInstructorQuery(query, instructor);
 
     }
