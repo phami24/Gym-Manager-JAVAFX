@@ -1,15 +1,18 @@
 package com.example.gymmanagement.controller;
 
 import com.example.gymmanagement.database.JDBCConnect;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -44,6 +47,7 @@ public class LoginController implements Initializable {
     private JDBCConnect jdbcConnect;
 
     private StageManager stageManager;
+
     public LoginController() {
         this.jdbcConnect = new JDBCConnect();
         this.stageManager = new StageManager();
@@ -79,21 +83,45 @@ public class LoginController implements Initializable {
 
         if (isValidCredentials(username, password)) {
             // Tạo thông báo khi đăng nhập thành công
-            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-            successAlert.setTitle("Login Successful");
-            successAlert.setHeaderText(null);
-            successAlert.setContentText("Welcome, " + username + "!");
-            successAlert.setX(stage.getWidth() - successAlert.getWidth());
-            successAlert.setY(stage.getHeight() - successAlert.getHeight());
-            stage.close();
-            stageManager.loadHomeStage();
+//            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+//            successAlert.setTitle("Login Successful");
+//            successAlert.setHeaderText(null);
+//            successAlert.setContentText("Welcome, " + username + "!");
+            // Lấy kích thước của màn hình
+//            Screen screen = Screen.getPrimary();
+//            Rectangle2D bounds = screen.getBounds();
 
-            successAlert.showAndWait();
+            // Thiết lập vị trí của Alert ở góc dưới cùng bên phải của màn hình
+//            double xPosition = bounds.getMaxX() - successAlert.getHeight();
+//            double yPosition = bounds.getMaxY() - successAlert.getWidth();
+//            successAlert.setX(xPosition);
+//            successAlert.setY(yPosition);
+
+            stage.close();
+            stageManager.loadAnimationChangeStage();
+
+            // Tạo một Task để chờ 4 giây
+            Task<Void> waitTask = new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                    Thread.sleep(5000); // Đợi 4 giây
+                    return null;
+                }
+            };
+
+            // Gán hành động khi Task hoàn thành (sau 4 giây)
+            waitTask.setOnSucceeded(eventTask -> {
+//                successAlert.showAndWait();
+                stageManager.closeStage();
+                stageManager.loadHomeStage(); // Load home page sau khi chờ 4 giây
+            });
+
+            // Bắt đầu Task
+            new Thread(waitTask).start();
         } else {
             errorMess.setText("Invalid credentials. Please try again.");
         }
     }
-
 
     private boolean isValidCredentials(String username, String password) {
         boolean isValid = false;
@@ -119,7 +147,5 @@ public class LoginController implements Initializable {
 
         return isValid;
     }
-
-
 
 }

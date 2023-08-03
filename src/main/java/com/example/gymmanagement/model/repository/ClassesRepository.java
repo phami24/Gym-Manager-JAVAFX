@@ -111,6 +111,22 @@ public class ClassesRepository {
         return classesList;
     }
 
+    public List<Classes> getClassesByInstructorId(int instructorId) {
+        List<Classes> classesList = new ArrayList<>();
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM classes WHERE instructor_id = ?")) {
+            statement.setInt(1, instructorId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    classesList.add(fromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return classesList;
+    }
+
     public Classes fromResultSet(ResultSet resultSet) throws SQLException {
         Classes classes = new Classes();
         classes.setClass_id(resultSet.getInt("class_id"));

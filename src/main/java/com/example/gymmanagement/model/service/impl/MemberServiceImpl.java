@@ -6,10 +6,10 @@ import com.example.gymmanagement.model.service.MembersService;
 
 import java.util.List;
 
-public class MembersServiceImpl implements MembersService {
+public class MemberServiceImpl implements MembersService {
     private final MembersRepository membersRepository;
 
-    public MembersServiceImpl() {
+    public MemberServiceImpl() {
         this.membersRepository = new MembersRepository();
     }
 
@@ -36,6 +36,16 @@ public class MembersServiceImpl implements MembersService {
     @Override
     public List<Members> getAllMembers() {
         return membersRepository.getAllMembers();
+    }
+
+    @Override
+    public List<Members> getMembersByNames(String firstName, String lastName) {
+        return membersRepository.getMembersByNames(firstName, lastName);
+    }
+
+    @Override
+    public int getNumberOfMembersByInstructorId(int instructorId) {
+        return membersRepository.getMembersByInstructorId(instructorId).size();
     }
 
     @Override

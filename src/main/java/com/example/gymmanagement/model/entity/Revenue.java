@@ -1,5 +1,7 @@
 package com.example.gymmanagement.model.entity;
 
+import java.math.BigDecimal;
+
 import lombok.*;
 
 @Getter
@@ -7,9 +9,9 @@ import lombok.*;
 @ToString
 @NoArgsConstructor // Generates a no-args constructor
 @AllArgsConstructor // Generates an all-args constructor
-public class Users {
-    private int user_id;
-    private String username;
-    private String password;
-    private int role_id;
+public class Revenue {
+    private int revenueId;
+    private int year;
+    private int month;
+    private BigDecimal totalAmount;
 }

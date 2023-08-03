@@ -11,4 +11,6 @@ public interface MembersService {
     Members getMemberById(int memberId);
     List<Members> getAllMembers();
     int getTotalMembers();
+    List<Members> getMembersByNames(String firstName, String lastName);
+    int getNumberOfMembersByInstructorId(int instructorId);
 }

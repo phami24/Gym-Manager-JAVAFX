@@ -11,12 +11,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor // Generates an all-args constructor
-public class Members extends Person {
-    private int member_id;
-    private String join_date;
-    private String end_date;
-    private int membership_status_id;
-    private int membership_type_id;
-    private int instructorId;
+public class MembershipStatus {
+    private int membershipStatusId;
+    private String membershipStatusName;
 }
-

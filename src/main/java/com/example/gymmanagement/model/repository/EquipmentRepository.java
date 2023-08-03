@@ -114,10 +114,10 @@ public class EquipmentRepository {
 
     public Equipment fromResultSet(ResultSet resultSet) throws SQLException {
         Equipment equipment = new Equipment();
-        equipment.setEquipment_id(resultSet.getInt("equipment_id"));
-        equipment.setEquipment_name(resultSet.getString("equipment_name"));
+        equipment.setEquipmentId(resultSet.getInt("equipment_id"));
+        equipment.setEquipmentName(resultSet.getString("equipment_name"));
         equipment.setCategory(resultSet.getString("category"));
-        equipment.setPurchase_date(resultSet.getString("purchase_date"));
+        equipment.setPurchaseDate(resultSet.getString("purchase_date"));
         equipment.setPrice(resultSet.getBigDecimal("price"));
         equipment.setStatus(resultSet.getString("status"));
         equipment.setNotes(resultSet.getString("notes"));
@@ -132,9 +132,9 @@ public class EquipmentRepository {
             connection = jdbcConnect.getJDBCConnection();
             statement = connection.prepareStatement(query);
 
-            statement.setString(1, equipment.getEquipment_name());
+            statement.setString(1, equipment.getEquipmentName());
             statement.setString(2, equipment.getCategory());
-            statement.setString(3, equipment.getPurchase_date());
+            statement.setString(3, equipment.getPurchaseDate());
             statement.setBigDecimal(4, equipment.getPrice());
             statement.setString(5, equipment.getStatus());
             statement.setString(6, equipment.getNotes());

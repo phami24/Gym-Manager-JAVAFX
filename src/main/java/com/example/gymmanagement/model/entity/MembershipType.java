@@ -1,5 +1,7 @@
 package com.example.gymmanagement.model.entity;
 
+import java.math.BigDecimal;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,12 +13,10 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor // Generates an all-args constructor
-public class Members extends Person {
-    private int member_id;
-    private String join_date;
-    private String end_date;
-    private int membership_status_id;
-    private int membership_type_id;
-    private int instructorId;
+public class MembershipType {
+    private int membershipTypeId;
+    private String membershipTypeName;
+    private int duration;
+    private String description;
+    private BigDecimal price;
 }
-
