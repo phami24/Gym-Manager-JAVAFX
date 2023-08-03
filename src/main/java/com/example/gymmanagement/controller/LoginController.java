@@ -63,13 +63,11 @@ public class LoginController implements Initializable {
         // Lấy giá trị từ các cột trong ResultSet
         if (username.getText().equals("admin") && password.getText().equals("1234")) {
             Stage mainStage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/gymmanagement/view/home-page.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/homepagedemo/view/home-page.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             //add css
-            String css = this.getClass().getResource("/com/example/gymmanagement/css/style.css").toExternalForm();
-            scene.getStylesheets().add(css);
-
+//           scene.getStylesheets().add(this.getClass().getResource("/com/example/homepagedemo/css/style.css").toExternalForm());
             mainStage.setScene(scene);
             mainStage.show();
             stage.close();
@@ -83,3 +81,4 @@ public class LoginController implements Initializable {
 //        connection.close();
     }
 }
+
