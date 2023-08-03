@@ -1,8 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap%27');
-@import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
 
-#logo {
-    -fx-font-family: 'Heebo', Arial , sans-serif;
+@font-face {
+    font-family: 'Rajdhani';
+    src: url('Rajdhani-SemiBold.ttf');
+}
+
+#logoLabel{
+    -fx-font-family: 'Rajdhani';
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
 }
 
 .buttonItems:hover {
