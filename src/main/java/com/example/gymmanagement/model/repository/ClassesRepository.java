@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
+
 public class ClassesRepository {
     private final JDBCConnect jdbcConnect;
 
