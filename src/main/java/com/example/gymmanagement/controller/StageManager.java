@@ -68,8 +68,8 @@ public class StageManager {
         // For example: You can create a new scene for the home screen and set it as the current scene.
         Stage mainStage = new Stage();
         HomePageController homeStageController = new HomePageController();
-        homeStageController.setStage(currentStage);
         Scene homeStage = sceneManager.loadScene("home-page.fxml" , homeStageController);
+        homeStageController.setStage(currentStage);
         mainStage.setScene(homeStage);
         setCurrentStage(mainStage);
         showStage();
