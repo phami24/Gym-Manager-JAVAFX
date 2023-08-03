@@ -1,6 +1,5 @@
 package com.example.gymmanagement.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -47,7 +46,7 @@ public class HomePageController implements Initializable {
 
     @FXML
     void toDashBoard(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/gymmanagement/view/home.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/homepagedemo/view/dashboard.fxml"));
         Parent root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -62,7 +61,7 @@ public class HomePageController implements Initializable {
     public void toEmployees(MouseEvent mouseEvent) {
     }
 
-    public void toClasses(MouseEvent mouseEvent) {
+    public void toClass(MouseEvent mouseEvent) {
     }
 
     public void exit(MouseEvent mouseEvent) {

@@ -19,7 +19,7 @@ public class SceneManager {
     public Scene loadScene(String fxmlFileName, Object controller) {
         Scene scene = null;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/gymmanagement/view/"+fxmlFileName));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/gymmanagement/view/" + fxmlFileName));
             fxmlLoader.setController(controller);
             Parent root = fxmlLoader.load();
             scene = new Scene(root);
@@ -37,7 +37,7 @@ public class SceneManager {
     public Scene loadScene(String fxmlFileName) {
         Scene scene = null;
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/gymmanagement/view/"+fxmlFileName));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/gymmanagement/view/" + fxmlFileName));
             Parent root = fxmlLoader.load();
             scene = new Scene(root);
         } catch (Exception e) {
