@@ -1,132 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="647.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="TOP_RIGHT" prefHeight="47.0" prefWidth="750.0" stylesheets="@../css/style.css">
+      <StackPane layoutX="184.0" layoutY="100.0" prefHeight="550.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="48.0" text="X" />
-         </children>
-      </HBox>
-      <HBox prefHeight="216.0" prefWidth="698.0">
-         <children>
-            <ImageView fitHeight="150.0" fitWidth="1.0" pickOnBounds="true" preserveRatio="true" />
-            <Pane prefHeight="214.0" prefWidth="760.0">
+            <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <ImageView fitHeight="257.0" fitWidth="262.0" layoutX="246.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/database/pngwing.com.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="289.0" layoutY="182.0" prefHeight="24.0" prefWidth="186.0" text="Gym Management">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" />
+                  <AnchorPane prefHeight="351.0" prefWidth="800.0" style="-fx-background-color: #EDE7F6;" />
+               </children>
+            </VBox>
+            <AnchorPane fx:id="sideBar" prefHeight="486.0" prefWidth="800.0" style="-fx-background-color: transparent;">
+               <children>
+                  <AnchorPane layoutX="166.0" layoutY="113.0" prefHeight="362.0" prefWidth="469.0" style="-fx-background-color: WHITE; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-radius: 5; -fx-border-radius: 4; -fx-padding: 8;">
+                     <children>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="193.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/gym.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="usernameField" layoutX="75.0" layoutY="147.0" maxWidth="316.0" minWidth="233.0" prefHeight="31.0" prefWidth="316.0" promptText="Enter Username">
+                           <font>
+                              <Font name="Roboto Medium" size="14.0" />
+                           </font>
+                        </TextField>
+                        <PasswordField fx:id="passwordField" layoutX="75.0" layoutY="195.0" maxWidth="316.0" minWidth="235.0" prefHeight="31.0" prefWidth="316.0" promptText="Enter password">
+                           <font>
+                              <Font name="Roboto Medium" size="14.0" />
+                           </font>
+                        </PasswordField>
+                        <CheckBox fx:id="keepLoggedInCheckbox" layoutX="75.0" layoutY="242.0" prefHeight="31.0" prefWidth="171.0" text="Keep me logged in">
+                           <font>
+                              <Font name="Roboto Regular" size="14.0" />
+                           </font>
+                        </CheckBox>
+                        <Button fx:id="loginButton" layoutX="183.0" layoutY="316.0" onAction="#handleLogin" prefHeight="32.0" prefWidth="100.0" style="-fx-background-color: #2196f3;" text="Login" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="errorMess" alignment="CENTER" layoutX="122.0" layoutY="273.0" prefHeight="31.0" prefWidth="222.0" />
+                     </children>
+                  </AnchorPane>
+                  <Label alignment="CENTER" layoutX="188.0" layoutY="42.0" prefHeight="34.0" prefWidth="425.0" text="Admin Login" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="20.0" />
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="307.0" layoutY="76.0" prefHeight="17.0" prefWidth="187.0" text="Gym Management Application" textAlignment="CENTER" />
+                  <Label layoutX="779.0" layoutY="2.0" lineSpacing="1.0" onMouseClicked="#closeProgram" prefHeight="25.0" prefWidth="14.0" text="X" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
                </children>
-            </Pane>
+            </AnchorPane>
          </children>
-      </HBox>
-      <HBox prefHeight="41.0" prefWidth="698.0">
-         <children>
-            <Pane prefHeight="41.0" prefWidth="684.0">
-               <children>
-                  <Text layoutX="99.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Text>
-               </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Pane>
-         </children>
-         <VBox.margin>
-            <Insets left="150.0" />
-         </VBox.margin>
-      </HBox>
-      <HBox prefHeight="35.0" prefWidth="498.0">
-         <children>
-            <Pane prefHeight="35.0" prefWidth="97.0">
-               <children>
-                  <ImageView fitHeight="41.0" fitWidth="35.0" layoutX="31.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/database/user.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <TextField prefHeight="33.0" prefWidth="283.0" />
-         </children>
-         <VBox.margin>
-            <Insets left="150.0" right="100.0" />
-         </VBox.margin>
-      </HBox>
-      <HBox prefHeight="36.0" prefWidth="698.0">
-         <children>
-            <Pane prefHeight="36.0" prefWidth="618.0">
-               <children>
-                  <Text layoutX="81.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Text>
-               </children>
-               <HBox.margin>
-                  <Insets left="70.0" />
-               </HBox.margin>
-            </Pane>
-         </children>
-         <VBox.margin>
-            <Insets left="100.0" />
-         </VBox.margin>
-      </HBox>
-      <HBox prefHeight="35.0" prefWidth="498.0">
-         <children>
-            <Pane prefHeight="35.0" prefWidth="97.0">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <children>
-                  <ImageView fitHeight="35.0" fitWidth="41.0" layoutX="31.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/database/padlock%20(1).png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <PasswordField prefHeight="34.0" prefWidth="283.0" />
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <VBox.margin>
-            <Insets left="150.0" right="100.0" />
-         </VBox.margin>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Label text="Error Message" textFill="#e10808" />
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="88.0" text="Login" />
-         </children>
-      </HBox>
+      </StackPane>
    </children>
-</VBox>
+</AnchorPane>

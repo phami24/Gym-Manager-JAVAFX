@@ -19,11 +19,8 @@ public class MainApplication extends Application {
     public void start(Stage stage) throws IOException {
         StageManager stageManager = new StageManager();
         stageManager.setCurrentStage(stage);
-        stageManager.loadHomeStage();
+        stageManager.loadLoginStage();
 
-
-        MembersService membersService = new MembersServiceImpl();
-        System.out.println(membersService.getTotalMembers());
 
     }
 
