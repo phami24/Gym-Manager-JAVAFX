@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gymmanagement.controller.Controller">
+   <children>
+      <AnchorPane fx:id="main_form_big" prefHeight="600.0" prefWidth="724.0">
+         <children>
+            <BorderPane prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <left>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane prefHeight="600.0" prefWidth="200.0" styleClass="left-form" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Button fx:id="class_btn" layoutY="302.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@../css/style.css" text="Class" />
+                              <AnchorPane layoutY="8.0" prefHeight="62.0" prefWidth="200.0" styleClass="nav-admin" stylesheets="@../css/style.css">
+                                 <children>
+                                    <Label layoutX="40.0" layoutY="7.0" text="GYM">
+                                       <font>
+                                          <Font name="Berlin Sans FB Bold" size="34.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="118.0" layoutY="39.0" text="Management">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="11.0" layoutY="85.0" prefHeight="63.0" prefWidth="177.0" stylesheets="@../css/style.css">
+                                 <children>
+                                    <Label layoutX="76.0" layoutY="22.0" text="ADMIN" textFill="#0c1b36">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="45.0" fitWidth="68.0" layoutX="24.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+<!--                                          <Image url="@../image/admin-removebg-preview.png" />-->
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                              <Button fx:id="dashboard_btn" layoutX="-2.0" layoutY="174.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@../css/style.css" text="Dashboard">
+                                 <graphic>
+<!--                                    <FontAwesomeIcon fill="WHITE" glyphName="DASHBOARD" size="1.2em" />-->
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="instructor_btn" layoutX="-1.0" layoutY="210.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@../css/style.css" text="Instructor">
+                                 <graphic>
+<!--                                    <FontAwesomeIcon fill="WHITE" glyphName="CUBE" size="1.2em" />-->
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="member_btn" layoutX="-2.0" layoutY="251.0" mnemonicParsing="false" onAction="#switchForm" onMouseClicked="#switchForm" prefHeight="35.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@../css/style.css" text="Member" AnchorPane.bottomAnchor="313.6666666666667" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="250.99999999999997">
+                                 <graphic>
+<!--                                    <FontAwesomeIcon fill="WHITE" glyphName="USERS" size="1.2em" />-->
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="logout" layoutX="14.0" layoutY="560.0" mnemonicParsing="false" onAction="#logout" styleClass="sign-out" stylesheets="@../css/style.css">
+                                 <graphic>
+<!--                                    <FontAwesomeIcon fill="WHITE" glyphName="SIGN_OUT" size="1.4em" wrappingWidth="14.476201057434082" />-->
+                                 </graphic>
+                              </Button>
+                              <Label layoutX="48.0" layoutY="562.0" text="Sign out" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="79.33332824707031" endY="0.333343505859375" layoutX="99.0" layoutY="148.0" startX="-74.66666412353516" startY="0.333343505859375" />
+                              <Button fx:id="equipment_btn" layoutX="5.0" layoutY="354.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@../css/style.css" text="Equipment" />
+                              <Button fx:id="user_btn" layoutX="8.0" layoutY="400.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="35.0" prefWidth="200.0" styleClass="nav-btn" stylesheets="@../css/style.css" text="User" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane fx:id="equipment_form" prefHeight="604.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="5.0" layoutY="60.0" prefHeight="195.0" prefWidth="890.0" styleClass="white-bg" stylesheets="@../css/style.css">
+                                 <children>
+                                    <Label layoutX="9.0" layoutY="14.0" text="equipment_id">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutY="72.0" text="equipment_name">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="140.0" text="category">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="344.0" layoutY="33.0" text="status">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="366.0" layoutY="84.0" prefHeight="19.0" prefWidth="69.0" text="price">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="id_input_equipment" layoutX="108.0" layoutY="11.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="equipment_name_input" layoutX="134.0" layoutY="69.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="category_input" layoutX="106.0" layoutY="140.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="status_input_equipment" layoutX="401.0" layoutY="30.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="price_input" layoutX="420.0" layoutY="81.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <Button layoutX="641.0" layoutY="159.0" mnemonicParsing="false" onAction="#addEquipment" prefHeight="28.0" prefWidth="65.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Add" />
+                                    <Button layoutX="729.0" layoutY="151.0" mnemonicParsing="false" onAction="#updateEquipment" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Update" />
+                                    <Button layoutX="811.0" layoutY="153.0" mnemonicParsing="false" onAction="#deleteEquipment" prefHeight="28.0" prefWidth="69.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Delete" />
+                                    <Button layoutX="633.0" layoutY="126.0" mnemonicParsing="false" onAction="#clearEquipment" prefHeight="28.0" prefWidth="65.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Reset" />
+                                    <Label layoutX="327.0" layoutY="130.0" prefHeight="19.0" prefWidth="102.0" text="purchase_date">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <DatePicker fx:id="purchase_date_input" layoutX="445.0" layoutY="137.0" />
+                                    <TextArea fx:id="note_input" layoutX="680.0" layoutY="10.0" prefHeight="83.0" prefWidth="200.0" />
+                                    <Label layoutX="614.0" layoutY="33.0" text="Note">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="5.0" layoutY="270.0" prefHeight="320.0" prefWidth="890.0" styleClass="white-bg" stylesheets="@../css/style.css">
+                                 <children>
+                                    <TableView fx:id="equipment_tableView" prefHeight="566.0" prefWidth="886.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <columns>
+                                          <TableColumn fx:id="equipment_id_col" prefWidth="36.666656494140625" text="ID" />
+                                          <TableColumn fx:id="equipment_name_col" prefWidth="182.66668701171875" text="equipment_name" />
+                                          <TableColumn fx:id="category_col" prefWidth="97.3333740234375" text="category" />
+                                          <TableColumn fx:id="price_col" prefWidth="88.00006103515625" text="price" />
+                                          <TableColumn fx:id="purchase_col" prefWidth="161.33331298828125" text="purchase_date" />
+                                          <TableColumn fx:id="status_col" prefWidth="97.33331298828125" text="status" />
+                                          <TableColumn fx:id="note_col" prefWidth="126.66668701171875" text="Note" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <Label layoutX="49.0" layoutY="20.0" text="equipment" textFill="#d20e0e">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="close" layoutX="843.0" layoutY="14.0" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@../css/style.css" text="X" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="class_form" prefHeight="604.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="5.0" layoutY="43.0" prefHeight="195.0" prefWidth="890.0" styleClass="white-bg" stylesheets="@../css/style.css">
+                                 <children>
+                                    <Label layoutX="15.0" layoutY="60.0" text="Class ID">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="100.0" text="Class name">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="140.0" text="instructor ID">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="341.0" layoutY="56.0" text="schedule">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="334.0" layoutY="112.0" prefHeight="19.0" prefWidth="69.0" text="capacity">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="id_input_class" layoutX="98.0" layoutY="57.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="classname_input" layoutX="98.0" layoutY="99.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="instructorID_input" layoutX="106.0" layoutY="140.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="schedule_input" layoutX="412.0" layoutY="57.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="capacity_input" layoutX="412.0" layoutY="109.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <Button layoutX="641.0" layoutY="159.0" mnemonicParsing="false" onAction="#addClass" prefHeight="28.0" prefWidth="65.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Add" />
+                                    <Button layoutX="729.0" layoutY="151.0" mnemonicParsing="false" onAction="#updateClass" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Update" />
+                                    <Button layoutX="811.0" layoutY="153.0" mnemonicParsing="false" onAction="#deleteClass" prefHeight="28.0" prefWidth="69.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Delete" />
+                                    <Button layoutX="633.0" layoutY="126.0" mnemonicParsing="false" onAction="#clearClass" prefHeight="28.0" prefWidth="65.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Reset" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="5.0" layoutY="259.0" prefHeight="320.0" prefWidth="890.0" styleClass="white-bg" stylesheets="@../css/style.css">
+                                 <children>
+                                    <TableView fx:id="class_tableView" prefHeight="566.0" prefWidth="886.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <columns>
+                                          <TableColumn fx:id="classID_col" prefWidth="56.666656494140625" text="Class ID" />
+                                          <TableColumn fx:id="className_col" prefWidth="192.66668701171875" text="Class Name" />
+                                          <TableColumn fx:id="insID_col" prefWidth="79.33334350585938" text="ins_ID" />
+                                          <TableColumn fx:id="schedule_col" prefWidth="217.3333740234375" text="Schedule" />
+                                          <TableColumn fx:id="capacity_col" prefWidth="258.0" text="Capacity" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <Button fx:id="close" layoutX="862.0" layoutY="1.0" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@../css/style.css" text="X" />
+                              <Label layoutX="100.0" text="Class" textFill="#ae1111">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="main_form" layoutY="-14.0" prefHeight="600.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-14.0">
+                           <children>
+                              <AnchorPane layoutY="21.0" prefHeight="66.0" prefWidth="900.0" styleClass="top-form" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="538.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label layoutX="36.0" layoutY="24.0" prefHeight="30.0" prefWidth="165.0" styleClass="header-label" stylesheets="@../css/style.css" text="Members">
+                                       <font>
+                                          <Font size="26.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="add_memberBtn" layoutX="792.0" layoutY="30.0" mnemonicParsing="false" onAction="#addmemberForm" prefHeight="35.0" prefWidth="107.0" style="-fx-text-fill: #000; -fx-padding: 0;" styleClass="nav-btn" stylesheets="@../css/style.css" text="Add member">
+                                       <graphic>
+<!--                                          <FontAwesomeIcon glyphName="PLUS" size="1.2em" />-->
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="close" layoutX="866.0" layoutY="18.0" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@../css/style.css">
+                                       <graphic>
+<!--                                          <FontAwesomeIcon glyphName="CLOSE" />-->
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutY="62.0" prefHeight="65.0" prefWidth="900.0">
+                                 <children>
+                                    <TextField fx:id="search_member" layoutX="34.0" layoutY="20.0" prefHeight="25.0" prefWidth="294.0" promptText="Search" />
+<!--                                    <FontAwesomeIcon glyphName="SEARCH" layoutX="306.0" layoutY="37.0" />-->
+                                    <ComboBox layoutX="346.0" layoutY="20.0" prefWidth="150.0" />
+                                    <Label layoutX="667.0" layoutY="29.0" text="Total:">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="716.0" layoutY="29.0" prefHeight="19.0" prefWidth="83.0" text="0">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="3.0" layoutY="127.0" prefHeight="445.0" prefWidth="892.0" styleClass="white-bg" stylesheets="@../css/style.css">
+                                 <children>
+                                    <TableView fx:id="member_tableView" layoutX="138.0" layoutY="14.0" prefHeight="445.3333333333333" prefWidth="892.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn fx:id="member_col_id" prefWidth="35.33331298828125" text="ID" />
+                                        <TableColumn fx:id="member_col_fullname" prefWidth="159.3333282470703" text="Full name" />
+                                          <TableColumn fx:id="member_col_dob" prefWidth="91.33331298828125" text="DOB" />
+                                          <TableColumn fx:id="member_col_gender" prefWidth="51.999969482421875" text="Gender" />
+                                          <TableColumn fx:id="member_col_email" prefWidth="109.33331298828125" text="Email" />
+                                          <TableColumn fx:id="member_col_phone" prefWidth="113.3333740234375" text="Phone number" />
+                                          <TableColumn fx:id="member_col_address" prefWidth="60.0" text="Address" />
+                                          <TableColumn fx:id="member_col_joindate" prefWidth="61.33331298828125" text="Join date" />
+                                          <TableColumn fx:id="member_col_enddate" prefWidth="69.33331298828125" text="End date" />
+                                          <TableColumn fx:id="member_col_status" prefWidth="55.33331298828125" text="Status" />
+                                          <TableColumn fx:id="member_col_type" prefWidth="42.666748046875" text="type_id" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="add_member_form" layoutX="26.0" layoutY="45.0" prefHeight="600.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="7.0" layoutY="74.0" prefHeight="517.0" prefWidth="351.0" styleClass="white-bg" stylesheets="@../css/style.css">
+                                 <children>
+                                    <Label layoutX="15.0" layoutY="80.0" text="Member ID">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="120.0" text="First name">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="160.0" text="Last name">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="200.0" text="Date of birth">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="240.0" text="Gender">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="280.0" text="Email">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="320.0" text="Phone number">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="360.0" text="Address">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="400.0" text="Join date">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="440.0" text="End date">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="id_input_addm" layoutX="122.0" layoutY="77.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="firstname_input_addm" layoutX="122.0" layoutY="117.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="lastname_input_addm" layoutX="122.0" layoutY="157.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="email_input_addm" layoutX="122.0" layoutY="277.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="phone_input_addm" layoutX="122.0" layoutY="317.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="address_input_addm" layoutX="122.0" layoutY="357.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <ComboBox fx:id="gender_input_addm" layoutX="122.0" layoutY="237.0" prefHeight="25.0" prefWidth="105.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <Button fx:id="addmember_addbtn" layoutX="7.0" layoutY="475.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="65.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Add" />
+                                    <Label layoutX="15.0" layoutY="40.0" text="Status">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="status_input_addm" layoutX="122.0" layoutY="37.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <Button fx:id="addmember_updatebtn" layoutX="176.0" layoutY="473.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Update" />
+                                    <Button fx:id="addmember_deletebtn" layoutX="267.0" layoutY="475.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="69.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Delete" />
+                                    <DatePicker fx:id="dob_input_addm" layoutX="122.0" layoutY="197.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <DatePicker fx:id="joindate_input_addm" layoutX="122.0" layoutY="397.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <DatePicker fx:id="enddate_input_addm" layoutX="122.0" layoutY="437.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <Button fx:id="addmember_resetbtn" layoutX="81.0" layoutY="475.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="65.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Reset" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="365.0" layoutY="71.0" prefHeight="521.0" prefWidth="529.0" styleClass="white-bg" stylesheets="@../css/style.css">
+                                 <children>
+                                    <TableView fx:id="addmember_tableView" layoutX="-10.0" layoutY="14.0" prefHeight="521.3333333333334" prefWidth="511.3333333333333" stylesheets="@../css/addmember.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <columns>
+                                          <TableColumn fx:id="addmember_col_id" prefWidth="26.66668701171875" text="ID" />
+                                          <TableColumn fx:id="addmember_col_fullname" prefWidth="84.6666259765625" text="Full name" />
+                                          <TableColumn fx:id="addmember_col_dob" prefWidth="60.0" text="DOB" />
+                                          <TableColumn fx:id="addmember_col_gender" prefWidth="43.99993896484375" text="Gender" />
+                                          <TableColumn fx:id="addmember_col_email" prefWidth="69.33331298828125" text="Email" />
+                                          <TableColumn fx:id="addmember_col_phone" prefWidth="56.6666259765625" text="Phone" />
+                                          <TableColumn fx:id="addmember_col_address" prefWidth="55.99993896484375" text="Address" />
+                                          <TableColumn fx:id="addmember_col_joindate" prefWidth="43.3333740234375" text="Join date" />
+                                          <TableColumn fx:id="addmember_col_enddate" prefWidth="38.6666259765625" text="End date" />
+                                          <TableColumn fx:id="addmember_col_status" prefWidth="42.0" text="Status" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <Button fx:id="close" layoutX="873.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@../css/style.css">
+                                 <graphic>
+<!--                                    <FontAwesomeIcon glyphName="CLOSE" />-->
+                                 </graphic>
+                              </Button>
+                              <Separator layoutY="65.0" prefHeight="0.0" prefWidth="900.0" />
+                              <Label layoutX="36.0" layoutY="24.0" styleClass="header-label" stylesheets="@../css/style.css" text="Add members">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="add_instructor_form" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/addmember.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="4.0" layoutY="273.0" prefHeight="320.0" prefWidth="890.0" styleClass="white-bg" stylesheets="@../css/style.css">
+                                 <children>
+                                    <TableView fx:id="instructor_tableView" prefHeight="566.0" prefWidth="886.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <columns>
+                                          <TableColumn fx:id="ins_col_id" prefWidth="26.66668701171875" text="ID" />
+                                          <TableColumn fx:id="ins_col_fullname" prefWidth="116.66664123535156" text="Full name" />
+                                          <TableColumn fx:id="ins_col_dob" prefWidth="78.66668701171875" text="DOB" />
+                                          <TableColumn fx:id="ins_col_gender" prefWidth="49.33331298828125" text="Gender" />
+                                          <TableColumn fx:id="ins_col_email" prefWidth="111.33334350585938" text="Email" />
+                                          <TableColumn fx:id="ins_col_address" prefWidth="107.33331298828125" text="Address" />
+                                          <TableColumn fx:id="ins_col_phone" prefWidth="100.0" text="Phone number" />
+                                          <TableColumn fx:id="ins_col_hiredate" prefWidth="74.666748046875" text="Hire date" />
+                                          <TableColumn fx:id="ins_col_spec" prefWidth="78.6666259765625" text="Specialization" />
+                                          <TableColumn fx:id="ins_col_status" prefWidth="64.6666259765625" text="Year" />
+                                          <TableColumn fx:id="delete_col" prefWidth="54.6666259765625" />
+                                          <TableColumn fx:id="delete_col" prefWidth="101.33349609375" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="4.0" layoutY="70.0" prefHeight="195.0" prefWidth="890.0" styleClass="white-bg" stylesheets="@../css/style.css">
+                                 <children>
+                                    <Label layoutX="15.0" layoutY="60.0" text="Member ID">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="100.0" text="First name">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="140.0" text="Last name">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="334.0" layoutY="20.0" text="Date of birth">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="335.0" layoutY="60.0" text="Gender">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="335.0" layoutY="100.0" text="Email">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="335.0" layoutY="140.0" text="Address">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="620.0" layoutY="20.0" text="Phone">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="620.0" layoutY="100.0" text="Specialization">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="620.0" layoutY="60.0" text="Hire date">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="id_input_i" layoutX="106.0" layoutY="60.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="firstname_input_i" layoutX="106.0" layoutY="100.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="lastname_input_i" layoutX="106.0" layoutY="140.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="email_input_i" layoutX="423.0" layoutY="100.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="address_input_i" layoutX="423.0" layoutY="140.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="phone_input_i" layoutX="711.0" layoutY="20.0" prefHeight="25.0" prefWidth="170.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <ComboBox fx:id="gender_input_i" layoutX="423.0" layoutY="60.0" prefHeight="25.0" prefWidth="105.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <Button fx:id="inst_add_btn" layoutX="632.0" layoutY="167.0" mnemonicParsing="false" onAction="#addInstructor" prefHeight="28.0" prefWidth="65.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Add" />
+                                    <Label layoutX="15.0" layoutY="23.0" text="experienceYears">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="inst_update_btn" layoutX="714.0" layoutY="165.0" mnemonicParsing="false" onAction="#updateInstructor" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Update" />
+                                    <Button fx:id="inst_delete_btn" layoutX="805.0" layoutY="167.0" mnemonicParsing="false" onAction="#deleteInstructor" prefHeight="28.0" prefWidth="69.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Delete" />
+                                    <DatePicker fx:id="dob_input_i" layoutX="423.0" layoutY="20.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <DatePicker fx:id="hiredate_input_i" layoutX="711.0" layoutY="60.0" prefHeight="25.0" prefWidth="170.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="speci_input_i" layoutX="711.0" layoutY="100.0" prefHeight="25.0" prefWidth="170.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <Button fx:id="inst_reset_btn" layoutX="633.0" layoutY="136.0" mnemonicParsing="false" onAction="#clearIns" prefHeight="28.0" prefWidth="65.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Reset" />
+                                    <TextField fx:id="year_input_i" layoutX="143.0" layoutY="20.0" prefHeight="25.0" prefWidth="173.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                 </children>
+                              </AnchorPane>
+                              <Button fx:id="close" layoutX="867.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@../css/style.css" text="X">
+                                 <graphic>
+<!--                                    <FontAwesomeIcon glyphName="CLOSE" />-->
+                                 </graphic>
+                              </Button>
+                              <Separator layoutY="65.0" prefHeight="0.0" prefWidth="900.0" />
+                              <Label layoutX="36.0" layoutY="24.0" styleClass="header-label" stylesheets="@../css/style.css" text="Add instructor">
+                                 <font>
+                                    <Font size="26.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="member_form" prefHeight="604.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="5.0" layoutY="254.0" prefHeight="320.0" prefWidth="890.0" styleClass="white-bg" stylesheets="@../css/style.css">
+                                 <children>
+                                    <TableView fx:id="member_tableView" prefHeight="566.0" prefWidth="886.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <columns>
+                                          <TableColumn fx:id="member_col_id" prefWidth="26.66668701171875" text="ID" />
+                                          <TableColumn fx:id="member_col_fullname" prefWidth="116.66664123535156" text="Full name" />
+                                          <TableColumn fx:id="member_col_dob" prefWidth="78.66668701171875" text="DOB" />
+                                          <TableColumn fx:id="member_col_gender" prefWidth="49.33331298828125" text="Gender" />
+                                          <TableColumn fx:id="member_col_email" prefWidth="111.33334350585938" text="Email" />
+                                          <TableColumn fx:id="member_col_address" prefWidth="107.33331298828125" text="Address" />
+                                          <TableColumn fx:id="member_col_phone" prefWidth="100.0" text="Phone number" />
+                                          <TableColumn fx:id="member_col_enddate" prefWidth="74.666748046875" text="End date" />
+                                          <TableColumn fx:id="member_col_joindate" prefWidth="78.6666259765625" text="Join date" />
+                                          <TableColumn fx:id="member_col_status" prefWidth="64.6666259765625" text="Status" />
+                                          <TableColumn fx:id="member_col_type" prefWidth="54.6666259765625" text="Type" />
+                                          <TableColumn fx:id="member_col_status1" prefWidth="88.0" text="Year" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="5.0" layoutY="45.0" prefHeight="195.0" prefWidth="890.0" styleClass="white-bg" stylesheets="@../css/style.css">
+                                 <children>
+                                    <Label layoutX="15.0" layoutY="60.0" text="Member ID">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="100.0" text="First name">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="15.0" layoutY="140.0" text="Last name">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="334.0" layoutY="20.0" text="Date of birth">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="335.0" layoutY="60.0" text="Gender">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="335.0" layoutY="100.0" text="Email">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="335.0" layoutY="140.0" text="Address">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="620.0" layoutY="20.0" text="Phone">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="620.0" layoutY="100.0" text="Join date">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="620.0" layoutY="60.0" text="End date">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="id_input_m" layoutX="106.0" layoutY="72.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="firstname_input_m" layoutX="106.0" layoutY="113.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="lastname_input_m" layoutX="106.0" layoutY="140.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="email_input_m" layoutX="423.0" layoutY="100.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="address_input_m" layoutX="423.0" layoutY="140.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <TextField fx:id="phone_input_m" layoutX="711.0" layoutY="20.0" prefHeight="25.0" prefWidth="170.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <ComboBox fx:id="gender_input_m" layoutX="423.0" layoutY="60.0" prefHeight="25.0" prefWidth="105.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <Button fx:id="inst_add_btn1" layoutX="641.0" layoutY="159.0" mnemonicParsing="false" onAction="#addMember" prefHeight="28.0" prefWidth="65.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Add" />
+                                    <Button fx:id="inst_update_btn1" layoutX="729.0" layoutY="151.0" mnemonicParsing="false" onAction="#updateMember" prefHeight="31.0" prefWidth="75.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Update" />
+                                    <Button fx:id="inst_delete_btn1" layoutX="811.0" layoutY="153.0" mnemonicParsing="false" onAction="#deleteMember" prefHeight="28.0" prefWidth="69.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Delete" />
+                                    <DatePicker fx:id="dob_input_m" layoutX="423.0" layoutY="20.0" prefHeight="25.0" prefWidth="180.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <DatePicker fx:id="enddate_input_m" layoutX="711.0" layoutY="60.0" prefHeight="25.0" prefWidth="170.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <Button fx:id="inst_reset_btn1" layoutX="633.0" layoutY="126.0" mnemonicParsing="false" onAction="#clearMembers" prefHeight="28.0" prefWidth="65.0" styleClass="add-btn" stylesheets="@../css/addmember.css" text="Reset" />
+                                    <DatePicker fx:id="joindate_input_m" layoutX="719.0" layoutY="97.0" prefHeight="25.0" prefWidth="170.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <Label layoutX="21.0" layoutY="35.0" text="Status">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="type_input_m" layoutX="106.0" layoutY="1.0" prefHeight="25.0" prefWidth="210.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                    <Label layoutX="31.0" layoutY="16.0" text="Type">
+                                       <font>
+                                          <Font name="Berlin Sans FB" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="status_input_m" layoutX="106.0" layoutY="32.0" prefHeight="25.0" prefWidth="105.0" styleClass="textfield" stylesheets="@../css/addmember.css" />
+                                 </children>
+                              </AnchorPane>
+                              <Button fx:id="close" layoutX="862.0" layoutY="1.0" mnemonicParsing="false" onAction="#close" styleClass="close" stylesheets="@../css/style.css" text="X" />
+                              <Label layoutX="97.0" layoutY="12.0" text="Member" textFill="#b32a2a">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

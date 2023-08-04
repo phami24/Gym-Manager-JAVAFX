@@ -9,4 +9,5 @@ module com.example.gymmanagement {
     exports com.example.gymmanagement;
     exports com.example.gymmanagement.controller;
     opens com.example.gymmanagement.controller to javafx.fxml;
+    opens com.example.gymmanagement.model.entity to javafx.base;
 }

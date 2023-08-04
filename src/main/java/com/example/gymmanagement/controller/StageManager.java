@@ -69,9 +69,9 @@ public class StageManager {
         // Implementation for loading the home stage goes here
         // For example: You can create a new scene for the home screen and set it as the current scene.
         Stage mainStage = new Stage();
-        HomePageController homeStageController = new HomePageController();
-        Scene homeStage = sceneManager.loadScene("home-page.fxml", homeStageController);
-        homeStageController.setStage(currentStage);
+//        HomePageController homeStageController = new HomePageController();
+        Scene homeStage = sceneManager.loadScene("member.fxml");
+//        homeStageController.setStage(currentStage);
         mainStage.setScene(homeStage);
         setCurrentStage(mainStage);
         currentStage.initStyle(StageStyle.TRANSPARENT);
