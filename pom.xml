@@ -59,6 +59,13 @@
             <artifactId>javafx-web</artifactId>
             <version>16</version> <!-- Sử dụng phiên bản tương ứng của JavaFX -->
         </dependency>
+        <!-- font awesome depentency -->
+        <dependency>
+            <groupId>de.jensd</groupId>
+            <artifactId>fontawesomefx</artifactId>
+            <version>8.1</version>
+        </dependency>
+
     </dependencies>
 
     <build>

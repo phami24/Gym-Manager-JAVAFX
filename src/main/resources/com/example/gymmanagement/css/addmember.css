@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500&display=swap');
+.add-btn{
+    -fx-border-width:.5px;
+    -fx-background-color:#1face1;
+    -fx-cursor:hand;
+    -fx-alignment:CENTER;
+    /*-fx-border-color:#000;*/
+    -fx-font-size: 15px;
+    -fx-font-family: 'Heebo', sans-serif;
+    -fx-text-fill: white;
+}
+.add-btn:hover{
+    -fx-background-color:#627ca3;
+}
+.textfield{
+    -fx-background-color:#efefef;
+    -fx-background-radius:4px;
+    -fx-border-color:#222d35;
+    -fx-border-radius:4px;
+    -fx-border-width:.5px;
+    -fxfont-family: 'Heebo', sans-serif;
+}
+.textfield:focused{
+    -fx-background-color:#fff;
+    -fx-border-color: #1face1;
+    -fx-border-width:1px;
+}
+.table-view{
+    -fx-background-color:transparent;
+    /*-fx-border-color:linear-gradient(to top right,#86a2bf,#283747);*/
+    -fx-border-radius:8px;
+    -fx-border-width:2px;
+    -fx-padding:0px;
+}
+.table-view,.table-column{
+    -fx-alignment:CENTER;
+}
+.table-view,.column-header-background{
+    -fx-background-color:#1face1;
+    -fx-background-radius:8px 8px 0px 0px;
+}
+
+.table-view,.column-header,.filter{
+    -fx-background-color:transparent;
+    -fx-size:40px;
+}
+
+.table-view,.column-header,.label{
+    -fx-text-fill:#fff;
+    -fx-font-family: 'Ubuntu', sans-serif;
+}

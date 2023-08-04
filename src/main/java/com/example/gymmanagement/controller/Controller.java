@@ -246,6 +246,7 @@ public class Controller {
     private MemberServiceImpl membersService;
     private ClassesServiceImpl classesService;
     private EquipmentServiceImpl equipmentService;
+
     public Controller() {
         instructorsService = new InstructorsServiceImpl();
         membersService = new MemberServiceImpl();
@@ -682,20 +683,15 @@ public class Controller {
         alert.getButtonTypes().setAll(confirm, ButtonType.CANCEL);
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == confirm) {
-            instructorsService.deleteInstructor(instructors.getInstructor_id());
-            // Cập nhật danh sách members sau khi xóa và hiển thị lại view
-            instructor_tableView.getItems().remove(instructors);
-            clearIns();
+            if (instructors != null) {
+                instructorsService.deleteInstructor(instructors.getInstructor_id());
+                // Cập nhật danh sách members sau khi xóa và hiển thị lại view
+                instructor_tableView.getItems().remove(instructors);
+                clearIns();
+            }
         }
 
-
-//        Instructors instructors = instructor_tableView.getSelectionModel().getSelectedItem();
-//        if (instructors != null) {
-//            instructorsService.deleteInstructor(instructors.getInstructor_id());
-//            instructor_tableView.getItems().remove(instructors);
-//        }
     }
-
 
     //controller members
 
@@ -1114,7 +1110,7 @@ public class Controller {
     }
 
     private void loadEquipment() {
-        equipment_id_col.setCellValueFactory(new PropertyValueFactory<>("equipment_id"));
+        equipment_id_col.setCellValueFactory(new PropertyValueFactory<>("equipmentId"));
         equipment_name_col.setCellValueFactory(new PropertyValueFactory<>("equipmentName"));
         category_col.setCellValueFactory(new PropertyValueFactory<>("category"));
         price_col.setCellValueFactory(new PropertyValueFactory<>("price"));
