@@ -4,6 +4,7 @@ module com.example.gymmanagement {
     requires java.sql;
     requires lombok;
     requires javafx.web;
+    requires fontawesomefx;
 
     opens com.example.gymmanagement to javafx.fxml;
     exports com.example.gymmanagement;

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="591.0" prefWidth="931.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gymmanagement.controller.InstructorController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <SplitMenuButton layoutX="31.0" layoutY="161.0" mnemonicParsing="false" text="Tools">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Data" />
+                  <MenuItem mnemonicParsing="false" text="Import" />
+               </items>
+            </SplitMenuButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-6.0" prefHeight="114.0" prefWidth="941.0" style="-fx-background-color: #2196f3;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="40.0" layoutY="24.0" prefHeight="66.0" prefWidth="185.0" text="| Instructors" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="tableView" layoutX="28.0" layoutY="210.0" prefHeight="279.0" prefWidth="880.0">
+         <columns>
+            <TableColumn fx:id="id" prefWidth="42.0" text="ID" />
+            <TableColumn fx:id="full_name" prefWidth="119.0" text="Full name" />
+            <TableColumn fx:id="gender" prefWidth="89.0" text="Gender" />
+            <TableColumn fx:id="email" prefWidth="78.0" text="Email" />
+            <TableColumn fx:id="phone" prefWidth="120.0" text="Phone number" />
+            <TableColumn fx:id="hireDate" prefWidth="78.6666259765625" text="Hire date" />
+            <TableColumn fx:id="experience" prefWidth="103.0" text="Experience" />
+            <TableColumn fx:id="status" prefWidth="60.0" text="Status" />
+            <TableColumn fx:id="action" prefWidth="189.0" text="Action" />
+         </columns>
+      </TableView>
+      <Pagination layoutX="365.0" layoutY="503.0" prefHeight="58.0" prefWidth="200.0" />
+      <TextField layoutX="677.0" layoutY="162.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" />
+   </children>
+</AnchorPane>

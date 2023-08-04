@@ -131,14 +131,48 @@ public class StageManager {
                 "</html>";
 
 
-
-
         webEngine.loadContent(htmlContent);
 
         Scene scene = new Scene(webView, 800, 550);
         setCurrentStage(animationStage);
         setSceneCurrentStage(scene);
         currentStage.initStyle(StageStyle.TRANSPARENT);
+        showStage();
+    }
+
+    public void loadMemberControlStage() {
+        Stage memberStage = new Stage();
+        Scene homeStage = sceneManager.loadScene("member-control.fxml");
+        memberStage.setScene(homeStage);
+        setCurrentStage(memberStage);
+//        currentStage.initStyle(StageStyle.TRANSPARENT);
+        showStage();
+    }
+
+    public void loadClassesControlStage() {
+        Stage memberStage = new Stage();
+        Scene homeStage = sceneManager.loadScene("gymclass-control.fxml");
+        memberStage.setScene(homeStage);
+        setCurrentStage(memberStage);
+//        currentStage.initStyle(StageStyle.TRANSPARENT);
+        showStage();
+    }
+
+    public void loadInstructorControlStage() {
+        Stage instructorStage = new Stage();
+        Scene homeStage = sceneManager.loadScene("instructor-control.fxml");
+        instructorStage.setScene(homeStage);
+        setCurrentStage(instructorStage);
+//        currentStage.initStyle(StageStyle.TRANSPARENT);
+        showStage();
+    }
+
+    public void loadEquipmentControlStage() {
+        Stage equipmentStage = new Stage();
+        Scene homeStage = sceneManager.loadScene("equipment-control.fxml");
+        equipmentStage.setScene(homeStage);
+        setCurrentStage(equipmentStage);
+//        currentStage.initStyle(StageStyle.TRANSPARENT);
         showStage();
     }
 

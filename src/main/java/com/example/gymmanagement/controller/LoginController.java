@@ -97,28 +97,28 @@ public class LoginController implements Initializable {
 //            successAlert.setX(xPosition);
 //            successAlert.setY(yPosition);
 
+//            stageManager.loadHomeStage();
+            stageManager.loadAnimationChangeStage();
             stage.close();
-            stageManager.loadHomeStage();
-//            stageManager.loadAnimationChangeStage();
 
             // Tạo một Task để chờ 4 giây
-//            Task<Void> waitTask = new Task<Void>() {
-//                @Override
-//                protected Void call() throws Exception {
-//                    Thread.sleep(5000); // Đợi 4 giây
-//                    return null;
-//                }
-//            };
+            Task<Void> waitTask = new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                    Thread.sleep(4000); // Đợi 4 giây
+                    return null;
+                }
+            };
 
             // Gán hành động khi Task hoàn thành (sau 4 giây)
-//            waitTask.setOnSucceeded(eventTask -> {
+            waitTask.setOnSucceeded(eventTask -> {
 //                successAlert.showAndWait();
-//                stageManager.closeStage();
-//                stageManager.loadHomeStage(); // Load home page sau khi chờ 4 giây
-//            });
+                stageManager.closeStage();
+                stageManager.loadHomeStage(); // Load home page sau khi chờ 4 giây
+            });
 
             // Bắt đầu Task
-//            new Thread(waitTask).start();
+            new Thread(waitTask).start();
         } else {
             errorMess.setText("Invalid credentials. Please try again.");
         }

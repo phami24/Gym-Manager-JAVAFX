@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -98,7 +97,7 @@
                                  </font></Label>
                               <Button fx:id="logout" layoutX="31.0" layoutY="555.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="161.0" styleClass="nav-btn" text="Signout" />
                               <Label layoutX="105.0" layoutY="158.0" text="ADMIN" />
-                              <FontAwesomeIcon fill="WHITE" iconName="USER" layoutX="55.0" layoutY="182.0" size="43px" wrappingWidth="38.228586196899414" />
+<!--                              <FontAwesomeIcon fill="WHITE" iconName="USER" layoutX="55.0" layoutY="182.0" size="43px" wrappingWidth="38.228586196899414" />-->
                               <Line endX="104.19999694824219" endY="10.599990844726562" layoutX="103.0" layoutY="127.0" startX="-102.00001525878906" startY="10.599990844726562" stroke="WHITE" />
                               <Line endX="100.0" layoutX="104.0" layoutY="197.0" startX="-100.0" stroke="WHITE" />
                               <ImageView fitHeight="18.0" fitWidth="21.0" layoutX="51.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true">
@@ -418,7 +417,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="add_instructor_form" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/addmember.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="add_instructor_form" prefHeight="600.0" prefWidth="900.0" stylesheets="@../css/addmember.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="4.0" layoutY="273.0" prefHeight="320.0" prefWidth="890.0" styleClass="white-bg" stylesheets="@../css/style.css">
                                  <children>
@@ -525,7 +524,7 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="member_form" prefHeight="604.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="member_form" prefHeight="604.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="5.0" layoutY="254.0" prefHeight="320.0" prefWidth="890.0" styleClass="white-bg" stylesheets="@../css/style.css">
                                  <children>

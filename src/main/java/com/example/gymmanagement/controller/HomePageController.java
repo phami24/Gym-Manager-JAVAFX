@@ -35,6 +35,8 @@ public class HomePageController implements Initializable {
     @FXML
     private Button classButton;
 
+    private StageManager stageManager = new StageManager();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -46,22 +48,23 @@ public class HomePageController implements Initializable {
 
     @FXML
     void toDashBoard(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/homepagedemo/view/dashboard.fxml"));
-        Parent root = loader.load();
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        stageManager.loadMemberControlStage(); // loadDashBoard
     }
 
 
     public void toMembers(MouseEvent mouseEvent) {
+        stageManager.loadMemberControlStage();
     }
 
     public void toEmployees(MouseEvent mouseEvent) {
+        stageManager.loadInstructorControlStage();
     }
 
     public void toClass(MouseEvent mouseEvent) {
+        stageManager.loadClassesControlStage();
+    }
+    public void toEquipment(MouseEvent mouseEvent) {
+        stageManager.loadEquipmentControlStage();
     }
 
     public void exit(MouseEvent mouseEvent) {

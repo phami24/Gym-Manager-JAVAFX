@@ -1,4 +1,4 @@
-package com.example.homepagedemo.controller;
+package com.example.gymmanagement.controller;
 
 public class DashBoardController {
 }
