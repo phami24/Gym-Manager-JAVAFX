@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
@@ -27,83 +28,83 @@
     -fx-border-width: 0 2 0 0;
 }
 
- .left-form{
-     -fx-font-family: "Rajdhani", Arial , sans-serif;
- }
- .top-form{
-     -fx-background-color:white ;
-     -fx-border-color:#000;
-     -fx-border-width: .0px .0px .2px .0px;
- }
- /*.top-label{*/
- /*    -fx-background-color:linear-gradient(#3b4f6e);*/
+.left-form{
+    -fx-font-family: "Rajdhani", Arial , sans-serif;
+}
+.top-form{
+    -fx-background-color:white ;
+    -fx-border-color:#000;
+    -fx-border-width: .0px .0px .2px .0px;
+}
+/*.top-label{*/
+/*    -fx-background-color:linear-gradient(#3b4f6e);*/
 
- /*}*/
- .header-label{
-     -fx-border-color:linear-gradient(to bottom,#86a2bf,#283747);
-     -fx-border-width:0 0 0 2.5px;
-     -fx-padding: 0 0 0 8px;
-     -fx-font-family: "Rajdhani", Arial , sans-serif;
- }
- .close{
-     -fx-cursor:hand;
-     -fx-background-color:transparent;
- }
- .close:hover{
-     -fx-background-color:#cc1c16;
- }
- #btn{
-     -fx-cursor:hand;
- }
- .nav-btn{
-     -fx-background-color:transparent;
-     -fx-cursor:hand;
-     -fx-alignment:CENTER-LEFT;
-     -fx-font-size: 15px;
-     -fx-text-fill:#fff;
-     -fx-font-family: "Rajdhani", Arial , sans-serif;
-     -fx-padding:7px 0 7px 40px;
-     /*transition: all .5s ease;*/
- }
- .nav-btn:hover{
-     /*-fx-background-color: linear-gradient(to bottom,#88abd1,#4c6a8a);*/
-     -fx-background-color: #1face1;
- }
- .nav-btn:focused{
-     -fx-background-color: #1face1;
- }
+/*}*/
+.header-label{
+    -fx-border-color:linear-gradient(to bottom,#86a2bf,#283747);
+    -fx-border-width:0 0 0 2.5px;
+    -fx-padding: 0 0 0 8px;
+    -fx-font-family: "Rajdhani", Arial , sans-serif;
+}
+.close{
+    -fx-cursor:hand;
+    -fx-background-color:transparent;
+}
+.close:hover{
+    -fx-background-color:#cc1c16;
+}
+#btn{
+    -fx-cursor:hand;
+}
+.nav-btn{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+    -fx-alignment:CENTER-LEFT;
+    -fx-font-size: 15px;
+    -fx-text-fill:#fff;
+    -fx-font-family: "Rajdhani", Arial , sans-serif;
+    -fx-padding:7px 0 7px 40px;
+    /*transition: all .5s ease;*/
+}
+.nav-btn:hover{
+    /*-fx-background-color: linear-gradient(to bottom,#88abd1,#4c6a8a);*/
+    -fx-background-color: #1face1;
+}
+.nav-btn:focused{
+    -fx-background-color: #1face1;
+}
 
- .sign-out{
-     -fx-background-color:#86a2bf;
-     -fx-cursor:hand;
-     -fx-background-radius: 10px;
- }
- .sign-out:hover{
-     -fx-background-color:#627ca3;
- }
- .shadow{
-     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);
- }
- .white-bg{
-     /*-fx-background-color:#fff;*/
-     -fx-background-radius: 5px;
-     /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);*/
-     -fx-font-family: 'Ubuntu', sans-serif;
-     -fx-text-fill: black;
- }
- .nav-admin{
-     -fx-background-color:#fff;
-     -fx-border-color:linear-gradient(to bottom,#86a2bf,#283747);
-     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);
-     -fx-background-radius: 40px;
-     -fx-border-radius: 40px;
- }
- .admin-label{
+.sign-out{
+    -fx-background-color:#86a2bf;
+    -fx-cursor:hand;
+    -fx-background-radius: 10px;
+}
+.sign-out:hover{
+    -fx-background-color:#627ca3;
+}
+.shadow{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);
+}
+.white-bg{
+    /*-fx-background-color:#fff;*/
+    -fx-background-radius: 5px;
+    /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);*/
+    -fx-font-family: 'Ubuntu', sans-serif;
+    -fx-text-fill: black;
+}
+.nav-admin{
+    -fx-background-color:#fff;
+    -fx-border-color:linear-gradient(to bottom,#86a2bf,#283747);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);
+    -fx-background-radius: 40px;
+    -fx-border-radius: 40px;
+}
+.admin-label{
     -fx-border-color: #4d668f ;
-        -fx-border-width: 2 ;
-        /*-fx-border-style: segments(25, 25, 35, 25)  line-cap round ;*/
-        -fx-text-fill:#000;
- }
+    -fx-border-width: 2 ;
+    /*-fx-border-style: segments(25, 25, 35, 25)  line-cap round ;*/
+    -fx-text-fill:#000;
+}
 
 .left-side-background{
     -fx-background-color:  lightblue;
@@ -145,3 +146,4 @@
     -fx-text-fill:#000;
     -fx-font-family: 'Ubuntu', sans-serif;
 }
+No newline at end of file
