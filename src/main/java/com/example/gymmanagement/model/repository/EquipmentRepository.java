@@ -147,6 +147,61 @@ public class EquipmentRepository {
             jdbcConnect.closePreparedStatement(statement);
         }
     }
+
+    public void updateEquipmentName(int equipmentId, String newEquipmentName) {
+        String query = "UPDATE equipment SET equipment_name = ? WHERE equipment_id = ?";
+        updateField(query, newEquipmentName, equipmentId);
+    }
+
+    public void updateCategory(int equipmentId, String newCategory) {
+        String query = "UPDATE equipment SET category = ? WHERE equipment_id = ?";
+        updateField(query, newCategory, equipmentId);
+    }
+
+    public void updatePurchaseDate(int equipmentId, String newPurchaseDate) {
+        String query = "UPDATE equipment SET purchase_date = ? WHERE equipment_id = ?";
+        updateField(query, newPurchaseDate, equipmentId);
+    }
+
+    public void updatePrice(int equipmentId, BigDecimal newPrice) {
+        String query = "UPDATE equipment SET price = ? WHERE equipment_id = ?";
+        updateField(query, newPrice, equipmentId);
+    }
+
+    public void updateStatus(int equipmentId, String newStatus) {
+        String query = "UPDATE equipment SET status = ? WHERE equipment_id = ?";
+        updateField(query, newStatus, equipmentId);
+    }
+
+    public void updateNotes(int equipmentId, String newNotes) {
+        String query = "UPDATE equipment SET notes = ? WHERE equipment_id = ?";
+        updateField(query, newNotes, equipmentId);
+    }
+
+    private void updateField(String query, Object newValue, int equipmentId) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = jdbcConnect.getJDBCConnection();
+            statement = connection.prepareStatement(query);
+
+            if (newValue instanceof String) {
+                statement.setString(1, (String) newValue);
+            } else if (newValue instanceof BigDecimal) {
+                statement.setBigDecimal(1, (BigDecimal) newValue);
+            }
+
+            statement.setInt(2, equipmentId);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            jdbcConnect.closeConnection(connection);
+            jdbcConnect.closePreparedStatement(statement);
+        }
+    }
 }
 
 

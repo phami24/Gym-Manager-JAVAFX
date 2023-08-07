@@ -105,7 +105,7 @@ public class LoginController implements Initializable {
             Task<Void> waitTask = new Task<Void>() {
                 @Override
                 protected Void call() throws Exception {
-                    Thread.sleep(4000); // Đợi 4 giây
+                    Thread.sleep(6000); // Đợi 5 giây
                     return null;
                 }
             };
@@ -114,7 +114,7 @@ public class LoginController implements Initializable {
             waitTask.setOnSucceeded(eventTask -> {
 //                successAlert.showAndWait();
                 stageManager.closeStage();
-                stageManager.loadHomeStage(); // Load home page sau khi chờ 4 giây
+                stageManager.loadHomeStage(); // Load home page sau khi chờ 5 giây
             });
 
             // Bắt đầu Task

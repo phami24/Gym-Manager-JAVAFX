@@ -25,7 +25,7 @@ public class MemberServiceImpl implements MembersService {
 
     @Override
     public void deleteMember(int memberId) {
-        membersRepository.deleteMember(memberId);
+        membersRepository.updateMemberStatus(memberId,4);
     }
 
     @Override

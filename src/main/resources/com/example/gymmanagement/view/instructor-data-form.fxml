@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="534.0" prefWidth="428.0" style="-fx-border-radius: 25; -fx-background-radius: 25; -fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <!-- Stylesheet -->
+    <stylesheets>
+        <URL value="@../css/addmember.css" />
+    </stylesheets>
+   <AnchorPane layoutY="76.0" opacity="0.2" prefHeight="426.0" prefWidth="428.0" style="-fx-background-color: #ccc;" />
+    <!-- Header Section -->
+    <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="37.0" prefWidth="36.0" style="-fx-background-radius: 10; -fx-background-color: #14d7f4;">
+        <Circle fill="#85f1ff" layoutX="18.0" layoutY="19.0" radius="13.0" stroke="#14d7f5" strokeType="INSIDE" />
+        <ImageView fitHeight="17.0" fitWidth="18.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../image/pen.png" />
+            </image>
+        </ImageView>
+    </AnchorPane>
+    <!-- Header Label -->
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="17.0" prefHeight="31.0" prefWidth="182.0" text="UPDATE MEMBER">
+        <font>
+            <Font size="21.0" />
+        </font>
+    </Label>
+    <!-- Close Button -->
+    <Circle fx:id="circle" fill="#f7070c" layoutX="405.0" layoutY="17.0" onMouseClicked="#closeForm" radius="6.0" stroke="#f7070c" strokeType="INSIDE" />
+
+    <!-- Form Fields -->
+    <!-- First Name -->
+    <Label fx:id="firstNameLabel" layoutX="21.0" layoutY="103.0" text="First Name" />
+    <TextField fx:id="firstNameField" layoutX="21.0" layoutY="129.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+
+    <!-- Last Name -->
+    <Label fx:id="lastNameLabel" layoutX="232.0" layoutY="103.0" text="Last Name" />
+    <TextField fx:id="lastNameField" layoutX="232.0" layoutY="129.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+
+    <!-- Date of Birth -->
+    <Label fx:id="dobLabel" layoutX="21.0" layoutY="159.0" text="Date of Birth" />
+    <DatePicker fx:id="dobPicker" layoutX="21.0" layoutY="179.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+
+    <!-- Gender -->
+    <Label fx:id="genderLabel" layoutX="232.0" layoutY="159.0" text="Gender" />
+    <TextField fx:id="genderField" layoutX="232.0" layoutY="179.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+
+    <!-- Email -->
+    <Label fx:id="emailLabel" layoutX="18.0" layoutY="202.0" text="Email" />
+    <TextField fx:id="emailField" layoutX="21.0" layoutY="229.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+
+    <!-- Phone Number -->
+    <Label fx:id="phoneNumberLabel" layoutX="232.0" layoutY="209.0" text="Phone Number" />
+    <TextField fx:id="phoneNumberField" layoutX="232.0" layoutY="229.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+
+    <!-- Address -->
+    <Label fx:id="addressLabel" layoutX="18.0" layoutY="252.0" text="Address" />
+    <TextField fx:id="addressField" layoutX="21.0" layoutY="279.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+
+    <!-- Hire Date -->
+    <Label fx:id="hireDateLabel" layoutX="232.0" layoutY="259.0" text="Hire Date" />
+    <DatePicker fx:id="hireDatePicker" layoutX="232.0" layoutY="279.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+
+    <!-- Experience Years -->
+    <Label fx:id="experienceYearsLabel" layoutX="21.0" layoutY="315.0" text="Experience Years" />
+    <TextField fx:id="experienceYearsField" layoutX="21.0" layoutY="335.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+
+    <!-- Base Salary -->
+    <Label fx:id="baseSalaryLabel" layoutX="231.0" layoutY="315.0" prefHeight="17.0" prefWidth="68.0" text="Base Salary" />
+    <TextField fx:id="baseSalaryField" layoutX="232.0" layoutY="335.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+
+    <!-- Base Salary -->
+    <Label fx:id="salaryLabel" layoutX="21.0" layoutY="369.0" prefHeight="17.0" prefWidth="68.0" text="Salary" />
+    <TextField fx:id="salaryField" layoutX="23.0" layoutY="392.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+
+    <!-- Save Button -->
+    <Button fx:id="buttonUpdate" layoutX="313.0" layoutY="443.0" mnemonicParsing="false" onMouseClicked="#saveUpdate" prefHeight="32.0" prefWidth="75.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-border-radius: 5px;" text="Save">
+        <font>
+            <Font name="System Bold" size="12.0" />
+        </font>
+    </Button>
+</AnchorPane>

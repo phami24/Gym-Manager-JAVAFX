@@ -12,7 +12,6 @@ import java.math.BigDecimal;
 public class Instructors extends Person {
     private int instructor_id;
     private String hireDate;
-    private String specialization;
     private int experienceYears;
     private BigDecimal baseSalary;
     private BigDecimal salary;

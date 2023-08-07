@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,165 +12,128 @@
 
 <BorderPane prefWidth="894.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <top>
-        <AnchorPane prefHeight="125.0" prefWidth="894.0" style="-fx-background-color: #1face1;"
-                    BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="125.0" prefWidth="894.0" style="-fx-background-color: #1face1;" BorderPane.alignment="CENTER">
             <children>
-                <ImageView fx:id="exit" fitHeight="27.0" fitWidth="22.0" layoutX="863.0" layoutY="11.0"
-                           onMouseClicked="#exit" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="exit" fitHeight="27.0" fitWidth="22.0" layoutX="863.0" layoutY="11.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../image/cross.png"/>
+                        <Image url="@../image/cross.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="129.0" fitWidth="153.0" layoutX="79.0" layoutY="5.0" pickOnBounds="true"
-                           preserveRatio="true">
+                <ImageView fitHeight="129.0" fitWidth="153.0" layoutX="79.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../image/pngwing.com.png"/>
+                        <Image url="@../image/pngwing.com.png" />
                     </image>
                 </ImageView>
                 <Label layoutX="232.0" layoutY="85.0" prefHeight="34.0" prefWidth="146.0" text="management">
                     <font>
-                        <Font name="Arial Bold" size="15.0"/>
+                        <Font name="Arial Bold" size="15.0" />
                     </font>
                 </Label>
                 <Label fx:id="logoLabel" layoutX="225.0" layoutY="30.0" prefHeight="62.0" prefWidth="106.0" text="GYM">
                     <font>
-                        <Font name="Arial Bold" size="18.0"/>
+                        <Font name="Arial Bold" size="18.0" />
                     </font>
                 </Label>
-                <Line endX="94.39996337890625" endY="75.00001525878906" layoutX="620.0" layoutY="61.0"
-                      startX="21.69293212890625" startY="-5.080879211425781" stroke="WHITE"/>
-                <Line endX="23.93328857421875" endY="-39.0" layoutX="691.0" layoutY="39.0" startX="-48.5999755859375"
-                      startY="41.80000305175781" stroke="WHITE"/>
-                <Line endX="98.933349609375" endY="-57.0" layoutX="552.0" layoutY="57.0" startX="27.29290771484375"
-                      startY="23.0928955078125" stroke="WHITE"/>
-                <Line endX="96.73333740234375" endY="51.707122802734375" layoutX="551.0" layoutY="85.0" startX="29.0"
-                      startY="-28.37377166748047" stroke="WHITE"/>
-                <Line endX="62.66668701171875" endY="-61.0" layoutX="528.0" layoutY="61.0" startX="-10.21417236328125"
-                      startY="20.15955352783203" stroke="WHITE"/>
-                <Line endX="122.5333251953125" endY="59.600006103515625" layoutX="466.0" layoutY="78.0"
-                      startX="52.492919921875" startY="-19.773773193359375" stroke="WHITE"/>
-                <Line endX="-46.359619140625" endY="-56.70710754394531" layoutX="762.0" layoutY="56.0"
-                      startX="23.86669921875" startY="22.319114685058594" stroke="WHITE"/>
-                <Line endX="61.57379150390625" endY="-48.74754333496094" layoutX="725.0" layoutY="102.0"
-                      startX="-9.8929443359375" startY="34.707122802734375" stroke="WHITE"/>
-                <ImageView fitHeight="63.0" fitWidth="53.0" layoutX="688.0" layoutY="35.0" pickOnBounds="true"
-                           preserveRatio="true">
+                <Line endX="94.39996337890625" endY="75.00001525878906" layoutX="620.0" layoutY="61.0" startX="21.69293212890625" startY="-5.080879211425781" stroke="WHITE" />
+                <Line endX="23.93328857421875" endY="-39.0" layoutX="691.0" layoutY="39.0" startX="-48.5999755859375" startY="41.80000305175781" stroke="WHITE" />
+                <Line endX="98.933349609375" endY="-57.0" layoutX="552.0" layoutY="57.0" startX="27.29290771484375" startY="23.0928955078125" stroke="WHITE" />
+                <Line endX="96.73333740234375" endY="51.707122802734375" layoutX="551.0" layoutY="85.0" startX="29.0" startY="-28.37377166748047" stroke="WHITE" />
+                <Line endX="62.66668701171875" endY="-61.0" layoutX="528.0" layoutY="61.0" startX="-10.21417236328125" startY="20.15955352783203" stroke="WHITE" />
+                <Line endX="122.5333251953125" endY="59.600006103515625" layoutX="466.0" layoutY="78.0" startX="52.492919921875" startY="-19.773773193359375" stroke="WHITE" />
+                <Line endX="-46.359619140625" endY="-56.70710754394531" layoutX="762.0" layoutY="56.0" startX="23.86669921875" startY="22.319114685058594" stroke="WHITE" />
+                <Line endX="61.57379150390625" endY="-48.74754333496094" layoutX="725.0" layoutY="102.0" startX="-9.8929443359375" startY="34.707122802734375" stroke="WHITE" />
+                <ImageView fitHeight="63.0" fitWidth="53.0" layoutX="688.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../image/iconarrm.png"/>
+                        <Image url="@../image/iconarrm.png" />
                     </image>
                 </ImageView>
             </children>
         </AnchorPane>
     </top>
     <center>
-        <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="894.0"
-                    BorderPane.alignment="CENTER">
+        <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="894.0" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="dashBoardButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="176.0"
-                        layoutY="56.0" mnemonicParsing="false" onMouseClicked="#toDashBoard" prefHeight="128.0"
-                        prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;"
-                        styleClass="buttonItems" text="Dashboard" textAlignment="CENTER">
+                <Button fx:id="dashBoardButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="176.0" layoutY="56.0" mnemonicParsing="false" onMouseClicked="#toDashBoard" prefHeight="128.0" prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;" styleClass="buttonItems" text="Dashboard" textAlignment="CENTER">
                     <font>
-                        <Font name="Arial Bold" size="20.0"/>
+                        <Font name="Arial Bold" size="20.0" />
                     </font>
                     <cursor>
-                        <Cursor fx:constant="HAND"/>
+                        <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <ImageView disable="true" fitHeight="82.0" fitWidth="79.0" layoutX="214.0" layoutY="64.0"
-                           pickOnBounds="true" preserveRatio="true">
+                <ImageView disable="true" fitHeight="82.0" fitWidth="79.0" layoutX="214.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../image/dashboard.png"/>
+                        <Image url="@../image/dashboard.png" />
                     </image>
                     <cursor>
-                        <Cursor fx:constant="HAND"/>
+                        <Cursor fx:constant="HAND" />
                     </cursor>
                 </ImageView>
-                <Button fx:id="membersButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="388.0"
-                        layoutY="57.0" mnemonicParsing="false" onMouseClicked="#toMembers" prefHeight="128.0"
-                        prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;"
-                        styleClass="buttonItems" text="Members" textAlignment="CENTER">
+                <Button fx:id="membersButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="388.0" layoutY="57.0" mnemonicParsing="false" onMouseClicked="#toMembers" prefHeight="128.0" prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;" styleClass="buttonItems" text="Members" textAlignment="CENTER">
                     <font>
-                        <Font name="Arial Bold" size="20.0"/>
+                        <Font name="Arial Bold" size="20.0" />
                     </font>
                     <cursor>
-                        <Cursor fx:constant="HAND"/>
+                        <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <ImageView disable="true" fitHeight="97.0" fitWidth="89.0" layoutX="421.0" layoutY="67.0"
-                           pickOnBounds="true" preserveRatio="true">
+                <ImageView disable="true" fitHeight="97.0" fitWidth="89.0" layoutX="421.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../image/newEMP.png"/>
+                        <Image url="@../image/newEMP.png" />
                     </image>
                 </ImageView>
-                <Button fx:id="employeeButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="591.0"
-                        layoutY="56.0" mnemonicParsing="false" onMouseClicked="#toEmployees" prefHeight="128.0"
-                        prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;"
-                        styleClass="buttonItems" text="Employees" textAlignment="CENTER">
+                <Button fx:id="employeeButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="591.0" layoutY="56.0" mnemonicParsing="false" onMouseClicked="#toEmployees" prefHeight="128.0" prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;" styleClass="buttonItems" text="Employees" textAlignment="CENTER">
                     <font>
-                        <Font name="Arial Bold" size="20.0"/>
+                        <Font name="Arial Bold" size="20.0" />
                     </font>
                     <cursor>
-                        <Cursor fx:constant="HAND"/>
+                        <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <ImageView disable="true" fitHeight="87.0" fitWidth="86.0" layoutX="622.0" layoutY="61.0"
-                           pickOnBounds="true" preserveRatio="true">
+                <ImageView disable="true" fitHeight="87.0" fitWidth="86.0" layoutX="622.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../image/fitness.png"/>
+                        <Image url="@../image/fitness.png" />
                     </image>
                 </ImageView>
-                <Button fx:id="classButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="175.0"
-                        layoutY="234.0" mnemonicParsing="false" onMouseClicked="#toClass" prefHeight="128.0"
-                        prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;"
-                        styleClass="buttonItems" text="Classes" textAlignment="CENTER">
+                <Button fx:id="classButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="175.0" layoutY="234.0" mnemonicParsing="false" onMouseClicked="#toClass" prefHeight="128.0" prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;" styleClass="buttonItems" text="Classes" textAlignment="CENTER">
                     <font>
-                        <Font name="Arial Bold" size="20.0"/>
+                        <Font name="Arial Bold" size="20.0" />
                     </font>
                     <cursor>
-                        <Cursor fx:constant="HAND"/>
+                        <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <ImageView disable="true" fitHeight="91.0" fitWidth="99.0" layoutX="207.0" layoutY="238.0"
-                           pickOnBounds="true" preserveRatio="true">
+                <ImageView disable="true" fitHeight="91.0" fitWidth="99.0" layoutX="207.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../image/class.png"/>
+                        <Image url="@../image/class.png" />
                     </image>
                 </ImageView>
-                <FontAwesomeIcon fill="#7a8589" iconName="GEAR" layoutX="11.0" layoutY="484.0" size="55px" text=""
-                                 textAlignment="CENTER" wrappingWidth="66.35009765624977"/>
-                <Button fx:id="dashBoardButton1" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="591.0"
-                        layoutY="233.0" mnemonicParsing="false" onMouseClicked="#toDashBoard" prefHeight="128.0"
-                        prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;"
-                        styleClass="buttonItems" text="Sign Out" textAlignment="CENTER">
+<!--                <FontAwesomeIcon fill="#7a8589" iconName="GEAR" layoutX="11.0" layoutY="484.0" size="55px" text=""-->
+<!--                                 textAlignment="CENTER" wrappingWidth="66.35009765624977"/>-->
+                <Button fx:id="dashBoardButton1" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="591.0" layoutY="233.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="128.0" prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;" styleClass="buttonItems" text="Sign Out" textAlignment="CENTER">
                     <font>
-                        <Font name="Arial Bold" size="19.0"/>
+                        <Font name="Arial Bold" size="19.0" />
                     </font>
                     <cursor>
-                        <Cursor fx:constant="HAND"/>
+                        <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <Button fx:id="dashBoardButton11" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="390.0"
-                        layoutY="234.0" mnemonicParsing="false" onMouseClicked="#toDashBoard" prefHeight="128.0"
-                        prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;"
-                        styleClass="buttonItems" text="Switch role" textAlignment="CENTER">
+                <Button fx:id="dashBoardButton11" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="390.0" layoutY="234.0" mnemonicParsing="false" onMouseClicked="#toEquipment" prefHeight="128.0" prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;" styleClass="buttonItems" text="Equipment" textAlignment="CENTER">
                     <font>
-                        <Font name="Arial Bold" size="19.0"/>
+                        <Font name="Arial Bold" size="19.0" />
                     </font>
                     <cursor>
-                        <Cursor fx:constant="HAND"/>
+                        <Cursor fx:constant="HAND" />
                     </cursor>
                 </Button>
-                <ImageView fitHeight="80.0" fitWidth="94.0" layoutX="429.0" layoutY="238.0" pickOnBounds="true"
-                           preserveRatio="true">
+                <ImageView fitHeight="80.0" fitWidth="94.0" layoutX="429.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../image/switch.png"/>
+                        <Image url="@../image/grade.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="75.0" fitWidth="76.0" layoutX="635.0" layoutY="246.0" pickOnBounds="true"
-                           preserveRatio="true">
+                <ImageView fitHeight="75.0" fitWidth="76.0" layoutX="635.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../image/signout.png"/>
+                        <Image url="@../image/signout.png" />
                     </image>
                 </ImageView>
             </children>

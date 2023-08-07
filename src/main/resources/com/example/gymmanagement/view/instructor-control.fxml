@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Pagination?>
@@ -20,6 +21,7 @@
                   <MenuItem mnemonicParsing="false" text="Import" />
                </items>
             </SplitMenuButton>
+            <Button layoutX="113.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#addInstructor" text="ADD" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="-6.0" prefHeight="114.0" prefWidth="941.0" style="-fx-background-color: #2196f3;">
@@ -33,15 +35,16 @@
       </AnchorPane>
       <TableView fx:id="tableView" layoutX="28.0" layoutY="210.0" prefHeight="279.0" prefWidth="880.0">
          <columns>
-            <TableColumn fx:id="id" prefWidth="42.0" text="ID" />
-            <TableColumn fx:id="full_name" prefWidth="119.0" text="Full name" />
-            <TableColumn fx:id="gender" prefWidth="89.0" text="Gender" />
-            <TableColumn fx:id="email" prefWidth="78.0" text="Email" />
-            <TableColumn fx:id="phone" prefWidth="120.0" text="Phone number" />
-            <TableColumn fx:id="hireDate" prefWidth="78.6666259765625" text="Hire date" />
-            <TableColumn fx:id="experience" prefWidth="103.0" text="Experience" />
-            <TableColumn fx:id="status" prefWidth="60.0" text="Status" />
-            <TableColumn fx:id="action" prefWidth="189.0" text="Action" />
+            <TableColumn fx:id="stt" prefWidth="75.0" text="STT" />
+            <TableColumn fx:id="instructorId" prefWidth="42.0" text="ID" visible="false" />
+            <TableColumn fx:id="fullName" prefWidth="126.0" text="Full name" />
+            <TableColumn fx:id="gender" prefWidth="66.0" text="Gender" />
+            <TableColumn fx:id="hireDate" prefWidth="100.0" text="Hire Date" />
+            <TableColumn fx:id="specialization" prefWidth="120.0" text="Specialization" />
+            <TableColumn fx:id="experienceYears" prefWidth="99.0" text="Experience Year" />
+            <TableColumn fx:id="baseSalary" prefWidth="104.0" text="Base Salary" />
+            <TableColumn fx:id="salary" prefWidth="75.0" text="Salary" />
+            <TableColumn fx:id="action" prefWidth="113.0" text="Action" />
          </columns>
       </TableView>
       <Pagination layoutX="365.0" layoutY="503.0" prefHeight="58.0" prefWidth="200.0" />

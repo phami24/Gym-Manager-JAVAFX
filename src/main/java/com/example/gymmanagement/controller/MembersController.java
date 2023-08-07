@@ -1,27 +1,41 @@
 package com.example.gymmanagement.controller;
 
 import com.example.gymmanagement.model.entity.Members;
+import com.example.gymmanagement.model.repository.InstructorRepository;
 import com.example.gymmanagement.model.repository.MembersRepository;
+import com.example.gymmanagement.model.repository.MembershipStatusRepository;
+import com.example.gymmanagement.model.repository.MembershipTypesRepository;
+import com.example.gymmanagement.model.service.MembersService;
+import com.example.gymmanagement.model.service.impl.MemberServiceImpl;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MembersController implements Initializable {
 
     private final MembersRepository membersRepository = new MembersRepository();
+    private final MembershipStatusRepository membershipStatusRepository = new MembershipStatusRepository();
+    private final MembershipTypesRepository membershipTypesRepository = new MembershipTypesRepository();
+    private final InstructorRepository instructorRepository = new InstructorRepository();
+
+
+    private final StageManager stageManager = new StageManager();
 
     @FXML
     private TableColumn<Members, Void> action;
@@ -30,16 +44,10 @@ public class MembersController implements Initializable {
     private TableColumn<Members, String> email;
 
     @FXML
-    private TableColumn<Members, String> endDate;
-
-    @FXML
     private TableColumn<Members, String> fullName;
 
     @FXML
     private TableColumn<Members, String> gender;
-
-    @FXML
-    private TableColumn<Members, String> joinDate;
 
     @FXML
     private TableColumn<Members, Integer> memberId;
@@ -56,21 +64,31 @@ public class MembersController implements Initializable {
     @FXML
     private TableColumn<Members, String> type;
 
+    @FXML
+    private TableColumn<Members, Integer> stt;
+    @FXML
+    private TableColumn<Members, String> instructor;
+    @FXML
+    private Button buttonAdd;
+
+    private MembersService membersService = new MemberServiceImpl();
     private ObservableList<Members> membersData = FXCollections.observableArrayList();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Cài đặt cách dữ liệu của các cột sẽ được lấy từ đối tượng Members và gắn vào TableView
+        stt.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(member_tableView.getItems().indexOf(cellData.getValue()) + 1));
         memberId.setCellValueFactory(new PropertyValueFactory<>("member_id"));
         fullName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFirst_name() + " " + cellData.getValue().getLast_name()));
         gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
         phone.setCellValueFactory(new PropertyValueFactory<>("phone_number"));
-        joinDate.setCellValueFactory(new PropertyValueFactory<>("join_date"));
-        endDate.setCellValueFactory(new PropertyValueFactory<>("end_date"));
-        status.setCellValueFactory(new PropertyValueFactory<>("membership_status_id"));
-        type.setCellValueFactory(new PropertyValueFactory<>("membership_type_id"));
+
+        // Hiển thị status, type và instructor dựa trên ID
+        status.setCellValueFactory(cellData -> new SimpleStringProperty(membershipStatusRepository.getStatusNameById(cellData.getValue().getMembership_status_id())));
+        type.setCellValueFactory(cellData -> new SimpleStringProperty(membershipTypesRepository.getTypeNameById(cellData.getValue().getMembership_type_id())));
+        instructor.setCellValueFactory(cellData -> new SimpleStringProperty(instructorRepository.getInstructorNameById(cellData.getValue().getInstructorId())));
 
         setupActionColumn();
 
@@ -85,30 +103,49 @@ public class MembersController implements Initializable {
             @Override
             public TableCell<Members, Void> call(final TableColumn<Members, Void> param) {
                 return new TableCell<>() {
-                    private final Button deleteButton = new Button("Delete");
-                    private final Button updateButton = new Button("Update");
-                    private final Button showDetailButton = new Button("Show Detail");
+                    private final ImageView deleteButton = new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/trash-bin.png")));
+                    private final ImageView showDetailButton = new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/document.png")));
 
                     {
                         // Xử lý sự kiện khi nhấn nút "Delete"
-                        deleteButton.setOnAction(event -> {
+                        deleteButton.setOnMouseClicked(event -> {
                             Members member = getTableView().getItems().get(getIndex());
-                            membersRepository.deleteMember(member.getMember_id());
-                            membersData.remove(member);
-                            member_tableView.refresh();
+                            Alert confirmDeleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                            confirmDeleteAlert.setTitle("Confirm Delete");
+                            confirmDeleteAlert.setHeaderText("Are you sure you want to delete this member?");
+                            confirmDeleteAlert.setContentText("Member: " + member.getFirst_name() + " " + member.getLast_name());
+
+                            Optional<ButtonType> result = confirmDeleteAlert.showAndWait();
+                            if (result.isPresent() && result.get() == ButtonType.OK) {
+                                membersService.deleteMember(member.getMember_id());
+                                membersData.remove(member);
+                                member_tableView.refresh();
+                            }
                         });
 
                         // Xử lý sự kiện khi nhấn nút "Update"
-                        updateButton.setOnAction(event -> {
-                            // Show Update Form
+                        showDetailButton.setOnMouseClicked(event -> {
+
+                            Members member = getTableView().getItems().get(getIndex());
+                            int memberId = member.getMember_id();
+                            MemberUpdateFormController memberUpdateFormController = new MemberUpdateFormController(memberId, member_tableView);
+                            stageManager.loadMemberUpdateFormDialog(memberUpdateFormController);
+                            member_tableView.refresh();
+
                         });
 
-                        // Xử lý sự kiện khi nhấn nút "Show Detail"
-                        showDetailButton.setOnAction(event -> {
-                            Members member = getTableView().getItems().get(getIndex());
-                            // Show Update stage
-                        });
+                        // Thiết lập chiều rộng và chiều cao cho các hình ảnh
+                        deleteButton.setFitWidth(20);
+                        deleteButton.setFitHeight(20);
+                        Tooltip deleteTooltip = new Tooltip("Delete"); // Tạo Tooltip với nội dung "Delete"
+                        Tooltip.install(deleteButton, deleteTooltip); // Gắn Tooltip vào nút deleteButton
+
+                        showDetailButton.setFitWidth(20);
+                        showDetailButton.setFitHeight(20);
+                        Tooltip showDetailTooltip = new Tooltip("Show and Update"); // Tạo Tooltip với nội dung "Show and Update"
+                        Tooltip.install(showDetailButton, showDetailTooltip); // Gắn Tooltip vào nút showDetailButtonImage
                     }
+
 
                     @Override
                     protected void updateItem(Void item, boolean empty) {
@@ -116,7 +153,9 @@ public class MembersController implements Initializable {
                         if (empty) {
                             setGraphic(null);
                         } else {
-                            HBox buttons = new HBox(deleteButton, updateButton, showDetailButton);
+                            HBox buttons = new HBox(20); // Tạo HBox với khoảng cách 10 giữa các nút
+                            buttons.setAlignment(Pos.CENTER); // Căn giữa các nút trong HBox
+                            buttons.getChildren().addAll(deleteButton, showDetailButton);
                             setGraphic(buttons);
                         }
                     }
@@ -124,4 +163,12 @@ public class MembersController implements Initializable {
             }
         });
     }
+
+    @FXML
+    void addMember(MouseEvent event) {
+        MemberAddFormController addFormController = new MemberAddFormController(member_tableView);
+        stageManager.loadMemberAddFormDialog(addFormController);
+    }
+
+
 }

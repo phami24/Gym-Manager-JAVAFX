@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -70,10 +71,10 @@ public class StageManager {
         // For example: You can create a new scene for the home screen and set it as the current scene.
         Stage mainStage = new Stage();
         HomePageController homeStageController = new HomePageController();
-        Scene homeStage = sceneManager.loadScene("home-page.fxml" , homeStageController);
-        homeStageController.setStage(currentStage);
+        Scene homeStage = sceneManager.loadScene("home-page.fxml", homeStageController);
         mainStage.setScene(homeStage);
         setCurrentStage(mainStage);
+        homeStageController.setStage(currentStage);
         currentStage.initStyle(StageStyle.TRANSPARENT);
         showStage();
     }
@@ -120,7 +121,7 @@ public class StageManager {
                 "                loginSuccessDiv.style.display = 'block';\n" +
                 "                loginSuccessDiv.style.opacity = '1';\n" +
                 "                loginSuccessDiv.style.transform = 'translateY(0)';\n" +
-                "            }, 3000); // Hiển thị sau 2 giây\n" +
+                "            }, 5000); // Hiển thị sau 5 giây\n" +
                 "        });\n" +
                 "    </script>\n" +
                 "</head>\n" +
@@ -145,16 +146,15 @@ public class StageManager {
         Scene homeStage = sceneManager.loadScene("member-control.fxml");
         memberStage.setScene(homeStage);
         setCurrentStage(memberStage);
-//        currentStage.initStyle(StageStyle.TRANSPARENT);
         showStage();
     }
 
     public void loadClassesControlStage() {
-        Stage memberStage = new Stage();
-        Scene homeStage = sceneManager.loadScene("gymclass-control.fxml");
-        memberStage.setScene(homeStage);
-        setCurrentStage(memberStage);
-//        currentStage.initStyle(StageStyle.TRANSPARENT);
+        Stage classStage = new Stage();
+        GymClassController gymClassController = new GymClassController();
+        Scene classScenne = sceneManager.loadScene("gymclass-control.fxml", gymClassController);
+        classStage.setScene(classScenne);
+        setCurrentStage(classStage);
         showStage();
     }
 
@@ -163,7 +163,6 @@ public class StageManager {
         Scene homeStage = sceneManager.loadScene("instructor-control.fxml");
         instructorStage.setScene(homeStage);
         setCurrentStage(instructorStage);
-//        currentStage.initStyle(StageStyle.TRANSPARENT);
         showStage();
     }
 
@@ -172,7 +171,28 @@ public class StageManager {
         Scene homeStage = sceneManager.loadScene("equipment-control.fxml");
         equipmentStage.setScene(homeStage);
         setCurrentStage(equipmentStage);
-//        currentStage.initStyle(StageStyle.TRANSPARENT);
+        showStage();
+    }
+
+    public void loadMemberAddFormDialog(MemberAddFormController addFormController) {
+        Stage memberAddFormDialogStage = new Stage();
+        memberAddFormDialogStage.initModality(Modality.APPLICATION_MODAL);
+        Scene memberAddFormScene = sceneManager.loadScene("member-add-form.fxml", addFormController);
+        memberAddFormDialogStage.setScene(memberAddFormScene);
+        setCurrentStage(memberAddFormDialogStage);
+        currentStage.initStyle(StageStyle.TRANSPARENT);
+        memberAddFormScene.setFill(Color.TRANSPARENT);
+        showStage();
+    }
+
+    public void loadMemberUpdateFormDialog(MemberUpdateFormController updateFormController) {
+        Stage memberUpdateFormDialogStage = new Stage();
+        memberUpdateFormDialogStage.initModality(Modality.APPLICATION_MODAL);
+        Scene memberAddFormScene = sceneManager.loadScene("member-data-form.fxml", updateFormController);
+        memberUpdateFormDialogStage.setScene(memberAddFormScene);
+        setCurrentStage(memberUpdateFormDialogStage);
+        currentStage.initStyle(StageStyle.TRANSPARENT);
+        memberAddFormScene.setFill(Color.TRANSPARENT);
         showStage();
     }
 
@@ -180,6 +200,82 @@ public class StageManager {
         currentStage.close();
     }
 
+    public void loadInstructorAddFormDialog(InstructorAddFormController addFormController) {
+        Stage instructorAddFormDialogStage = new Stage();
+        instructorAddFormDialogStage.initModality(Modality.APPLICATION_MODAL);
+        Scene instructorAddFormScene = sceneManager.loadScene("instructor-add-form.fxml", addFormController);
+        instructorAddFormDialogStage.setScene(instructorAddFormScene);
+        setCurrentStage(instructorAddFormDialogStage);
+        currentStage.initStyle(StageStyle.TRANSPARENT);
+        instructorAddFormScene.setFill(Color.TRANSPARENT);
+        showStage();
+    }
+
+    public void loadInstructorUpdateFormDialog(InstructorUpdateFormController updateFormController) {
+        Stage instructorUpdateFormDialogStage = new Stage();
+        instructorUpdateFormDialogStage.initModality(Modality.APPLICATION_MODAL);
+        Scene instructorUpdateFormScene = sceneManager.loadScene("instructor-data-form.fxml", updateFormController);
+        instructorUpdateFormDialogStage.setScene(instructorUpdateFormScene);
+        setCurrentStage(instructorUpdateFormDialogStage);
+        currentStage.initStyle(StageStyle.TRANSPARENT);
+        instructorUpdateFormScene.setFill(Color.TRANSPARENT);
+        showStage();
+    }
+
+    public void loadGymClassAddFormDialog(GymClassAddFormController addFormController) {
+        Stage classAddFormDialogStage = new Stage();
+        classAddFormDialogStage.initModality(Modality.APPLICATION_MODAL);
+        Scene classAddFormScene = sceneManager.loadScene("class-add-form.fxml", addFormController);
+        classAddFormDialogStage.setScene(classAddFormScene);
+        setCurrentStage(classAddFormDialogStage);
+        currentStage.initStyle(StageStyle.TRANSPARENT);
+        classAddFormScene.setFill(Color.TRANSPARENT);
+        showStage();
+    }
+
+    public void loadClassUpdateFormDialog(GymClassUpdateController updateFormController) {
+        Stage classUpdateFormDialogStage = new Stage();
+        classUpdateFormDialogStage.initModality(Modality.APPLICATION_MODAL);
+        Scene classUpdateFormScene = sceneManager.loadScene("class-data-form.fxml", updateFormController);
+        classUpdateFormDialogStage.setScene(classUpdateFormScene);
+        setCurrentStage(classUpdateFormDialogStage);
+        currentStage.initStyle(StageStyle.TRANSPARENT);
+        classUpdateFormScene.setFill(Color.TRANSPARENT);
+        showStage();
+    }
+
+    public void loadEquipmentAddFormDialog(EquipmentAddFormController addFormController) {
+        Stage equipmentAddFormDialogStage = new Stage();
+        equipmentAddFormDialogStage.initModality(Modality.APPLICATION_MODAL);
+        Scene equipmentAddFormScene = sceneManager.loadScene("equipment-add-form.fxml", addFormController);
+        equipmentAddFormDialogStage.setScene(equipmentAddFormScene);
+        setCurrentStage(equipmentAddFormDialogStage);
+        currentStage.initStyle(StageStyle.TRANSPARENT);
+        equipmentAddFormScene.setFill(Color.TRANSPARENT);
+        showStage();
+    }
+
+    public void loadEquipmentUpdateFormDialog(EquipmentUpdateController updateFormController) {
+        Stage equipmentUpdateFormDialogStage = new Stage();
+        equipmentUpdateFormDialogStage.initModality(Modality.APPLICATION_MODAL);
+        Scene equipmentUpdateFormScene = sceneManager.loadScene("equipment-data-form.fxml", updateFormController);
+        equipmentUpdateFormDialogStage.setScene(equipmentUpdateFormScene);
+        setCurrentStage(equipmentUpdateFormDialogStage);
+        currentStage.initStyle(StageStyle.TRANSPARENT);
+        equipmentUpdateFormScene.setFill(Color.TRANSPARENT);
+        showStage();
+    }
+
+    public void loadDoardBoard() {
+        Stage dashBoradStage = new Stage();
+        dashBoradStage.initModality(Modality.APPLICATION_MODAL);
+        Scene dashBoardScene = sceneManager.loadScene("dashboard.fxml");
+        dashBoradStage.setScene(dashBoardScene);
+        setCurrentStage(dashBoradStage);
+        currentStage.initStyle(StageStyle.TRANSPARENT);
+        dashBoardScene.setFill(Color.TRANSPARENT);
+        showStage();
+    }
 }
 
 

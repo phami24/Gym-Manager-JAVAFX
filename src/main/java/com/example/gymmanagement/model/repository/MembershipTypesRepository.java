@@ -74,4 +74,58 @@ public class MembershipTypesRepository {
         }
         return membershipType;
     }
+
+    public int getTypeIDByName(String typeName) {
+        String query = "SELECT membership_type_id FROM membership_types WHERE membership_type_name = ?";
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, typeName);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt("membership_type_id");
+                }
+                return -1; // Return a default value indicating not found
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1; // Ném lại ngoại lệ để lớp gọi viên có thể xử lý ngoại lệ này
+        }
+    }
+
+    public String getTypeNameById(int membershipTypeId) {
+        Connection connection = jdbcConnect.getJDBCConnection();
+        String query = "SELECT membership_type_name FROM membership_types WHERE membership_type_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, membershipTypeId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getString("membership_type_name");
+                }
+                return null; // Return null if type not found
+            }
+        } catch (SQLException e) {
+            // Handle SQLException here, e.g., print stack trace or throw a different exception
+            e.printStackTrace();
+            return null; // Or throw a different exception to signal the error to the calling class
+        }
+    }
+
+    public int getDurationById(int membershipTypeId) {
+        Connection connection = jdbcConnect.getJDBCConnection();
+        String query = "SELECT duration FROM membership_types WHERE membership_type_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, membershipTypeId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt("duration");
+                }
+                return -1; // Return a default value indicating not found
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1; // Ném lại ngoại lệ để lớp gọi viên có thể xử lý ngoại lệ này
+        }
+    }
+
+
 }

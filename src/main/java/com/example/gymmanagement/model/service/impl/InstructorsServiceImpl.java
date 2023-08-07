@@ -34,7 +34,7 @@ public class InstructorsServiceImpl implements InstructorsService {
 
     @Override
     public void deleteInstructor(int instructorId) {
-        instructorsRepository.deleteInstructor(instructorId);
+        instructorsRepository.updateInstructorStatus(instructorId, 4);
     }
 
     @Override
