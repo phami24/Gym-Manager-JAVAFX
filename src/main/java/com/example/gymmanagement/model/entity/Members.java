@@ -17,5 +17,6 @@ public class Members extends Person {
     private String end_date;
     private int membership_status_id;
     private int membership_type_id;
+    private int instructorId;
 }
 

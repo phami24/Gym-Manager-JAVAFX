@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Alert?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ComboBox?>
+
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane prefHeight="534.0" prefWidth="428.0"
+            style="-fx-border-radius: 25; -fx-background-radius: 25; -fx-background-color: white;"
+            xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <!-- Stylesheet -->
+    <stylesheets>
+        <URL value="@../css/addmember.css"/>
+    </stylesheets>
+    <AnchorPane layoutY="76.0" opacity="0.2" prefHeight="426.0" prefWidth="428.0" style="-fx-background-color: #ccc;"/>
+    <!-- Header Section -->
+    <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="37.0" prefWidth="36.0"
+                style="-fx-background-radius: 10; -fx-background-color: #14d7f4;">
+        <Circle fill="#85f1ff" layoutX="18.0" layoutY="19.0" radius="13.0" stroke="#14d7f5" strokeType="INSIDE"/>
+        <ImageView fitHeight="17.0" fitWidth="18.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../image/pen.png"/>
+            </image>
+        </ImageView>
+    </AnchorPane>
+    <!-- Header Label -->
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="17.0" prefHeight="31.0" prefWidth="182.0"
+           text="UPDATE MEMBER">
+        <font>
+            <Font size="21.0"/>
+        </font>
+    </Label>
+    <!-- Close Button -->
+    <Circle fx:id="circle" fill="#f7070c" layoutX="405.0" layoutY="17.0" onMouseClicked="#closeForm" radius="6.0"
+            stroke="#f7070c" strokeType="INSIDE"/>
+
+
+    <!-- Equipment ID -->
+    <Label fx:id="equipmentIdLabel" layoutX="18.0" layoutY="96.0" text="Equipment ID"/>
+    <TextField fx:id="equipmentIdField" layoutX="18.0" layoutY="122.0" prefHeight="25.0" prefWidth="174.0"
+               style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;"/>
+
+    <!-- Equipment Name -->
+    <Label fx:id="equipmentNameLabel" layoutX="229.0" layoutY="96.0" text="Equipment Name"/>
+    <TextField fx:id="equipmentNameField" layoutX="229.0" layoutY="122.0" prefHeight="25.0" prefWidth="174.0"
+               style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;"/>
+
+    <!-- Category -->
+    <Label fx:id="categoryLabel" layoutX="18.0" layoutY="152.0" text="Category"/>
+    <TextField fx:id="categoryField" layoutX="18.0" layoutY="178.0" prefHeight="25.0" prefWidth="174.0"
+               style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;"/>
+
+    <Label fx:id="purchaseDateLabel" layoutX="229.0" layoutY="152.0" text="Purchase Date"/>
+    <DatePicker fx:id="purchaseDatePicker" layoutX="229.0" layoutY="178.0"
+                style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;"/>
+
+    <!-- Price -->
+    <Label fx:id="priceLabel" layoutX="18.0" layoutY="208.0" text="Price"/>
+    <TextField fx:id="priceField" layoutX="18.0" layoutY="234.0" prefHeight="25.0" prefWidth="174.0"
+               style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;"/>
+
+    <!-- Status -->
+    <Label fx:id="statusLabel" layoutX="229.0" layoutY="208.0" text="Status"/>
+    <ComboBox fx:id="statusComboBox" layoutX="229.0" layoutY="208.0" prefHeight="25.0" prefWidth="174.0"
+              style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;"/>
+    <!-- Notes -->
+    <Label fx:id="notesLabel" layoutX="18.0" layoutY="264.0" text="Notes"/>
+    <TextField fx:id="notesField" layoutX="18.0" layoutY="290.0" prefHeight="25.0" prefWidth="385.0"
+               style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;"/>
+
+    <!-- Update Button -->
+    <Button fx:id="buttonUpdate" layoutX="322.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#saveUpdate"
+            prefHeight="32.0" prefWidth="75.0"
+            style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-border-radius: 5px;"
+            text="Save">
+        <font>
+            <Font name="System Bold" size="12.0"/>
+        </font>
+    </Button>
+</AnchorPane>

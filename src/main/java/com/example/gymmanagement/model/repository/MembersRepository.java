@@ -4,6 +4,7 @@ import com.example.gymmanagement.database.JDBCConnect;
 import com.example.gymmanagement.model.entity.Members;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,108 +14,176 @@ public class MembersRepository {
     public MembersRepository() {
         this.jdbcConnect = new JDBCConnect();
     }
-    private Connection con = null;
-    private PreparedStatement ps = null;
-
-    private ResultSet rs = null;
-    private Statement statement = null;
-
-    // Phương thức để thêm một thành viên vào cơ sở dữ liệu
 
     public void addMember(Members member) {
-        String query = "INSERT INTO members (first_name, last_name, dob, gender, email, phone_number, address, join_date, end_date, membership_status_id, membership_type_id) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-        executeMemberQuery(query, member);
+        String query = "INSERT INTO members (first_name, last_name, dob, gender, email, phone_number, address, join_date, end_date, membership_status_id, membership_type_id, instructor_id) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, member.getFirst_name());
+            statement.setString(2, member.getLast_name());
+            statement.setDate(3, Date.valueOf(member.getDob()));
+            statement.setString(4, member.getGender());
+            statement.setString(5, member.getEmail());
+            statement.setString(6, member.getPhone_number());
+            statement.setString(7, member.getAddress());
+            statement.setDate(8, Date.valueOf(member.getJoin_date()));
+            statement.setDate(9, Date.valueOf(member.getEnd_date()));
+            statement.setInt(10, member.getMembership_status_id());
+            statement.setInt(11, member.getMembership_type_id());
+            statement.setInt(12, member.getInstructorId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    // Phương thức để cập nhật thông tin thành viên trong cơ sở dữ liệu
     public void updateMember(Members member) {
-
         String query = "UPDATE members " +
                 "SET first_name = ?, last_name = ?, dob = ?, gender = ?, email = ?, phone_number = ?, address = ?, join_date = ?, end_date = ?, " +
-                "membership_status_id = ?, membership_type_id = ? " +
+                "membership_status_id = ?, membership_type_id = ?, instructor_id = ? " +
                 "WHERE member_id = ?";
-        executeMemberQuery(query, member);
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, member.getFirst_name());
+            statement.setString(2, member.getLast_name());
+            statement.setDate(3, Date.valueOf(member.getDob()));
+            statement.setString(4, member.getGender());
+            statement.setString(5, member.getEmail());
+            statement.setString(6, member.getPhone_number());
+            statement.setString(7, member.getAddress());
+            statement.setDate(8, Date.valueOf(member.getJoin_date()));
+            statement.setDate(9, Date.valueOf(member.getEnd_date()));
+            statement.setInt(10, member.getMembership_status_id());
+            statement.setInt(11, member.getMembership_type_id());
+            statement.setInt(12, member.getInstructorId());
+            statement.setInt(13, member.getMember_id());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    // Phương thức để xóa thành viên khỏi cơ sở dữ liệu
     public void deleteMember(int memberId) {
-
-        try {
-            con = com.example.gymmanagement.database.dao.JDBCConnect.getJDBCConnection();
-            String query = "DELETE FROM members WHERE member_id = ?";
-            ps = con.prepareStatement(query);
-            ps.setInt(1, memberId);
-
-            ps.executeUpdate();
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement("DELETE FROM members WHERE member_id = ?")) {
+            statement.setInt(1, memberId);
+            statement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            com.example.gymmanagement.database.dao.JDBCConnect.closeConnection(con);
-            com.example.gymmanagement.database.dao.JDBCConnect.closePreparedStatement(ps);
+            e.printStackTrace();
         }
     }
 
-    // Phương thức để lấy thông tin thành viên dựa trên ID
     public Members getMemberById(int memberId) {
-
-        Members member = null;
-
-        try {
-            con = com.example.gymmanagement.database.dao.JDBCConnect.getJDBCConnection();
-            String query = "SELECT * FROM members WHERE member_id = ?";
-            ps = con.prepareStatement(query);
-            ps.setInt(1, memberId);
-
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-                member = new Members();
-                member = fromResultSet(rs);
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM members WHERE member_id = ?")) {
+            statement.setInt(1, memberId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return fromResultSet(resultSet);
+                }
             }
-
-
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            com.example.gymmanagement.database.dao.JDBCConnect.closeConnection(con);
-            com.example.gymmanagement.database.dao.JDBCConnect.closeResultSet(rs);
-            com.example.gymmanagement.database.dao.JDBCConnect.closePreparedStatement(ps);
+            e.printStackTrace();
         }
-
-        return member;
+        return null;
     }
 
-    // Phương thức để lấy danh sách tất cả các thành viên
     public List<Members> getAllMembers() {
-
         List<Members> membersList = new ArrayList<>();
-
-        try {
-            con = com.example.gymmanagement.database.dao.JDBCConnect.getJDBCConnection();
-            String query = "SELECT * FROM members";
-            ps = con.prepareStatement(query);
-
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Members member = new Members();
-                member = fromResultSet(rs);
-
-                membersList.add(member);
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM members WHERE membership_status_id != 4");
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                membersList.add(fromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            com.example.gymmanagement.database.dao.JDBCConnect.closeConnection(con);
-            com.example.gymmanagement.database.dao.JDBCConnect.closeResultSet(rs);
-            com.example.gymmanagement.database.dao.JDBCConnect.closePreparedStatement(ps);
+            e.printStackTrace();
         }
         return membersList;
     }
 
-    //lấy từ database ra
+    public List<Members> getMembersByNames(String firstName, String lastName) {
+        List<Members> membersList = new ArrayList<>();
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM members WHERE first_name = ? AND last_name = ?")) {
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    membersList.add(fromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return membersList;
+    }
+
+    public List<Members> getMembersByInstructorId(int instructorId) {
+        List<Members> membersList = new ArrayList<>();
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM members WHERE instructor_id = ?")) {
+            statement.setInt(1, instructorId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    membersList.add(fromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return membersList;
+    }
+
+    public List<Members> getMembersByYearAndMonth(int year, int month) {
+        List<Members> membersList = new ArrayList<>();
+        String query = "SELECT * FROM members WHERE YEAR(join_date) = ? AND MONTH(join_date) = ?";
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, year);
+            statement.setInt(2, month);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Members member = fromResultSet(resultSet);
+                    membersList.add(member);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return membersList;
+
+    }
+
+    public void deleteMemberByStatus(int memberId, int newStatusId) {
+        String query = "UPDATE members SET membership_status_id = ? WHERE member_id = ?";
+
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, newStatusId);
+            statement.setInt(2, memberId);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int getTotalMembers() {
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT COUNT(member_id) as count FROM members");
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public Members fromResultSet(ResultSet resultSet) throws SQLException {
         Members member = new Members();
         member.setMember_id(resultSet.getInt("member_id"));
@@ -122,9 +191,10 @@ public class MembersRepository {
         member.setEnd_date(resultSet.getString("end_date"));
         member.setMembership_status_id(resultSet.getInt("membership_status_id"));
         member.setMembership_type_id(resultSet.getInt("membership_type_id"));
+        member.setInstructorId(resultSet.getInt("instructor_id"));
         member.setFirst_name(resultSet.getString("first_name"));
         member.setLast_name(resultSet.getString("last_name"));
-        member.setDob(resultSet.getDate("dob").toString());
+        member.setDob(resultSet.getString("dob"));
         member.setGender(resultSet.getString("gender"));
         member.setEmail(resultSet.getString("email"));
         member.setPhone_number(resultSet.getString("phone_number"));
@@ -132,58 +202,121 @@ public class MembersRepository {
         return member;
     }
 
-    //lấy vào database
-    public void executeMemberQuery(String query, Members member) {
+//    public void executeMemberQuery(String query, Members member) {
+//        try (Connection connection = jdbcConnect.getJDBCConnection();
+//             PreparedStatement statement = connection.prepareStatement(query)) {
+//            statement.setString(1, member.getFirst_name());
+//            statement.setString(2, member.getLast_name());
+//            statement.setDate(3, Date.valueOf(member.getDob()));
+//            statement.setString(4, member.getGender());
+//            statement.setString(5, member.getEmail());
+//            statement.setString(6, member.getPhone_number());
+//            statement.setString(7, member.getAddress());
+//            statement.setDate(8, Date.valueOf(member.getJoin_date()));
+//            statement.setDate(9, Date.valueOf(member.getEnd_date()));
+//            statement.setInt(10, member.getMembership_status_id());
+//            statement.setInt(11, member.getMembership_type_id());
+//            statement.setInt(12, member.getInstructorId());
+//            statement.setInt(13, member.getMember_id());
+//            statement.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-        try {
-            con = com.example.gymmanagement.database.dao.JDBCConnect.getJDBCConnection();
-            ps = con.prepareStatement(query);
-
-            ps.setString(1, member.getFirst_name());
-            ps.setString(2, member.getLast_name());
-            ps.setDate(3, java.sql.Date.valueOf(member.getDob()));
-            ps.setString(4, member.getGender());
-            ps.setString(5, member.getEmail());
-            ps.setString(6, member.getPhone_number());
-            ps.setString(7, member.getAddress());
-            ps.setDate(8, java.sql.Date.valueOf(member.getJoin_date()));
-            ps.setDate(9, java.sql.Date.valueOf(member.getEnd_date()));
-            ps.setInt(10, member.getMembership_status_id());
-            ps.setInt(11, member.getMembership_type_id());
-
-            if (query.contains("UPDATE")) {
-                ps.setInt(12, member.getMember_id());
-            }
-
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            com.example.gymmanagement.database.dao.JDBCConnect.closeConnection(con);
-            com.example.gymmanagement.database.dao.JDBCConnect.closePreparedStatement(ps);
+    public void updateFirstName(int memberId, String newFirstName) {
+        Members member = getMemberById(memberId);
+        if (member != null) {
+            member.setFirst_name(newFirstName);
+            updateMember(member);
         }
     }
-    //set ID
 
-    public int getNextMemberID() {
-        int nextID = 0;
-
-        try {
-            con = com.example.gymmanagement.database.dao.JDBCConnect.getJDBCConnection();
-            statement = con.createStatement();
-            rs = statement.executeQuery("SELECT MAX(member_id) FROM members");
-
-            if (rs.next()) {
-                nextID = rs.getInt(1) + 1;
-            }
-
-            rs.close();
-            statement.close();
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public void updateLastName(int memberId, String newLastName) {
+        Members member = getMemberById(memberId);
+        if (member != null) {
+            member.setLast_name(newLastName);
+            updateMember(member);
         }
+    }
 
-        return nextID;
+    public void updateDob(int memberId, String newDob) {
+        Members member = getMemberById(memberId);
+        if (member != null) {
+            member.setDob(newDob);
+            updateMember(member);
+        }
+    }
+
+    public void updateGender(int memberId, String newGender) {
+        Members member = getMemberById(memberId);
+        if (member != null) {
+            member.setGender(newGender);
+            updateMember(member);
+        }
+    }
+
+    public void updateEmail(int memberId, String newEmail) {
+        Members member = getMemberById(memberId);
+        if (member != null) {
+            member.setEmail(newEmail);
+            updateMember(member);
+        }
+    }
+
+    public void updatePhoneNumber(int memberId, String newPhoneNumber) {
+        Members member = getMemberById(memberId);
+        if (member != null) {
+            member.setPhone_number(newPhoneNumber);
+            updateMember(member);
+        }
+    }
+
+    public void updateJoinDate(int memberId, String newJoinDate) {
+        Members member = getMemberById(memberId);
+        if (member != null) {
+            member.setJoin_date(newJoinDate);
+            updateMember(member);
+        }
+    }
+
+    public void updateEndDate(int memberId, String newEndDate) {
+        Members member = getMemberById(memberId);
+        if (member != null) {
+            member.setEnd_date(newEndDate);
+            updateMember(member);
+        }
+    }
+
+    public void updateMembershipStatus(int memberId, int selectedStatusId) {
+        Members member = getMemberById(memberId);
+        if (member != null) {
+            member.setMembership_status_id(selectedStatusId);
+            updateMember(member);
+        }
+    }
+
+    public void updateMembershipType(int memberId, int selectedTypeId) {
+        Members member = getMemberById(memberId);
+        if (member != null) {
+            member.setMembership_type_id(selectedTypeId);
+            updateMember(member);
+        }
+    }
+
+    public void updateInstructor(int memberId, int selectedInstructorId) {
+        Members member = getMemberById(memberId);
+        if (member != null) {
+            member.setInstructorId(selectedInstructorId);
+            updateMember(member);
+        }
+    }
+
+    public void updateAddress(int memberId, String newAddress) {
+        Members member = getMemberById(memberId);
+        if (member != null) {
+            member.setAddress(newAddress);
+            updateMember(member);
+        }
     }
 }

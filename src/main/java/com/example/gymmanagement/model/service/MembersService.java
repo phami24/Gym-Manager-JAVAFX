@@ -10,5 +10,7 @@ public interface MembersService {
     void deleteMember(int memberId);
     Members getMemberById(int memberId);
     List<Members> getAllMembers();
-    int getNextMemberID();
+    int getTotalMembers();
+    List<Members> getMembersByNames(String firstName, String lastName);
+    int getNumberOfMembersByInstructorId(int instructorId);
 }

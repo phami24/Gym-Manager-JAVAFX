@@ -1,6 +1,5 @@
 package com.example.gymmanagement.database;
 
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;

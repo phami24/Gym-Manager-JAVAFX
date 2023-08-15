@@ -16,6 +16,8 @@ public class ClassesRepository {
         this.jdbcConnect = new JDBCConnect();
     }
 
+    private InstructorRepository instructorRepository = new InstructorRepository();
+
     // Phương thức để thêm một lớp học vào cơ sở dữ liệu
     public void addClass(Classes classes) {
         String query = "INSERT INTO classes (class_name, instructor_id, schedule, capacity) " +
@@ -111,6 +113,22 @@ public class ClassesRepository {
         return classesList;
     }
 
+    public List<Classes> getClassesByInstructorId(int instructorId) {
+        List<Classes> classesList = new ArrayList<>();
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM classes WHERE instructor_id = ?")) {
+            statement.setInt(1, instructorId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    classesList.add(fromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return classesList;
+    }
+
     public Classes fromResultSet(ResultSet resultSet) throws SQLException {
         Classes classes = new Classes();
         classes.setClass_id(resultSet.getInt("class_id"));
@@ -143,6 +161,67 @@ public class ClassesRepository {
         } finally {
             jdbcConnect.closeConnection(connection);
             jdbcConnect.closePreparedStatement(statement);
+        }
+    }
+
+    // Phương thức để cập nhật tên lớp học
+    public void updateClassName(int gymClassID, String newClassName) {
+        String query = "UPDATE classes SET class_name = ? WHERE class_id = ?";
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, newClassName);
+            statement.setInt(2, gymClassID);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    // Phương thức để cập nhật tên giảng viên
+    public void updateInstructor(int gymClassID, String newInstructor) {
+        String query = "UPDATE classes SET instructor_id = ? WHERE class_id = ?";
+        int instructorId = instructorRepository.getInstructorIdByName(newInstructor); // Chưa biết phương thức này trong instructorRepository
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, instructorId);
+            statement.setInt(2, gymClassID);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    // Phương thức để cập nhật lịch học
+    public void updateSchedule(int gymClassID, String newSchedule) {
+        String query = "UPDATE classes SET schedule = ? WHERE class_id = ?";
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, newSchedule);
+            statement.setInt(2, gymClassID);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    // Phương thức để cập nhật sức chứa
+    public void updateCapacity(int gymClassID, int newCapacity) {
+        String query = "UPDATE classes SET capacity = ? WHERE class_id = ?";
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, newCapacity);
+            statement.setInt(2, gymClassID);
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

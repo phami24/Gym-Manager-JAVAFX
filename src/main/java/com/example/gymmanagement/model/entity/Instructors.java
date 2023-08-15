@@ -2,6 +2,9 @@ package com.example.gymmanagement.model.entity;
 
 import javafx.scene.control.Button;
 import lombok.*;
+
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @ToString
@@ -9,7 +12,8 @@ import lombok.*;
 @AllArgsConstructor
 public class Instructors extends Person {
     private int instructor_id;
-    private String hire_date;
-    private String specialization;
+    private String hireDate;
     private int experienceYears;
+    private BigDecimal baseSalary;
+    private BigDecimal salary;
 }

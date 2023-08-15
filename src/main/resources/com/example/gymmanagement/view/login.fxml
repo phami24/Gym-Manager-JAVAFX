@@ -1,128 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="880.0" styleClass="border" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="407.0" stylesheets="@../css/style.css">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" style="-fx-background-radius: 30px; -fx-border-radius: 30px;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <AnchorPane fx:id="sideBar" prefHeight="550.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../../../Downloads/gym.png" />
-               </image>
-            </ImageView>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <AnchorPane layoutX="39.0" layoutY="51.0" opacity="0.71" prefHeight="550.0" prefWidth="375.3333333333333" style="-fx-background-color: #ffffff; -fx-border-radius: 30px; -fx-background-radius: 30px;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="15.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../../../../../Downloads/dumbbell.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../../../../../Downloads/muscle.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="100.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
-            </HBox>
-            <HBox prefHeight="200.0" prefWidth="525.0">
-               <padding>
-                  <Insets top="50.0" />
-               </padding>
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../../../../../Downloads/treadmill.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../../../../../Downloads/weightlifting.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="100.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
-            </HBox>
-         </children>
-         <styleClass>
-            <String fx:value="left-side-background" />
-            <String fx:value="centered-border" />
-         </styleClass>
-      </VBox>
-      <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="588.0" styleClass="left-side-border" stylesheets="@../css/style.css">
-         <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../../../../OneDrive/Desktop/unnamed.jpg" />
-               </image>
-            </ImageView>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="ErrorMessageLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="474.0" text="ErrorMessage" textAlignment="CENTER" textFill="#da0f0f" />
-               </children>
-            </HBox>
-            <HBox prefHeight="40.0" prefWidth="423.0" styleClass="border" stylesheets="@../css/style.css">
-               <children>
-                  <Pane prefHeight="36.0" prefWidth="48.0" styleClass="right-border" stylesheets="@../css/style.css">
-                     <children>
-                        <ImageView fitHeight="54.0" fitWidth="46.0" layoutX="-1.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../../../../OneDrive/Desktop/download%20(2).png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <TextField fx:id="tfUsername" prefHeight="36.0" prefWidth="360.0" promptText="Username">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
+                  <TextField fx:id="usernameField" layoutX="14.0" layoutY="222.0" prefHeight="39.0" prefWidth="339.0" promptText="Username" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <font>
+                        <Font size="17.0" />
+                     </font>
                   </TextField>
+                  <PasswordField fx:id="passwordField" layoutX="14.0" layoutY="275.0" prefHeight="39.0" prefWidth="339.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </PasswordField>
+                  <CheckBox fx:id="keepLoggedInCheckbox" layoutX="20.0" layoutY="325.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="121.0" text="Keep me login" textAlignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </CheckBox>
+                  <Label alignment="CENTER" layoutX="97.0" layoutY="157.0" prefHeight="52.0" prefWidth="161.0" text="Welcome" textAlignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <effect>
+                        <Reflection fraction="0.65" topOffset="-10.0" topOpacity="0.39" />
+                     </effect>
+                  </Label>
+                  <Label alignment="CENTER" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="172.0" layoutY="76.0" prefHeight="27.0" prefWidth="183.0" scaleShape="false" text="Gym Management">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="172.0" layoutY="27.0" prefHeight="51.0" prefWidth="196.0" stylesheets="@../../../../../../../../LoginForm/src/main/resources/com/example/css/style.css" text="M I T N E S S">
+                     <font>
+                        <Font name="Arial Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Hyperlink alignment="CENTER" layoutX="246.0" layoutY="333.0" text="Forgot password?" textAlignment="CENTER" />
+                  <Line endX="12.999984741210938" endY="28.333328247070312" layoutX="135.0" layoutY="75.0" startX="12.999984741210938" startY="-41.66667175292969" />
+                  <ImageView fitHeight="160.0" fitWidth="154.0" layoutX="30.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="false">
+                     <image>
+                        <Image url="@../image/logo1.png" />
+                     </image>
+                  </ImageView>
                </children>
-               <VBox.margin>
-                  <Insets left="50.0" right="20.0" top="100.0" />
-               </VBox.margin>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </HBox>
-            <HBox prefHeight="40.0" prefWidth="447.0" styleClass="border" stylesheets="@../css/style.css">
-               <children>
-                  <Pane prefHeight="36.0" prefWidth="48.0" styleClass="right-border" stylesheets="@../css/style.css">
-                     <children>
-                        <ImageView fitHeight="36.0" fitWidth="68.0" layoutX="6.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../../../../../../OneDrive/Desktop/download%20(1).png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
-                  <PasswordField fx:id="pfPassword" prefHeight="36.0" prefWidth="358.0" promptText="*******" />
-               </children>
-               <VBox.margin>
-                  <Insets left="50.0" right="20.0" top="20.0" />
-               </VBox.margin>
-            </HBox>
-            <Button fx:id="btLogin" mnemonicParsing="false" prefHeight="43.0" prefWidth="200.0" styleClass="border" stylesheets="@../css/style.css" text="Login">
-               <VBox.margin>
-                  <Insets top="40.0" />
-               </VBox.margin>
+            </AnchorPane>
+            <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="417.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="40.0" prefWidth="247.0" styleClass="nav-btn" stylesheets="@../css/style.css" text="Log in" textFill="#c0b2b2" AnchorPane.rightAnchor="72.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
-      </VBox>
-   </children>
-</HBox>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 30px; -fx-border-radius: 30px;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="550.0" fitWidth="405.0" layoutX="-2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="false">
+               <image>
+                  <Image url="@../image/loginGym.jpg" />
+               </image>
+            </ImageView>
+            <Button layoutX="369.0" layoutY="1.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="34.0" styleClass="close" stylesheets="@../css/style.css" text="x" AnchorPane.bottomAnchor="522.0" AnchorPane.leftAnchor="369.3333333333333" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gymmanagement.controller.MembersController">
+   <children>
+      <AnchorPane layoutX="53.0" layoutY="104.0" prefHeight="58.0" prefWidth="106.0" />
+      <AnchorPane prefHeight="55.0" prefWidth="1100.0" style="-fx-border-radius: 0 0 20 20;" styleClass="border" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="1.0" prefHeight="50.0" prefWidth="179.0" text="Members" textFill="#1b1a1a">
+               <font>
+                  <Font name="Book Antiqua Bold" size="27.0" />
+               </font>
+            </Label>
+            <Button layoutX="1097.0" layoutY="-1.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="34.0" styleClass="close" stylesheets="@../css/style.css" text="x">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="member_tableView" layoutX="28.0" layoutY="132.0" prefHeight="376.0" prefWidth="1131.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="132.0">
+         <columns>
+            <TableColumn fx:id="stt" prefWidth="40.0" text="STT" />
+            <TableColumn fx:id="memberId" prefWidth="42.0" text="ID" visible="false" />
+            <TableColumn fx:id="fullName" prefWidth="188.0000114440918" text="Full name" />
+            <TableColumn fx:id="gender" prefWidth="75.99998474121094" text="Gender" />
+            <TableColumn fx:id="email" prefWidth="185.33331298828125" text="Email" />
+            <TableColumn fx:id="phone" prefWidth="198.0" text="Phone number" />
+            <TableColumn fx:id="instructor" prefWidth="125.3333740234375" text="Instructor" />
+            <TableColumn fx:id="type" prefWidth="84.0" text="Type" />
+            <TableColumn fx:id="status" minWidth="9.0" prefWidth="64.6666259765625" text="Status" />
+            <TableColumn fx:id="action" prefWidth="148.66656494140625" text="Action" />
+         </columns>
+      </TableView>
+      <Pagination layoutX="450.0" layoutY="522.0" prefHeight="58.0" prefWidth="200.0" stylesheets="@../css/style.css">
+         <styleClass>
+            <String fx:value="arrow-button" />
+            <String fx:value="pagination" />
+            <String fx:value="page-indicator" />
+         </styleClass></Pagination>
+      <TextField layoutX="885.0" layoutY="85.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" style="-fx-border-radius: 10px;" styleClass="btn_tool" stylesheets="@../css/style.css" />
+      <ImageView fitHeight="15.0" fitWidth="14.0" layoutX="1096.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/search.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="buttonAdd" layoutX="141.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#addMember" style="-fx-border-radius: 5px;" stylesheets="@../css/style.css" text="Add member">
+         <styleClass>
+            <String fx:value="btn_tool" />
+            <String fx:value="add" />
+         </styleClass>
+      </Button>
+      <SplitMenuButton layoutX="53.0" layoutY="85.0" mnemonicParsing="false" style="-fx-border-radius: 5px;" styleClass="btn_tool" stylesheets="@../css/style.css" text="Tools" AnchorPane.leftAnchor="53.0">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Data" />
+          <MenuItem mnemonicParsing="false" text="Import" />
+        </items>
+      </SplitMenuButton>
+      <Button fx:id="handleExportM_btn" layoutX="242.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleExportMemberButtonAction" onMouseClicked="#addMember" style="-fx-border-radius: 5px;" stylesheets="@../css/style.css" text="Exporter to Excel">
+         <styleClass>
+            <String fx:value="btn_tool" />
+            <String fx:value="add" />
+         </styleClass>
+      </Button>
+   </children>
+</AnchorPane>

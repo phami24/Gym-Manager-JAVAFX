@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane onMouseClicked="#homepage" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gymmanagement.controller.EquipmentController">
+    <children>
+        <AnchorPane layoutX="53.0" layoutY="85.0" prefHeight="25.0" prefWidth="83.0">
+            <children>
+                <SplitMenuButton mnemonicParsing="false" style="-fx-border-radius: 5px;" styleClass="btn_tool" stylesheets="@../css/style.css" text="Tools">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Data" />
+                        <MenuItem mnemonicParsing="false" text="Import" />
+                    </items>
+                </SplitMenuButton>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="-6.0" prefHeight="55.0" prefWidth="1100.0" style="-fx-border-radius: 0 0 20 20;" styleClass="border" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="1.0" prefHeight="43.0" prefWidth="210.0" text="Equipment">
+                    <font>
+                        <Font name="Book Antiqua Bold" size="27.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <TableView fx:id="equipment_tableView" layoutX="34.0" layoutY="136.0" prefHeight="376.0" prefWidth="1131.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="132.0">
+            <columns>
+                <TableColumn fx:id="stt" prefWidth="40.0" text="STT" />
+                <TableColumn fx:id="equipmentId" prefWidth="42.0" text="ID" visible="false" />
+                <TableColumn fx:id="equipmentName" prefWidth="202.66669464111328" text="Equipment Name" />
+                <TableColumn fx:id="category" prefWidth="168.6666259765625" text="Category" />
+                <TableColumn fx:id="purchaseDate" prefWidth="146.66665649414062" text="Purchase Date" />
+                <TableColumn fx:id="price" prefWidth="100.66668701171875" text="Price" />
+                <TableColumn fx:id="status" prefWidth="83.33331298828125" text="Status" />
+                <TableColumn fx:id="notes" prefWidth="200.0" text="Notes" />
+                <TableColumn fx:id="action" prefWidth="134.6666259765625" text="Action" />
+            </columns>
+        </TableView>
+        <Pagination layoutX="450.0" layoutY="522.0" prefHeight="58.0" prefWidth="200.0" />
+        <TextField layoutX="841.0" layoutY="85.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" style="-fx-border-radius: 10px;" styleClass="btn_tool" stylesheets="@../css/style.css" />
+        <ImageView fitHeight="15.0" fitWidth="14.0" layoutX="1049.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../image/search.png" />
+            </image>
+        </ImageView>
+          <Button fx:id="buttonAdd" layoutX="136.0" layoutY="84.0" mnemonicParsing="false" onMouseClicked="#addEquipment" style="-fx-border-radius: 5px;" stylesheets="@../css/style.css" text="Add equipment">
+         <styleClass>
+            <String fx:value="btn_tool" />
+            <String fx:value="add" />
+         </styleClass>
+      </Button>
+      <Button layoutX="1107.0" layoutY="9.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="34.0" styleClass="close" stylesheets="@../css/style.css" text="x" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="Leelawadee UI Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="1031.0" layoutY="548.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="51.0" styleClass="close" stylesheets="@../css/style.css">
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/home.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="exportedEquipment_btn" layoutX="254.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleExportButtonAction" onMouseClicked="#addEquipment" style="-fx-border-radius: 5px;" stylesheets="@../css/style.css" text="Exported to Excel">
+         <styleClass>
+            <String fx:value="btn_tool" />
+            <String fx:value="add" />
+         </styleClass>
+      </Button>
+    </children>
+</AnchorPane>
