@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@800&display=swap');
+.borderCSS{
+    -fx-border-color:  #646c71;
+    -fx-border-radius: 26px;
+    -fx-padding: 3px;
+    -fx-border-style: solid;
+}
+.bigborder{
+    -fx-border-radius: 30;
+    -fx-background-radius: 26;
+    -fx-border-width:5;
+    -fx-border-color:red;
+    -fx-background-color: transparent;
+}
+.textCSS{
+    -fx-text-fill: #646c71;
+    -fx-font-family: 'Hanken Grotesk', sans-serif;
+}
+.normalTextFont{
+    -fx-font-family: 'Hanken Grotesk', sans-serif;
+    -fx-text-fill: black;
+}
+.chartCSS{
+    -fx-border-color:  #646c71;
+    -fx-border-radius: 26px;
+    /*-fx-padding: 3px;*/
+    -fx-border-style: solid;
+    -fx-padding: 50px 7px 50px 7px;
+}
+#staffNum,#classNum,#memberNum,#saleNum{
+    -fx-font-family: 'Hanken Grotesk', sans-serif;
+    -fx-font-size: 48px;
+    -fx-text-fill: black;
+}
+
+#exit:hover{
+    -fx-cursor: hand;
+    -fx-background-color: red;
+}
+
