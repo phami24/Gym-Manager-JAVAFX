@@ -16,7 +16,18 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gymmanagement.controller.MembersController">
    <children>
-      <AnchorPane layoutY="221.0" prefHeight="600.0" prefWidth="80.0" styleClass="nav-left" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane layoutY="221.0" prefHeight="600.0" prefWidth="80.0" styleClass="nav-left" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button layoutX="14.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="42.0" prefWidth="51.0" styleClass="close" stylesheets="@../css/style.css">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/homeIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children></AnchorPane>
       <AnchorPane prefHeight="55.0" prefWidth="1100.0" style="-fx-border-radius: 0 0 20 20;" styleClass="border" stylesheets="@../css/style.css" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="1.0" prefHeight="50.0" prefWidth="179.0" text="Members" textFill="#1b1a1a" AnchorPane.leftAnchor="110.0">
