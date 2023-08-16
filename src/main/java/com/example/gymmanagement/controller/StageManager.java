@@ -142,6 +142,15 @@ public class StageManager {
         showStage();
     }
 
+    public void loadEventManage() {
+        Stage eventStage = new Stage();
+        Scene eventScene = sceneManager.loadScene("event.fxml");
+        eventStage.setScene(eventScene);
+        setCurrentStage(eventStage);
+        currentStage.initStyle(StageStyle.TRANSPARENT);
+        showStage();
+    }
+
     public void loadMemberControlStage() {
         Stage memberStage = new Stage();
         Scene homeStage = sceneManager.loadScene("member-control.fxml");
@@ -282,6 +291,7 @@ public class StageManager {
         dashBoardScene.setFill(Color.TRANSPARENT);
         showStage();
     }
+
 }
 
 

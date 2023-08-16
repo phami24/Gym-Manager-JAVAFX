@@ -8,6 +8,7 @@ module com.example.gymmanagement {
     requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
     requires java.desktop;
+    requires java.mail;
 
     opens com.example.gymmanagement to javafx.fxml;
     exports com.example.gymmanagement;

@@ -89,6 +89,9 @@ public class EventController {
         // Example: Adding event handlers to buttons
         updateButton.setOnAction(this::handleUpdateButton);
         addButton.setOnAction(this::handleAddButton);
+        EventRepository eventRepository = new EventRepository();
+        List<Event> events = eventRepository.getAllEvents();
+        tableView.getItems().addAll(events);
     }
 
     private void initializeTableColumns() {
@@ -101,11 +104,11 @@ public class EventController {
         actionColumn = new TableColumn<>("Action");
 
         // Set up the PropertyValueFactory to map the TableColumn to the corresponding property in Event
-        eventNameColumn.setCellValueFactory(new PropertyValueFactory<>("eventName"));
+        eventNameColumn.setCellValueFactory(new PropertyValueFactory<>("event_name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        discountColumn.setCellValueFactory(new PropertyValueFactory<>("discount"));
-        startDateColumn.setCellValueFactory(new PropertyValueFactory<>("startDate"));
-        endDateColumn.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        discountColumn.setCellValueFactory(new PropertyValueFactory<>("discount_percent"));
+        startDateColumn.setCellValueFactory(new PropertyValueFactory<>("start_date"));
+        endDateColumn.setCellValueFactory(new PropertyValueFactory<>("end_date"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         // Set up the Action column

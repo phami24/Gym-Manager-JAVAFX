@@ -56,6 +56,9 @@ public class HomePageController implements Initializable {
     private Button membersButton;
 
     @FXML
+    private Button emailButton;
+
+    @FXML
     void logOut(MouseEvent event) {
         stage.close();
         Stage loginStage = new Stage();
@@ -91,6 +94,9 @@ public class HomePageController implements Initializable {
     void toMembers(MouseEvent event) {
         stageManager.loadMemberControlStage();
     }
+
+    @FXML
+    void toEvent(MouseEvent event){stageManager.loadEventManage();}
 
     public void exit(MouseEvent mouseEvent) {
         stage.close();
