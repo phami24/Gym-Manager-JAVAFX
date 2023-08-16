@@ -23,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.awt.*;
@@ -45,6 +46,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class InstructorController implements Initializable {
 
     private final InstructorRepository instructorRepository = new InstructorRepository();
+    private Stage stage;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
     private final StageManager stageManager = new StageManager();
     @FXML
     private Button exportedInstructor_btn;
@@ -117,7 +123,11 @@ public class InstructorController implements Initializable {
 
     @FXML
     public void close() {
-        javafx.application.Platform.exit();
+        stage.close();
+    }
+    @FXML
+    void homepage(MouseEvent event) {
+        stageManager.loadHomeStage();
     }
 
     private void setupActionColumn() {

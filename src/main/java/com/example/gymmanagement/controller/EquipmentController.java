@@ -40,7 +40,14 @@ public class EquipmentController implements Initializable {
     private final EquipmentRepository equipmentRepository = new EquipmentRepository();
     private final EquipmentService equipmentService = new EquipmentServiceImpl();
 
-    private final StageManager stageManager = new StageManager();
+    private Stage stage;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    private StageManager stageManager = new StageManager();
+
     @FXML
     private Button exportedEquipment_btn;
     @FXML
@@ -75,12 +82,10 @@ public class EquipmentController implements Initializable {
     private ObservableList<Equipment> equipmentData = FXCollections.observableArrayList();
     @FXML
     public void close() {
-        javafx.application.Platform.exit();
+        stage.close();
     }
     @FXML
-    public void homepage(MouseEvent event) {
-        Stage homeStage = new Stage();
-        stageManager.setCurrentStage(homeStage);
+    void homepage(MouseEvent event) {
         stageManager.loadHomeStage();
     }
     @Override

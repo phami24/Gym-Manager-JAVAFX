@@ -58,7 +58,7 @@ public class StageManager {
 
 
         setSceneCurrentStage(loginScene);
-//        loginScene.setFill(Color.TRANSPARENT);
+        loginScene.setFill(Color.TRANSPARENT);
         currentStage.initStyle(StageStyle.TRANSPARENT);
         showStage();
     }
@@ -76,6 +76,7 @@ public class StageManager {
         mainStage.setScene(homeStage);
         setCurrentStage(mainStage);
         homeStageController.setStage(currentStage);
+        homeStage.setFill(Color.TRANSPARENT);
         currentStage.initStyle(StageStyle.TRANSPARENT);
         showStage();
     }
@@ -157,6 +158,7 @@ public class StageManager {
         memberStage.setScene(homeStage);
         setCurrentStage(memberStage);
         currentStage.initStyle(StageStyle.TRANSPARENT);
+        homeStage.setFill(Color.TRANSPARENT);
         showStage();
     }
 
@@ -167,6 +169,7 @@ public class StageManager {
         classStage.setScene(classScenne);
         setCurrentStage(classStage);
         currentStage.initStyle(StageStyle.TRANSPARENT);
+        classScenne.setFill(Color.TRANSPARENT);
         showStage();
     }
 
@@ -176,6 +179,7 @@ public class StageManager {
         instructorStage.setScene(homeStage);
         setCurrentStage(instructorStage);
         currentStage.initStyle(StageStyle.TRANSPARENT);
+        homeStage.setFill(Color.TRANSPARENT);
         showStage();
     }
 
@@ -185,6 +189,7 @@ public class StageManager {
         equipmentStage.setScene(homeStage);
         setCurrentStage(equipmentStage);
         currentStage.initStyle(StageStyle.TRANSPARENT);
+        homeStage.setFill(Color.TRANSPARENT);
         showStage();
     }
 

@@ -16,10 +16,21 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gymmanagement.controller.MembersController">
    <children>
-      <AnchorPane layoutX="53.0" layoutY="104.0" prefHeight="58.0" prefWidth="106.0" />
-      <AnchorPane prefHeight="55.0" prefWidth="1100.0" style="-fx-border-radius: 0 0 20 20;" styleClass="border" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane layoutY="221.0" prefHeight="600.0" prefWidth="80.0" styleClass="nav-left" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="1.0" prefHeight="50.0" prefWidth="179.0" text="Members" textFill="#1b1a1a">
+            <Button layoutX="14.0" layoutY="214.0" mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="42.0" prefWidth="51.0" styleClass="close" stylesheets="@../css/style.css">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/homeIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children></AnchorPane>
+      <AnchorPane prefHeight="55.0" prefWidth="1100.0" style="-fx-border-radius: 0 0 20 20;" styleClass="border" stylesheets="@../css/style.css" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="1.0" prefHeight="50.0" prefWidth="179.0" text="Members" textFill="#1b1a1a" AnchorPane.leftAnchor="110.0">
                <font>
                   <Font name="Book Antiqua Bold" size="27.0" />
                </font>
@@ -31,7 +42,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <TableView fx:id="member_tableView" layoutX="28.0" layoutY="132.0" prefHeight="376.0" prefWidth="1131.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="132.0">
+      <TableView fx:id="member_tableView" layoutX="28.0" layoutY="132.0" prefHeight="376.0" prefWidth="1131.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="132.0">
          <columns>
             <TableColumn fx:id="stt" prefWidth="40.0" text="STT" />
             <TableColumn fx:id="memberId" prefWidth="42.0" text="ID" visible="false" />
@@ -57,23 +68,32 @@
             <Image url="@../image/search.png" />
          </image>
       </ImageView>
-      <Button fx:id="buttonAdd" layoutX="141.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#addMember" style="-fx-border-radius: 5px;" stylesheets="@../css/style.css" text="Add member">
+      <Button fx:id="buttonAdd" layoutX="195.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#addMember" style="-fx-border-radius: 5px;" stylesheets="@../css/style.css" text="Add member">
          <styleClass>
             <String fx:value="btn_tool" />
             <String fx:value="add" />
          </styleClass>
       </Button>
-      <SplitMenuButton layoutX="53.0" layoutY="85.0" mnemonicParsing="false" style="-fx-border-radius: 5px;" styleClass="btn_tool" stylesheets="@../css/style.css" text="Tools" AnchorPane.leftAnchor="53.0">
+      <SplitMenuButton layoutX="106.0" layoutY="85.0" mnemonicParsing="false" style="-fx-border-radius: 5px;" styleClass="btn_tool" stylesheets="@../css/style.css" text="Tools" AnchorPane.leftAnchor="106.0">
         <items>
           <MenuItem mnemonicParsing="false" text="Data" />
           <MenuItem mnemonicParsing="false" text="Import" />
         </items>
       </SplitMenuButton>
-      <Button fx:id="handleExportM_btn" layoutX="242.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleExportMemberButtonAction" onMouseClicked="#addMember" style="-fx-border-radius: 5px;" stylesheets="@../css/style.css" text="Exporter to Excel">
+      <Button fx:id="handleExportM_btn" layoutX="292.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleExportMemberButtonAction" onMouseClicked="#addMember" style="-fx-border-radius: 5px;" stylesheets="@../css/style.css" text="Exporter to Excel">
          <styleClass>
             <String fx:value="btn_tool" />
             <String fx:value="add" />
          </styleClass>
+      </Button>
+      <Button layoutX="1145.0" layoutY="538.0" mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="42.0" prefWidth="51.0" styleClass="close" stylesheets="@../css/style.css">
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/home.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </AnchorPane>

@@ -67,7 +67,13 @@
             <Image url="@../image/search.png" />
          </image>
       </ImageView>
-      <Button layoutX="1021.0" layoutY="538.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="51.0" styleClass="close" stylesheets="@../css/style.css">
+      <Button fx:id="exportedInstructor_btn" layoutX="246.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleExportButtonAction" onMouseClicked="#addInstructor" style="-fx-border-radius: 5px;" stylesheets="@../css/style.css" text="Exported to Excel">
+         <styleClass>
+            <String fx:value="btn_tool" />
+            <String fx:value="add" />
+         </styleClass>
+      </Button>
+      <Button layoutX="1040.0" layoutY="544.0" mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="42.0" prefWidth="51.0" styleClass="close" stylesheets="@../css/style.css">
          <graphic>
             <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -75,12 +81,6 @@
                </image>
             </ImageView>
          </graphic>
-      </Button>
-      <Button fx:id="exportedInstructor_btn" layoutX="246.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleExportButtonAction" onMouseClicked="#addInstructor" style="-fx-border-radius: 5px;" stylesheets="@../css/style.css" text="Exported to Excel">
-         <styleClass>
-            <String fx:value="btn_tool" />
-            <String fx:value="add" />
-         </styleClass>
       </Button>
    </children>
 </AnchorPane>

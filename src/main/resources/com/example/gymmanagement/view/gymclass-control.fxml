@@ -9,6 +9,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -62,6 +64,15 @@
             <String fx:value="btn_tool" />
             <String fx:value="add" />
          </styleClass>
+      </Button>
+      <Button layoutX="1031.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="42.0" prefWidth="51.0" styleClass="close" stylesheets="@../css/style.css">
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/home.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </AnchorPane>
