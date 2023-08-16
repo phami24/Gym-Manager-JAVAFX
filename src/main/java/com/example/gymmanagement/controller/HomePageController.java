@@ -64,7 +64,7 @@ public class HomePageController implements Initializable {
     }
     @FXML
     public void close() {
-        javafx.application.Platform.exit();
+        stage.close();
     }
 
     @FXML

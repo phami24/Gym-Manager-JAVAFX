@@ -82,7 +82,7 @@ public class EquipmentController implements Initializable {
     private ObservableList<Equipment> equipmentData = FXCollections.observableArrayList();
     @FXML
     public void close() {
-        javafx.application.Platform.exit();
+        stage.close();
     }
     @FXML
     void homepage(MouseEvent event) {

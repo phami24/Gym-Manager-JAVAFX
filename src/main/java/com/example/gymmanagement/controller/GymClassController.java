@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -41,7 +42,11 @@ public class GymClassController implements Initializable {
     private final InstructorRepository instructorRepository = new InstructorRepository();
     private final MembershipStatusRepository membershipStatusRepository = new MembershipStatusRepository();
     private final MembershipTypesRepository membershipTypesRepository = new MembershipTypesRepository();
+    private Stage stage;
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
     private final StageManager stageManager = new StageManager();
 
     @FXML
@@ -90,7 +95,7 @@ public class GymClassController implements Initializable {
     }
     @FXML
     public void close() {
-        javafx.application.Platform.exit();
+        stage.close();
     }
     @FXML
     void homepage(MouseEvent event) {
