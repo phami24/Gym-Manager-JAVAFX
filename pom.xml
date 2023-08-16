@@ -59,7 +59,11 @@
             <artifactId>javafx-web</artifactId>
             <version>16</version> <!-- Sử dụng phiên bản tương ứng của JavaFX -->
         </dependency>
-
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version> <!-- Replace with the latest version -->
+        </dependency>
 
     </dependencies>
 

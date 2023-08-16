@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="589.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gymmanagement.view.Event">
+   <children>
+      <TableView layoutX="40.0" layoutY="261.0" prefHeight="254.0" prefWidth="659.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Event Name" />
+            <TableColumn prefWidth="119.33331298828125" text="Description" />
+            <TableColumn prefWidth="92.0" text="Discount" />
+            <TableColumn prefWidth="102.4000244140625" text="Start Date" />
+            <TableColumn prefWidth="79.20001220703125" text="End Date" />
+            <TableColumn prefWidth="75.0" text="Status" />
+            <TableColumn prefWidth="114.39995117187505" text="Action" />
+        </columns>
+      </TableView>
+      <Label alignment="CENTER" layoutX="41.0" layoutY="14.0" prefHeight="45.0" prefWidth="206.0" text="Even Management" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <TextField fx:id="event_name" layoutX="61.0" layoutY="92.0" />
+      <TextField fx:id="description" layoutX="60.0" layoutY="160.0" prefHeight="66.0" prefWidth="150.0" />
+      <TextField fx:id="discount" layoutX="295.0" layoutY="160.0" />
+      <Button layoutX="581.0" layoutY="206.0" mnemonicParsing="false" text="Update " />
+      <Button layoutX="526.0" layoutY="206.0" mnemonicParsing="false" text="Add" />
+      <Label layoutX="61.0" layoutY="66.0" text="Event name :" />
+      <Label layoutX="62.0" layoutY="129.0" text="Description :" />
+      <Label layoutX="295.0" layoutY="66.0" text="Start Date :" />
+      <Label layoutX="527.0" layoutY="66.0" text="End Date :" />
+      <Label layoutX="294.0" layoutY="129.0" text="Discount :" />
+      <Label layoutX="526.0" layoutY="129.0" text="Status :" />
+      <DatePicker fx:id="start_date" layoutX="294.0" layoutY="91.0" prefHeight="26.0" prefWidth="150.0" />
+      <DatePicker fx:id="end_date" layoutX="526.0" layoutY="91.0" prefHeight="26.0" prefWidth="150.0" />
+      <MenuButton fx:id="status" layoutX="526.0" layoutY="160.0" mnemonicParsing="false" text="Status">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Unexpired" />
+          <MenuItem mnemonicParsing="false" text="Expired" />
+        </items>
+      </MenuButton>
+   </children>
+</AnchorPane>

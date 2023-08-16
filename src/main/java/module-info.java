@@ -5,6 +5,7 @@ module com.example.gymmanagement {
     requires lombok;
     requires javafx.web;
     requires fontawesomefx;
+    requires java.mail;
 
     opens com.example.gymmanagement to javafx.fxml;
     exports com.example.gymmanagement;
