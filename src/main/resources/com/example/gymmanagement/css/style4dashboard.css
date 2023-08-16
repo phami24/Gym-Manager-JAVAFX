@@ -1,43 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@800&display=swap');
-.borderCSS{
-    -fx-border-color:  #646c71;
-    -fx-border-radius: 26px;
-    -fx-padding: 3px;
-    -fx-border-style: solid;
+
+
+#staffNum,#classNum,#memberNum,#saleNum{
+    -fx-font-family:"Rajdhani";
+    -fx-font-size: 48px;
 }
-.bigborder{
-    -fx-border-radius: 30;
-    -fx-background-radius: 26;
-    -fx-border-width:5;
-    -fx-border-color:red;
+#menuLogo,#sidePANE{
+    -fx-font-family:"Rajdhani", Arial , sans-serif;
+    /*-fx-font-family: 'Noto Sans JP', sans-serif;*/
+}
+#dashboardLabel{
+    -fx-font-family: 'Heebo', Arial , sans-serif;
+    -fx-text-fill: #646c71;
+}
+
+#signoutBTN{
     -fx-background-color: transparent;
 }
-.textCSS{
-    -fx-text-fill: #646c71;
-    -fx-font-family: 'Hanken Grotesk', sans-serif;
+
+#dashboardSideNav,#trainerSideNav,#memberSideNav,#classSideNav{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-alignment:CENTER;
+    -fx-font-size: 15px;
+    -fx-font-family:"Rajdhani", Arial , sans-serif;
+    -fx-text-fill:#fff;
+    /*-fx-border-color: #1face1 ;*/
+    /*-fx-border-width: 2px;*/
+    /*-fx-border-width: 0 0 2px 0;*/
+    /*-fx-border-radius: 25px;*/
+
 }
-.normalTextFont{
-    -fx-font-family: 'Hanken Grotesk', sans-serif;
-    -fx-text-fill: black;
+#dashboardSideNav:hover,#trainerSideNav:hover,#memberSideNav:hover,#classSideNav:hover {
+    /*chú ý khoảng cách giữa tên_id vs :hover*/
+    -fx-background-color: #1face1;
 }
-.chartCSS{
-    -fx-border-color:  #646c71;
-    -fx-border-radius: 26px;
-    /*-fx-padding: 3px;*/
-    -fx-border-style: solid;
-    -fx-padding: 50px 7px 50px 7px;
-}
-#staffNum,#classNum,#memberNum,#saleNum{
-    -fx-font-family: 'Hanken Grotesk', sans-serif;
-    -fx-font-size: 48px;
-    -fx-text-fill: black;
-}
+
+
 
 #exit:hover{
     -fx-cursor: hand;
-    /*-fx-background-color: red;*/
+    -fx-background-color: red;
 }
 
