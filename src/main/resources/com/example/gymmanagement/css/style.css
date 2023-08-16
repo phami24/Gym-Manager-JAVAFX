@@ -52,26 +52,25 @@
 }
 .close:hover{
     -fx-background-color:#cc1c16;
+     -fx-background-radius: 10px;
 }
 #btn{
     -fx-cursor:hand;
 }
 .nav-btn{
     -fx-background-color:transparent;
+    -fx-background-color:black;
+    -fx-background-radius:30px;
     -fx-cursor:hand;
-    -fx-alignment:CENTER-LEFT;
-    -fx-font-size: 15px;
+    -fx-alignment:CENTER;
     -fx-text-fill:#fff;
-    -fx-font-family: "Rajdhani", Arial , sans-serif;
-    -fx-padding:7px 0 7px 40px;
     /*transition: all .5s ease;*/
 }
 .nav-btn:hover{
-    /*-fx-background-color: linear-gradient(to bottom,#88abd1,#4c6a8a);*/
-    -fx-background-color: #1face1;
+    -fx-background-color: linear-gradient(to bottom,#636262,#1f1d1d);
 }
 .nav-btn:focused{
-    -fx-background-color: #1face1;
+    -fx-background-color: linear-gradient(to bottom,#636262,#1f1d1d);
 }
 
 .sign-out{
@@ -94,10 +93,11 @@
 }
 .nav-admin{
     -fx-background-color:#fff;
-    -fx-border-color:linear-gradient(to bottom,#86a2bf,#283747);
+    -fx-border-color:linear-gradient(to bottom,#abb0ac,#7f8280);
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);
-    -fx-background-radius: 40px;
-    -fx-border-radius: 40px;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+       -fx-text-fill: black;
 }
 .admin-label{
     -fx-border-color: #4d668f ;
@@ -115,7 +115,7 @@
 }
 .border{
     -fx-border-color: black;
-    -fx-border-width: 2;
+    -fx-border-width: 0 0 1 0;;
 }
 .right-border{
     -fx-border-color: black;
@@ -124,16 +124,18 @@
 
 .table-view{
     -fx-background-color:transparent;
-    -fx-border-color:#222d35;
+    -fx-border-color:#9BABB8;
     -fx-border-radius:8px;
-    -fx-border-width:2px;
+    -fx-border-width:1px;
     -fx-padding:0px;
 }
 .table-view .table-column{
     -fx-alignment:CENTER;
+    -fx-border-color:#a8a5a5;
+    -fx-border-width:0px 1px 0px 0px;
 }
 .table-view .column-header-background{
-    -fx-background-color:#1face1;
+    -fx-background-color:linear-gradient(to bottom,#636262,#1f1d1d);
     -fx-background-radius:7px 7px 0px 0px;
 }
 
@@ -143,7 +145,60 @@
 }
 
 .table-view .column-header .label{
-    -fx-text-fill:#000;
+    -fx-text-fill:#fff;
     -fx-font-family: 'Ubuntu', sans-serif;
 }
-No newline at end of file
+.table-row-cell:selected {
+    -fx-background-color: #bdb8ae;
+}
+.table-row-cell {
+    -fx-background-color: #f7f5f0;
+    -fx-background-insets: 0;
+    -fx-text-fill: #0f0f0f;
+    -fx-font-weight: normal;
+}
+
+/* Giao diện khi rê chuột qua hàng */
+.table-row-cell:hover {
+    -fx-background-color: #dedcd7;
+    -fx-text-fill: #0f0f0f;
+}
+
+
+.btn_tool{
+-fx-border-color:#9BABB8;
+-fx-background-color: rgba(240, 240, 240, 0.5);
+-fx-cursor:hand;
+
+}
+.add:hover{
+  -fx-background-radius: 10px;
+   -fx-border-radius: 10px;
+   -fx-text-fill:#fff;
+-fx-background-color: linear-gradient(to bottom,#636262,#1f1d1d);
+}
+.pagination {
+    -fx-skin: "com.sun.javafx.scene.control.skin.PaginationSkin";
+}
+
+.pagination .page-indicator {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 5;
+    -fx-padding: 5;
+}
+
+.pagination .arrow-button {
+    -fx-background-color: #333;
+    -fx-text-fill: white;
+}
+
+.pagination .arrow-button:hover {
+    -fx-background-color: #555;
+}
+
+.card{
+    -fx-background-color: linear-gradient(to bottom,#c7c9c9,#c0c2c2,#a2a3a3);
+}
+.card:hover{
+-fx-background-color: linear-gradient(to bottom,#c7c9c9,#8b8c8c,#797a7a);
+}

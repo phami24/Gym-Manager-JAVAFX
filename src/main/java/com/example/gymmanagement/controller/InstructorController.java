@@ -15,25 +15,39 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
+import java.awt.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 public class InstructorController implements Initializable {
 
     private final InstructorRepository instructorRepository = new InstructorRepository();
     private final StageManager stageManager = new StageManager();
-
+    @FXML
+    private Button exportedInstructor_btn;
     @FXML
     private TableColumn<Instructors, Void> action;
     @FXML
@@ -95,6 +109,15 @@ public class InstructorController implements Initializable {
         List<Instructors> instructorsList = instructorRepository.getAllInstructors();
         instructorsData.addAll(instructorsList);
         tableView.setItems(instructorsData);
+
+        //exported to excel
+//        exportedInstructor_btn.setOnAction(event -> exportToExcel());
+
+    }
+
+    @FXML
+    public void close() {
+        javafx.application.Platform.exit();
     }
 
     private void setupActionColumn() {
@@ -163,4 +186,61 @@ public class InstructorController implements Initializable {
         InstructorAddFormController addFormController = new InstructorAddFormController(tableView);
         stageManager.loadInstructorAddFormDialog(addFormController);
     }
+    public static void exportToExcel(List<Instructors> instructorsList) {
+        String[] columns = {"ID", "First Name", "Last Name", "DOB", "Gender", "Email", "Phone", "Address", "Hire Date", "Experience Years"};
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files","*.xlsx"));
+        File file = fileChooser.showSaveDialog(null);
+        if (file == null) {
+            return; // User cancelled the save dialog
+        }
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("Instructors");
+
+            // Create header row
+            Row headerRow = sheet.createRow(0);
+            for (int i = 0; i < columns.length; i++) {
+                Cell cell = headerRow.createCell(i);
+                cell.setCellValue(columns[i]);
+            }
+
+            // Create data rows
+            int rowIndex = 1;
+            for (Instructors instructor : instructorsList) {
+                Row row = sheet.createRow(rowIndex++);
+                row.createCell(0).setCellValue(instructor.getInstructor_id());
+                row.createCell(1).setCellValue(instructor.getFirst_name());
+                row.createCell(2).setCellValue(instructor.getLast_name());
+                row.createCell(3).setCellValue(instructor.getDob());
+                row.createCell(4).setCellValue(instructor.getGender());
+                row.createCell(5).setCellValue(instructor.getEmail());
+                row.createCell(6).setCellValue(instructor.getPhone_number());
+                row.createCell(7).setCellValue(instructor.getAddress());
+                row.createCell(8).setCellValue(instructor.getHireDate());
+                row.createCell(9).setCellValue(instructor.getExperienceYears());
+            }
+
+            // Save the workbook to a file
+            try (FileOutputStream fileOut = new FileOutputStream(file)) {
+                workbook.write(fileOut);
+            }
+
+            System.out.println("Data exported to Excel successfully!");
+            Alert informationExporter = new Alert(Alert.AlertType.INFORMATION);
+            informationExporter.setTitle("Information exporter");
+            informationExporter.setHeaderText("");
+            informationExporter.setContentText("Export successful!!");
+            informationExporter.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void handleExportButtonAction() {
+        List<Instructors> instructorsList = tableView.getItems(); // Get data from TableView
+        exportToExcel(instructorsList); // Call the exportToExcel() method of ExcelExporter class
+
+    }
+
 }

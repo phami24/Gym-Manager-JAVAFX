@@ -5,7 +5,9 @@ module com.example.gymmanagement {
     requires lombok;
     requires javafx.web;
     requires fontawesomefx;
-    requires java.mail;
+    requires org.apache.poi.poi;
+    requires org.apache.poi.ooxml;
+    requires java.desktop;
 
     opens com.example.gymmanagement to javafx.fxml;
     exports com.example.gymmanagement;

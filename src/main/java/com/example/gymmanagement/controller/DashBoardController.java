@@ -1,8 +1,14 @@
 package com.example.gymmanagement.controller;
 
-import com.example.gymmanagement.model.service.RevenueService;
-import com.example.gymmanagement.model.service.impl.RevenueServiceImpl;
+import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class DashBoardController {
-    public void exit(){}
+    private Stage stage;
+
+    @FXML
+    public void exit(MouseEvent event){
+        stage.close();
+    }
 }

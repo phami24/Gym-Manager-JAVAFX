@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
@@ -11,40 +12,56 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="591.0" prefWidth="931.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane layoutX="53.0" layoutY="85.0" prefHeight="27.0" prefWidth="69.0">
          <children>
-            <SplitMenuButton layoutX="31.0" layoutY="161.0" mnemonicParsing="false" text="Tools">
+            <SplitMenuButton mnemonicParsing="false" style="-fx-border-radius: 5px;" styleClass="btn_tool" stylesheets="@../css/style.css" text="Tools">
                <items>
                   <MenuItem mnemonicParsing="false" text="Data" />
                   <MenuItem mnemonicParsing="false" text="Import" />
                </items>
             </SplitMenuButton>
-            <Button layoutX="113.0" layoutY="161.0" mnemonicParsing="false" onMouseClicked="#addClass" text="ADD" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="-6.0" prefHeight="114.0" prefWidth="941.0" style="-fx-background-color: #2196f3;">
+      <AnchorPane layoutX="-6.0" prefHeight="55.0" prefWidth="1100.0" style="-fx-border-radius: 10px;" styleClass="border" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="40.0" layoutY="24.0" prefHeight="66.0" prefWidth="185.0" text="| Classes" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="1.0" prefHeight="50.0" prefWidth="146.0" text="Classes">
                <font>
-                  <Font name="System Bold" size="27.0" />
+                  <Font name="Book Antiqua Bold" size="27.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="class_tableView" layoutX="28.0" layoutY="210.0" prefHeight="279.0" prefWidth="880.0">
+      <TableView fx:id="class_tableView" layoutX="28.0" layoutY="132.0" prefHeight="376.0" prefWidth="1131.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="132.0">
          <columns>
-            <TableColumn fx:id="stt" prefWidth="75.0" text="STT" />
+            <TableColumn fx:id="stt" prefWidth="40.0" text="STT" />
             <TableColumn fx:id="classId" prefWidth="42.0" text="ID" visible="false" />
-            <TableColumn fx:id="className" prefWidth="126.0" text="Class Name" />
-            <TableColumn fx:id="instructorId" prefWidth="126.0" text="Instructor" />
-            <TableColumn fx:id="schedule" prefWidth="259.0" text="Schedule" />
-            <TableColumn fx:id="capacity" prefWidth="142.0" text="Capacity" />
-            <TableColumn fx:id="action" prefWidth="151.0" text="Action" />
+            <TableColumn fx:id="className" prefWidth="226.66669845581055" text="Class Name" />
+            <TableColumn fx:id="instructorId" prefWidth="184.6666259765625" text="Instructor" />
+            <TableColumn fx:id="schedule" prefWidth="237.33334350585938" text="Schedule" />
+            <TableColumn fx:id="capacity" prefWidth="230.66668701171875" text="Capacity" />
+            <TableColumn fx:id="action" prefWidth="157.3333740234375" text="Action" />
          </columns>
       </TableView>
-      <Pagination layoutX="365.0" layoutY="503.0" prefHeight="58.0" prefWidth="200.0" />
-      <TextField layoutX="677.0" layoutY="162.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" />
+      <Pagination layoutX="450.0" layoutY="522.0" prefHeight="58.0" prefWidth="200.0" />
+      <TextField layoutX="840.0" layoutY="85.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" style="-fx-border-radius: 10px;" styleClass="btn_tool" stylesheets="@../css/style.css" />
+      <Button layoutX="138.0" layoutY="85.0" mnemonicParsing="false" onMouseClicked="#addClass" style="-fx-border-radius: 5px;" stylesheets="@../css/style.css" text="Add class">
+         <styleClass>
+            <String fx:value="btn_tool" />
+            <String fx:value="add" />
+         </styleClass>
+      </Button>
+      <Button layoutX="1107.0" layoutY="9.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="34.0" styleClass="close" stylesheets="@../css/style.css" text="x" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="Leelawadee UI Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="handleExport_btn" layoutX="218.0" layoutY="85.0" mnemonicParsing="false" onAction="#handleExportClassButtonAction" onMouseClicked="#addClass" style="-fx-border-radius: 5px;" stylesheets="@../css/style.css" text="Exporter to Excel">
+         <styleClass>
+            <String fx:value="btn_tool" />
+            <String fx:value="add" />
+         </styleClass>
+      </Button>
    </children>
 </AnchorPane>

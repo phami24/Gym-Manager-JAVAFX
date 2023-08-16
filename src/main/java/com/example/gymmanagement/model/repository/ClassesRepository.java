@@ -151,6 +151,9 @@ public class ClassesRepository {
             statement.setInt(2, classes.getInstructor_id());
             statement.setString(3, classes.getSchedule());
             statement.setInt(4, classes.getCapacity());
+            if (query.contains("UPDATE")) {
+                statement.setInt(5, classes.getClass_id());
+            }
 
             statement.executeUpdate();
         } catch (SQLException e) {

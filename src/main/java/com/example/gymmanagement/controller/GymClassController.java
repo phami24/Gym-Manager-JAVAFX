@@ -1,6 +1,7 @@
 package com.example.gymmanagement.controller;
 
 import com.example.gymmanagement.model.entity.Classes;
+import com.example.gymmanagement.model.entity.Instructors;
 import com.example.gymmanagement.model.repository.ClassesRepository;
 import com.example.gymmanagement.model.repository.InstructorRepository;
 import com.example.gymmanagement.model.repository.MembershipStatusRepository;
@@ -18,8 +19,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.util.Callback;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
@@ -78,7 +88,10 @@ public class GymClassController implements Initializable {
         classesData.addAll(classesList);
         class_tableView.setItems(classesData);
     }
-
+    @FXML
+    public void close() {
+        javafx.application.Platform.exit();
+    }
     private void setupActionColumn() {
         action.setCellFactory(new Callback<>() {
             @Override
@@ -145,5 +158,57 @@ public class GymClassController implements Initializable {
         // Create and load the add class form dialog
          GymClassAddFormController addFormController = new GymClassAddFormController(class_tableView);
          stageManager.loadGymClassAddFormDialog(addFormController);
+    }
+    public static void exportToExcel(List<Classes> classesList) {
+        String[] columns = {"ID", "Class Name", "Instructor", "Schedule", "Capacity"};
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files","*.xlsx"));
+        File file = fileChooser.showSaveDialog(null);
+        if (file == null) {
+            return; // User cancelled the save dialog
+        }
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("Classes");
+
+            // Create header row
+            Row headerRow = sheet.createRow(0);
+            for (int i = 0; i < columns.length; i++) {
+                Cell cell = headerRow.createCell(i);
+                cell.setCellValue(columns[i]);
+            }
+
+            // Create data rows
+            int rowIndex = 1;
+            for (Classes classes : classesList) {
+                Row row = sheet.createRow(rowIndex++);
+                row.createCell(0).setCellValue(classes.getClass_id());
+                row.createCell(1).setCellValue(classes.getClass_name());
+                row.createCell(2).setCellValue(classes.getInstructor_id());
+                row.createCell(3).setCellValue(classes.getSchedule());
+                row.createCell(4).setCellValue(classes.getCapacity());
+
+            }
+
+            // Save the workbook to a file
+            try (FileOutputStream fileOut = new FileOutputStream(file)) {
+                workbook.write(fileOut);
+            }
+
+            System.out.println("Data exported to Excel successfully!");
+            Alert informationExporter = new Alert(Alert.AlertType.INFORMATION);
+            informationExporter.setTitle("Information exporter");
+            informationExporter.setHeaderText("");
+            informationExporter.setContentText("Export successful!!");
+            informationExporter.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void handleExportClassButtonAction() {
+        List<Classes> classesList = class_tableView.getItems(); // Get data from TableView
+        exportToExcel(classesList); // Call the exportToExcel() method of ExcelExporter class
+
     }
 }

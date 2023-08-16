@@ -1,6 +1,7 @@
 package com.example.gymmanagement.controller;
 
 import com.example.gymmanagement.model.entity.Equipment;
+import com.example.gymmanagement.model.entity.Instructors;
 import com.example.gymmanagement.model.repository.EquipmentRepository;
 import com.example.gymmanagement.model.service.EquipmentService;
 import com.example.gymmanagement.model.service.impl.EquipmentServiceImpl;
@@ -16,8 +17,18 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.List;
@@ -30,7 +41,8 @@ public class EquipmentController implements Initializable {
     private final EquipmentService equipmentService = new EquipmentServiceImpl();
 
     private final StageManager stageManager = new StageManager();
-
+    @FXML
+    private Button exportedEquipment_btn;
     @FXML
     private TableColumn<Equipment, Integer> stt;
     @FXML
@@ -61,7 +73,16 @@ public class EquipmentController implements Initializable {
     private Button buttonAdd;
 
     private ObservableList<Equipment> equipmentData = FXCollections.observableArrayList();
-
+    @FXML
+    public void close() {
+        javafx.application.Platform.exit();
+    }
+    @FXML
+    public void homepage(MouseEvent event) {
+        Stage homeStage = new Stage();
+        stageManager.setCurrentStage(homeStage);
+        stageManager.loadHomeStage();
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Cài đặt cách dữ liệu của các cột sẽ được lấy từ đối tượng Equipment và gắn vào TableView
@@ -148,4 +169,58 @@ public class EquipmentController implements Initializable {
         EquipmentAddFormController addFormController = new EquipmentAddFormController(equipment_tableView);
         stageManager.loadEquipmentAddFormDialog(addFormController);
     }
+    public static void exportToExcel(List<Equipment> equipmentList) {
+        String[] columns = {"ID", "Equipment Name", "Category", "Purchase date", "Price", "Notes"};
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files","*.xlsx"));
+        File file = fileChooser.showSaveDialog(null);
+        if (file == null) {
+            return; // User cancelled the save dialog
+        }
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("Equipment");
+
+            // Create header row
+            Row headerRow = sheet.createRow(0);
+            for (int i = 0; i < columns.length; i++) {
+                Cell cell = headerRow.createCell(i);
+                cell.setCellValue(columns[i]);
+            }
+
+            // Create data rows
+            int rowIndex = 1;
+            for (Equipment equipment : equipmentList) {
+                Row row = sheet.createRow(rowIndex++);
+                row.createCell(0).setCellValue(equipment.getEquipmentId());
+                row.createCell(1).setCellValue(equipment.getEquipmentName());
+                row.createCell(2).setCellValue(equipment.getCategory());
+                row.createCell(3).setCellValue(equipment.getPurchaseDate());
+                row.createCell(4).setCellValue(String.valueOf(equipment.getPrice()));
+                row.createCell(5).setCellValue(equipment.getNotes());
+
+            }
+
+            // Save the workbook to a file
+            try (FileOutputStream fileOut = new FileOutputStream(file)) {
+                workbook.write(fileOut);
+            }
+
+            System.out.println("Data exported to Excel successfully!");
+            Alert informationExporter = new Alert(Alert.AlertType.INFORMATION);
+            informationExporter.setTitle("Information exporter");
+            informationExporter.setHeaderText("");
+            informationExporter.setContentText("Export successful!!");
+            informationExporter.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void handleExportButtonAction() {
+        List<Equipment> equipmentList = equipment_tableView.getItems(); // Get data from TableView
+        exportToExcel(equipmentList); // Call the exportToExcel() method of ExcelExporter class
+
+    }
+
 }

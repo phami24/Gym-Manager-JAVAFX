@@ -56,8 +56,9 @@ public class StageManager {
         Scene loginScene = sceneManager.loadScene("login.fxml", loginController);
         loginController.setStage(currentStage);
 
+
         setSceneCurrentStage(loginScene);
-        loginScene.setFill(Color.TRANSPARENT);
+//        loginScene.setFill(Color.TRANSPARENT);
         currentStage.initStyle(StageStyle.TRANSPARENT);
         showStage();
     }
@@ -146,6 +147,7 @@ public class StageManager {
         Scene homeStage = sceneManager.loadScene("member-control.fxml");
         memberStage.setScene(homeStage);
         setCurrentStage(memberStage);
+        currentStage.initStyle(StageStyle.TRANSPARENT);
         showStage();
     }
 
@@ -155,6 +157,7 @@ public class StageManager {
         Scene classScenne = sceneManager.loadScene("gymclass-control.fxml", gymClassController);
         classStage.setScene(classScenne);
         setCurrentStage(classStage);
+        currentStage.initStyle(StageStyle.TRANSPARENT);
         showStage();
     }
 
@@ -163,6 +166,7 @@ public class StageManager {
         Scene homeStage = sceneManager.loadScene("instructor-control.fxml");
         instructorStage.setScene(homeStage);
         setCurrentStage(instructorStage);
+        currentStage.initStyle(StageStyle.TRANSPARENT);
         showStage();
     }
 
@@ -171,6 +175,7 @@ public class StageManager {
         Scene homeStage = sceneManager.loadScene("equipment-control.fxml");
         equipmentStage.setScene(homeStage);
         setCurrentStage(equipmentStage);
+        currentStage.initStyle(StageStyle.TRANSPARENT);
         showStage();
     }
 
@@ -266,12 +271,13 @@ public class StageManager {
         showStage();
     }
 
-    public void loadDoardBoard() {
-        Stage dashBoradStage = new Stage();
-        dashBoradStage.initModality(Modality.APPLICATION_MODAL);
-        Scene dashBoardScene = sceneManager.loadScene("dashboard.fxml");
-        dashBoradStage.setScene(dashBoardScene);
-        setCurrentStage(dashBoradStage);
+    public void loadDashBoard(){
+        Stage dashBoardStage = new Stage();
+        DashBoardController dashBoardController = new DashBoardController();
+        dashBoardStage.initModality(Modality.APPLICATION_MODAL);
+        Scene dashBoardScene = sceneManager.loadScene("dashboard.fxml", dashBoardController);
+        dashBoardStage.setScene(dashBoardScene);
+        setCurrentStage(dashBoardStage);
         currentStage.initStyle(StageStyle.TRANSPARENT);
         dashBoardScene.setFill(Color.TRANSPARENT);
         showStage();

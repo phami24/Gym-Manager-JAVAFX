@@ -156,7 +156,7 @@ public class MembersRepository {
 
     }
 
-    public void updateMemberStatus(int memberId, int newStatusId) {
+    public void deleteMemberByStatus(int memberId, int newStatusId) {
         String query = "UPDATE members SET membership_status_id = ? WHERE member_id = ?";
 
         try (Connection connection = jdbcConnect.getJDBCConnection();

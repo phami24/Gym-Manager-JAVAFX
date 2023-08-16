@@ -1,5 +1,6 @@
 package com.example.gymmanagement.controller;
 
+import com.example.gymmanagement.model.entity.Instructors;
 import com.example.gymmanagement.model.entity.Members;
 import com.example.gymmanagement.model.repository.InstructorRepository;
 import com.example.gymmanagement.model.repository.MembersRepository;
@@ -20,8 +21,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
 import javafx.util.Callback;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
@@ -97,7 +107,10 @@ public class MembersController implements Initializable {
         membersData.addAll(membersList);
         member_tableView.setItems(membersData);
     }
-
+    @FXML
+    public void close() {
+        javafx.application.Platform.exit();
+    }
     private void setupActionColumn() {
         action.setCellFactory(new Callback<>() {
             @Override
@@ -170,5 +183,60 @@ public class MembersController implements Initializable {
         stageManager.loadMemberAddFormDialog(addFormController);
     }
 
+    public static void exportToExcel(List<Members> membersList) {
+        String[] columns = {"ID", "First Name", "Last Name", "DOB", "Gender", "Email", "Phone", "Address", "Join date", "End Date"};
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Excel File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files", "*.xlsx"));
+        File file = fileChooser.showSaveDialog(null);
+        if (file == null) {
+            return; // User cancelled the save dialog
+        }
+        try (Workbook workbook = new XSSFWorkbook()) {
+            Sheet sheet = workbook.createSheet("Members");
 
+            // Create header row
+            Row headerRow = sheet.createRow(0);
+            for (int i = 0; i < columns.length; i++) {
+                Cell cell = headerRow.createCell(i);
+                cell.setCellValue(columns[i]);
+            }
+
+            // Create data rows
+            int rowIndex = 1;
+            for (Members members : membersList) {
+                Row row = sheet.createRow(rowIndex++);
+                row.createCell(0).setCellValue(members.getMember_id());
+                row.createCell(1).setCellValue(members.getFirst_name());
+                row.createCell(2).setCellValue(members.getLast_name());
+                row.createCell(3).setCellValue(members.getDob());
+                row.createCell(4).setCellValue(members.getGender());
+                row.createCell(5).setCellValue(members.getEmail());
+                row.createCell(6).setCellValue(members.getPhone_number());
+                row.createCell(7).setCellValue(members.getAddress());
+                row.createCell(8).setCellValue(members.getJoin_date());
+                row.createCell(9).setCellValue(members.getEnd_date());
+            }
+
+            // Save the workbook to a file
+            try (FileOutputStream fileOut = new FileOutputStream(file)) {
+                workbook.write(fileOut);
+            }
+
+            System.out.println("Data exported to Excel successfully!");
+            Alert informationExporter = new Alert(Alert.AlertType.INFORMATION);
+            informationExporter.setTitle("Information exporter");
+            informationExporter.setHeaderText("");
+            informationExporter.setContentText("Export successful!!");
+            informationExporter.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void handleExportMemberButtonAction() {
+        List<Members> membersList = member_tableView.getItems(); // Get data from TableView
+        exportToExcel(membersList); // Call the exportToExcel() method of ExcelExporter class
+
+    }
 }

@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -25,6 +26,7 @@ public class HomePageController implements Initializable {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
     private StageManager stageManager = new StageManager();
 
     @Override
@@ -33,35 +35,68 @@ public class HomePageController implements Initializable {
     }
 
     @FXML
-    void toDashBoard(MouseEvent event) throws IOException {
-        stageManager.loadDoardBoard();
-    }
+    private Button classButton;
 
+    @FXML
+    private Button dashBoardButton;
 
-    public void toMembers(MouseEvent mouseEvent) {
-        stageManager.loadMemberControlStage();
-    }
+    @FXML
+    private Button employeeButton;
 
-    public void toEmployees(MouseEvent mouseEvent) {
-        stageManager.loadInstructorControlStage();
-    }
+    @FXML
+    private Label exit;
 
-    public void toClass(MouseEvent mouseEvent) {
-        stageManager.loadClassesControlStage();
-    }
+    @FXML
+    private Button gymEquipbt;
 
-    public void toEquipment(MouseEvent mouseEvent) {
-        stageManager.loadEquipmentControlStage();
-    }
+    @FXML
+    private Label logOutbt;
 
-    public void exit(MouseEvent mouseEvent) {
+    @FXML
+    private Button membersButton;
+
+    @FXML
+    void logOut(MouseEvent event) {
         stage.close();
         Stage loginStage = new Stage();
         stageManager.setCurrentStage(loginStage);
         stageManager.loadLoginStage();
     }
-
+    @FXML
     public void close() {
-        stage.close();
+        javafx.application.Platform.exit();
     }
+
+    @FXML
+    void toClass(MouseEvent event) {
+        stageManager.loadClassesControlStage();
+    }
+
+    @FXML
+    void toDashBoard(MouseEvent event) {
+        stageManager.loadDashBoard();
+    }
+
+    @FXML
+    void toEmployees(MouseEvent event) {
+        stageManager.loadInstructorControlStage();
+    }
+
+    @FXML
+    void toEquipment(MouseEvent event) {
+        stageManager.loadEquipmentControlStage();
+    }
+
+    @FXML
+    void toMembers(MouseEvent event) {
+        stageManager.loadMemberControlStage();
+    }
+
+    public void exit(MouseEvent mouseEvent) {
+        stage.close();
+//        Stage loginStage = new Stage();
+//        stageManager.setCurrentStage(loginStage);
+//        stageManager.loadLoginStage();
+    }
+
 }

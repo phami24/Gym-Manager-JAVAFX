@@ -23,7 +23,6 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     private double x = 0, y = 0;
-
     @FXML
     private Label errorMess;
 
@@ -41,6 +40,8 @@ public class LoginController implements Initializable {
 
     @FXML
     private AnchorPane sideBar;
+
+    @FXML
 
     private Stage stage;
 
@@ -72,8 +73,8 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    void closeProgram(MouseEvent event) {
-        stage.close();
+    public void close() {
+        javafx.application.Platform.exit();
     }
 
     @FXML

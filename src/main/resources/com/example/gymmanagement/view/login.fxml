@@ -1,73 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <StackPane layoutX="184.0" layoutY="100.0" prefHeight="550.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" style="-fx-background-radius: 30px; -fx-border-radius: 30px;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <AnchorPane fx:id="sideBar" prefHeight="550.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <AnchorPane layoutX="39.0" layoutY="51.0" opacity="0.71" prefHeight="550.0" prefWidth="375.3333333333333" style="-fx-background-color: #ffffff; -fx-border-radius: 30px; -fx-background-radius: 30px;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="15.0">
                <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2196f3;" />
-                  <AnchorPane prefHeight="351.0" prefWidth="800.0" style="-fx-background-color: #EDE7F6;" />
-               </children>
-            </VBox>
-            <AnchorPane fx:id="sideBar" prefHeight="486.0" prefWidth="800.0" style="-fx-background-color: transparent;">
-               <children>
-                  <AnchorPane layoutX="166.0" layoutY="113.0" prefHeight="362.0" prefWidth="469.0" style="-fx-background-color: WHITE; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-radius: 5; -fx-border-radius: 4; -fx-padding: 8;">
-                     <children>
-                        <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="193.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../image/gym.png" />
-                           </image>
-                        </ImageView>
-                        <TextField fx:id="usernameField" layoutX="75.0" layoutY="147.0" maxWidth="316.0" minWidth="233.0" prefHeight="31.0" prefWidth="316.0" promptText="Enter Username">
-                           <font>
-                              <Font name="Roboto Medium" size="14.0" />
-                           </font>
-                        </TextField>
-                        <PasswordField fx:id="passwordField" layoutX="75.0" layoutY="195.0" maxWidth="316.0" minWidth="235.0" prefHeight="31.0" prefWidth="316.0" promptText="Enter password">
-                           <font>
-                              <Font name="Roboto Medium" size="14.0" />
-                           </font>
-                        </PasswordField>
-                        <CheckBox fx:id="keepLoggedInCheckbox" layoutX="75.0" layoutY="242.0" prefHeight="31.0" prefWidth="171.0" text="Keep me logged in">
-                           <font>
-                              <Font name="Roboto Regular" size="14.0" />
-                           </font>
-                        </CheckBox>
-                        <Button fx:id="loginButton" layoutX="183.0" layoutY="316.0" onAction="#handleLogin" prefHeight="32.0" prefWidth="100.0" style="-fx-background-color: #2196f3;" text="Login" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Button>
-                        <Label fx:id="errorMess" alignment="CENTER" layoutX="122.0" layoutY="273.0" prefHeight="31.0" prefWidth="222.0" />
-                     </children>
-                  </AnchorPane>
-                  <Label alignment="CENTER" layoutX="188.0" layoutY="42.0" prefHeight="34.0" prefWidth="425.0" text="Admin Login" textAlignment="CENTER" textFill="WHITE">
+                  <TextField fx:id="usernameField" layoutX="14.0" layoutY="222.0" prefHeight="39.0" prefWidth="339.0" promptText="Username" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField fx:id="passwordField" layoutX="14.0" layoutY="275.0" prefHeight="39.0" prefWidth="339.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </PasswordField>
+                  <CheckBox fx:id="keepLoggedInCheckbox" layoutX="20.0" layoutY="325.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="121.0" text="Keep me login" textAlignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </CheckBox>
+                  <Label alignment="CENTER" layoutX="97.0" layoutY="157.0" prefHeight="52.0" prefWidth="161.0" text="Welcome" textAlignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <effect>
+                        <Reflection fraction="0.65" topOffset="-10.0" topOpacity="0.39" />
+                     </effect>
+                  </Label>
+                  <Label alignment="CENTER" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="172.0" layoutY="76.0" prefHeight="27.0" prefWidth="183.0" scaleShape="false" text="Gym Management">
+                     <font>
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" layoutX="307.0" layoutY="76.0" prefHeight="17.0" prefWidth="187.0" text="Gym Management Application" textAlignment="CENTER" />
-                  <Label layoutX="779.0" layoutY="2.0" lineSpacing="1.0" onMouseClicked="#closeProgram" prefHeight="25.0" prefWidth="14.0" text="X" textFill="WHITE">
+                  <Label layoutX="172.0" layoutY="27.0" prefHeight="51.0" prefWidth="196.0" stylesheets="@../../../../../../../../LoginForm/src/main/resources/com/example/css/style.css" text="M I T N E S S">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Arial Bold" size="30.0" />
                      </font>
                   </Label>
+                  <Hyperlink alignment="CENTER" layoutX="246.0" layoutY="333.0" text="Forgot password?" textAlignment="CENTER" />
+                  <Line endX="12.999984741210938" endY="28.333328247070312" layoutX="135.0" layoutY="75.0" startX="12.999984741210938" startY="-41.66667175292969" />
+                  <ImageView fitHeight="160.0" fitWidth="154.0" layoutX="30.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="false">
+                     <image>
+                        <Image url="@../image/logo1.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
+            <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="417.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="40.0" prefWidth="247.0" styleClass="nav-btn" stylesheets="@../css/style.css" text="Log in" textFill="#c0b2b2" AnchorPane.rightAnchor="72.0">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
-      </StackPane>
-   </children>
-</AnchorPane>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-radius: 30px; -fx-border-radius: 30px;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="550.0" fitWidth="405.0" layoutX="-2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="false">
+               <image>
+                  <Image url="@../image/loginGym.jpg" />
+               </image>
+            </ImageView>
+            <Button layoutX="369.0" layoutY="1.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="34.0" styleClass="close" stylesheets="@../css/style.css" text="x" AnchorPane.bottomAnchor="522.0" AnchorPane.leftAnchor="369.3333333333333" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

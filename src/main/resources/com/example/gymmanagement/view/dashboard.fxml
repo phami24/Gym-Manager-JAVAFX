@@ -14,8 +14,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0"
             prefWidth="1087.0" style="-fx-background-color: #2F2B43;" xmlns="http://javafx.com/javafx/20.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.gymmanagement.controller.DashBoardController">
+            xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <AnchorPane prefHeight="519.0" prefWidth="262.0" style="-fx-background-color: #393351;"
                     AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">

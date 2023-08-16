@@ -1,142 +1,168 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefWidth="894.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <top>
-        <AnchorPane prefHeight="125.0" prefWidth="894.0" style="-fx-background-color: #1face1;" BorderPane.alignment="CENTER">
-            <children>
-                <ImageView fx:id="exit" fitHeight="27.0" fitWidth="22.0" layoutX="863.0" layoutY="11.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../image/cross.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="129.0" fitWidth="153.0" layoutX="79.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../image/pngwing.com.png" />
-                    </image>
-                </ImageView>
-                <Label layoutX="232.0" layoutY="85.0" prefHeight="34.0" prefWidth="146.0" text="management">
-                    <font>
-                        <Font name="Arial Bold" size="15.0" />
-                    </font>
-                </Label>
-                <Label fx:id="logoLabel" layoutX="225.0" layoutY="30.0" prefHeight="62.0" prefWidth="106.0" text="GYM">
-                    <font>
-                        <Font name="Arial Bold" size="18.0" />
-                    </font>
-                </Label>
-                <Line endX="94.39996337890625" endY="75.00001525878906" layoutX="620.0" layoutY="61.0" startX="21.69293212890625" startY="-5.080879211425781" stroke="WHITE" />
-                <Line endX="23.93328857421875" endY="-39.0" layoutX="691.0" layoutY="39.0" startX="-48.5999755859375" startY="41.80000305175781" stroke="WHITE" />
-                <Line endX="98.933349609375" endY="-57.0" layoutX="552.0" layoutY="57.0" startX="27.29290771484375" startY="23.0928955078125" stroke="WHITE" />
-                <Line endX="96.73333740234375" endY="51.707122802734375" layoutX="551.0" layoutY="85.0" startX="29.0" startY="-28.37377166748047" stroke="WHITE" />
-                <Line endX="62.66668701171875" endY="-61.0" layoutX="528.0" layoutY="61.0" startX="-10.21417236328125" startY="20.15955352783203" stroke="WHITE" />
-                <Line endX="122.5333251953125" endY="59.600006103515625" layoutX="466.0" layoutY="78.0" startX="52.492919921875" startY="-19.773773193359375" stroke="WHITE" />
-                <Line endX="-46.359619140625" endY="-56.70710754394531" layoutX="762.0" layoutY="56.0" startX="23.86669921875" startY="22.319114685058594" stroke="WHITE" />
-                <Line endX="61.57379150390625" endY="-48.74754333496094" layoutX="725.0" layoutY="102.0" startX="-9.8929443359375" startY="34.707122802734375" stroke="WHITE" />
-                <ImageView fitHeight="63.0" fitWidth="53.0" layoutX="688.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../image/iconarrm.png" />
-                    </image>
-                </ImageView>
-            </children>
-        </AnchorPane>
-    </top>
-    <center>
-        <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="894.0" BorderPane.alignment="CENTER">
-            <children>
-                <Button fx:id="dashBoardButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="176.0" layoutY="56.0" mnemonicParsing="false" onMouseClicked="#toDashBoard" prefHeight="128.0" prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;" styleClass="buttonItems" text="Dashboard" textAlignment="CENTER">
-                    <font>
-                        <Font name="Arial Bold" size="20.0" />
-                    </font>
-                    <cursor>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="1100.0" opacity="0.8" pickOnBounds="true" preserveRatio="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../image/bgr1.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="53.0" layoutY="61.0" prefHeight="419.0" prefWidth="981.0">
+         <children>
+            <Button fx:id="dashBoardButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="81.0" layoutY="41.0" mnemonicParsing="false" onMouseClicked="#toDashBoard" prefHeight="115.0" prefWidth="210.0" stylesheets="@../css/style.css" text="Dashboard" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView disable="true" fitHeight="46.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                     <cursor>
                         <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-                <ImageView disable="true" fitHeight="82.0" fitWidth="79.0" layoutX="214.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
+                     </cursor>
+                     <image>
                         <Image url="@../image/dashboard.png" />
-                    </image>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </ImageView>
-                <Button fx:id="membersButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="388.0" layoutY="57.0" mnemonicParsing="false" onMouseClicked="#toMembers" prefHeight="128.0" prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;" styleClass="buttonItems" text="Members" textAlignment="CENTER">
-                    <font>
-                        <Font name="Arial Bold" size="20.0" />
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-                <ImageView disable="true" fitHeight="97.0" fitWidth="89.0" layoutX="421.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../image/newEMP.png" />
-                    </image>
-                </ImageView>
-                <Button fx:id="employeeButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="591.0" layoutY="56.0" mnemonicParsing="false" onMouseClicked="#toEmployees" prefHeight="128.0" prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;" styleClass="buttonItems" text="Employees" textAlignment="CENTER">
-                    <font>
-                        <Font name="Arial Bold" size="20.0" />
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-                <ImageView disable="true" fitHeight="87.0" fitWidth="86.0" layoutX="622.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
+                     </image>
+                  </ImageView>
+               </graphic>
+               <styleClass>
+                  <String fx:value="nav-admin" />
+                  <String fx:value="card" />
+               </styleClass>
+            </Button>
+            <Button fx:id="membersButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="686.0" layoutY="41.0" mnemonicParsing="false" onMouseClicked="#toMembers" prefHeight="115.0" prefWidth="210.0" stylesheets="@../css/style.css" text="Members Management" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView disable="true" fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
                         <Image url="@../image/fitness.png" />
-                    </image>
-                </ImageView>
-                <Button fx:id="classButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="175.0" layoutY="234.0" mnemonicParsing="false" onMouseClicked="#toClass" prefHeight="128.0" prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;" styleClass="buttonItems" text="Classes" textAlignment="CENTER">
-                    <font>
-                        <Font name="Arial Bold" size="20.0" />
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-                <ImageView disable="true" fitHeight="91.0" fitWidth="99.0" layoutX="207.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../image/class.png" />
-                    </image>
-                </ImageView>
-<!--                <FontAwesomeIcon fill="#7a8589" iconName="GEAR" layoutX="11.0" layoutY="484.0" size="55px" text=""-->
-<!--                                 textAlignment="CENTER" wrappingWidth="66.35009765624977"/>-->
-                <Button fx:id="dashBoardButton1" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="591.0" layoutY="233.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="128.0" prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;" styleClass="buttonItems" text="Sign Out" textAlignment="CENTER">
-                    <font>
-                        <Font name="Arial Bold" size="19.0" />
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-                <Button fx:id="dashBoardButton11" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="390.0" layoutY="234.0" mnemonicParsing="false" onMouseClicked="#toEquipment" prefHeight="128.0" prefWidth="154.0" style="-fx-background-color: #1face1; -fx-background-radius: 0.5em;" styleClass="buttonItems" text="Equipment" textAlignment="CENTER">
-                    <font>
-                        <Font name="Arial Bold" size="19.0" />
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-                <ImageView fitHeight="80.0" fitWidth="94.0" layoutX="429.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
+                     </image>
+                  </ImageView>
+               </graphic>
+               <styleClass>
+                  <String fx:value="nav-admin" />
+                  <String fx:value="card" />
+               </styleClass>
+            </Button>
+            <Button fx:id="employeeButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="380.0" layoutY="212.0" mnemonicParsing="false" onMouseClicked="#toEmployees" prefHeight="115.0" prefWidth="210.0" stylesheets="@../css/style.css" text="Staff Management" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView disable="true" fitHeight="46.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
                         <Image url="@../image/grade.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="75.0" fitWidth="76.0" layoutX="635.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../image/signout.png" />
-                    </image>
-                </ImageView>
-            </children>
-        </AnchorPane>
-    </center>
-</BorderPane>
+                     </image>
+                  </ImageView>
+               </graphic>
+               <styleClass>
+                  <String fx:value="nav-admin" />
+                  <String fx:value="card" />
+               </styleClass>
+            </Button>
+            <Button fx:id="classButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="81.0" layoutY="212.0" mnemonicParsing="false" onMouseClicked="#toClass" prefHeight="115.0" prefWidth="210.0" stylesheets="@../css/style.css" text="Classes" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView disable="true" fitHeight="62.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/class.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <styleClass>
+                  <String fx:value="nav-admin" />
+                  <String fx:value="card" />
+               </styleClass>
+            </Button>
+            <Button fx:id="gymEquipbt" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="380.0" layoutY="41.0" mnemonicParsing="false" onMouseClicked="#toEquipment" prefHeight="115.0" prefWidth="210.0" stylesheets="@../css/style.css" text="Gym Equipment" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView disable="true" fitHeight="46.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/bench-press.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <styleClass>
+                  <String fx:value="nav-admin" />
+                  <String fx:value="card" />
+               </styleClass>
+            </Button>
+            <Button fx:id="membersButton1" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="680.0" layoutY="212.0" mnemonicParsing="false" onMouseClicked="#toMembers" prefHeight="115.0" prefWidth="210.0" stylesheets="@../css/style.css" text="Admin" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView disable="true" fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/cusnew.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <styleClass>
+                  <String fx:value="nav-admin" />
+                  <String fx:value="card" />
+               </styleClass>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Label fx:id="logOutbt" alignment="CENTER" layoutX="1034.0" layoutY="530.0" onMouseClicked="#logOut" prefHeight="46.0" prefWidth="41.0" style="-fx-background-color: rgba(171, 169, 169,0.2); -fx-background-radius: 10px;" styleClass="add" stylesheets="@../css/style.css" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="1034.0">
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/signout.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <Button layoutX="1055.0" layoutY="14.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="34.0" styleClass="close" stylesheets="@../css/style.css" text="x" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="Leelawadee UI Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
