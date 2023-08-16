@@ -202,3 +202,6 @@
 .card:hover{
 -fx-background-color: linear-gradient(to bottom,#c7c9c9,#8b8c8c,#797a7a);
 }
+.nav-left{
+-fx-background-color: linear-gradient(to right,#545353,#2e2d2d);
+}

@@ -111,6 +111,10 @@ public class MembersController implements Initializable {
     public void close() {
         javafx.application.Platform.exit();
     }
+    @FXML
+    void homepage(MouseEvent event) {
+        stageManager.loadHomeStage();
+    }
     private void setupActionColumn() {
         action.setCellFactory(new Callback<>() {
             @Override

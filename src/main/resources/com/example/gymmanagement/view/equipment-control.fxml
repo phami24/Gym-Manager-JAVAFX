@@ -66,7 +66,7 @@
             <Font name="Leelawadee UI Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="1031.0" layoutY="548.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="51.0" styleClass="close" stylesheets="@../css/style.css">
+      <Button layoutX="1031.0" layoutY="548.0" mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="42.0" prefWidth="51.0" styleClass="close" stylesheets="@../css/style.css">
          <graphic>
             <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                <image>

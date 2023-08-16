@@ -70,26 +70,31 @@ public class HomePageController implements Initializable {
     @FXML
     void toClass(MouseEvent event) {
         stageManager.loadClassesControlStage();
+        stage.close();
     }
 
     @FXML
     void toDashBoard(MouseEvent event) {
         stageManager.loadDashBoard();
+        stage.close();
     }
 
     @FXML
     void toEmployees(MouseEvent event) {
         stageManager.loadInstructorControlStage();
+        stage.close();
     }
 
     @FXML
     void toEquipment(MouseEvent event) {
         stageManager.loadEquipmentControlStage();
+        stage.close();
     }
 
     @FXML
     void toMembers(MouseEvent event) {
         stageManager.loadMemberControlStage();
+        stage.close();
     }
 
     public void exit(MouseEvent mouseEvent) {
