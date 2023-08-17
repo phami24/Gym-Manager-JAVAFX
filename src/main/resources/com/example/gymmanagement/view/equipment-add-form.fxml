@@ -5,65 +5,69 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="580.0" prefWidth="400.0" style="-fx-border-radius: 25; -fx-background-radius: 25; -fx-background-color: rgba(13, 12, 12,0.9);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <stylesheets>
-        <!-- Đường dẫn đến tập tin CSS -->
-        <URL value="@../css/addmember.css" />
-    </stylesheets>
+<AnchorPane prefHeight="424.0" prefWidth="701.0" style="-fx-border-radius: 30; -fx-background-radius: 25; -fx-background-color: rgba(13, 12, 12,0.9);" stylesheets="@../css/addmember.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
 
-    <TextField fx:id="equipmentIdField" layoutX="170.0" layoutY="119.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
-    <Label fx:id="equipmentIdLabel" layoutX="30.0" layoutY="124.0" text="Equipment ID" textFill="WHITE">
+    <TextField fx:id="equipmentIdField" layoutX="27.0" layoutY="119.0" opacity="0.71" prefHeight="32.0" prefWidth="311.0" promptText="Equipment ID" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+      <font>
+         <Font size="14.0" />
+      </font>
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></TextField>
+
+    <TextField fx:id="equipmentNameField" layoutX="27.0" layoutY="164.0" opacity="0.71" prefHeight="31.0" prefWidth="311.0" promptText="Equipment Name" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+      <font>
+         <Font size="14.0" />
+      </font>
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></TextField>
+
+    <TextField fx:id="categoryField" layoutX="27.0" layoutY="213.0" opacity="0.71" prefHeight="31.0" prefWidth="311.0" promptText="Category" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+      <font>
+         <Font size="14.0" />
+      </font>
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></TextField>
+
+    <DatePicker fx:id="purchaseDatePicker" layoutX="484.0" layoutY="119.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4;" stylesheets="@../css/addmember.css" />
+    <Label fx:id="purchaseDateLabel" layoutX="367.0" layoutY="119.0" text="Purchase Date" textFill="#aca5a5">
       <font>
          <Font size="14.0" />
       </font></Label>
 
-    <TextField fx:id="equipmentNameField" layoutX="170.0" layoutY="161.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
-    <Label fx:id="equipmentNameLabel" layoutX="30.0" layoutY="166.0" text="Equipment Name" textFill="WHITE">
+    <TextField fx:id="priceField" layoutX="27.0" layoutY="262.0" opacity="0.71" prefHeight="31.0" prefWidth="144.0" promptText="Price" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+      <font>
+         <Font size="14.0" />
+      </font>
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></TextField>
+
+    <ComboBox fx:id="statusComboBox" layoutX="485.0" layoutY="169.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></ComboBox>
+    <Label fx:id="statusLabel" layoutX="367.0" layoutY="174.0" text="Status" textFill="#aca5a5">
       <font>
          <Font size="14.0" />
       </font></Label>
-
-    <TextField fx:id="categoryField" layoutX="170.0" layoutY="213.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
-    <Label fx:id="categoryLabel" layoutX="30.0" layoutY="227.0" text="Category" textFill="WHITE">
-      <font>
-         <Font size="14.0" />
-      </font></Label>
-
-    <DatePicker fx:id="purchaseDatePicker" layoutX="170.0" layoutY="316.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
-    <Label fx:id="purchaseDateLabel" layoutX="30.0" layoutY="316.0" text="Purchase Date" textFill="WHITE">
-      <font>
-         <Font size="14.0" />
-      </font></Label>
-
-    <TextField fx:id="priceField" layoutX="170.0" layoutY="262.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
-    <Label fx:id="priceLabel" layoutX="30.0" layoutY="267.0" text="Price" textFill="WHITE">
-      <font>
-         <Font size="14.0" />
-      </font></Label>
-
-    <ComboBox fx:id="statusComboBox" layoutX="170.0" layoutY="366.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
-    <Label fx:id="statusLabel" layoutX="30.0" layoutY="371.0" text="Status" textFill="WHITE">
-      <font>
-         <Font size="14.0" />
-      </font></Label>
-
-    <TextField fx:id="notesField" layoutX="170.0" layoutY="412.0" prefHeight="28.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
-    <Label fx:id="notesLabel" layoutX="30.0" layoutY="417.0" text="Notes" textFill="WHITE">
-      <font>
-         <Font size="14.0" />
-      </font></Label>
-
-    <Button fx:id="buttonAdd" layoutX="277.0" layoutY="501.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="56.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-border-radius: 5px;" text="ADD">
-        <font>
-            <Font name="System Bold" size="12.0" />
-        </font>
-    </Button>
    <AnchorPane layoutX="37.0" layoutY="17.0" prefHeight="37.0" prefWidth="36.0" style="-fx-background-radius: 10; -fx-background-color: #d8ddd8;" AnchorPane.leftAnchor="31.0">
       <children>
          <ImageView fitHeight="43.0" fitWidth="45.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
@@ -73,12 +77,33 @@
          </ImageView>
       </children>
    </AnchorPane>
-   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="23.0" prefHeight="31.0" prefWidth="202.0" text="ADD EQUIPMENT" textFill="WHITE">
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="102.0" layoutY="23.0" prefHeight="31.0" prefWidth="202.0" text="ADD EQUIPMENT">
       <font>
          <Font name="Arial Rounded MT Bold" size="21.0" />
       </font>
+      <textFill>
+         <LinearGradient endX="1.0" endY="1.0">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color red="0.5098039507865906" green="0.18039216101169586" blue="0.18039216101169586" />
+                  </color>
+               </Stop>
+               <Stop offset="0.1650329908413485">
+                  <color>
+                     <Color red="0.5098039507865906" green="0.18039216101169586" blue="0.18039216101169586" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
    </Label>
-   <Button layoutX="366.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="22.0" styleClass="btn-close" stylesheets="@../css/form_style.css" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="7.0">
+   <Button layoutX="690.6" layoutY="6.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="22.0" styleClass="btn-close" stylesheets="@../css/form_style.css" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="6.0">
       <graphic>
          <ImageView fitHeight="24.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -87,4 +112,14 @@
          </ImageView>
       </graphic>
    </Button>
+   <Button fx:id="buttonAdd" layoutX="484.0" layoutY="339.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" styleClass="btn-add" stylesheets="@../css/form_style.css" text="ADD">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font>
+   </Button>
+   <TextArea fx:id="notesField" layoutX="27.0" layoutY="312.0" prefHeight="86.0" prefWidth="214.0" promptText="Notes" style="-fx-background-color: #aca5a5;" stylesheets="@../css/allAddstyle.css">
+      <font>
+         <Font name="System Bold" size="15.0" />
+      </font>
+   </TextArea>
 </AnchorPane>

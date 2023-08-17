@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -7,6 +8,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
@@ -25,35 +29,61 @@
             <Font name="System Bold" size="12.0" />
         </font>
     </Button>
-    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="105.0" layoutY="20.0" prefHeight="31.0" prefWidth="138.0" text="ADD CLASS" textFill="WHITE">
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="105.0" layoutY="20.0" prefHeight="31.0" prefWidth="138.0" text="ADD CLASS">
         <font>
             <Font name="Arial Rounded MT Bold" size="21.0" />
         </font>
+      <textFill>
+         <LinearGradient endX="1.0" endY="1.0">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color red="0.5098039507865906" green="0.18039216101169586" blue="0.18039216101169586" />
+                  </color>
+               </Stop>
+               <Stop offset="0.16958277254374154">
+                  <color>
+                     <Color red="0.5098039507865906" green="0.18039216101169586" blue="0.18039216101169586" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
     </Label>
-    <!-- Class Name -->
-    <Label fx:id="classNameLabel" layoutX="30.0" layoutY="115.0" text="Class Name:" textFill="WHITE" AnchorPane.bottomAnchor="170.0">
+    <TextField fx:id="classNameField" layoutX="32.0" layoutY="115.0" opacity="0.71" prefHeight="27.0" prefWidth="328.0" promptText="Capacity" AnchorPane.bottomAnchor="380.0">
       <font>
          <Font size="14.0" />
-      </font></Label>
-    <TextField fx:id="classNameField" layoutX="130.0" layoutY="115.0" opacity="0.71" prefHeight="25.0" prefWidth="230.0" stylesheets="@../css/form_style.css" AnchorPane.bottomAnchor="380.0" />
-    <!-- Instructor ID -->
-    <Label fx:id="instructorLabel" layoutX="30.0" layoutY="205.0" text="Instructor ID:" textFill="WHITE" AnchorPane.bottomAnchor="240.0">
+      </font>
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></TextField>
+    <ComboBox fx:id="instructorComboBox" layoutX="130.0" layoutY="205.0" opacity="0.71" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;" AnchorPane.bottomAnchor="240.0">
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></ComboBox>
+    <TextField fx:id="scheduleField" layoutX="32.0" layoutY="160.0" opacity="0.71" prefHeight="27.0" prefWidth="328.0" promptText="Schedule" AnchorPane.bottomAnchor="310.0">
       <font>
          <Font size="14.0" />
-      </font></Label>
-    <ComboBox fx:id="instructorComboBox" layoutX="130.0" layoutY="205.0" opacity="0.71" prefHeight="25.0" prefWidth="230.0" styleClass="text-field" stylesheets="@../css/form_style.css" AnchorPane.bottomAnchor="240.0" />
-    <!-- Schedule -->
-    <Label fx:id="scheduleLabel" layoutX="30.0" layoutY="160.0" text="Schedule:" textFill="WHITE" AnchorPane.bottomAnchor="310.0">
+      </font>
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></TextField>
+    <TextField fx:id="capacityField" layoutX="32.0" layoutY="250.0" opacity="0.71" prefHeight="27.0" prefWidth="328.0" promptText="Class Name" AnchorPane.bottomAnchor="170.0">
       <font>
          <Font size="14.0" />
-      </font></Label>
-    <TextField fx:id="scheduleField" layoutX="130.0" layoutY="160.0" opacity="0.71" prefHeight="25.0" prefWidth="230.0" stylesheets="@../css/form_style.css" AnchorPane.bottomAnchor="310.0" />
-    <!-- Capacity -->
-    <Label fx:id="capacityLabel" layoutX="30.0" layoutY="113.0" prefHeight="31.0" prefWidth="66.0" text="Capacity:" textFill="WHITE" AnchorPane.bottomAnchor="380.0">
-      <font>
-         <Font size="14.0" />
-      </font></Label>
-    <TextField fx:id="capacityField" layoutX="130.0" layoutY="250.0" opacity="0.71" prefHeight="25.0" prefWidth="230.0" stylesheets="@../css/form_style.css" AnchorPane.bottomAnchor="170.0" />
+      </font>
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></TextField>
    <Button layoutX="360.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="22.0" styleClass="btn-close" stylesheets="@../css/form_style.css" AnchorPane.rightAnchor="6.666666666666664" AnchorPane.topAnchor="7.0">
       <graphic>
          <ImageView fitHeight="24.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
@@ -64,4 +94,13 @@
       </graphic>
    </Button>
    <Line endX="159.00003051757812" endY="7.62939453125E-6" fill="#727171" layoutX="187.0" layoutY="86.0" startX="-155.00001525878906" startY="7.62939453125E-6" stroke="#a5c2d0" strokeWidth="0.5" />
+   <Label fx:id="intructorLabel" layoutX="40.0" layoutY="316.0" opacity="0.71" text="Intructor ID" textFill="#aca5a5">
+      <font>
+         <Font size="14.0" />
+      </font>
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets>
+   </Label>
 </AnchorPane>
