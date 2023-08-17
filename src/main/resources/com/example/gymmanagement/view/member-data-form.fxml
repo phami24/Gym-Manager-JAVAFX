@@ -12,78 +12,80 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="536.0" prefWidth="443.0" style="-fx-border-radius: 25; -fx-background-radius: 25; -fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="580.0" prefWidth="400.0" style="-fx-border-radius: 25; -fx-background-radius: 25; -fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <!-- Đường dẫn đến tập tin CSS -->
         <URL value="@../css/addmember.css" />
     </stylesheets>
-   <AnchorPane layoutY="61.0" opacity="0.2" prefHeight="439.0" prefWidth="443.0" style="-fx-background-color: #ccc;" />
-    <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="37.0" prefWidth="36.0" style="-fx-background-radius: 10; -fx-background-color: #14d7f4;">
-        <Circle fill="#85f1ff" layoutX="18.0" layoutY="19.0" radius="13.0" stroke="#14d7f5" strokeType="INSIDE" />
-      <ImageView fitHeight="17.0" fitWidth="18.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/pen.png" />
-         </image>
-      </ImageView>
-    </AnchorPane>
-    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="17.0" prefHeight="31.0" prefWidth="182.0" text="UPDATE MEMBER">
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="109.0" layoutY="21.0" prefHeight="31.0" prefWidth="182.0" text="UPDATE MEMBER">
         <font>
             <Font size="21.0" />
         </font>
     </Label>
-    <Circle fx:id="circle" fill="#f7070c" layoutX="429.0" layoutY="17.0" onMouseClicked="#closeForm" radius="6.0" stroke="#f7070c" strokeType="INSIDE" />
 
     <!-- First Name -->
-    <Label fx:id="firstNameLabel" layoutX="18.0" layoutY="96.0" text="First Name" />
-    <TextField fx:id="firstNameField" layoutX="18.0" layoutY="122.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="firstNameLabel" layoutX="64.0" layoutY="73.0" text="First Name" />
+    <TextField fx:id="firstNameField" layoutX="142.0" layoutY="73.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
 
     <!-- Last Name -->
-    <Label fx:id="lastNameLabel" layoutX="229.0" layoutY="96.0" text="Last Name" />
-    <TextField fx:id="lastNameField" layoutX="229.0" layoutY="122.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="lastNameLabel" layoutX="57.0" layoutY="104.0" text="Last Name" />
+    <TextField fx:id="lastNameField" layoutX="142.0" layoutY="107.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
 
     <!-- Date of Birth -->
-    <Label fx:id="dobLabel" layoutX="18.0" layoutY="152.0" text="Date of Birth" />
-    <DatePicker fx:id="dobPicker" layoutX="18.0" layoutY="172.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="dobLabel" layoutX="51.0" layoutY="143.0" text="Date of Birth" />
+    <DatePicker fx:id="dobPicker" layoutX="149.0" layoutY="138.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
 
     <!-- Gender -->
-    <Label fx:id="genderLabel" layoutX="229.0" layoutY="152.0" text="Gender" />
-    <TextField fx:id="genderField" layoutX="229.0" layoutY="172.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="genderLabel" layoutX="74.0" layoutY="177.0" text="Gender" />
+    <TextField fx:id="genderField" layoutX="162.0" layoutY="172.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
 
     <!-- Email -->
-    <Label fx:id="emailLabel" layoutX="18.0" layoutY="202.0" text="Email" />
-    <TextField fx:id="emailField" layoutX="18.0" layoutY="222.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="emailLabel" layoutX="80.0" layoutY="210.0" text="Email" />
+    <TextField fx:id="emailField" layoutX="162.0" layoutY="205.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
 
     <!-- Phone Number -->
-    <Label fx:id="phoneNumberLabel" layoutX="229.0" layoutY="202.0" text="Phone Number" />
-    <TextField fx:id="phoneNumberField" layoutX="229.0" layoutY="222.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="phoneNumberLabel" layoutX="45.0" layoutY="249.0" text="Phone Number" />
+    <TextField fx:id="phoneNumberField" layoutX="170.0" layoutY="244.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
 
     <!-- Address -->
-    <Label fx:id="addressLabel" layoutX="18.0" layoutY="252.0" text="Address" />
-    <TextField fx:id="addressField" layoutX="18.0" layoutY="272.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="addressLabel" layoutX="73.0" layoutY="289.0" text="Address" />
+    <TextField fx:id="addressField" layoutX="170.0" layoutY="284.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
 
     <!-- Join Date -->
-    <Label fx:id="joinDateLabel" layoutX="229.0" layoutY="252.0" text="Join Date" />
-    <DatePicker fx:id="joinDatePicker" layoutX="229.0" layoutY="272.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="joinDateLabel" layoutX="69.0" layoutY="335.0" text="Join Date" />
+    <DatePicker fx:id="joinDatePicker" layoutX="168.0" layoutY="330.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
 
     <!-- End Date -->
-    <Label fx:id="endDateLabel" layoutX="18.0" layoutY="302.0" text="End Date" />
-    <DatePicker fx:id="endDatePicker" layoutX="18.0" layoutY="322.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="endDateLabel" layoutX="69.0" layoutY="380.0" text="End Date" />
+    <DatePicker fx:id="endDatePicker" layoutX="168.0" layoutY="375.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
 
     <!-- Membership Status ID -->
-    <Label fx:id="membershipStatusLabel" layoutX="229.0" layoutY="302.0" text="Membership Status " />
-    <ComboBox fx:id="membershipStatusComboBox" layoutX="229.0" layoutY="322.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="membershipStatusLabel" layoutX="22.0" layoutY="419.0" text="Membership Status " />
+    <ComboBox fx:id="membershipStatusComboBox" layoutX="170.0" layoutY="414.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
 
     <!-- Membership Type ID -->
-    <Label fx:id="membershipTypeLabel" layoutX="18.0" layoutY="355.0" text="Membership Type " />
-    <ComboBox fx:id="membershipTypeComboBox" layoutX="18.0" layoutY="381.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="membershipTypeLabel" layoutX="44.0" layoutY="459.0" text="Membership Type " />
+    <ComboBox fx:id="membershipTypeComboBox" layoutX="182.0" layoutY="454.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
 
     <!-- Instructor ID -->
-    <Label fx:id="instructorLabel" layoutX="229.0" layoutY="355.0" text="Instructor " />
-    <ComboBox fx:id="instructorComboBox" layoutX="229.0" layoutY="381.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="instructorLabel" layoutX="67.0" layoutY="500.0" text="Instructor " />
+    <ComboBox fx:id="instructorComboBox" layoutX="181.0" layoutY="495.0" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
 
-          <Button fx:id="buttonUpdate" layoutX="322.0" layoutY="451.0" mnemonicParsing="false" onMouseClicked="#saveUpdate" prefHeight="32.0" prefWidth="75.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-border-radius: 5px;" text="Save">
+          <Button fx:id="buttonUpdate" layoutX="272.0" layoutY="534.0" mnemonicParsing="false" onMouseClicked="#saveUpdate" prefHeight="32.0" prefWidth="75.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-border-radius: 5px;" text="Save">
         <font>
             <Font name="System Bold" size="12.0" />
         </font>
     </Button>
+   <AnchorPane layoutX="47.0" layoutY="17.0" prefHeight="38.0" prefWidth="57.0" style="-fx-background-color: #d8ddd8; -fx-background-radius: 10;" AnchorPane.bottomAnchor="525.0">
+      <children>
+          <AnchorPane layoutX="24.0" layoutY="6.0" prefHeight="39.0" prefWidth="36.0" style="-fx-background-radius: 10; -fx-background-color: #14d7f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <Circle fill="#85f1ff" layoutX="18.0" layoutY="19.0" radius="13.0" stroke="#14d7f5" strokeType="INSIDE" />
+            <ImageView fitHeight="17.0" fitWidth="18.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/pen.png" />
+               </image>
+            </ImageView>
+          </AnchorPane>
+      </children>
+   </AnchorPane>
 </AnchorPane>

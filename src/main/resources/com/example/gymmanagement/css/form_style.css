@@ -1,0 +1,28 @@
+.btn-close{
+-fx-background-color:transparent;
+-fx-cursor:hand;
+}
+.btn-close:hover{
+-fx-background-color:rgb(255,84,84);
+-fx-background-radius: 15px;
+}
+.text-field{
+    -fx-border-color:#0a0a0a;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-border-width: 0.5 ;
+}
+.btn-add{
+-fx-background-color:transparent;
+-fx-cursor:hand;
+   -fx-border-color:#aba9a9;
+   -fx-background-color:#1f1e1e;
+   -fx-background-radius:30px;
+   -fx-border-radius: 20px;
+    -fx-alignment:CENTER;
+    -fx-text-fill:#fff;
+}
+.btn-add:hover{
+-fx-text-fill:#fff;
+-fx-background-color: linear-gradient(to bottom,#666464,#0a0a0a);
+}

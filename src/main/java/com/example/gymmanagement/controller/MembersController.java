@@ -113,75 +113,67 @@ public class MembersController implements Initializable {
         member_tableView.setItems(membersData);
     }
     @FXML
-    public void close() {
-       stage.close();
+    public void close(MouseEvent event) {
+        Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
     }
     @FXML
     void homepage(MouseEvent event) {
         stageManager.loadHomeStage();
+        stage.close();
     }
     private void setupActionColumn() {
-        action.setCellFactory(new Callback<>() {
+        action.setCellFactory(column -> new TableCell<Members, Void>() {
+            private final Button deleteButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/removed.png"))));
+            private final Button showDetailButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/refresh.png"))));
+
+            {
+                deleteButton.setOnAction(event -> {
+                    Members member = getTableView().getItems().get(getIndex());
+                    Alert confirmDeleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                    confirmDeleteAlert.setTitle("Confirm Delete");
+                    confirmDeleteAlert.setHeaderText("Are you sure you want to delete this member?");
+                    confirmDeleteAlert.setContentText("Member: " + member.getFirst_name() + " " + member.getLast_name());
+
+                    Optional<ButtonType> result = confirmDeleteAlert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK) {
+                        membersService.deleteMember(member.getMember_id());
+                        membersData.remove(member);
+                        member_tableView.refresh();
+                    }
+                });
+
+                showDetailButton.setOnAction(event -> {
+                    Members member = getTableView().getItems().get(getIndex());
+                    int memberId = member.getMember_id();
+                    MemberUpdateFormController memberUpdateFormController = new MemberUpdateFormController(memberId, member_tableView);
+                    stageManager.loadMemberUpdateFormDialog(memberUpdateFormController);
+                    member_tableView.refresh();
+                });
+
+                // Thiết lập kích thước cho các nút
+                deleteButton.setPrefSize(5, 5);
+                showDetailButton.setPrefSize(5, 5);
+                ImageView deleteImageView = (ImageView) deleteButton.getGraphic();
+                deleteImageView.setFitWidth(10);
+                deleteImageView.setFitHeight(10);
+
+                ImageView showDetailImageView = (ImageView) showDetailButton.getGraphic();
+                showDetailImageView.setFitWidth(10);
+                showDetailImageView.setFitHeight(10);
+            }
+
             @Override
-            public TableCell<Members, Void> call(final TableColumn<Members, Void> param) {
-                return new TableCell<>() {
-                    private final ImageView deleteButton = new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/trash-bin.png")));
-                    private final ImageView showDetailButton = new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/document.png")));
-
-                    {
-                        // Xử lý sự kiện khi nhấn nút "Delete"
-                        deleteButton.setOnMouseClicked(event -> {
-                            Members member = getTableView().getItems().get(getIndex());
-                            Alert confirmDeleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
-                            confirmDeleteAlert.setTitle("Confirm Delete");
-                            confirmDeleteAlert.setHeaderText("Are you sure you want to delete this member?");
-                            confirmDeleteAlert.setContentText("Member: " + member.getFirst_name() + " " + member.getLast_name());
-
-                            Optional<ButtonType> result = confirmDeleteAlert.showAndWait();
-                            if (result.isPresent() && result.get() == ButtonType.OK) {
-                                membersService.deleteMember(member.getMember_id());
-                                membersData.remove(member);
-                                member_tableView.refresh();
-                            }
-                        });
-
-                        // Xử lý sự kiện khi nhấn nút "Update"
-                        showDetailButton.setOnMouseClicked(event -> {
-
-                            Members member = getTableView().getItems().get(getIndex());
-                            int memberId = member.getMember_id();
-                            MemberUpdateFormController memberUpdateFormController = new MemberUpdateFormController(memberId, member_tableView);
-                            stageManager.loadMemberUpdateFormDialog(memberUpdateFormController);
-                            member_tableView.refresh();
-
-                        });
-
-                        // Thiết lập chiều rộng và chiều cao cho các hình ảnh
-                        deleteButton.setFitWidth(20);
-                        deleteButton.setFitHeight(20);
-                        Tooltip deleteTooltip = new Tooltip("Delete"); // Tạo Tooltip với nội dung "Delete"
-                        Tooltip.install(deleteButton, deleteTooltip); // Gắn Tooltip vào nút deleteButton
-
-                        showDetailButton.setFitWidth(20);
-                        showDetailButton.setFitHeight(20);
-                        Tooltip showDetailTooltip = new Tooltip("Show and Update"); // Tạo Tooltip với nội dung "Show and Update"
-                        Tooltip.install(showDetailButton, showDetailTooltip); // Gắn Tooltip vào nút showDetailButtonImage
-                    }
-
-
-                    @Override
-                    protected void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            HBox buttons = new HBox(20); // Tạo HBox với khoảng cách 10 giữa các nút
-                            buttons.setAlignment(Pos.CENTER); // Căn giữa các nút trong HBox
-                            buttons.getChildren().addAll(deleteButton, showDetailButton);
-                            setGraphic(buttons);
-                        }
-                    }
-                };
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    HBox buttons = new HBox(5);
+                    buttons.setAlignment(Pos.CENTER);
+                    buttons.getChildren().addAll(deleteButton, showDetailButton);
+                    setGraphic(buttons);
+                }
             }
         });
     }

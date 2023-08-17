@@ -154,7 +154,8 @@ public class StageManager {
 
     public void loadMemberControlStage() {
         Stage memberStage = new Stage();
-        Scene homeStage = sceneManager.loadScene("member-control.fxml");
+        MembersController membersController = new MembersController();
+        Scene homeStage = sceneManager.loadScene("member-control.fxml",membersController);
         memberStage.setScene(homeStage);
         setCurrentStage(memberStage);
         currentStage.initStyle(StageStyle.TRANSPARENT);
