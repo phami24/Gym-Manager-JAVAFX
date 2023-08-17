@@ -8,7 +8,7 @@ import javax.mail.internet.*;
 public class EmailService {
     private final String host = "smtp.gmail.com"; // Replace with your SMTP host
     private final String username = "buibinhminhpham2004@gmail.com"; // Replace with your SMTP username
-    private final String password = "minhbinh88772004"; // Replace with your SMTP password
+    private final String password = "itaursywrqhhqvxs"; // Replace with your SMTP password
 
     public void sendEmailToMembers(List<String> memberEmails, String subject, String content) {
         Properties properties = System.getProperties();

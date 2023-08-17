@@ -70,6 +70,11 @@
                         <Image url="@../image/logo1.png" />
                      </image>
                   </ImageView>
+                  <Label fx:id="errorMess" alignment="CENTER" layoutX="74.0" layoutY="368.0" prefHeight="17.0" prefWidth="239.0" textFill="#e41d1d">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="417.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="40.0" prefWidth="247.0" styleClass="nav-btn" stylesheets="@../css/style.css" text="Log in" textFill="#c0b2b2" AnchorPane.rightAnchor="72.0">
