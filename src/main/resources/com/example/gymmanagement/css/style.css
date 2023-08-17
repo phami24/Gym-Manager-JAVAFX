@@ -74,12 +74,13 @@
 }
 
 .sign-out{
-    -fx-background-color:#86a2bf;
+    -fx-background-color:transparent;
     -fx-cursor:hand;
     -fx-background-radius: 10px;
 }
 .sign-out:hover{
-    -fx-background-color:#627ca3;
+-fx-background-radius: 10px;
+    -fx-background-color:#636262;
 }
 .shadow{
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);
@@ -201,10 +202,15 @@
 }
 
 .card{
-    -fx-background-color: linear-gradient(to bottom,#c7c9c9,#c0c2c2,#a2a3a3);
+    -fx-border-color:#9e9e9b;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);
+    -fx-background-radius: 30px;
+    -fx-border-radius: 36px;
+    -fx-text-fill: black;
+    -fx-background-color: linear-gradient(to bottom,#626362,#8c8b87,#626362);
 }
 .card:hover{
--fx-background-color: linear-gradient(to bottom,#c7c9c9,#8b8c8c,#797a7a);
+-fx-background-color: linear-gradient(to bottom,rgb(147,144,141),#828281,#8b8c8c);
 }
 .nav-left{
 -fx-background-color: linear-gradient(to right,#545353,#2e2d2d);
@@ -228,4 +234,7 @@
     -fx-border-color: transparent;
     -fx-background-radius: 0;
     -fx-border-radius: 0;
+}
+.transparent-button:hover{
+-fx-background-color: #c5c7c7;
 }
