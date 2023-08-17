@@ -150,6 +150,8 @@
 }
 .table-row-cell:selected{
     -fx-background-color: #dedcd7;
+}
+.table-row-cell:selected .table-cell{
     -fx-text-fill: black;
 }
 .table-row-cell{
@@ -220,4 +222,10 @@
 }
 .btn-nav-left:hover{
 -fx-background-color: linear-gradient(to left,#6d6d6e,#818182);
+}
+.transparent-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
 }

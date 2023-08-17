@@ -2,6 +2,7 @@ package com.example.gymmanagement.controller;
 
 import com.example.gymmanagement.model.entity.Classes;
 import com.example.gymmanagement.model.entity.Instructors;
+import com.example.gymmanagement.model.entity.Members;
 import com.example.gymmanagement.model.repository.ClassesRepository;
 import com.example.gymmanagement.model.repository.InstructorRepository;
 import com.example.gymmanagement.model.repository.MembershipStatusRepository;
@@ -9,6 +10,7 @@ import com.example.gymmanagement.model.repository.MembershipTypesRepository;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -76,7 +78,11 @@ public class GymClassController implements Initializable {
     @FXML
     private Button buttonAdd;
 
+    @FXML
+    private TextField searchClass;
+
     private ObservableList<Classes> classesData = FXCollections.observableArrayList();
+    private FilteredList<Classes> filteredMembersList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -92,72 +98,112 @@ public class GymClassController implements Initializable {
         List<Classes> classesList = gymClassRepository.getAllClasses();
         classesData.addAll(classesList);
         class_tableView.setItems(classesData);
+
+        //search
+        classesData = FXCollections.observableArrayList(gymClassRepository.getAllClasses());
+
+        // Sử dụng FilteredList để lọc danh sách thành viên dựa trên tên
+        filteredMembersList = new FilteredList<>(classesData, p -> true);
+
+        // Liên kết TableView với FilteredList để hiển thị danh sách đã lọc
+        class_tableView.setItems(filteredMembersList);
+
+        // Bắt sự kiện khi người dùng nhập tên vào TextField
+        searchClass.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Lọc danh sách thành viên dựa trên tên mới
+            filteredMembersList.setPredicate(classes -> {
+                // Nếu không có tên nào được nhập, hiển thị tất cả các thành viên
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Chuyển đổi tên thành viên và tên mới sang chữ thường để so sánh không phân biệt chữ hoa/thường
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                // Kiểm tra nếu tên thành viên chứa tên mới
+                if (classes.getClass_name().toLowerCase().contains(lowerCaseFilter) ) {
+                    return true; // Thành viên thỏa mãn điều kiện lọc
+                }
+
+                return false; // Không tìm thấy tên trong thành viên
+            });
+        });
     }
     @FXML
     public void close() {
+        stageManager.loadHomeStage();
         stage.close();
     }
     @FXML
     void homepage(MouseEvent event) {
         stageManager.loadHomeStage();
     }
+    @FXML
+    void dashboard(MouseEvent event) {
+        stageManager.loadDashBoard();
+        stage.close();
+    }
+    @FXML
+    void logOut(MouseEvent event) {
+        stage.close();
+        Stage loginStage = new Stage();
+        stageManager.setCurrentStage(loginStage);
+        stageManager.loadLoginStage();
+    }
     private void setupActionColumn() {
-        action.setCellFactory(new Callback<>() {
+        action.setCellFactory(column -> new TableCell<Classes, Void>() {
+            private final Button deleteButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/removed.png"))));
+            private final Button showDetailButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/refresh.png"))));
+
+            {
+                deleteButton.setOnAction(event -> {
+                    Classes member = getTableView().getItems().get(getIndex());
+                    Alert confirmDeleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                    confirmDeleteAlert.setTitle("Confirm Delete");
+                    confirmDeleteAlert.setHeaderText("Are you sure you want to delete this member?");
+                    confirmDeleteAlert.setContentText("Member: " + member.getClass_name());
+
+                    Optional<ButtonType> result = confirmDeleteAlert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK) {
+                        gymClassRepository.deleteClass(member.getClass_id());
+                        classesData.remove(member);
+                        class_tableView.refresh();
+                    }
+                });
+
+                showDetailButton.setOnAction(event -> {
+                    Classes member = getTableView().getItems().get(getIndex());
+                    int memberId = member.getClass_id();
+                    GymClassUpdateController memberUpdateFormController = new GymClassUpdateController(memberId, class_tableView);
+                    stageManager.loadClassUpdateFormDialog(memberUpdateFormController);
+                    class_tableView.refresh();
+                });
+
+                // Thiết lập kích thước cho các nút
+                deleteButton.setPrefSize(10, 10);
+                showDetailButton.setPrefSize(10, 10);
+                ImageView deleteImageView = (ImageView) deleteButton.getGraphic();
+                deleteImageView.setFitWidth(20);
+                deleteImageView.setFitHeight(20);
+
+                ImageView showDetailImageView = (ImageView) showDetailButton.getGraphic();
+                showDetailImageView.setFitWidth(20);
+                showDetailImageView.setFitHeight(20);
+                deleteButton.getStyleClass().add("transparent-button");
+                showDetailButton.getStyleClass().add("transparent-button");
+            }
+
             @Override
-            public TableCell<Classes, Void> call(final TableColumn<Classes, Void> param) {
-                return new TableCell<>() {
-                    private final ImageView deleteButton = new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/trash-bin.png")));
-                    private final ImageView showDetailButton = new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/document.png")));
-
-                    {
-                        deleteButton.setOnMouseClicked(event -> {
-                            Classes gymClass = getTableView().getItems().get(getIndex());
-                            Alert confirmDeleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
-                            confirmDeleteAlert.setTitle("Confirm Delete");
-                            confirmDeleteAlert.setHeaderText("Are you sure you want to delete this class?");
-                            confirmDeleteAlert.setContentText("Class: " + gymClass.getClass_name());
-
-                            Optional<ButtonType> result = confirmDeleteAlert.showAndWait();
-                            if (result.isPresent() && result.get() == ButtonType.OK) {
-                                gymClassRepository.deleteClass(gymClass.getClass_id());
-                                classesData.remove(gymClass);
-                                class_tableView.refresh();
-                            }
-                        });
-
-                        showDetailButton.setOnMouseClicked(event -> {
-                            Classes gymClass = getTableView().getItems().get(getIndex());
-                            int classId = gymClass.getClass_id();
-//                             Create an instance of GymClassUpdateFormController with classId
-                             GymClassUpdateController classUpdateFormController = new GymClassUpdateController(classId, class_tableView);
-                             stageManager.loadClassUpdateFormDialog(classUpdateFormController);
-                            class_tableView.refresh();
-                        });
-
-                        deleteButton.setFitWidth(20);
-                        deleteButton.setFitHeight(20);
-                        Tooltip deleteTooltip = new Tooltip("Delete");
-                        Tooltip.install(deleteButton, deleteTooltip);
-
-                        showDetailButton.setFitWidth(20);
-                        showDetailButton.setFitHeight(20);
-                        Tooltip showDetailTooltip = new Tooltip("Show and Update");
-                        Tooltip.install(showDetailButton, showDetailTooltip);
-                    }
-
-                    @Override
-                    protected void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            HBox buttons = new HBox(20);
-                            buttons.setAlignment(Pos.CENTER);
-                            buttons.getChildren().addAll(deleteButton, showDetailButton);
-                            setGraphic(buttons);
-                        }
-                    }
-                };
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    HBox buttons = new HBox(5);
+                    buttons.setAlignment(Pos.CENTER);
+                    buttons.getChildren().addAll(deleteButton, showDetailButton);
+                    setGraphic(buttons);
+                }
             }
         });
     }

@@ -155,11 +155,12 @@ public class StageManager {
     public void loadMemberControlStage() {
         Stage memberStage = new Stage();
         MembersController membersController = new MembersController();
-        Scene homeStage = sceneManager.loadScene("member-control.fxml",membersController);
-        memberStage.setScene(homeStage);
+        Scene memberScene = sceneManager.loadScene("member-control.fxml",membersController);
+        memberStage.setScene(memberScene);
         setCurrentStage(memberStage);
+        membersController.setStage(currentStage);
         currentStage.initStyle(StageStyle.TRANSPARENT);
-        homeStage.setFill(Color.TRANSPARENT);
+        memberScene.setFill(Color.TRANSPARENT);
         showStage();
     }
 
@@ -169,6 +170,7 @@ public class StageManager {
         Scene classScenne = sceneManager.loadScene("gymclass-control.fxml", gymClassController);
         classStage.setScene(classScenne);
         setCurrentStage(classStage);
+        gymClassController.setStage(classStage);
         currentStage.initStyle(StageStyle.TRANSPARENT);
         classScenne.setFill(Color.TRANSPARENT);
         showStage();
@@ -176,9 +178,11 @@ public class StageManager {
 
     public void loadInstructorControlStage() {
         Stage instructorStage = new Stage();
-        Scene homeStage = sceneManager.loadScene("instructor-control.fxml");
+        InstructorController instructorController = new InstructorController();
+        Scene homeStage = sceneManager.loadScene("instructor-control.fxml",instructorController);
         instructorStage.setScene(homeStage);
         setCurrentStage(instructorStage);
+        instructorController.setStage(instructorStage);
         currentStage.initStyle(StageStyle.TRANSPARENT);
         homeStage.setFill(Color.TRANSPARENT);
         showStage();
@@ -186,9 +190,11 @@ public class StageManager {
 
     public void loadEquipmentControlStage() {
         Stage equipmentStage = new Stage();
-        Scene homeStage = sceneManager.loadScene("equipment-control.fxml");
+        EquipmentController equipmentController = new EquipmentController();
+        Scene homeStage = sceneManager.loadScene("equipment-control.fxml",equipmentController);
         equipmentStage.setScene(homeStage);
         setCurrentStage(equipmentStage);
+        equipmentController.setStage(equipmentStage);
         currentStage.initStyle(StageStyle.TRANSPARENT);
         homeStage.setFill(Color.TRANSPARENT);
         showStage();

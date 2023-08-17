@@ -11,6 +11,7 @@ import com.example.gymmanagement.model.service.impl.MemberServiceImpl;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -30,6 +31,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -52,6 +54,8 @@ public class MembersController implements Initializable {
 
     private final StageManager stageManager = new StageManager();
 
+    @FXML
+    private TextField searchMember;
     @FXML
     private TableColumn<Members, Void> action;
 
@@ -88,6 +92,7 @@ public class MembersController implements Initializable {
 
     private MembersService membersService = new MemberServiceImpl();
     private ObservableList<Members> membersData = FXCollections.observableArrayList();
+    private FilteredList<Members> filteredMembersList;
 
 
     @Override
@@ -111,17 +116,67 @@ public class MembersController implements Initializable {
         List<Members> membersList = membersRepository.getAllMembers();
         membersData.addAll(membersList);
         member_tableView.setItems(membersData);
+
+
+        //search
+        membersData = FXCollections.observableArrayList(membersService.getAllMembers());
+
+        // Sử dụng FilteredList để lọc danh sách thành viên dựa trên tên
+        filteredMembersList = new FilteredList<>(membersData, p -> true);
+
+        // Liên kết TableView với FilteredList để hiển thị danh sách đã lọc
+        member_tableView.setItems(filteredMembersList);
+
+        // Bắt sự kiện khi người dùng nhập tên vào TextField
+        searchMember.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Lọc danh sách thành viên dựa trên tên mới
+            filteredMembersList.setPredicate(member -> {
+                // Nếu không có tên nào được nhập, hiển thị tất cả các thành viên
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Chuyển đổi tên thành viên và tên mới sang chữ thường để so sánh không phân biệt chữ hoa/thường
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                // Kiểm tra nếu tên thành viên chứa tên mới
+                if (member.getFirst_name().toLowerCase().contains(lowerCaseFilter) ||
+                        member.getLast_name().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Thành viên thỏa mãn điều kiện lọc
+                }
+
+                return false; // Không tìm thấy tên trong thành viên
+            });
+        });
     }
+
+
     @FXML
-    public void close(MouseEvent event) {
-        Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        currentStage.close();
+    void close(MouseEvent event) {
+        stageManager.loadHomeStage();
+        stage.close();
     }
+
     @FXML
     void homepage(MouseEvent event) {
         stageManager.loadHomeStage();
         stage.close();
     }
+
+    @FXML
+    void dashboard(MouseEvent event) {
+        stageManager.loadDashBoard();
+        stage.close();
+    }
+
+    @FXML
+    void logOut(MouseEvent event) {
+        stage.close();
+        Stage loginStage = new Stage();
+        stageManager.setCurrentStage(loginStage);
+        stageManager.loadLoginStage();
+    }
+
     private void setupActionColumn() {
         action.setCellFactory(column -> new TableCell<Members, Void>() {
             private final Button deleteButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/removed.png"))));
@@ -152,15 +207,17 @@ public class MembersController implements Initializable {
                 });
 
                 // Thiết lập kích thước cho các nút
-                deleteButton.setPrefSize(5, 5);
-                showDetailButton.setPrefSize(5, 5);
+                deleteButton.setPrefSize(10, 10);
+                showDetailButton.setPrefSize(10, 10);
                 ImageView deleteImageView = (ImageView) deleteButton.getGraphic();
-                deleteImageView.setFitWidth(10);
-                deleteImageView.setFitHeight(10);
+                deleteImageView.setFitWidth(20);
+                deleteImageView.setFitHeight(20);
 
                 ImageView showDetailImageView = (ImageView) showDetailButton.getGraphic();
-                showDetailImageView.setFitWidth(10);
-                showDetailImageView.setFitHeight(10);
+                showDetailImageView.setFitWidth(20);
+                showDetailImageView.setFitHeight(20);
+                deleteButton.getStyleClass().add("transparent-button");
+                showDetailButton.getStyleClass().add("transparent-button");
             }
 
             @Override
@@ -234,10 +291,35 @@ public class MembersController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void handleExportMemberButtonAction() {
         List<Members> membersList = member_tableView.getItems(); // Get data from TableView
         exportToExcel(membersList); // Call the exportToExcel() method of ExcelExporter class
 
     }
+
+    @FXML
+    private void searchMembers() {
+        String searchTerm = searchMember.getText().trim();
+
+        // Kiểm tra xem người dùng đã nhập tên cần tìm kiếm hay chưa
+        if (searchTerm.isEmpty()) {
+            // Hiển thị thông báo lỗi nếu người dùng chưa nhập tên
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Thông báo");
+            alert.setHeaderText(null);
+            alert.setContentText("Vui lòng nhập tên thành viên cần tìm kiếm.");
+            alert.showAndWait();
+            return;
+        }
+
+        // Thực hiện tìm kiếm thành viên trong cơ sở dữ liệu
+        List<Members> searchResults = membersService.searchMembersByName(searchTerm);
+
+        // Hiển thị kết quả lên TableView
+        member_tableView.getItems().clear();
+        member_tableView.getItems().addAll(searchResults);
+    }
+
 }

@@ -13,4 +13,5 @@ public interface MembersService {
     int getTotalMembers();
     List<Members> getMembersByNames(String firstName, String lastName);
     int getNumberOfMembersByInstructorId(int instructorId);
+    List<Members> searchMembersByName(String name);
 }

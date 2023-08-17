@@ -1,5 +1,6 @@
 package com.example.gymmanagement.controller;
 
+import com.example.gymmanagement.model.entity.Classes;
 import com.example.gymmanagement.model.entity.Instructors;
 import com.example.gymmanagement.model.entity.Members;
 import com.example.gymmanagement.model.repository.InstructorRepository;
@@ -11,11 +12,13 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
@@ -83,10 +86,13 @@ public class InstructorController implements Initializable {
 
     @FXML
     private TableView<Instructors> tableView;
+    @FXML
+    private TextField searchInstructor;
 
     private InstructorsService instructorsService = new InstructorsServiceImpl();
 
     private ObservableList<Instructors> instructorsData = FXCollections.observableArrayList();
+    private FilteredList<Instructors> filteredMembersList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -119,75 +125,116 @@ public class InstructorController implements Initializable {
         //exported to excel
 //        exportedInstructor_btn.setOnAction(event -> exportToExcel());
 
+        //search
+
+        instructorsData = FXCollections.observableArrayList(instructorRepository.getAllInstructors());
+
+        // Sử dụng FilteredList để lọc danh sách thành viên dựa trên tên
+        filteredMembersList = new FilteredList<>(instructorsData, p -> true);
+
+        // Liên kết TableView với FilteredList để hiển thị danh sách đã lọc
+        tableView.setItems(filteredMembersList);
+
+        // Bắt sự kiện khi người dùng nhập tên vào TextField
+        searchInstructor.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Lọc danh sách thành viên dựa trên tên mới
+            filteredMembersList.setPredicate(member -> {
+                // Nếu không có tên nào được nhập, hiển thị tất cả các thành viên
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Chuyển đổi tên thành viên và tên mới sang chữ thường để so sánh không phân biệt chữ hoa/thường
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                // Kiểm tra nếu tên thành viên chứa tên mới
+                if (member.getFirst_name().toLowerCase().contains(lowerCaseFilter) ||
+                        member.getLast_name().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Thành viên thỏa mãn điều kiện lọc
+                }
+
+                return false; // Không tìm thấy tên trong thành viên
+            });
+        });
     }
 
     @FXML
     public void close() {
-        javafx.application.Platform.exit();
+        stageManager.loadHomeStage();
+        stage.close();
     }
     @FXML
     void homepage(MouseEvent event) {
         stageManager.loadHomeStage();
         stage.close();
     }
+    @FXML
+    void dashboard(MouseEvent event) {
+        stageManager.loadDashBoard();
+        stage.close();
+    }
+    @FXML
+    void logOut(MouseEvent event) {
+        stage.close();
+        Stage loginStage = new Stage();
+        stageManager.setCurrentStage(loginStage);
+        stageManager.loadLoginStage();
+    }
 
     private void setupActionColumn() {
-        action.setCellFactory(new Callback<>() {
+        action.setCellFactory(column -> new TableCell<Instructors, Void>() {
+            private final Button deleteButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/removed.png"))));
+            private final Button showDetailButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/refresh.png"))));
+
+            {
+                deleteButton.setOnAction(event -> {
+                    Instructors member = getTableView().getItems().get(getIndex());
+                    Alert confirmDeleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                    confirmDeleteAlert.setTitle("Confirm Delete");
+                    confirmDeleteAlert.setHeaderText("Are you sure you want to delete this member?");
+                    confirmDeleteAlert.setContentText("Member: " + member.getFirst_name() + " " + member.getLast_name());
+
+                    Optional<ButtonType> result = confirmDeleteAlert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK) {
+                        instructorsService.deleteInstructor(member.getInstructor_id());
+                        instructorsData.remove(member);
+                        tableView.refresh();
+                    }
+                });
+
+                showDetailButton.setOnAction(event -> {
+                    Instructors member = getTableView().getItems().get(getIndex());
+                    int memberId = member.getInstructor_id();
+                    InstructorUpdateFormController memberUpdateFormController = new InstructorUpdateFormController(memberId, tableView);
+                    stageManager.loadInstructorUpdateFormDialog(memberUpdateFormController);
+                    tableView.refresh();
+                });
+
+                // Thiết lập kích thước cho các nút
+                deleteButton.setPrefSize(10, 10);
+                showDetailButton.setPrefSize(10, 10);
+                ImageView deleteImageView = (ImageView) deleteButton.getGraphic();
+                deleteImageView.setFitWidth(20);
+                deleteImageView.setFitHeight(20);
+
+                ImageView showDetailImageView = (ImageView) showDetailButton.getGraphic();
+                showDetailImageView.setFitWidth(20);
+                showDetailImageView.setFitHeight(20);
+                deleteButton.getStyleClass().add("transparent-button");
+                showDetailButton.getStyleClass().add("transparent-button");
+            }
+
             @Override
-            public TableCell<Instructors, Void> call(final TableColumn<Instructors, Void> param) {
-                return new TableCell<>() {
-                    private final ImageView deleteButton = new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/trash-bin.png")));
-                    private final ImageView showDetailButton = new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/document.png")));
-
-                    {
-                        deleteButton.setOnMouseClicked(event -> {
-                            Instructors instructor = getTableView().getItems().get(getIndex());
-                            Alert confirmDeleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
-                            confirmDeleteAlert.setTitle("Confirm Delete");
-                            confirmDeleteAlert.setHeaderText("Are you sure you want to delete this instructor?");
-                            confirmDeleteAlert.setContentText("Instructor: " + instructor.getFirst_name() + " " + instructor.getLast_name());
-
-                            Optional<ButtonType> result = confirmDeleteAlert.showAndWait();
-                            if (result.isPresent() && result.get() == ButtonType.OK) {
-                                instructorRepository.deleteInstructor(instructor.getInstructor_id());
-                                instructorsData.remove(instructor);
-                                tableView.refresh();
-                            }
-                        });
-
-                        showDetailButton.setOnMouseClicked(event -> {
-                            Instructors instructor = getTableView().getItems().get(getIndex());
-                            int instructorId = instructor.getInstructor_id();
-
-                            InstructorUpdateFormController instructorUpdateFormController = new InstructorUpdateFormController(instructorId, tableView);
-                            stageManager.loadInstructorUpdateFormDialog(instructorUpdateFormController);
-                            tableView.refresh();
-                        });
-
-                        deleteButton.setFitWidth(20);
-                        deleteButton.setFitHeight(20);
-                        Tooltip deleteTooltip = new Tooltip("Delete");
-                        Tooltip.install(deleteButton, deleteTooltip);
-
-                        showDetailButton.setFitWidth(20);
-                        showDetailButton.setFitHeight(20);
-                        Tooltip showDetailTooltip = new Tooltip("Show and Update");
-                        Tooltip.install(showDetailButton, showDetailTooltip);
-                    }
-
-                    @Override
-                    protected void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            HBox buttons = new HBox(20);
-                            buttons.setAlignment(Pos.CENTER);
-                            buttons.getChildren().addAll(deleteButton, showDetailButton);
-                            setGraphic(buttons);
-                        }
-                    }
-                };
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    HBox buttons = new HBox(5);
+                    buttons.setAlignment(Pos.CENTER);
+                    buttons.getChildren().addAll(deleteButton, showDetailButton);
+                    setGraphic(buttons);
+                }
             }
         });
     }

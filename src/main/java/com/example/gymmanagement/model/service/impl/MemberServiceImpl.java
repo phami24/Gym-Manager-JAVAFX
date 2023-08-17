@@ -52,4 +52,8 @@ public class MemberServiceImpl implements MembersService {
     public int getTotalMembers() {
         return membersRepository.getTotalMembers();
     }
+    @Override
+    public List<Members> searchMembersByName(String name) {
+        return membersRepository.searchMembersByName(name);
+    }
 }
