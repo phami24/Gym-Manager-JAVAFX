@@ -2,12 +2,14 @@ package com.example.gymmanagement.controller;
 
 import com.example.gymmanagement.model.entity.Equipment;
 import com.example.gymmanagement.model.entity.Instructors;
+import com.example.gymmanagement.model.entity.Members;
 import com.example.gymmanagement.model.repository.EquipmentRepository;
 import com.example.gymmanagement.model.service.EquipmentService;
 import com.example.gymmanagement.model.service.impl.EquipmentServiceImpl;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -82,12 +84,28 @@ public class EquipmentController implements Initializable {
     private ObservableList<Equipment> equipmentData = FXCollections.observableArrayList();
     @FXML
     public void close() {
+        stageManager.loadHomeStage();
         stage.close();
     }
     @FXML
     void homepage(MouseEvent event) {
         stageManager.loadHomeStage();
     }
+    @FXML
+    void dashboard(MouseEvent event) {
+        stageManager.loadDashBoard();
+        stage.close();
+    }
+    @FXML
+    void logOut(MouseEvent event) {
+        stage.close();
+        Stage loginStage = new Stage();
+        stageManager.setCurrentStage(loginStage);
+        stageManager.loadLoginStage();
+    }
+    @FXML
+    private TextField searchQuipment;
+    private FilteredList<Equipment> filteredMembersList;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Cài đặt cách dữ liệu của các cột sẽ được lấy từ đối tượng Equipment và gắn vào TableView
@@ -105,67 +123,92 @@ public class EquipmentController implements Initializable {
         List<Equipment> equipmentList = equipmentRepository.getAllEquipment();
         equipmentData.addAll(equipmentList);
         equipment_tableView.setItems(equipmentData);
+        //search
+
+        equipmentData = FXCollections.observableArrayList(equipmentService.getAllEquipment());
+
+        // Sử dụng FilteredList để lọc danh sách thành viên dựa trên tên
+        filteredMembersList = new FilteredList<>(equipmentData, p -> true);
+
+        // Liên kết TableView với FilteredList để hiển thị danh sách đã lọc
+        equipment_tableView.setItems(filteredMembersList);
+
+        // Bắt sự kiện khi người dùng nhập tên vào TextField
+        searchQuipment.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Lọc danh sách thành viên dựa trên tên mới
+            filteredMembersList.setPredicate(member -> {
+                // Nếu không có tên nào được nhập, hiển thị tất cả các thành viên
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Chuyển đổi tên thành viên và tên mới sang chữ thường để so sánh không phân biệt chữ hoa/thường
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                // Kiểm tra nếu tên thành viên chứa tên mới
+                if (member.getEquipmentName().toLowerCase().contains(lowerCaseFilter) ) {
+                    return true; // Thành viên thỏa mãn điều kiện lọc
+                }
+
+                return false; // Không tìm thấy tên trong thành viên
+            });
+        });
     }
 
     private void setupActionColumn() {
-        action.setCellFactory(new Callback<>() {
+        action.setCellFactory(column -> new TableCell<Equipment, Void>() {
+            private final Button deleteButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/removed.png"))));
+            private final Button showDetailButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/refresh.png"))));
+
+            {
+                deleteButton.setOnAction(event -> {
+                    Equipment member = getTableView().getItems().get(getIndex());
+                    Alert confirmDeleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                    confirmDeleteAlert.setTitle("Confirm Delete");
+                    confirmDeleteAlert.setHeaderText("Are you sure you want to delete this member?");
+                    confirmDeleteAlert.setContentText("Member: " + member.getEquipmentName());
+
+                    Optional<ButtonType> result = confirmDeleteAlert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK) {
+                        equipmentService.deleteEquipment(member.getEquipmentId());
+                        equipmentData.remove(member);
+                        equipment_tableView.refresh();
+                    }
+                });
+
+                showDetailButton.setOnAction(event -> {
+                    Equipment member = getTableView().getItems().get(getIndex());
+                    int memberId = member.getEquipmentId();
+                    EquipmentUpdateController memberUpdateFormController = new EquipmentUpdateController(memberId, equipment_tableView);
+                    stageManager.loadEquipmentUpdateFormDialog(memberUpdateFormController);
+                    equipment_tableView.refresh();
+                });
+
+                // Thiết lập kích thước cho các nút
+                deleteButton.setPrefSize(10, 10);
+                showDetailButton.setPrefSize(10, 10);
+                ImageView deleteImageView = (ImageView) deleteButton.getGraphic();
+                deleteImageView.setFitWidth(20);
+                deleteImageView.setFitHeight(20);
+
+                ImageView showDetailImageView = (ImageView) showDetailButton.getGraphic();
+                showDetailImageView.setFitWidth(20);
+                showDetailImageView.setFitHeight(20);
+                deleteButton.getStyleClass().add("transparent-button");
+                showDetailButton.getStyleClass().add("transparent-button");
+            }
+
             @Override
-            public TableCell<Equipment, Void> call(final TableColumn<Equipment, Void> param) {
-                return new TableCell<>() {
-                    private final ImageView deleteButton = new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/trash-bin.png")));
-                    private final ImageView showDetailButton = new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/document.png")));
-
-                    {
-                        // Xử lý sự kiện khi nhấn nút "Delete"
-                        deleteButton.setOnMouseClicked(event -> {
-                            Equipment equipment = getTableView().getItems().get(getIndex());
-                            Alert confirmDeleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
-                            confirmDeleteAlert.setTitle("Confirm Delete");
-                            confirmDeleteAlert.setHeaderText("Are you sure you want to delete this equipment?");
-                            confirmDeleteAlert.setContentText("Equipment: " + equipment.getEquipmentName());
-
-                            Optional<ButtonType> result = confirmDeleteAlert.showAndWait();
-                            if (result.isPresent() && result.get() == ButtonType.OK) {
-                                equipmentService.deleteEquipment(equipment.getEquipmentId());
-                                equipmentData.remove(equipment);
-                                equipment_tableView.refresh();
-                            }
-                        });
-
-                        // Xử lý sự kiện khi nhấn nút "Update"
-                        showDetailButton.setOnMouseClicked(event -> {
-                            Equipment equipment = getTableView().getItems().get(getIndex());
-                            int equipmentId = equipment.getEquipmentId();
-                            EquipmentUpdateController equipmentUpdateFormController = new EquipmentUpdateController(equipmentId, equipment_tableView);
-                            stageManager.loadEquipmentUpdateFormDialog(equipmentUpdateFormController);
-                            equipment_tableView.refresh();
-                        });
-
-                        // Thiết lập chiều rộng và chiều cao cho các hình ảnh
-                        deleteButton.setFitWidth(20);
-                        deleteButton.setFitHeight(20);
-                        Tooltip deleteTooltip = new Tooltip("Delete"); // Tạo Tooltip với nội dung "Delete"
-                        Tooltip.install(deleteButton, deleteTooltip); // Gắn Tooltip vào nút deleteButton
-
-                        showDetailButton.setFitWidth(20);
-                        showDetailButton.setFitHeight(20);
-                        Tooltip showDetailTooltip = new Tooltip("Show and Update"); // Tạo Tooltip với nội dung "Show and Update"
-                        Tooltip.install(showDetailButton, showDetailTooltip); // Gắn Tooltip vào nút showDetailButtonImage
-                    }
-
-                    @Override
-                    protected void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            HBox buttons = new HBox(20); // Tạo HBox với khoảng cách 10 giữa các nút
-                            buttons.setAlignment(Pos.CENTER); // Căn giữa các nút trong HBox
-                            buttons.getChildren().addAll(deleteButton, showDetailButton);
-                            setGraphic(buttons);
-                        }
-                    }
-                };
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    HBox buttons = new HBox(5);
+                    buttons.setAlignment(Pos.CENTER);
+                    buttons.getChildren().addAll(deleteButton, showDetailButton);
+                    setGraphic(buttons);
+                }
             }
         });
     }

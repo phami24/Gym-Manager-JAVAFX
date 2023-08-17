@@ -319,4 +319,40 @@ public class MembersRepository {
             updateMember(member);
         }
     }
+
+    public List<Members> searchMembersByName(String name) {
+        List<Members> results = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = jdbcConnect.getJDBCConnection();
+            statement = connection.prepareStatement("SELECT * FROM members WHERE first_name LIKE ? OR last_name LIKE ?");
+
+            statement.setString(1, "%" + name + "%");
+            statement.setString(2, "%" + name + "%");
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Members member = new Members();
+                member.setMember_id(resultSet.getInt("member_id"));
+                member.setJoin_date(resultSet.getString("join_date"));
+                member.setEnd_date(resultSet.getString("end_date"));
+                member.setMembership_status_id(Integer.parseInt(resultSet.getString("membership_status_id")));
+                member.setMembership_type_id(resultSet.getInt("membership_type_id"));
+                member.setFirst_name(resultSet.getString("first_name"));
+                member.setLast_name(resultSet.getString("last_name"));
+                member.setDob(resultSet.getDate("dob").toString());
+                member.setGender(resultSet.getString("gender"));
+                member.setEmail(resultSet.getString("email"));
+                member.setPhone_number(resultSet.getString("phone_number"));
+                member.setAddress(resultSet.getString("address"));
+
+                results.add(member);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
 }
