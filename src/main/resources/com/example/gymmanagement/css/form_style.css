@@ -11,6 +11,7 @@
     -fx-background-radius: 6px;
     -fx-border-radius: 6px;
     -fx-border-width: 0.5 ;
+    -fx-text-fill: white;
 }
 .btn-add{
 -fx-background-color:transparent;
@@ -26,3 +27,19 @@
 -fx-text-fill:#fff;
 -fx-background-color: linear-gradient(to bottom,#666464,#0a0a0a);
 }
+
+.btn-update{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+    -fx-border-color:#aba9a9;
+    -fx-background-color:#1f1e1e;
+    -fx-background-radius:30px;
+    -fx-border-radius: 20px;
+    -fx-alignment:CENTER;
+    -fx-text-fill:#fff;
+}
+.btn-update:hover{
+    -fx-text-fill:#fff;
+    -fx-background-color: linear-gradient(to bottom,#666464,#0a0a0a);
+}
+
