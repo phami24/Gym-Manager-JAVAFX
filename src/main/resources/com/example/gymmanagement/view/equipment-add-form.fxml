@@ -1,75 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.ComboBox?>
-
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Text?>
-<AnchorPane prefHeight="344.0" prefWidth="410.0"
-            style="-fx-border-radius: 25; -fx-background-radius: 25; -fx-background-color: white;"
-            xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="580.0" prefWidth="400.0" style="-fx-border-radius: 25; -fx-background-radius: 25; -fx-background-color: rgba(13, 12, 12,0.9);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <!-- Đường dẫn đến tập tin CSS -->
-        <URL value="@../css/addmember.css"/>
+        <URL value="@../css/addmember.css" />
     </stylesheets>
-    <AnchorPane layoutY="60.0" opacity="0.2" prefHeight="252.0" prefWidth="410.0" style="-fx-background-color: #ccc;"/>
-    <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="37.0" prefWidth="36.0"
-                style="-fx-background-radius: 10; -fx-background-color: #d8ddd8;">
-        <Circle fill="#05f805" layoutX="18.0" layoutY="19.0" radius="13.0" stroke="#05f805" strokeType="INSIDE"/>
-        <Text layoutX="10.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+" wrappingWidth="15.96875">
-            <font>
-                <Font name="System Bold" size="24.0"/>
-            </font>
-        </Text>
-    </AnchorPane>
-    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="17.0" prefHeight="31.0" prefWidth="149.0"
-           text="ADD CLASS">
+
+    <TextField fx:id="equipmentIdField" layoutX="170.0" layoutY="119.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="equipmentIdLabel" layoutX="30.0" layoutY="124.0" text="Equipment ID" textFill="WHITE">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
+
+    <TextField fx:id="equipmentNameField" layoutX="170.0" layoutY="161.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="equipmentNameLabel" layoutX="30.0" layoutY="166.0" text="Equipment Name" textFill="WHITE">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
+
+    <TextField fx:id="categoryField" layoutX="170.0" layoutY="213.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="categoryLabel" layoutX="30.0" layoutY="227.0" text="Category" textFill="WHITE">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
+
+    <DatePicker fx:id="purchaseDatePicker" layoutX="170.0" layoutY="316.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="purchaseDateLabel" layoutX="30.0" layoutY="316.0" text="Purchase Date" textFill="WHITE">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
+
+    <TextField fx:id="priceField" layoutX="170.0" layoutY="262.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="priceLabel" layoutX="30.0" layoutY="267.0" text="Price" textFill="WHITE">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
+
+    <ComboBox fx:id="statusComboBox" layoutX="170.0" layoutY="366.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="statusLabel" layoutX="30.0" layoutY="371.0" text="Status" textFill="WHITE">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
+
+    <TextField fx:id="notesField" layoutX="170.0" layoutY="412.0" prefHeight="28.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <Label fx:id="notesLabel" layoutX="30.0" layoutY="417.0" text="Notes" textFill="WHITE">
+      <font>
+         <Font size="14.0" />
+      </font></Label>
+
+    <Button fx:id="buttonAdd" layoutX="277.0" layoutY="501.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="56.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-border-radius: 5px;" text="ADD">
         <font>
-            <Font size="21.0"/>
-        </font>
-    </Label>
-    <Circle fx:id="circle" fill="#f7070c" layoutX="384.0" layoutY="17.0" onMouseClicked="#close" radius="6.0"
-            stroke="#f7070c" strokeType="INSIDE"/>
-
-    <TextField fx:id="equipmentIdField" layoutX="18.0" layoutY="96.0" prefHeight="25.0" prefWidth="174.0"
-               style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;"/>
-    <Label fx:id="equipmentIdLabel" layoutX="18.0" layoutY="70.0" text="Equipment ID"/>
-
-    <TextField fx:id="equipmentNameField" layoutX="229.0" layoutY="96.0" prefHeight="25.0" prefWidth="174.0"
-               style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;"/>
-    <Label fx:id="equipmentNameLabel" layoutX="229.0" layoutY="70.0" text="Equipment Name"/>
-
-    <TextField fx:id="categoryField" layoutX="18.0" layoutY="152.0" prefHeight="25.0" prefWidth="174.0"
-               style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;"/>
-    <Label fx:id="categoryLabel" layoutX="18.0" layoutY="126.0" text="Category"/>
-
-    <DatePicker fx:id="purchaseDatePicker" layoutX="229.0" layoutY="152.0"
-                style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;"/>
-    <Label fx:id="purchaseDateLabel" layoutX="229.0" layoutY="126.0" text="Purchase Date"/>
-
-    <TextField fx:id="priceField" layoutX="18.0" layoutY="208.0" prefHeight="25.0" prefWidth="174.0"
-               style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;"/>
-    <Label fx:id="priceLabel" layoutX="18.0" layoutY="182.0" text="Price"/>
-
-    <ComboBox fx:id="statusComboBox" layoutX="229.0" layoutY="208.0" prefHeight="25.0" prefWidth="174.0"
-              style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;"/>
-    <Label fx:id="statusLabel" layoutX="229.0" layoutY="182.0" text="Status"/>
-
-    <TextField fx:id="notesField" layoutX="18.0" layoutY="264.0" prefHeight="25.0" prefWidth="385.0"
-               style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;"/>
-    <Label fx:id="notesLabel" layoutX="18.0" layoutY="238.0" text="Notes"/>
-
-    <Button fx:id="buttonAdd" layoutX="310.0" layoutY="439.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="56.0"
-            style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-border-radius: 5px;" text="ADD">
-        <font>
-            <Font name="System Bold" size="12.0"/>
+            <Font name="System Bold" size="12.0" />
         </font>
     </Button>
+   <AnchorPane layoutX="37.0" layoutY="17.0" prefHeight="37.0" prefWidth="36.0" style="-fx-background-radius: 10; -fx-background-color: #d8ddd8;" AnchorPane.leftAnchor="31.0">
+      <children>
+         <ImageView fitHeight="43.0" fitWidth="45.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../image/add-user.png" />
+            </image>
+         </ImageView>
+      </children>
+   </AnchorPane>
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="126.0" layoutY="23.0" prefHeight="31.0" prefWidth="202.0" text="ADD EQUIPMENT" textFill="WHITE">
+      <font>
+         <Font name="Arial Rounded MT Bold" size="21.0" />
+      </font>
+   </Label>
+   <Button layoutX="366.0" layoutY="20.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="22.0" styleClass="btn-close" stylesheets="@../css/form_style.css" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="7.0">
+      <graphic>
+         <ImageView fitHeight="24.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../image/close.png" />
+            </image>
+         </ImageView>
+      </graphic>
+   </Button>
 </AnchorPane>

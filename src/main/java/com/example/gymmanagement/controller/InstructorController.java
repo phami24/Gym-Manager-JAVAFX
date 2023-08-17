@@ -123,11 +123,12 @@ public class InstructorController implements Initializable {
 
     @FXML
     public void close() {
-        stage.close();
+        javafx.application.Platform.exit();
     }
     @FXML
     void homepage(MouseEvent event) {
         stageManager.loadHomeStage();
+        stage.close();
     }
 
     private void setupActionColumn() {

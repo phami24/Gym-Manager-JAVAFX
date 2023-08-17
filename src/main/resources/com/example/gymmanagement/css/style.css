@@ -124,7 +124,6 @@
 
 .table-view{
     -fx-background-color:transparent;
-    -fx-border-color:#9BABB8;
     -fx-border-radius:8px;
     -fx-border-width:1px;
     -fx-padding:0px;
@@ -142,24 +141,26 @@
 .table-view,.column-header,.filter{
     -fx-background-color:transparent;
     -fx-size:40px;
+    -fx-text-fill: black;
 }
 
 .table-view .column-header .label{
     -fx-text-fill:#fff;
     -fx-font-family: 'Ubuntu', sans-serif;
 }
-.table-row-cell:selected {
-    -fx-background-color: #bdb8ae;
+.table-row-cell:selected{
+    -fx-background-color: #dedcd7;
+    -fx-text-fill: black;
 }
-.table-row-cell {
+.table-row-cell{
     -fx-background-color: #f7f5f0;
     -fx-background-insets: 0;
-    -fx-text-fill: #0f0f0f;
+    -fx-text-fill: #141414;
     -fx-font-weight: normal;
 }
 
 /* Giao diện khi rê chuột qua hàng */
-.table-row-cell:hover {
+.table-row-cell:hover{
     -fx-background-color: #dedcd7;
     -fx-text-fill: #0f0f0f;
 }
@@ -176,6 +177,7 @@
    -fx-border-radius: 10px;
    -fx-text-fill:#fff;
 -fx-background-color: linear-gradient(to bottom,#636262,#1f1d1d);
+-fx-border-color: #b8b8ba;
 }
 .pagination {
     -fx-skin: "com.sun.javafx.scene.control.skin.PaginationSkin";
@@ -204,4 +206,18 @@
 }
 .nav-left{
 -fx-background-color: linear-gradient(to right,#545353,#2e2d2d);
+-fx-background-radius: 0 20 0 20;
+-fx-cursor:hand;
+-fx-text-fill: white;
+
+}
+.nav-left:hover{
+-fx-background-color: linear-gradient(to bottom,#2e2d2d,#545353);
+}
+.btn-nav-left{
+ -fx-background-color:transparent;
+ -fx-cursor:hand;
+}
+.btn-nav-left:hover{
+-fx-background-color: linear-gradient(to left,#6d6d6e,#818182);
 }
