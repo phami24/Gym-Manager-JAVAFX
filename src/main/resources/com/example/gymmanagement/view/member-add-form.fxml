@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -8,74 +9,101 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="580.0" prefWidth="400.0" style="-fx-border-radius: 25; -fx-background-radius: 25; -fx-background-color: rgba(13, 12, 12,0.9);" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <!-- First Name -->
-    <Label fx:id="firstNameLabel" layoutX="30.0" layoutY="95.0" text="First Name" textFill="WHITE">
+    <TextField fx:id="firstNameField" layoutX="29.0" layoutY="95.0" opacity="0.71" prefHeight="32.0" prefWidth="341.0" promptText="Frist Name" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
-      </font></Label>
-    <TextField fx:id="firstNameField" layoutX="170.0" layoutY="95.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
-    <!-- Last Name -->
-    <Label fx:id="lastNameLabel" layoutX="30.0" layoutY="141.0" text="Last Name" textFill="WHITE">
+      </font>
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></TextField>
+    <TextField fx:id="lastNameField" layoutX="28.0" layoutY="136.0" opacity="0.71" prefHeight="32.0" prefWidth="342.0" promptText="Last Name" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
-      </font></Label>
-    <TextField fx:id="lastNameField" layoutX="170.0" layoutY="136.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+      </font>
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></TextField>
     <!-- Date of Birth -->
-    <Label fx:id="dobLabel" layoutX="30.0" layoutY="184.0" text="Date of Birth" textFill="WHITE">
+    <Label fx:id="dobLabel" layoutX="37.0" layoutY="184.0" opacity="0.71" text="Date of Birth" textFill="#aca5a5">
       <font>
          <Font size="14.0" />
       </font></Label>
-    <DatePicker fx:id="dobPicker" layoutX="170.0" layoutY="179.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
-    <!-- Gender -->
-    <Label fx:id="genderLabel" layoutX="30.0" layoutY="221.0" text="Gender" textFill="WHITE">
+    <DatePicker fx:id="dobPicker" layoutX="158.0" layoutY="180.0" prefHeight="20.0" prefWidth="212.0" style="-fx-background-color: #f4f4f4;" stylesheets="@../css/addmember.css" />
+    <TextField fx:id="genderField" layoutX="28.0" layoutY="216.0" opacity="0.71" prefHeight="31.0" prefWidth="342.0" promptText="Gender" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
-      </font></Label>
-    <TextField fx:id="genderField" layoutX="170.0" layoutY="216.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
-    <!-- Email -->
-    <Label fx:id="emailLabel" layoutX="30.0" layoutY="256.0" text="Email" textFill="WHITE">
+      </font>
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></TextField>
+    <TextField fx:id="emailField" layoutX="28.0" layoutY="251.0" opacity="0.71" prefHeight="32.0" prefWidth="342.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
-      </font></Label>
-    <TextField fx:id="emailField" layoutX="170.0" layoutY="251.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
-    <!-- Phone Number -->
-    <Label fx:id="phoneNumberLabel" layoutX="30.0" layoutY="295.0" text="Phone Number" textFill="WHITE">
+      </font>
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></TextField>
+    <TextField fx:id="phoneNumberField" layoutX="28.0" layoutY="290.0" opacity="0.71" prefHeight="31.0" prefWidth="342.0" promptText="Phone Number" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
-      </font></Label>
-    <TextField fx:id="phoneNumberField" layoutX="170.0" layoutY="290.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
-    <!-- Address -->
-    <Label fx:id="addressLabel" layoutX="30.0" layoutY="340.0" text="Address" textFill="WHITE">
+      </font>
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></TextField>
+    <TextField fx:id="addressField" layoutX="28.0" layoutY="335.0" opacity="0.71" prefHeight="31.0" prefWidth="342.0" promptText="Address" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
-      </font></Label>
-    <TextField fx:id="addressField" layoutX="170.0" layoutY="335.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+      </font>
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></TextField>
     <!-- Membership Type ID -->
-    <Label fx:id="membershipTypeLabel" layoutX="30.0" layoutY="439.0" text="Membership Type ID" textFill="WHITE">
+    <Label fx:id="membershipTypeLabel" layoutX="30.0" layoutY="439.0" opacity="0.71" text="Membership Type ID" textFill="#aba4a4">
       <font>
          <Font size="14.0" />
       </font></Label>
-    <ComboBox fx:id="membershipTypeComboBox" layoutX="170.0" layoutY="425.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <ComboBox fx:id="membershipTypeComboBox" layoutX="170.0" layoutY="425.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></ComboBox>
     <!-- Instructor ID -->
-    <Label fx:id="instructorLabel" layoutX="30.0" layoutY="480.0" text="Instructor ID" textFill="WHITE">
+    <Label fx:id="instructorLabel" layoutX="30.0" layoutY="480.0" opacity="0.71" text="Instructor ID" textFill="#aba4a4">
       <font>
          <Font size="14.0" />
       </font></Label>
-    <ComboBox fx:id="instructorComboBox" layoutX="170.0" layoutY="475.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <ComboBox fx:id="instructorComboBox" layoutX="170.0" layoutY="475.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></ComboBox>
     <Button fx:id="buttonAdd" layoutX="170.0" layoutY="523.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="200.0" styleClass="btn-add" stylesheets="@../css/form_style.css" text="ADD">
         <font>
             <Font name="System Bold" size="12.0" />
         </font>
     </Button>
     <!-- Membership Status ID -->
-    <Label fx:id="membershipStatusLabel" layoutX="30.0" layoutY="371.0" prefHeight="27.0" prefWidth="139.0" text="Membership Status ID" textFill="WHITE">
+    <Label fx:id="membershipStatusLabel" layoutX="30.0" layoutY="382.0" opacity="0.71" prefHeight="27.0" prefWidth="139.0" text="Membership Status ID" textFill="#aba4a4">
       <font>
          <Font size="14.0" />
       </font></Label>
-    <ComboBox fx:id="membershipStatusComboBox" layoutX="170.0" layoutY="371.0" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4; -fx-border-color: #ccc;" />
+    <ComboBox fx:id="membershipStatusComboBox" layoutX="170.0" layoutY="377.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets></ComboBox>
    <AnchorPane layoutX="48.0" layoutY="17.0" prefHeight="37.0" prefWidth="36.0" style="-fx-background-radius: 10; -fx-background-color: #d8ddd8;" AnchorPane.leftAnchor="31.0">
       <children>
          <ImageView fitHeight="43.0" fitWidth="45.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
@@ -85,10 +113,31 @@
          </ImageView>
       </children>
    </AnchorPane>
-   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="118.0" layoutY="23.0" prefHeight="31.0" prefWidth="147.0" text="ADD MEMBER" textFill="WHITE">
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="122.0" layoutY="23.0" prefHeight="31.0" prefWidth="147.0" text="ADD MEMBER">
       <font>
          <Font name="Arial Rounded MT Bold" size="21.0" />
       </font>
+      <textFill>
+         <LinearGradient endX="1.0" endY="1.0">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color red="0.5099999904632568" green="0.1784999966621399" blue="0.1784999966621399" />
+                  </color>
+               </Stop>
+               <Stop offset="0.14670255720053837">
+                  <color>
+                     <Color red="0.5098039507865906" green="0.18039216101169586" blue="0.18039216101169586" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="1.0" green="1.0" blue="1.0" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
    </Label>
    <Button layoutX="356.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="22.0" styleClass="btn-close" stylesheets="@../css/form_style.css" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="7.0">
       <graphic>

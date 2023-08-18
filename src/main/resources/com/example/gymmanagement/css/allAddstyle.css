@@ -1,0 +1,52 @@
+
+.combo-box {
+    -fx-focus-color: transparent;
+    -fx-background-insets: -1, -1, -1, -1;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: white;
+}
+
+.combo-box-base .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box-base .arrow {
+    -fx-shape: "M8.124,13.625l4.125-3.375v2.889l-4.125,3.86L4,13.139V10.25L8.124,13.625z";
+    -fx-background-color: white;
+}
+
+.combo-box-popup .list-view {
+    -fx-effect: null;
+}
+.combo-box {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-style:  hidden hidden solid hidden;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #2B545E;
+}
+
+.combo-box-popup .list-view .list-cell:filled {
+    -fx-background-color: #2B545E;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover {
+    -fx-background-color: #2E5A66;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected {
+    -fx-background-color: #346673;
+}
+.combo-box-base .list-view .cell  {
+    -fx-background-color: #2B545E;
+}
+
+.text-field {
+    -fx-text-fill: white;
+    -fx-border-style:  hidden hidden solid hidden;
+    -fx-background-color: transparent;
+}
