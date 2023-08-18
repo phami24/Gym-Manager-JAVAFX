@@ -57,45 +57,45 @@ public class DashBoardController implements Initializable {
     @FXML
     private BarChart<?, ?> barChart;
 
-    //    get numbers of data from database
+    //    get total of data from database
     public void getMembernum() {
         int getMembersNum = membersRepository.getTotalMembers();
         memberNum.setText(Integer.toString(getMembersNum));
     }
 
-    //    get numbers of data from database
+    //    get total of data from database
     public void getClassnum() {
         int getClassNum = classesRepository.getTotalClasses();
         classNum.setText(Integer.toString(getClassNum));
     }
 
-    //    get numbers of data from database
+    //    get total of data from database
     public void getPTnum() {
         int getStaffNum = instructorRepository.getTotalInstructor();
         staffNum.setText(Integer.toString(getStaffNum));
     }
 
-    //    get numbers of data from database
+    //    get total of data from database
     public void getEquipmentnum() {
         int getStuffNum = equipmentRepository.getTotalEquipment();
         stuffNum.setText(Integer.toString(getStuffNum));
     }
 
-    //    get numbers of data from database
+    //    get total of data from database
     public void getRevenue() {
         int getSalesNum = revenueRepository.getTotalRevenue();
         revenueNUM.setText(Integer.toString(getSalesNum));
     }
 
     RevenueService serviceWage = new RevenueServiceImpl();
-
+//take data(year) from MenuButton
     public void valueToChart() {
         yearRevenueBtn.getItems().forEach(menuItem -> {
                 Integer selectedValue = Integer.parseInt(menuItem.getText());
                 fetchChartData(selectedValue);
         });
     }
-    lấy
+//    fetch data(year) from MenuButton, then create LineChart add X,Y to display Yearly Revenue
     public void fetchChartData(Integer selectedValue){
         BigDecimal januaryRevenue = serviceWage.calculateTotalRevenueByMonth(selectedValue, 1);
         BigDecimal februaryRevenue = serviceWage.calculateTotalRevenueByMonth(selectedValue, 2);
@@ -126,6 +126,7 @@ public class DashBoardController implements Initializable {
         lineChart.getData().clear();
         lineChart.getData().add(series);
     }
+//    Back to home page or close stage
 //        @FXML
 //    public void exit(MouseEvent event){
 //        stage.close();

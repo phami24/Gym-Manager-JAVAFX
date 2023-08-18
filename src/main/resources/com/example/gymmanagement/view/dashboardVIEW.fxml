@@ -25,9 +25,9 @@
    <children>
       <Label fx:id="exit" layoutX="1044.0" layoutY="12.0" prefHeight="9.0" prefWidth="0.0">
          <graphic>
-            <ImageView fitHeight="13.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="32.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../image/closelogo.png" />
+                  <Image url="@../image/close.png" />
                </image>
             </ImageView>
          </graphic>
@@ -141,7 +141,7 @@
             <Font name="Corbel Bold" size="17.0" />
          </font>
       </Label>
-      <Label fx:id="revenueNUM" layoutX="207.0" layoutY="109.0" prefHeight="53.0" prefWidth="26.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+      <Label fx:id="revenueNUM" layoutX="207.0" layoutY="109.0" prefHeight="54.0" prefWidth="245.0" text="0" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="30.0" />
          </font>
