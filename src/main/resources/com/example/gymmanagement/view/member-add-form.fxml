@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="580.0" prefWidth="400.0" style="-fx-border-radius: 25; -fx-background-radius: 25; -fx-background-color: rgba(13, 12, 12,0.9);" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <TextField fx:id="firstNameField" layoutX="29.0" layoutY="95.0" opacity="0.71" prefHeight="32.0" prefWidth="341.0" promptText="Frist Name" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <TextField fx:id="firstNameField" focusTraversable="false" layoutX="29.0" layoutY="95.0" opacity="0.71" prefHeight="32.0" prefWidth="341.0" promptText="Frist Name" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -23,7 +23,7 @@
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
       </stylesheets></TextField>
-    <TextField fx:id="lastNameField" layoutX="28.0" layoutY="136.0" opacity="0.71" prefHeight="32.0" prefWidth="342.0" promptText="Last Name" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <TextField fx:id="lastNameField" focusTraversable="false" layoutX="28.0" layoutY="136.0" opacity="0.71" prefHeight="32.0" prefWidth="342.0" promptText="Last Name" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -36,8 +36,8 @@
       <font>
          <Font size="14.0" />
       </font></Label>
-    <DatePicker fx:id="dobPicker" layoutX="158.0" layoutY="180.0" prefHeight="20.0" prefWidth="212.0" style="-fx-background-color: #f4f4f4;" stylesheets="@../css/addmember.css" />
-    <TextField fx:id="genderField" layoutX="28.0" layoutY="216.0" opacity="0.71" prefHeight="31.0" prefWidth="342.0" promptText="Gender" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <DatePicker fx:id="dobPicker" focusTraversable="false" layoutX="158.0" layoutY="180.0" prefHeight="20.0" prefWidth="212.0" style="-fx-background-color: #f4f4f4;" stylesheets="@../css/addmember.css" />
+    <TextField fx:id="genderField" focusTraversable="false" layoutX="28.0" layoutY="216.0" opacity="0.71" prefHeight="31.0" prefWidth="342.0" promptText="Gender" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -45,7 +45,7 @@
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
       </stylesheets></TextField>
-    <TextField fx:id="emailField" layoutX="28.0" layoutY="251.0" opacity="0.71" prefHeight="32.0" prefWidth="342.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <TextField fx:id="emailField" focusTraversable="false" layoutX="28.0" layoutY="251.0" opacity="0.71" prefHeight="32.0" prefWidth="342.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -53,7 +53,7 @@
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
       </stylesheets></TextField>
-    <TextField fx:id="phoneNumberField" layoutX="28.0" layoutY="290.0" opacity="0.71" prefHeight="31.0" prefWidth="342.0" promptText="Phone Number" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <TextField fx:id="phoneNumberField" focusTraversable="false" layoutX="28.0" layoutY="290.0" opacity="0.71" prefHeight="31.0" prefWidth="342.0" promptText="Phone Number" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -61,7 +61,7 @@
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
       </stylesheets></TextField>
-    <TextField fx:id="addressField" layoutX="28.0" layoutY="335.0" opacity="0.71" prefHeight="31.0" prefWidth="342.0" promptText="Address" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <TextField fx:id="addressField" focusTraversable="false" layoutX="28.0" layoutY="335.0" opacity="0.71" prefHeight="31.0" prefWidth="342.0" promptText="Address" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -74,7 +74,7 @@
       <font>
          <Font size="14.0" />
       </font></Label>
-    <ComboBox fx:id="membershipTypeComboBox" layoutX="170.0" layoutY="425.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <ComboBox fx:id="membershipTypeComboBox" focusTraversable="false" layoutX="170.0" layoutY="425.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <stylesheets>
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
@@ -84,7 +84,7 @@
       <font>
          <Font size="14.0" />
       </font></Label>
-    <ComboBox fx:id="instructorComboBox" layoutX="170.0" layoutY="475.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <ComboBox fx:id="instructorComboBox" focusTraversable="false" layoutX="170.0" layoutY="475.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <stylesheets>
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
@@ -99,7 +99,7 @@
       <font>
          <Font size="14.0" />
       </font></Label>
-    <ComboBox fx:id="membershipStatusComboBox" layoutX="170.0" layoutY="377.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <ComboBox fx:id="membershipStatusComboBox" focusTraversable="false" layoutX="170.0" layoutY="377.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <stylesheets>
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />

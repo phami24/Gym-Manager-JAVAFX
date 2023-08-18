@@ -17,7 +17,7 @@
 
 <AnchorPane prefHeight="424.0" prefWidth="701.0" style="-fx-border-radius: 30; -fx-background-radius: 25; -fx-background-color: rgba(13, 12, 12,0.9);" stylesheets="@../css/addmember.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
 
-    <TextField fx:id="equipmentIdField" layoutX="27.0" layoutY="119.0" opacity="0.71" prefHeight="32.0" prefWidth="311.0" promptText="Equipment ID" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <TextField fx:id="equipmentIdField" focusTraversable="false" layoutX="27.0" layoutY="119.0" opacity="0.71" prefHeight="32.0" prefWidth="311.0" promptText="Equipment ID" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -26,7 +26,7 @@
          <URL value="@../css/form_style.css" />
       </stylesheets></TextField>
 
-    <TextField fx:id="equipmentNameField" layoutX="27.0" layoutY="164.0" opacity="0.71" prefHeight="31.0" prefWidth="311.0" promptText="Equipment Name" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <TextField fx:id="equipmentNameField" focusTraversable="false" layoutX="27.0" layoutY="164.0" opacity="0.71" prefHeight="31.0" prefWidth="311.0" promptText="Equipment Name" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -35,7 +35,7 @@
          <URL value="@../css/form_style.css" />
       </stylesheets></TextField>
 
-    <TextField fx:id="categoryField" layoutX="27.0" layoutY="213.0" opacity="0.71" prefHeight="31.0" prefWidth="311.0" promptText="Category" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <TextField fx:id="categoryField" focusTraversable="false" layoutX="27.0" layoutY="213.0" opacity="0.71" prefHeight="31.0" prefWidth="311.0" promptText="Category" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -44,13 +44,13 @@
          <URL value="@../css/form_style.css" />
       </stylesheets></TextField>
 
-    <DatePicker fx:id="purchaseDatePicker" layoutX="484.0" layoutY="119.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4;" stylesheets="@../css/addmember.css" />
+    <DatePicker fx:id="purchaseDatePicker" focusTraversable="false" layoutX="484.0" layoutY="119.0" prefWidth="200.0" style="-fx-background-color: #f4f4f4;" stylesheets="@../css/addmember.css" />
     <Label fx:id="purchaseDateLabel" layoutX="367.0" layoutY="119.0" text="Purchase Date" textFill="#aca5a5">
       <font>
          <Font size="14.0" />
       </font></Label>
 
-    <TextField fx:id="priceField" layoutX="27.0" layoutY="262.0" opacity="0.71" prefHeight="31.0" prefWidth="144.0" promptText="Price" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <TextField fx:id="priceField" focusTraversable="false" layoutX="27.0" layoutY="262.0" opacity="0.71" prefHeight="31.0" prefWidth="144.0" promptText="Price" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -59,7 +59,7 @@
          <URL value="@../css/form_style.css" />
       </stylesheets></TextField>
 
-    <ComboBox fx:id="statusComboBox" layoutX="485.0" layoutY="169.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <ComboBox fx:id="statusComboBox" focusTraversable="false" layoutX="485.0" layoutY="169.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <stylesheets>
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
@@ -117,7 +117,7 @@
          <Font name="System Bold" size="12.0" />
       </font>
    </Button>
-   <TextArea fx:id="notesField" layoutX="27.0" layoutY="312.0" prefHeight="86.0" prefWidth="214.0" promptText="Notes" style="-fx-background-color: #aca5a5;" stylesheets="@../css/allAddstyle.css">
+   <TextArea fx:id="notesField" focusTraversable="false" layoutX="27.0" layoutY="312.0" prefHeight="86.0" prefWidth="214.0" promptText="Notes" style="-fx-background-color: #aca5a5;" stylesheets="@../css/allAddstyle.css">
       <font>
          <Font name="System Bold" size="15.0" />
       </font>

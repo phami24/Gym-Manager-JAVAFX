@@ -19,7 +19,7 @@
         <!-- Đường dẫn đến tập tin CSS -->
         <URL value="@../css/addmember.css" />
     </stylesheets>
-    <TextField fx:id="firstNameField" layoutX="24.0" layoutY="105.0" prefHeight="31.0" prefWidth="347.0" promptText="First Name" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <TextField fx:id="firstNameField" focusTraversable="false" layoutX="24.0" layoutY="105.0" prefHeight="31.0" prefWidth="347.0" promptText="First Name" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -27,7 +27,7 @@
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
       </stylesheets></TextField>
-    <TextField fx:id="lastNameField" layoutX="23.0" layoutY="145.0" prefHeight="26.0" prefWidth="347.0" promptText="Last Name" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <TextField fx:id="lastNameField" focusTraversable="false" layoutX="23.0" layoutY="145.0" prefHeight="26.0" prefWidth="347.0" promptText="Last Name" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -40,8 +40,8 @@
       <font>
          <Font size="14.0" />
       </font></Label>
-    <DatePicker fx:id="dobPicker" layoutX="146.0" layoutY="185.0" prefWidth="220.0" style="-fx-background-color: #f4f4f4;" stylesheets="@../css/addmember.css" />
-    <TextField fx:id="genderField" layoutX="23.0" layoutY="225.0" prefHeight="27.0" prefWidth="347.0" promptText="Gender" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <DatePicker fx:id="dobPicker" focusTraversable="false" layoutX="146.0" layoutY="185.0" prefWidth="220.0" style="-fx-background-color: #f4f4f4;" stylesheets="@../css/addmember.css" />
+    <TextField fx:id="genderField" focusTraversable="false" layoutX="23.0" layoutY="225.0" prefHeight="27.0" prefWidth="347.0" promptText="Gender" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -49,7 +49,7 @@
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
       </stylesheets></TextField>
-    <TextField fx:id="emailField" layoutX="23.0" layoutY="272.0" prefHeight="32.0" prefWidth="347.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <TextField fx:id="emailField" focusTraversable="false" layoutX="23.0" layoutY="272.0" prefHeight="32.0" prefWidth="347.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -57,7 +57,7 @@
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
       </stylesheets></TextField>
-    <TextField fx:id="phoneNumberField" layoutX="23.0" layoutY="354.0" prefHeight="20.0" prefWidth="347.0" promptText="Phone Number" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <TextField fx:id="phoneNumberField" focusTraversable="false" layoutX="23.0" layoutY="354.0" prefHeight="20.0" prefWidth="347.0" promptText="Phone Number" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -65,7 +65,7 @@
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
       </stylesheets></TextField>
-    <TextField fx:id="addressField" layoutX="23.0" layoutY="314.0" prefHeight="32.0" prefWidth="347.0" promptText="Address" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <TextField fx:id="addressField" focusTraversable="false" layoutX="23.0" layoutY="314.0" prefHeight="32.0" prefWidth="347.0" promptText="Address" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -78,8 +78,8 @@
       <font>
          <Font size="14.0" />
       </font></Label>
-    <DatePicker fx:id="hireDatePicker" layoutX="144.0" layoutY="433.0" prefWidth="220.0" style="-fx-background-color: #f4f4f4;" stylesheets="@../css/addmember.css" />
-    <TextField fx:id="experienceYearsField" layoutX="23.0" layoutY="472.0" prefHeight="27.0" prefWidth="347.0" promptText="Experience Years" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <DatePicker fx:id="hireDatePicker" focusTraversable="false" layoutX="144.0" layoutY="433.0" prefWidth="220.0" style="-fx-background-color: #f4f4f4;" stylesheets="@../css/addmember.css" />
+    <TextField fx:id="experienceYearsField" focusTraversable="false" layoutX="23.0" layoutY="472.0" prefHeight="27.0" prefWidth="347.0" promptText="Experience Years" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -92,7 +92,7 @@
       <font>
          <Font size="14.0" />
       </font></Label>
-    <TextField fx:id="baseSalaryField" layoutX="143.0" layoutY="393.0" opacity="0.71" prefHeight="25.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;" stylesheets="@../css/allAddstyle.css">
+    <TextField fx:id="baseSalaryField" focusTraversable="false" layoutX="143.0" layoutY="393.0" opacity="0.71" prefHeight="25.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;" stylesheets="@../css/allAddstyle.css">
       <font>
          <Font size="14.0" />
       </font></TextField>
