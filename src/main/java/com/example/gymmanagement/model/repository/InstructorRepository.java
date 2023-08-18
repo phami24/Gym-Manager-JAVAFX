@@ -304,5 +304,17 @@ public class InstructorRepository {
             e.printStackTrace();
         }
     }
+    public int getTotalInstructor() {
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT COUNT(instructor_id) as count FROM instructors");
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
 

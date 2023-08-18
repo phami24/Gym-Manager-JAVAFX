@@ -37,4 +37,6 @@ public class EquipmentServiceImpl implements EquipmentService {
     public List<Equipment> getAllEquipment() {
         return equipmentRepository.getAllEquipment();
     }
+    @Override
+    public int getTotalEquipment(){return equipmentRepository.getTotalEquipment();}
 }

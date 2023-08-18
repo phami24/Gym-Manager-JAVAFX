@@ -10,4 +10,6 @@ public interface EquipmentService {
     void deleteEquipment(int equipmentId);
     Equipment getEquipmentById(int equipmentId);
     List<Equipment> getAllEquipment();
+
+    int getTotalEquipment();
 }

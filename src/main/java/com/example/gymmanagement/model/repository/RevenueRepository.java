@@ -68,7 +68,7 @@ public class RevenueRepository {
     }
 
 
-    public List<Revenue> getRevenueByYearAndMonth(int year, int month) {
+    public List<Revenue>getRevenueByYearAndMonth(int year, int month) {
         List<Revenue> revenueList = new ArrayList<>();
         String query = "SELECT * FROM revenue WHERE year = ? AND month = ?";
         try (Connection connection = jdbcConnect.getJDBCConnection();
@@ -110,6 +110,18 @@ public class RevenueRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    public int getTotalRevenue() {
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT COUNT(revenue_id) as count FROM revenue");
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
 }
