@@ -1,38 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="1100.0" opacity="0.8" pickOnBounds="true" preserveRatio="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="600.0" fitWidth="1000.0" opacity="0.8" pickOnBounds="true" preserveRatio="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../image/bgr1.jpg" />
+            <Image url="@../image/bgr3.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="53.0" layoutY="61.0" prefHeight="419.0" prefWidth="981.0">
+      <AnchorPane layoutX="27.0" layoutY="65.0" prefHeight="441.0" prefWidth="981.0">
          <children>
-            <Button fx:id="dashBoardButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="81.0" layoutY="41.0" mnemonicParsing="false" onMouseClicked="#toDashBoard" prefHeight="115.0" prefWidth="210.0" stylesheets="@../css/style.css" text="Dashboard" textAlignment="CENTER">
+            <Button fx:id="dashBoardButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" graphicTextGap="16.0" layoutX="47.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#toDashBoard" prefHeight="140.0" prefWidth="160.0" styleClass="card" stylesheets="@../css/style.css" text="Dashboard" textAlignment="CENTER">
                <font>
-                  <Font name="Arial Bold" size="20.0" />
+                  <Font name="Arial Bold" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <graphic>
-                  <ImageView disable="true" fitHeight="46.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView disable="true" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <image>
-                        <Image url="@../image/dashboard.png" />
+                        <Image url="@../image/data-report.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="membersButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" graphicTextGap="16.0" layoutX="529.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#toMembers" prefHeight="140.0" prefWidth="160.0" stylesheets="@../css/style.css" text="Members" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView disable="true" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/team.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -41,17 +54,17 @@
                   <String fx:value="card" />
                </styleClass>
             </Button>
-            <Button fx:id="membersButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="686.0" layoutY="41.0" mnemonicParsing="false" onMouseClicked="#toMembers" prefHeight="115.0" prefWidth="210.0" stylesheets="@../css/style.css" text="Members Management" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="employeeButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" graphicTextGap="16.0" layoutX="289.0" layoutY="274.0" mnemonicParsing="false" onMouseClicked="#toEmployees" prefHeight="140.0" prefWidth="160.0" stylesheets="@../css/style.css" text="Staff" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Arial Bold" size="17.0" />
+                  <Font name="Arial Bold" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <graphic>
-                  <ImageView disable="true" fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView disable="true" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/fitness.png" />
+                        <Image url="@../image/instructor.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -60,17 +73,17 @@
                   <String fx:value="card" />
                </styleClass>
             </Button>
-            <Button fx:id="employeeButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="380.0" layoutY="212.0" mnemonicParsing="false" onMouseClicked="#toEmployees" prefHeight="115.0" prefWidth="210.0" stylesheets="@../css/style.css" text="Staff Management" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="classButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" graphicTextGap="16.0" layoutX="45.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#toClass" prefHeight="140.0" prefWidth="160.0" stylesheets="@../css/style.css" text="Classes" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Arial Bold" size="17.0" />
+                  <Font name="Arial Bold" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <graphic>
-                  <ImageView disable="true" fitHeight="46.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView disable="true" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/grade.png" />
+                        <Image url="@../image/online-teaching.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -79,17 +92,17 @@
                   <String fx:value="card" />
                </styleClass>
             </Button>
-            <Button fx:id="classButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="81.0" layoutY="212.0" mnemonicParsing="false" onMouseClicked="#toClass" prefHeight="115.0" prefWidth="210.0" stylesheets="@../css/style.css" text="Classes" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="gymEquipbt" alignment="BOTTOM_CENTER" contentDisplay="TOP" graphicTextGap="17.0" layoutX="291.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#toEquipment" prefHeight="140.0" prefWidth="160.0" stylesheets="@../css/style.css" text="Equipment" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Arial Bold" size="20.0" />
+                  <Font name="Arial Bold" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <graphic>
-                  <ImageView disable="true" fitHeight="62.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView disable="true" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/class.png" />
+                        <Image url="@../image/gym-equipment.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -98,36 +111,17 @@
                   <String fx:value="card" />
                </styleClass>
             </Button>
-            <Button fx:id="gymEquipbt" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="380.0" layoutY="41.0" mnemonicParsing="false" onMouseClicked="#toEquipment" prefHeight="115.0" prefWidth="210.0" stylesheets="@../css/style.css" text="Gym Equipment" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="emailButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" graphicTextGap="16.0" layoutX="527.0" layoutY="274.0" mnemonicParsing="false" onMouseClicked="#toEvent" prefHeight="140.0" prefWidth="160.0" stylesheets="@../css/style.css" text="Event" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Arial Bold" size="17.0" />
+                  <Font name="Arial Bold" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <graphic>
-                  <ImageView disable="true" fitHeight="46.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView disable="true" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/bench-press.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <styleClass>
-                  <String fx:value="nav-admin" />
-                  <String fx:value="card" />
-               </styleClass>
-            </Button>
-            <Button fx:id="emailButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" layoutX="680.0" layoutY="212.0" mnemonicParsing="false" onMouseClicked="#toEvent" prefHeight="115.0" prefWidth="210.0" stylesheets="@../css/style.css" text="Admin" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="17.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <graphic>
-                  <ImageView disable="true" fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/cusnew.png" />
+                        <Image url="@../image/election-event-on-a-calendar-with-star-symbol.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -138,31 +132,22 @@
             </Button>
          </children>
       </AnchorPane>
-      <Label fx:id="logOutbt" alignment="CENTER" layoutX="1034.0" layoutY="530.0" onMouseClicked="#logOut" prefHeight="46.0" prefWidth="41.0" style="-fx-background-color: rgba(171, 169, 169,0.2); -fx-background-radius: 10px;" styleClass="add" stylesheets="@../css/style.css" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="1034.0">
+      <Button layoutX="1055.0" layoutY="14.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="34.0" styleClass="close" stylesheets="@../css/style.css" text="x" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="Leelawadee UI Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="logOutbt" layoutY="542.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="57.0" prefWidth="59.0" styleClass="sign-out" stylesheets="@../css/style.css">
          <graphic>
             <ImageView fitHeight="34.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../image/signout.png" />
+                  <Image url="@../image/logout%205.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
          </graphic>
-         <font>
-            <Font size="14.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </Label>
-      <Button layoutX="1055.0" layoutY="14.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="34.0" styleClass="close" stylesheets="@../css/style.css" text="x" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <font>
-            <Font name="Leelawadee UI Bold" size="14.0" />
-         </font>
       </Button>
    </children>
 </AnchorPane>

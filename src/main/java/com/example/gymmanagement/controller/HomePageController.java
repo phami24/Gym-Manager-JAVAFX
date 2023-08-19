@@ -43,14 +43,13 @@ public class HomePageController implements Initializable {
     @FXML
     private Button employeeButton;
 
-    @FXML
-    private Label exit;
+
 
     @FXML
     private Button gymEquipbt;
 
     @FXML
-    private Label logOutbt;
+    private Button logOutbt;
 
     @FXML
     private Button membersButton;
