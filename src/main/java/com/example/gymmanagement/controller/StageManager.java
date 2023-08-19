@@ -145,9 +145,11 @@ public class StageManager {
 
     public void loadEventManage() {
         Stage eventStage = new Stage();
-        Scene eventScene = sceneManager.loadScene("event.fxml");
+        EventController eventController = new EventController();
+        Scene eventScene = sceneManager.loadScene("event.fxml",eventController);
         eventStage.setScene(eventScene);
         setCurrentStage(eventStage);
+        eventController.setStage(currentStage);
         currentStage.initStyle(StageStyle.TRANSPARENT);
         showStage();
     }

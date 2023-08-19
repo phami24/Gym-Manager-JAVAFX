@@ -7,46 +7,89 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="589.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gymmanagement.controller.EventController">
+<AnchorPane prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="tableView" layoutX="40.0" layoutY="261.0" prefHeight="254.0" prefWidth="659.0">
+      <TableView fx:id="tableView" layoutX="139.0" layoutY="233.0" prefHeight="299.0" prefWidth="1010.0" stylesheets="@../css/style.css" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Event Name" />
-            <TableColumn prefWidth="119.33331298828125" text="Description" />
-            <TableColumn prefWidth="92.0" text="Discount" />
-            <TableColumn prefWidth="102.4000244140625" text="Start Date" />
-            <TableColumn prefWidth="79.20001220703125" text="End Date" />
-            <TableColumn prefWidth="75.0" text="Status" />
-            <TableColumn prefWidth="114.39995117187505" text="Action" />
+          <TableColumn fx:id="eventNameColumn" prefWidth="258.0" text="Event Name" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="102.0" text="Description" />
+            <TableColumn fx:id="discountColumn" prefWidth="114.66665649414062" text="Discount" />
+            <TableColumn fx:id="startDateColumn" prefWidth="154.66665649414062" text="Start Date" />
+            <TableColumn fx:id="endDateColumn" prefWidth="138.66668701171875" text="End Date" />
+            <TableColumn fx:id="statusColumn" prefWidth="102.6666259765625" text="Status" />
+            <TableColumn fx:id="actionColumn" prefWidth="142.66668701171875" text="Action" />
         </columns>
       </TableView>
-      <Label alignment="CENTER" layoutX="41.0" layoutY="14.0" prefHeight="45.0" prefWidth="206.0" text="Even Management" textAlignment="CENTER">
-         <font>
-            <Font name="System Bold" size="21.0" />
-         </font>
-      </Label>
-      <TextField fx:id="event_name" layoutX="61.0" layoutY="92.0" />
-      <TextField fx:id="description" layoutX="60.0" layoutY="160.0" prefHeight="66.0" prefWidth="150.0" />
-      <TextField fx:id="discount" layoutX="295.0" layoutY="160.0" />
-      <Button fx:id="updateButton" layoutX="581.0" layoutY="206.0" mnemonicParsing="false" text="Update " />
-      <Button fx:id="addButton" layoutX="526.0" layoutY="206.0" mnemonicParsing="false" text="Add" />
-      <Label layoutX="61.0" layoutY="66.0" text="Event name :" />
-      <Label layoutX="62.0" layoutY="129.0" text="Description :" />
-      <Label layoutX="295.0" layoutY="66.0" text="Start Date :" />
-      <Label layoutX="527.0" layoutY="66.0" text="End Date :" />
-      <Label layoutX="294.0" layoutY="129.0" text="Discount :" />
-      <Label layoutX="526.0" layoutY="129.0" text="Status :" />
-      <DatePicker fx:id="start_date" layoutX="294.0" layoutY="91.0" prefHeight="26.0" prefWidth="150.0" />
-      <DatePicker fx:id="end_date" layoutX="526.0" layoutY="91.0" prefHeight="26.0" prefWidth="150.0" />
-      <MenuButton fx:id="status" layoutX="526.0" layoutY="160.0" mnemonicParsing="false" text="Status">
+      <TextField fx:id="event_name" layoutX="170.0" layoutY="78.0" prefHeight="25.0" prefWidth="337.0" />
+      <TextField fx:id="discount" layoutX="617.0" layoutY="133.0" />
+      <Button fx:id="updateButton" layoutX="988.0" layoutY="179.0" mnemonicParsing="false" text="Update " />
+      <Button fx:id="addButton" layoutX="933.0" layoutY="179.0" mnemonicParsing="false" text="Add" />
+      <Label layoutX="94.0" layoutY="82.0" text="Event name :" />
+      <Label layoutX="95.0" layoutY="129.0" text="Description :" />
+      <Label layoutX="545.0" layoutY="82.0" text="Start Date :" />
+      <Label layoutX="805.0" layoutY="82.0" text="End Date :" />
+      <Label layoutX="545.0" layoutY="137.0" text="Discount :" />
+      <Label layoutX="805.0" layoutY="137.0" text="Status :" />
+      <DatePicker fx:id="start_date" layoutX="617.0" layoutY="78.0" prefHeight="26.0" prefWidth="150.0" />
+      <DatePicker fx:id="end_date" layoutX="877.0" layoutY="78.0" prefHeight="26.0" prefWidth="150.0" />
+      <MenuButton fx:id="status" layoutX="877.0" layoutY="133.0" mnemonicParsing="false" text="Status">
         <items>
           <MenuItem mnemonicParsing="false" text="Unexpired" />
           <MenuItem mnemonicParsing="false" text="Expired" />
         </items>
       </MenuButton>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="55.0" prefWidth="1100.0" style="-fx-border-radius: 0 0 30 0;" styleClass="border" stylesheets="@../css/style.css" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button layoutX="988.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="34.0" styleClass="close" stylesheets="@../css/style.css" text="x" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="35.0" layoutY="8.0" prefHeight="40.0" prefWidth="206.0" text="Even Management" textAlignment="CENTER" AnchorPane.leftAnchor="35.0">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="600.0" prefWidth="70.0" styleClass="nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button layoutX="2.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="39.0" prefWidth="70.0" styleClass="btn-nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/home%20(3).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="3.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#dashboard" prefHeight="39.0" prefWidth="70.0" styleClass="btn-nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/dashboard2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="5.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="39.0" prefWidth="71.0" styleClass="btn-nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/logout%20(1).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+      <TextArea fx:id="description" layoutX="173.0" layoutY="124.0" prefHeight="97.0" prefWidth="337.0" />
    </children>
 </AnchorPane>

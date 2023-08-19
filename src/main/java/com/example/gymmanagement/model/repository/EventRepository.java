@@ -13,14 +13,14 @@ public class EventRepository {
     private final JDBCConnect jdbcConnect = new JDBCConnect();
 
     public void addEvent(Event event) {
-        String query = "INSERT INTO events (event_name, start_date, end_date, discount_percent, description, member_id, status) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO events (event_name, start_date, end_date, discount_percent, description, status) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
         executeEventQuery(query, event);
     }
 
     public void updateEvent(Event event) {
         String query = "UPDATE events " +
-                "SET event_name = ?, start_date = ?, end_date = ?, discount_percent = ?, description = ?, member_id = ?, status = ? " +
+                "SET event_name = ?, start_date = ?, end_date = ?, discount_percent = ?, description = ?, status = ? " +
                 "WHERE event_id = ?";
         executeEventQuery(query, event);
     }
@@ -85,9 +85,9 @@ public class EventRepository {
             statement.setString(3, event.getEnd_date());
             statement.setBigDecimal(4, event.getDiscount_percent());
             statement.setString(5, event.getDescription());
-            statement.setInt(6, event.getMember_id());
-            statement.setInt(7, event.getStatus());
-            statement.setInt(8, event.getEvent_id());
+//            statement.setInt(6, event.getMember_id());
+            statement.setInt(6, event.getStatus());
+//            statement.setInt(8, event.getEvent_id());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
