@@ -202,6 +202,18 @@ public class EquipmentRepository {
             jdbcConnect.closePreparedStatement(statement);
         }
     }
+    public int getTotalEquipment() {
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT COUNT(equipment_id) as count FROM equipment");
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
 
 

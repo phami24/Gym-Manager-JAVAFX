@@ -37,4 +37,7 @@ public class ClassesServiceImpl implements ClassesService {
     public List<Classes> getAllClasses() {
         return classesRepository.getAllClasses();
     }
+
+    @Override
+    public int getTotalClasses(){return classesRepository.getTotalClasses();}
 }

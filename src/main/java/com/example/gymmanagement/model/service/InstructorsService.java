@@ -13,4 +13,5 @@ public interface InstructorsService {
     List<Instructors> getAllInstructors();
     BigDecimal calculateSalary(int instructorId);
     int getNumberOfClassesByInstructorId(int instructorId);
+    int getTotalInstructor();
 }

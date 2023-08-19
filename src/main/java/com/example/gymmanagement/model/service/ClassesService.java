@@ -10,4 +10,5 @@ public interface ClassesService {
     void deleteClass(int classId);
     Classes getClassById(int classId);
     List<Classes> getAllClasses();
+    int getTotalClasses();
 }

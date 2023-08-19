@@ -294,9 +294,8 @@ public class StageManager {
 
     public void loadDashBoard(){
         Stage dashBoardStage = new Stage();
-        DashBoardController dashBoardController = new DashBoardController();
         dashBoardStage.initModality(Modality.APPLICATION_MODAL);
-        Scene dashBoardScene = sceneManager.loadScene("dashboard.fxml", dashBoardController);
+        Scene dashBoardScene = sceneManager.loadScene("dashboardVIEW.fxml");
         dashBoardStage.setScene(dashBoardScene);
         setCurrentStage(dashBoardStage);
         currentStage.initStyle(StageStyle.TRANSPARENT);
