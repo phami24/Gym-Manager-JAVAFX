@@ -55,7 +55,7 @@
          </LinearGradient>
       </textFill>
     </Label>
-    <TextField fx:id="classNameField" layoutX="32.0" layoutY="115.0" opacity="0.71" prefHeight="27.0" prefWidth="328.0" promptText="Capacity" AnchorPane.bottomAnchor="380.0">
+    <TextField fx:id="classNameField" focusTraversable="false" layoutX="32.0" layoutY="115.0" opacity="0.71" prefHeight="27.0" prefWidth="328.0" promptText="Capacity" AnchorPane.bottomAnchor="380.0">
       <font>
          <Font size="14.0" />
       </font>
@@ -63,12 +63,12 @@
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
       </stylesheets></TextField>
-    <ComboBox fx:id="instructorComboBox" layoutX="130.0" layoutY="205.0" opacity="0.71" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;" AnchorPane.bottomAnchor="240.0">
+    <ComboBox fx:id="instructorComboBox" focusTraversable="false" layoutX="130.0" layoutY="205.0" opacity="0.71" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;" AnchorPane.bottomAnchor="240.0">
       <stylesheets>
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
       </stylesheets></ComboBox>
-    <TextField fx:id="scheduleField" layoutX="32.0" layoutY="160.0" opacity="0.71" prefHeight="27.0" prefWidth="328.0" promptText="Schedule" AnchorPane.bottomAnchor="310.0">
+    <TextField fx:id="scheduleField" focusTraversable="false" layoutX="32.0" layoutY="160.0" opacity="0.71" prefHeight="27.0" prefWidth="328.0" promptText="Schedule" AnchorPane.bottomAnchor="310.0">
       <font>
          <Font size="14.0" />
       </font>
@@ -76,7 +76,7 @@
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
       </stylesheets></TextField>
-    <TextField fx:id="capacityField" layoutX="32.0" layoutY="250.0" opacity="0.71" prefHeight="27.0" prefWidth="328.0" promptText="Class Name" AnchorPane.bottomAnchor="170.0">
+    <TextField fx:id="capacityField" focusTraversable="false" layoutX="32.0" layoutY="250.0" opacity="0.71" prefHeight="27.0" prefWidth="328.0" promptText="Class Name" AnchorPane.bottomAnchor="170.0">
       <font>
          <Font size="14.0" />
       </font>
