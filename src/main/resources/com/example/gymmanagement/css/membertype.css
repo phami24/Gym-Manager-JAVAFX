@@ -1,0 +1,23 @@
+.border {
+    -fx-background-color: #ffffff;
+    -fx-background-width: 2px;
+    -fx-background-radius: 8px;
+}
+.left-label{
+    -fx-background-width: 2 2 2 2;
+    -fx-background-radius: 25px;
+    -fx-background-color: #fb9cea;
+}
+.middle-label{
+    -fx-background-width: 2 2 2 2;
+    -fx-background-radius: 25px;
+    -fx-background-color: #3929fb;
+}
+.right-label{
+    -fx-background-width: 2 2 2 2;
+    -fx-background-radius: 25px;
+    -fx-background-color: #fb845c;
+}
+.background{
+    -fx-background-color: #47b4ee;
+}
