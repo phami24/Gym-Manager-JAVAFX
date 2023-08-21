@@ -58,7 +58,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="172.0" layoutY="27.0" prefHeight="51.0" prefWidth="196.0" stylesheets="@../../../../../../../../LoginForm/src/main/resources/com/example/css/style.css" text="M I T N E S S">
+                  <Label layoutX="172.0" layoutY="27.0" prefHeight="51.0" prefWidth="196.0" stylesheets="@../../../../../../../../LoginForm/src/main/resources/com/example/css/style.css" text="F I T N E S S">
                      <font>
                         <Font name="Arial Bold" size="30.0" />
                      </font>

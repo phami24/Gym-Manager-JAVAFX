@@ -170,10 +170,10 @@
 
 
 .btn_tool{
--fx-border-color:#9BABB8;
+-fx-border-color:#648a8c;
 -fx-background-color: rgba(240, 240, 240, 0.5);
 -fx-cursor:hand;
-
+ -fx-border-radius: 10px;
 }
 .add:hover{
   -fx-background-radius: 10px;
@@ -214,8 +214,7 @@
 }
 .nav-left{
 -fx-background-color: linear-gradient(to right,#545353,#2e2d2d);
--fx-background-radius: 0 20 0 20;
--fx-cursor:hand;
+-fx-background-radius: 0 0 0 0;
 -fx-text-fill: white;
 
 }

@@ -151,6 +151,7 @@ public class StageManager {
         setCurrentStage(eventStage);
         eventController.setStage(currentStage);
         currentStage.initStyle(StageStyle.TRANSPARENT);
+        eventScene.setFill(Color.TRANSPARENT);
         showStage();
     }
 

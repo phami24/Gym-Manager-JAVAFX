@@ -21,7 +21,7 @@
           <TableColumn fx:id="eventNameColumn" prefWidth="258.0" text="Event Name" />
             <TableColumn fx:id="descriptionColumn" prefWidth="102.0" text="Description" />
             <TableColumn fx:id="discountColumn" prefWidth="114.66665649414062" text="Discount" />
-            <TableColumn fx:id="startDateColumn" prefWidth="154.66665649414062" text="Start Date" />
+           <TableColumn fx:id="startDateColumn" prefWidth="154.66665649414062" text="Start Date"></TableColumn>
             <TableColumn fx:id="endDateColumn" prefWidth="138.66668701171875" text="End Date" />
             <TableColumn fx:id="statusColumn" prefWidth="102.6666259765625" text="Status" />
             <TableColumn fx:id="actionColumn" prefWidth="142.66668701171875" text="Action" />

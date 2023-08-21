@@ -25,10 +25,10 @@ public class EventRepository {
         executeEventQuery(query, event);
     }
 
-    public void deleteEvent(int eventId) {
+    public void deleteEvent(String eventName) {
         try (Connection connection = jdbcConnect.getJDBCConnection();
-             PreparedStatement statement = connection.prepareStatement("DELETE FROM events WHERE event_id = ?")) {
-            statement.setInt(1, eventId);
+             PreparedStatement statement = connection.prepareStatement("DELETE FROM events WHERE event_name = ?")) {
+            statement.setString(1, eventName);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,7 +87,9 @@ public class EventRepository {
             statement.setString(5, event.getDescription());
 //            statement.setInt(6, event.getMember_id());
             statement.setInt(6, event.getStatus());
-//            statement.setInt(8, event.getEvent_id());
+            if (query.contains("UPDATE")) {
+                statement.setInt(7, event.getEvent_id());
+            }
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onMouseClicked="#homepage" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane onMouseClicked="#homepage" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <AnchorPane layoutX="-6.0" prefHeight="55.0" prefWidth="1100.0" style="-fx-border-radius: 0 0 30 0;" styleClass="border" stylesheets="@../css/style.css" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="0.0">
             <children>
