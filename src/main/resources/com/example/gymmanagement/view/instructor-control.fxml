@@ -12,74 +12,73 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="1100.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" >
-   <children>
-      <AnchorPane layoutX="-6.0" prefHeight="55.0" prefWidth="1100.0" style="-fx-border-radius: 0 0 30 0;" styleClass="border" stylesheets="@../css/style.css" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="31.0" layoutY="8.0" prefHeight="39.0" prefWidth="185.0" text="Instructors">
-               <font>
-                  <Font name="Book Antiqua Bold" size="27.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <TableView fx:id="tableView" layoutX="28.0" layoutY="132.0" prefHeight="376.0" prefWidth="1131.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="132.0">
-         <columns>
-            <TableColumn fx:id="stt" prefWidth="40.0" text="STT" />
-            <TableColumn fx:id="instructorId" prefWidth="42.0" text="ID" visible="false" />
-            <TableColumn fx:id="fullName" prefWidth="195.9999656677246" text="Full name" />
-            <TableColumn fx:id="gender" prefWidth="69.33335876464844" text="Gender" />
-            <TableColumn fx:id="hireDate" prefWidth="110.0" text="Hire Date" />
-            <TableColumn fx:id="specialization" prefWidth="149.33328247070312" text="Specialization" />
-            <TableColumn fx:id="experienceYears" prefWidth="105.33331298828125" text="Experience Year" />
-            <TableColumn fx:id="baseSalary" prefWidth="122.6666259765625" text="Base Salary" />
-            <TableColumn fx:id="salary" prefWidth="88.66668701171875" text="Salary" />
-            <TableColumn fx:id="action" prefWidth="123.3333740234375" text="Action" />
-         </columns>
-      </TableView>
-      <Pagination layoutX="450.0" layoutY="522.0" prefHeight="58.0" prefWidth="200.0" />
-      <TextField fx:id="searchInstructor" layoutX="854.0" layoutY="85.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" style="-fx-border-radius: 10px;" styleClass="btn_tool" stylesheets="@../css/style.css" />
-      <Button layoutX="82.0" layoutY="73.0" mnemonicParsing="false" onMouseClicked="#addInstructor" prefHeight="40.0" prefWidth="110.0" styleClass="nav-left" stylesheets="@../css/style.css" text="Add instructor" />
-      <Button layoutX="1107.0" layoutY="9.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="34.0" styleClass="close" stylesheets="@../css/style.css" text="x" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <font>
-            <Font name="Leelawadee UI Bold" size="14.0" />
-         </font>
-      </Button>
-      <ImageView fitHeight="15.0" fitWidth="14.0" layoutX="1059.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/search.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="exportedInstructor_btn" layoutX="233.0" layoutY="74.0" mnemonicParsing="false" onAction="#handleExportButtonAction" onMouseClicked="#addInstructor" prefHeight="40.0" prefWidth="110.0" styleClass="nav-left" stylesheets="@../css/style.css" text="Exported to Excel" />
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="70.0" styleClass="nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Button layoutX="2.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="39.0" prefWidth="70.0" styleClass="btn-nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-               <graphic>
-                  <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/home%20(3).png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button layoutX="3.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#dashboard" prefHeight="39.0" prefWidth="70.0" styleClass="btn-nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-               <graphic>
-                  <ImageView fitHeight="37.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/dashboard2.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button layoutX="5.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="39.0" prefWidth="71.0" styleClass="btn-nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-               <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/logout%20(1).png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-      </AnchorPane>
-   </children>
+    <children>
+        <AnchorPane layoutX="-6.0" prefHeight="55.0" prefWidth="1100.0" style="-fx-border-radius: 0 0 30 0;" styleClass="border" stylesheets="@../css/style.css" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="31.0" layoutY="8.0" prefHeight="39.0" prefWidth="185.0" text="Instructors">
+                    <font>
+                        <Font name="Book Antiqua Bold" size="27.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <TableView fx:id="tableView" layoutX="28.0" layoutY="132.0" prefHeight="376.0" prefWidth="1131.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="132.0">
+            <columns>
+                <TableColumn fx:id="stt" prefWidth="40.0" text="STT" />
+                <TableColumn fx:id="instructorId" prefWidth="42.0" text="ID" visible="false" />
+                <TableColumn fx:id="fullName" prefWidth="195.9999656677246" text="Full name" />
+                <TableColumn fx:id="gender" prefWidth="69.33335876464844" text="Gender" />
+                <TableColumn fx:id="hireDate" prefWidth="110.0" text="Hire Date" />
+                <TableColumn fx:id="experienceYears" prefWidth="105.33331298828125" text="Experience Year" />
+                <TableColumn fx:id="baseSalary" prefWidth="122.6666259765625" text="Base Salary" />
+                <TableColumn fx:id="salary" prefWidth="88.66668701171875" text="Salary" />
+                <TableColumn fx:id="action" prefWidth="123.3333740234375" text="Action" />
+            </columns>
+        </TableView>
+        <Pagination fx:id="pagination" layoutX="450.0" layoutY="522.0" prefHeight="58.0" prefWidth="200.0" />
+        <TextField fx:id="searchInstructor" layoutX="854.0" layoutY="85.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" style="-fx-border-radius: 10px;" styleClass="btn_tool" stylesheets="@../css/style.css" />
+        <Button layoutX="82.0" layoutY="73.0" mnemonicParsing="false" onMouseClicked="#addInstructor" prefHeight="40.0" prefWidth="110.0" styleClass="nav-left" stylesheets="@../css/style.css" text="Add instructor" />
+        <Button layoutX="1107.0" layoutY="9.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="34.0" styleClass="close" stylesheets="@../css/style.css" text="x" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <font>
+                <Font name="Leelawadee UI Bold" size="14.0" />
+            </font>
+        </Button>
+        <ImageView fitHeight="15.0" fitWidth="14.0" layoutX="1059.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../image/search.png" />
+            </image>
+        </ImageView>
+        <Button fx:id="exportedInstructor_btn" layoutX="233.0" layoutY="74.0" mnemonicParsing="false" onAction="#handleExportButtonAction" onMouseClicked="#addInstructor" prefHeight="40.0" prefWidth="110.0" styleClass="nav-left" stylesheets="@../css/style.css" text="Exported to Excel" />
+        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="70.0" styleClass="nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Button layoutX="2.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="39.0" prefWidth="70.0" styleClass="btn-nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../image/home%20(3).png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button layoutX="3.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#dashboard" prefHeight="39.0" prefWidth="70.0" styleClass="btn-nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <graphic>
+                        <ImageView fitHeight="37.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../image/dashboard2.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button layoutX="5.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="39.0" prefWidth="71.0" styleClass="btn-nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../image/logout%20(1).png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </AnchorPane>
+    </children>
 </AnchorPane>

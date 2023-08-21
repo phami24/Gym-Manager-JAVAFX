@@ -42,12 +42,7 @@
             <TableColumn fx:id="action" prefWidth="100.66668701171875" text="Action" />
          </columns>
       </TableView>
-      <Pagination layoutX="450.0" layoutY="522.0" prefHeight="58.0" prefWidth="200.0" stylesheets="@../css/style.css">
-         <styleClass>
-            <String fx:value="arrow-button" />
-            <String fx:value="pagination" />
-            <String fx:value="page-indicator" />
-         </styleClass></Pagination>
+      <Pagination fx:id="pagination" layoutX="200.0" layoutY="528.0" pageCount="1"  />
       <TextField fx:id="searchMember" layoutX="853.0" layoutY="80.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" style="-fx-border-radius: 10px;" styleClass="btn_tool" stylesheets="@../css/style.css" />
       <ImageView fitHeight="15.0" fitWidth="14.0" layoutX="1063.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
          <image>

@@ -141,7 +141,7 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <Button layoutX="356.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="22.0" styleClass="btn-close" stylesheets="@../css/form_style.css" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="7.0">
+      <Button layoutX="356.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#closeForm" prefHeight="25.0" prefWidth="22.0" styleClass="btn-close" stylesheets="@../css/form_style.css" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="7.0">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
