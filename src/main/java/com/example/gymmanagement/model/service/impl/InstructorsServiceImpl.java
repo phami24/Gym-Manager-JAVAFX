@@ -82,5 +82,6 @@ public class InstructorsServiceImpl implements InstructorsService {
     public int getNumberOfClassesByInstructorId(int instructorId) {
         return classesRepository.getClassesByInstructorId(instructorId).size();
     }
-
+    @Override
+    public int getTotalInstructor(){return instructorsRepository.getTotalInstructor();}
 }

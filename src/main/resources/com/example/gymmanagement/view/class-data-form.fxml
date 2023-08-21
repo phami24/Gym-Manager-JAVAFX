@@ -8,6 +8,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
@@ -15,104 +16,109 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="580.0" prefWidth="400.0" style="-fx-background-color: rgba(13, 12, 12,0.9); -fx-background-radius: 25px; -fx-border-radius: 25px;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+<Pane style="-fx-background-radius: 25px;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="buttonUpdate" layoutX="132.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#saveUpdate" prefHeight="32.0" prefWidth="230.0" styleClass="btn-add" stylesheets="@../css/form_style.css" text="SAVE" AnchorPane.bottomAnchor="50.0">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="76.0" layoutY="20.0" prefHeight="31.0" prefWidth="174.0" text="CLASS UPDATE">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="21.0" />
-         </font>
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.5098039507865906" green="0.18039216101169586" blue="0.18039216101169586" />
-                     </color>
-                  </Stop>
-                  <Stop offset="0.16958277254374154">
-                     <color>
-                        <Color red="0.5098039507865906" green="0.18039216101169586" blue="0.18039216101169586" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="1.0" green="1.0" blue="1.0" />
-                     </color>
-                  </Stop>
-               </stops>
-            </LinearGradient>
-         </textFill>
-      </Label>
-      <TextField fx:id="classNameField" layoutX="32.0" layoutY="115.0" opacity="0.71" prefHeight="27.0" prefWidth="328.0" promptText="Capacity" AnchorPane.bottomAnchor="380.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <stylesheets>
-            <URL value="@../css/allAddstyle.css" />
-            <URL value="@../css/form_style.css" />
-         </stylesheets>
-      </TextField>
-      <ComboBox fx:id="instructorComboBox" layoutX="130.0" layoutY="205.0" opacity="0.71" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;" AnchorPane.bottomAnchor="240.0">
-         <stylesheets>
-            <URL value="@../css/allAddstyle.css" />
-            <URL value="@../css/form_style.css" />
-         </stylesheets>
-      </ComboBox>
-      <TextField fx:id="scheduleField" layoutX="32.0" layoutY="160.0" opacity="0.71" prefHeight="27.0" prefWidth="328.0" promptText="Schedule" AnchorPane.bottomAnchor="310.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <stylesheets>
-            <URL value="@../css/allAddstyle.css" />
-            <URL value="@../css/form_style.css" />
-         </stylesheets>
-      </TextField>
-      <TextField fx:id="capacityField" layoutX="32.0" layoutY="250.0" opacity="0.71" prefHeight="27.0" prefWidth="328.0" promptText="Class Name" AnchorPane.bottomAnchor="170.0">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <stylesheets>
-            <URL value="@../css/allAddstyle.css" />
-            <URL value="@../css/form_style.css" />
-         </stylesheets>
-      </TextField>
-      <Button layoutX="360.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="22.0" styleClass="btn-close" stylesheets="@../css/form_style.css" AnchorPane.rightAnchor="6.666666666666664" AnchorPane.topAnchor="7.0">
-         <graphic>
-            <ImageView fitHeight="24.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/close.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Line endX="159.00003051757812" endY="7.62939453125E-6" fill="#727171" layoutX="187.0" layoutY="86.0" startX="-155.00001525878906" startY="7.62939453125E-6" stroke="#a5c2d0" strokeWidth="0.5" />
-      <Label fx:id="intructorLabel" layoutX="40.0" layoutY="316.0" opacity="0.71" text="Intructor ID" textFill="#aca5a5">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <stylesheets>
-            <URL value="@../css/allAddstyle.css" />
-            <URL value="@../css/form_style.css" />
-         </stylesheets>
-      </Label>
-      <AnchorPane layoutX="24.0" layoutY="18.0" prefHeight="38.0" prefWidth="57.0" style="-fx-background-color: #d8ddd8; -fx-background-radius: 10;">
+      <AnchorPane prefHeight="580.0" prefWidth="400.0" styleClass="main" stylesheets="@../css/allAddstyle.css">
          <children>
-            <AnchorPane layoutX="24.0" layoutY="6.0" prefHeight="39.0" prefWidth="36.0" style="-fx-background-radius: 10; -fx-background-color: #14d7f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Circle fill="#85f1ff" layoutX="18.0" layoutY="19.0" radius="13.0" stroke="#14d7f5" strokeType="INSIDE" />
-                  <ImageView fitHeight="17.0" fitWidth="18.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="buttonUpdate" layoutX="132.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#saveUpdate" prefHeight="32.0" prefWidth="230.0" styleClass="btn-add" stylesheets="@../css/form_style.css" text="SAVE" AnchorPane.bottomAnchor="50.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="91.0" layoutY="21.0" prefHeight="31.0" prefWidth="174.0" text="CLASS UPDATE">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="21.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="0.9085173501577287" startY="0.22397473933944942">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.5098039507865906" green="0.18039216101169586" blue="0.18039216101169586" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.16958277254374154">
+                           <color>
+                              <Color red="0.5098039507865906" green="0.18039216101169586" blue="0.18039216101169586" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <TextField fx:id="classNameField" layoutX="32.0" layoutY="115.0" opacity="0.71" prefHeight="27.0" prefWidth="328.0" promptText="Class name" styleClass="text-field" AnchorPane.bottomAnchor="380.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../css/allAddstyle.css" />
+                  <URL value="@../css/form_style.css" />
+               </stylesheets>
+            </TextField>
+            <ComboBox fx:id="instructorComboBox" layoutX="130.0" layoutY="205.0" opacity="0.71" prefHeight="25.0" prefWidth="230.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;" AnchorPane.bottomAnchor="240.0">
+               <stylesheets>
+                  <URL value="@../css/allAddstyle.css" />
+                  <URL value="@../css/form_style.css" />
+               </stylesheets>
+            </ComboBox>
+            <TextField fx:id="scheduleField" layoutX="32.0" layoutY="160.0" opacity="0.71" prefHeight="27.0" prefWidth="328.0" promptText="Schedule" AnchorPane.bottomAnchor="310.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../css/allAddstyle.css" />
+                  <URL value="@../css/form_style.css" />
+               </stylesheets>
+            </TextField>
+            <TextField fx:id="capacityField" layoutX="32.0" layoutY="250.0" opacity="0.71" prefHeight="27.0" prefWidth="328.0" promptText="Capacity" AnchorPane.bottomAnchor="170.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../css/allAddstyle.css" />
+                  <URL value="@../css/form_style.css" />
+               </stylesheets>
+            </TextField>
+            <Button layoutX="360.0" layoutY="7.0" mnemonicParsing="false" onAction="#closeForm" prefHeight="25.0" prefWidth="22.0" styleClass="btn-close" stylesheets="@../css/form_style.css" AnchorPane.rightAnchor="6.666666666666664" AnchorPane.topAnchor="7.0">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/pen.png" />
+                        <Image url="@../image/close.png" />
                      </image>
                   </ImageView>
+               </graphic>
+            </Button>
+            <Line endX="159.00003051757812" endY="7.62939453125E-6" fill="#727171" layoutX="187.0" layoutY="86.0" startX="-155.00001525878906" startY="7.62939453125E-6" stroke="#a5c2d0" strokeWidth="0.5" />
+            <Label fx:id="intructorLabel" layoutX="40.0" layoutY="316.0" opacity="0.71" text="Intructor ID" textFill="#aca5a5">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <stylesheets>
+                  <URL value="@../css/allAddstyle.css" />
+                  <URL value="@../css/form_style.css" />
+               </stylesheets>
+            </Label>
+            <AnchorPane layoutX="24.0" layoutY="18.0" prefHeight="38.0" prefWidth="57.0" style="-fx-background-color: #d8ddd8; -fx-background-radius: 10;">
+               <children>
+                  <AnchorPane layoutX="24.0" layoutY="6.0" prefHeight="39.0" prefWidth="36.0" style="-fx-background-radius: 10; -fx-background-color: #14d7f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Circle fill="#85f1ff" layoutX="18.0" layoutY="19.0" radius="13.0" stroke="#14d7f5" strokeType="INSIDE" />
+                        <ImageView fitHeight="17.0" fitWidth="18.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/pen.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
    </children>
-</AnchorPane>
+</Pane>

@@ -36,7 +36,7 @@ public class EquipmentUpdateController implements Initializable {
     private ComboBox<String> statusComboBox;
 
     @FXML
-    private TextField notesField;
+    private TextArea notesField;
 
     private List<String> errors = new ArrayList<>();
     private EquipmentRepository equipmentRepository = new EquipmentRepository();

@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="580.0" prefWidth="400.0" style="-fx-border-radius: 25; -fx-background-radius: 25; -fx-background-color: rgba(13, 12, 12,0.9);" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="580.0" prefWidth="400.0" styleClass="main" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField fx:id="firstNameField" layoutX="29.0" layoutY="95.0" opacity="0.71" prefHeight="32.0" prefWidth="341.0" promptText="Frist Name" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
          <font>
@@ -99,7 +99,7 @@
             <URL value="@../css/form_style.css" />
          </stylesheets>
       </ComboBox>
-      <Button fx:id="buttonUpdate" layoutX="170.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#saveUpdate" prefHeight="32.0" prefWidth="200.0" styleClass="btn-add" stylesheets="@../css/form_style.css" text="ADD">
+      <Button fx:id="buttonUpdate" layoutX="170.0" layoutY="523.0" mnemonicParsing="false" onMouseClicked="#saveUpdate" prefHeight="32.0" prefWidth="200.0" styleClass="btn-add" stylesheets="@../css/form_style.css" text="UPDATE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -115,12 +115,12 @@
             <URL value="@../css/form_style.css" />
          </stylesheets>
       </ComboBox>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="116.0" layoutY="23.0" prefHeight="31.0" prefWidth="174.0" text="UPDATE MEMBER">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="107.0" layoutY="22.0" prefHeight="31.0" prefWidth="212.0" text="UPDATE MEMBER">
          <font>
             <Font name="Arial Rounded MT Bold" size="21.0" />
          </font>
          <textFill>
-            <LinearGradient endX="1.0" endY="1.0">
+            <LinearGradient endX="1.0" endY="1.0" startX="0.8832808052327731">
                <stops>
                   <Stop>
                      <color>
@@ -141,7 +141,7 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <Button layoutX="356.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="22.0" styleClass="btn-close" stylesheets="@../css/form_style.css" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="7.0">
+      <Button layoutX="356.0" layoutY="10.0" mnemonicParsing="false" onAction="#closeForm" prefHeight="25.0" prefWidth="22.0" styleClass="btn-close" stylesheets="@../css/form_style.css" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="7.0">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -164,5 +164,11 @@
             </AnchorPane>
          </children>
       </AnchorPane>
+      <DatePicker fx:id="joinDatePicker" layoutX="168.0" layoutY="190.0" prefHeight="20.0" prefWidth="212.0" style="-fx-background-color: #f4f4f4;" stylesheets="@../css/addmember.css" visible="false" />
+      <DatePicker fx:id="endDatePicker" layoutX="116.0" layoutY="202.0" prefHeight="20.0" prefWidth="212.0" style="-fx-background-color: #f4f4f4;" stylesheets="@../css/addmember.css" visible="false" />
    </children>
+   <stylesheets>
+      <URL value="@../css/style.css" />
+      <URL value="@../css/allAddstyle.css" />
+   </stylesheets>
 </AnchorPane>

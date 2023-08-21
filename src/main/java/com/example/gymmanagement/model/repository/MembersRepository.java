@@ -355,4 +355,23 @@ public class MembersRepository {
         }
         return results;
     }
+    public List<Members> getMembersByPage(int pageNumber, int pageSize) {
+        List<Members> membersList = new ArrayList<>();
+        int offset = (pageNumber - 1) * pageSize;
+        String query = "SELECT * FROM members WHERE membership_status_id != 4 LIMIT ? OFFSET ?";
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, pageSize);
+            statement.setInt(2, offset);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    membersList.add(fromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return membersList;
+    }
+
 }

@@ -27,6 +27,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.scene.control.Pagination;
 import javafx.util.Callback;
 
 import java.awt.*;
@@ -92,7 +93,14 @@ public class InstructorController implements Initializable {
     private InstructorsService instructorsService = new InstructorsServiceImpl();
 
     private ObservableList<Instructors> instructorsData = FXCollections.observableArrayList();
-    private FilteredList<Instructors> filteredMembersList;
+    private FilteredList<Instructors> filteredInstructorList;
+
+    private int currentPage = 1;
+    private int pageSize = 10;
+
+    private int totalPage = instructorRepository.getTotalInstructor() / pageSize;
+    @FXML
+    private Pagination pagination;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -118,27 +126,26 @@ public class InstructorController implements Initializable {
         });
         setupActionColumn();
 
-        List<Instructors> instructorsList = instructorRepository.getAllInstructors();
-        instructorsData.addAll(instructorsList);
-        tableView.setItems(instructorsData);
 
-        //exported to excel
-//        exportedInstructor_btn.setOnAction(event -> exportToExcel());
 
-        //search
-
-        instructorsData = FXCollections.observableArrayList(instructorRepository.getAllInstructors());
+        pagination.setPageCount(totalPage);
+        pagination.setCurrentPageIndex(currentPage - 1);
+        pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
+            currentPage = newIndex.intValue() + 1;
+            loadInstructorsData();
+        });
+        loadInstructorsData();
 
         // Sử dụng FilteredList để lọc danh sách thành viên dựa trên tên
-        filteredMembersList = new FilteredList<>(instructorsData, p -> true);
+        filteredInstructorList = new FilteredList<>(instructorsData, p -> true);
 
         // Liên kết TableView với FilteredList để hiển thị danh sách đã lọc
-        tableView.setItems(filteredMembersList);
+        tableView.setItems(filteredInstructorList);
 
         // Bắt sự kiện khi người dùng nhập tên vào TextField
         searchInstructor.textProperty().addListener((observable, oldValue, newValue) -> {
             // Lọc danh sách thành viên dựa trên tên mới
-            filteredMembersList.setPredicate(member -> {
+            filteredInstructorList.setPredicate(member -> {
                 // Nếu không có tên nào được nhập, hiển thị tất cả các thành viên
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
@@ -159,6 +166,30 @@ public class InstructorController implements Initializable {
     }
 
     @FXML
+    private void previousPage() {
+        if (currentPage > 1) {
+            pagination.setCurrentPageIndex(currentPage - 2); // Đặt trang trước đó
+            loadInstructorsData();
+        }
+    }
+
+    @FXML
+    private void nextPage() {
+        if (currentPage < totalPage) {
+            pagination.setCurrentPageIndex(currentPage); // Đặt trang tiếp theo
+            loadInstructorsData();
+        }
+    }
+
+    private void loadInstructorsData() {
+        List<Instructors> instructorList = instructorRepository.getInstructorByPage(currentPage, pageSize);
+        instructorsData.clear();
+        instructorsData.addAll(instructorList);
+        tableView.setItems(instructorsData);
+    }
+
+
+    @FXML
     public void close() {
         stageManager.loadHomeStage();
         stage.close();
@@ -175,10 +206,28 @@ public class InstructorController implements Initializable {
     }
     @FXML
     void logOut(MouseEvent event) {
-        stage.close();
-        Stage loginStage = new Stage();
-        stageManager.setCurrentStage(loginStage);
-        stageManager.loadLoginStage();
+        Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationDialog.setTitle("Confirmation");
+        confirmationDialog.setHeaderText("Are you sure you want to log out?");
+        confirmationDialog.setContentText("Press OK to log out or Cancel to stay logged in.");
+
+        // Show the dialog and wait for a result
+        ButtonType result = confirmationDialog.showAndWait().orElse(ButtonType.CANCEL);
+
+        // If the user clicks OK, proceed with the logout
+        if (result == ButtonType.OK) {
+            // Close the current stage
+            stage.close();
+
+            // Create a new login stage
+            Stage loginStage = new Stage();
+
+            // Set the current stage in the stageManager
+            stageManager.setCurrentStage(loginStage);
+
+            // Load and display the login stage
+            stageManager.loadLoginStage();
+        }
     }
 
     private void setupActionColumn() {
@@ -197,8 +246,7 @@ public class InstructorController implements Initializable {
                     Optional<ButtonType> result = confirmDeleteAlert.showAndWait();
                     if (result.isPresent() && result.get() == ButtonType.OK) {
                         instructorsService.deleteInstructor(member.getInstructor_id());
-                        instructorsData.remove(member);
-                        tableView.refresh();
+                        loadInstructorsData();
                     }
                 });
 
@@ -207,7 +255,7 @@ public class InstructorController implements Initializable {
                     int memberId = member.getInstructor_id();
                     InstructorUpdateFormController memberUpdateFormController = new InstructorUpdateFormController(memberId, tableView);
                     stageManager.loadInstructorUpdateFormDialog(memberUpdateFormController);
-                    tableView.refresh();
+                    loadInstructorsData();
                 });
 
                 // Thiết lập kích thước cho các nút

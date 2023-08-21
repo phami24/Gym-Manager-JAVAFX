@@ -117,7 +117,7 @@ public class EventController implements Initializable {
                 String dis = discount.getText();
                 String startDate = String.valueOf(start_date.getValue());
                 String endDate = String.valueOf(end_date.getValue());
-                String statuss = statusColumn.getText();
+//                String statuss = statusColumn.getText();
 
                 events.setEvent_name(eventName);
                 events.setDescription(des);
@@ -128,10 +128,11 @@ public class EventController implements Initializable {
                 events.setStart_date(startDate);
                 events.setEnd_date(endDate);
 
-                int statusValue = stringToInt(statuss);
-                events.setStatus(statusValue);
+//                int statusValue = stringToInt(statuss);
+//                events.setStatus(statusValue);
 
                 eventRepository.updateEvent(events);
+                initializeTableColumns();
                 clearField();
                 tableView.refresh();
 
@@ -162,16 +163,15 @@ public class EventController implements Initializable {
                 String discountText = discount.getText();
                 LocalDate start = start_date.getValue();
                 LocalDate endDate = end_date.getValue();
-                String statuss = status.getText();
+//                String statuss = status.getText();
 
 
                 Event newEvent = new Event();
                 newEvent.setEvent_name(eventNameText);
 
-                newEvent.setStart_date(formatLocalDate(start,"dd/MM/yyyy"));
+                newEvent.setStart_date(String.valueOf(start));
 
-                newEvent.setEnd_date(formatLocalDate(start,"dd/MM/yyyy"));
-
+                newEvent.setEnd_date(String.valueOf(endDate));
 
                 BigDecimal discountPercent = new BigDecimal(discountText);
                 newEvent.setDiscount_percent(discountPercent);
@@ -182,12 +182,12 @@ public class EventController implements Initializable {
                 int memberId = m.getMember_id(); // You need to implement this logic
                 newEvent.setMember_id(memberId);
 
-                int statusValue = stringToInt(statuss);
-                newEvent.setStatus(statusValue);
-
+//                int statusValue = stringToInt(statuss);
+//                newEvent.setStatus(statusValue);
 
                 eventRepository.addEvent(newEvent);
                 tableView.getItems().add(newEvent);
+                initializeTableColumns();
                 clearField();
                 tableView.refresh();
 
@@ -259,10 +259,28 @@ public class EventController implements Initializable {
 
     @FXML
     void logOut(MouseEvent event) {
-        stage.close();
-        Stage loginStage = new Stage();
-        stageManager.setCurrentStage(loginStage);
-        stageManager.loadLoginStage();
+        Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationDialog.setTitle("Confirmation");
+        confirmationDialog.setHeaderText("Are you sure you want to log out?");
+        confirmationDialog.setContentText("Press OK to log out or Cancel to stay logged in.");
+
+        // Show the dialog and wait for a result
+        ButtonType result = confirmationDialog.showAndWait().orElse(ButtonType.CANCEL);
+
+        // If the user clicks OK, proceed with the logout
+        if (result == ButtonType.OK) {
+            // Close the current stage
+            stage.close();
+
+            // Create a new login stage
+            Stage loginStage = new Stage();
+
+            // Set the current stage in the stageManager
+            stageManager.setCurrentStage(loginStage);
+
+            // Load and display the login stage
+            stageManager.loadLoginStage();
+        }
     }
 
 
@@ -272,8 +290,8 @@ public class EventController implements Initializable {
         discount.setText(String.valueOf(event.getDiscount_percent()));
         start_date.setValue(LocalDate.parse(event.getStart_date()));
         end_date.setValue(LocalDate.parse(event.getEnd_date()));
-        String statusString = intToString(event.getStatus());
-        status.setText(statusString);
+//        String statusString = intToString(event.getStatus());
+//        status.setText(statusString);
     }
 
     public String formatLocalDate(LocalDate date) {
@@ -352,13 +370,13 @@ public class EventController implements Initializable {
         });
 
 
-        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+//        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         // Set up the Action column
 
         actionColumn.setCellFactory(column -> new TableCell<Event, Void>() {
             private final Button deleteButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/removed.png"))));
-            private final Button emailButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/refresh.png"))));
+                private final Button emailButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/message.png"))));
 
             {
                 deleteButton.setOnAction(event -> {
@@ -409,8 +427,8 @@ public class EventController implements Initializable {
             }
         });
 
-        List<Event> events = eventRepository.getAllEvents();
-        tableView.getItems().addAll(events);
+//        List<Event> events = eventRepository.getAllEvents();
+//        tableView.getItems().addAll(events);
 
 
 //        actionColumn.setCellFactory(param -> new TableCell<>() {
@@ -527,7 +545,6 @@ public class EventController implements Initializable {
         description.clear();
         start_date.setValue(null);
         end_date.setValue(null);
-        status.setText("");
     }
 
     @Override
@@ -560,9 +577,9 @@ public class EventController implements Initializable {
         // Example: Adding event handlers to buttons
         updateButton.setOnAction(this::handleUpdateButton);
         addButton.setOnAction(this::handleAddButton);
-//        List<Event> events = eventRepository.getAllEvents();
-//        tableView.getItems().addAll(events);
 
+        List<Event> events = eventRepository.getAllEvents();
+        tableView.getItems().addAll(events);
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 showEventDetails(newValue);

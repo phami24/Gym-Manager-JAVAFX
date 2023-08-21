@@ -304,5 +304,43 @@ public class InstructorRepository {
             e.printStackTrace();
         }
     }
+
+    public int getTotalInstructor() {
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT COUNT(instructor_id) as count FROM instructors");
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public List<Instructors> getInstructorByPage(int currentPage, int pageSize) {
+        List<Instructors> instructorsList = new ArrayList<>();
+        int offset = (currentPage - 1) * pageSize;
+
+        String query = "SELECT * FROM instructors WHERE status = 1 LIMIT ? OFFSET ?";
+
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setInt(1, pageSize);
+            statement.setInt(2, offset);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    instructorsList.add(fromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return instructorsList;
+    }
+
 }
 

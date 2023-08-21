@@ -15,9 +15,10 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="580.0" prefWidth="400.0" style="-fx-border-radius: 25; -fx-background-radius: 25; -fx-background-color: rgba(13, 12, 12,0.9);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="580.0" prefWidth="400.0" styleClass="main" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <stylesheets>
       <URL value="@../css/addmember.css" />
+      <URL value="@../css/allAddstyle.css" />
    </stylesheets>
    <children>
       <TextField fx:id="firstNameField" layoutX="24.0" layoutY="105.0" prefHeight="31.0" prefWidth="347.0" promptText="First Name" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
@@ -111,7 +112,7 @@
          </font>
       </Button>
       <Line endX="159.00003051757812" endY="7.62939453125E-6" fill="#727171" layoutX="187.0" layoutY="86.0" startX="-155.00001525878906" startY="7.62939453125E-6" stroke="#a5c2d0" strokeWidth="0.5" />
-      <Button layoutX="370.0" layoutY="17.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="22.0" styleClass="btn-close" stylesheets="@../css/form_style.css" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="7.0">
+      <Button layoutX="370.0" layoutY="17.0" mnemonicParsing="false" onAction="#closeForm" prefHeight="25.0" prefWidth="22.0" styleClass="btn-close" stylesheets="@../css/form_style.css" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="10.0">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -120,12 +121,12 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="114.0" layoutY="23.0" prefHeight="31.0" prefWidth="205.0" text="UPDATE INTRUCTOR">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="99.0" layoutY="23.0" prefHeight="31.0" prefWidth="240.0" text="UPDATE INTRUCTOR">
          <font>
             <Font name="Arial Rounded MT Bold" size="21.0" />
          </font>
          <textFill>
-            <LinearGradient endX="1.0" endY="1.0">
+            <LinearGradient endX="1.0" endY="1.0" startX="0.9337539191501749">
                <stops>
                   <Stop>
                      <color>
@@ -160,5 +161,10 @@
             </AnchorPane>
          </children>
       </AnchorPane>
+      <TextField fx:id="salaryField" layoutX="153.0" layoutY="403.0" opacity="0.71" prefHeight="25.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;" stylesheets="@../css/allAddstyle.css" visible="false">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

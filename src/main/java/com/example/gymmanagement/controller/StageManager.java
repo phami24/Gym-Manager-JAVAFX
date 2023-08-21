@@ -109,7 +109,7 @@ public class StageManager {
                 "            display: none; /* Ẩn nội dung ban đầu */\n" +
                 "            margin-top: 20px; /* Khoảng cách từ hoạt ảnh đến văn bản */\n" +
                 "            font-size: 24px;\n" +
-                "            color: green; /* Màu xanh */\n" +
+                "            color: black; /* Màu xanh */\n" +
                 "            opacity: 0; /* Ẩn đi ban đầu */\n" +
                 "            transform: translateY(20px); /* Hiệu ứng dịch lên 20px */\n" +
                 "            transition: opacity 0.5s, transform 0.5s; /* Hiệu ứng trong 0.5s */\n" +
@@ -297,11 +297,12 @@ public class StageManager {
 
     public void loadDashBoard(){
         Stage dashBoardStage = new Stage();
-        DashBoardController dashBoardController = new DashBoardController();
         dashBoardStage.initModality(Modality.APPLICATION_MODAL);
-        Scene dashBoardScene = sceneManager.loadScene("dashboard.fxml", dashBoardController);
+        DashBoardController dashBoardController = new DashBoardController();
+        Scene dashBoardScene = sceneManager.loadScene("dashboardVIEW.fxml",dashBoardController);
         dashBoardStage.setScene(dashBoardScene);
         setCurrentStage(dashBoardStage);
+        dashBoardController.setStage(dashBoardStage);
         currentStage.initStyle(StageStyle.TRANSPARENT);
         dashBoardScene.setFill(Color.TRANSPARENT);
         showStage();

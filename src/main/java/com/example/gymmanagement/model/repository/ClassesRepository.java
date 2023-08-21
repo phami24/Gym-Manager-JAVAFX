@@ -224,4 +224,16 @@ public class ClassesRepository {
             System.out.println(e.getMessage());
         }
     }
+    public int getTotalClasses() {
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement("SELECT COUNT(class_id) as count FROM classes");
+             ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                return resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

@@ -1,126 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.StackedBarChart?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="719.0" prefWidth="1054.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="parentpackage.dashboarddemo.HelloController">
-   <top>
-      <AnchorPane prefHeight="731.0" prefWidth="774.0" BorderPane.alignment="CENTER">
+<AnchorPane prefHeight="600.0" prefWidth="1100.0" styleClass="borderCSS" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <!-- Stylesheet -->
+   <stylesheets>
+      <URL value="@../css/style4dashboard.css" />
+   </stylesheets>
+   <children>
+      <Label layoutX="47.0" layoutY="14.0" prefHeight="53.0" prefWidth="182.0" text="DashBoard">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Pane layoutX="191.0" layoutY="495.0" prefHeight="123.0" prefWidth="854.0" styleClass="borderCSS">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#1face1" height="147.0" layoutY="72.0" stroke="#1face1" strokeType="INSIDE" width="1053.0" />
-            <Label fx:id="dashboardLabel" layoutX="97.0" layoutY="165.0" prefHeight="19.0" prefWidth="81.0" text="Total Staffs" textFill="WHITE">
+            <Label layoutX="77.0" layoutY="83.0" prefHeight="19.0" prefWidth="81.0" styleClass="textCSS" text="Total Staffs" textFill="WHITE">
                <font>
                   <Font name="Corbel Bold" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="dashboardLabel" layoutX="266.0" layoutY="162.0" text="Total Customers" textFill="WHITE">
+            <Label layoutX="234.0" layoutY="85.0" styleClass="textCSS" text="Total Customers" textFill="WHITE">
                <font>
                   <Font name="Corbel Bold" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="dashboardLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="624.0" layoutY="161.0" prefHeight="22.0" prefWidth="134.0" text="Total Class Availables" textFill="#fcf8f8">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="408.0" layoutY="86.0" prefHeight="22.0" prefWidth="134.0" styleClass="textCSS" text="Total Class Availables" textFill="#fcf8f8">
                <font>
                   <Font name="Corbel Bold" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="dashboardLabel" layoutX="460.0" layoutY="165.0" text="Total Sales " textFill="#fcf8f8">
-               <font>
-                  <Font name="Corbel Bold" size="13.0" />
-               </font>
-            </Label>
-            <Label fx:id="staffNum" layoutX="102.0" layoutY="109.0" prefHeight="47.0" prefWidth="34.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="staffNum" layoutX="97.0" layoutY="20.0" prefHeight="70.0" prefWidth="72.0" text="0" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="saleNum" layoutX="466.0" layoutY="109.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="classNum" layoutX="448.0" layoutY="20.0" prefHeight="70.0" prefWidth="65.0" text="0" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="classNum" layoutX="641.0" layoutY="107.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="memberNum" layoutX="263.0" layoutY="20.0" prefHeight="70.0" prefWidth="81.0" text="0" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="memberNum" layoutX="271.0" layoutY="108.0" text="0" textAlignment="RIGHT" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="48.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="61.0" fitWidth="57.0" layoutX="45.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="61.0" fitWidth="57.0" layoutX="40.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/staffNEWest.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="49.0" fitWidth="43.0" layoutX="217.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="49.0" fitWidth="43.0" layoutX="212.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/cusnew.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="57.0" fitWidth="56.0" layoutX="402.0" layoutY="114.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/sale.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="54.0" fitWidth="50.0" layoutX="582.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="54.0" fitWidth="50.0" layoutX="398.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/sport.png" />
                </image>
             </ImageView>
-            <Line endX="95.20001220703125" endY="-23.600006103515625" layoutX="866.0" layoutY="171.0" startX="186.199951171875" startY="-98.79999542236328" stroke="WHITE" />
-            <Line endX="89.20001220703125" endY="-21.800018310546875" layoutX="963.0" layoutY="238.0" startX="-2.50714111328125" startY="-89.89291381835938" stroke="WHITE" />
-            <Line endX="0.79998779296875" endY="-279.0" layoutX="950.0" layoutY="350.0" startX="33.60003662109375" startY="-221.8000030517578" stroke="WHITE" />
-            <Line endX="-49.39996337890625" endY="18.0" layoutX="1005.0" layoutY="200.0" startX="-19.79998779296875" startY="-31.0" stroke="#fcfcfc" />
-            <Line endX="-213.60003662109375" endY="-259.0" layoutX="1206.0" layoutY="330.0" startX="-237.60003662109375" startY="-228.20001220703125" stroke="#ececec" />
-            <Line endX="-126.20001220703125" endY="-131.0" layoutX="1121.0" layoutY="349.0" startX="-149.39996337890625" startY="-156.0" stroke="WHITE" />
-            <Line endX="-113.90711212158203" endY="-148.0" layoutX="167.0" layoutY="367.0" startX="-165.3999786376953" startY="-195.0" stroke="WHITE" />
-            <Line endX="-111.50711822509766" endY="-295.0" layoutX="167.0" layoutY="367.0" startX="-165.99998474121094" startY="-246.40000915527344" stroke="WHITE" />
-            <ImageView fitHeight="54.0" fitWidth="47.0" layoutX="1000.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/addPNG.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="exit" layoutX="999.0" layoutY="26.0" prefHeight="9.0" prefWidth="0.0">
-               <graphic>
-                  <ImageView fitHeight="13.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/closelogo.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <padding>
-                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-               </padding>
-            </Label>
-            <Label fx:id="menuLogo" layoutX="39.0" layoutY="16.0" prefHeight="38.0" prefWidth="169.0" text="DashBoard">
-               <font>
-                  <Font name="System Bold" size="25.0" />
-               </font>
-            </Label>
-            <Label layoutX="854.0" layoutY="110.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="stuffNum" layoutX="660.0" layoutY="20.0" prefHeight="70.0" prefWidth="81.0" text="0" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <ImageView fitHeight="59.0" fitWidth="58.0" layoutX="783.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/bench-press.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="dashboardLabel1" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="806.0" layoutY="162.0" prefHeight="22.0" prefWidth="134.0" text="Total Equidment" textFill="#fcf8f8">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="607.0" layoutY="88.0" prefHeight="22.0" prefWidth="134.0" styleClass="textCSS" text="Total Equidment" textFill="#fcf8f8">
                <font>
                   <Font name="Corbel Bold" size="13.0" />
                </font>
             </Label>
+            <ImageView fitHeight="58.0" fitWidth="55.0" layoutX="595.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/addPNG.png" />
+               </image>
+            </ImageView>
          </children>
-      </AnchorPane>
-   </top>
-</BorderPane>
+      </Pane>
+      <LineChart fx:id="lineChart" layoutX="39.0" layoutY="141.0" prefHeight="341.0" prefWidth="572.0" styleClass="chartCSS">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" tickLabelFill="#646c71" />
+         </yAxis>
+      </LineChart>
+      <StackedBarChart layoutX="618.0" layoutY="141.0" prefHeight="341.0" prefWidth="419.0" styleClass="chartCSS">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis side="LEFT" tickLabelFill="#646c71" />
+         </yAxis>
+      </StackedBarChart>
+      <MenuButton fx:id="yearRevenueBtn" layoutX="491.0" layoutY="106.0" mnemonicParsing="false" text="MenuButton">
+         <items>
+            <MenuItem mnemonicParsing="false" text="2026" />
+            <MenuItem mnemonicParsing="false" text="2025" />
+            <MenuItem mnemonicParsing="false" text="2024" />
+            <MenuItem mnemonicParsing="false" text="2023" />
+            <MenuItem mnemonicParsing="false" text="2022" />
+         </items>
+      </MenuButton>
+      <MenuButton layoutX="923.0" layoutY="106.0" mnemonicParsing="false" text="MenuButton">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Action 1" />
+            <MenuItem mnemonicParsing="false" text="Action 2" />
+         </items>
+      </MenuButton>
+      <Separator layoutY="75.0" prefHeight="3.0" prefWidth="1053.0" />
+      <Label layoutX="79.0" layoutY="92.0" prefHeight="32.0" prefWidth="129.0" style="-fx-text-fill: black;" text="Total Revenue:" textFill="#fcf8f8">
+         <font>
+            <Font name="Corbel Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="revenueNUM" layoutX="208.0" layoutY="81.0" prefHeight="54.0" prefWidth="72.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="30.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="47.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/sale.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="1060.0" layoutY="8.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="34.0" styleClass="close" stylesheets="@../css/style.css" text="x" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="8.0">
+         <font>
+            <Font name="Leelawadee UI Bold" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="14.0" layoutY="536.0" mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="61.0" prefWidth="65.0" styleClass="btn-nav-left" stylesheets="@../css/style.css">
+         <graphic>
+            <ImageView fitHeight="43.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/home.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

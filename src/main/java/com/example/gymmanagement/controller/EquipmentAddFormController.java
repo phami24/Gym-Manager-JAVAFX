@@ -28,7 +28,7 @@ public class EquipmentAddFormController implements Initializable {
     private TextField categoryField;
 
     @FXML
-    private TextField purchaseDateField;
+    private DatePicker purchaseDatePicker;
 
     @FXML
     private TextField priceField;
@@ -37,7 +37,7 @@ public class EquipmentAddFormController implements Initializable {
     private ComboBox<String> statusComboBox;
 
     @FXML
-    private TextField notesField;
+    private TextArea notesField;
 
     @FXML
     private Button buttonAdd;
@@ -62,7 +62,7 @@ public class EquipmentAddFormController implements Initializable {
     private void clearFields() {
         equipmentNameField.clear();
         categoryField.clear();
-        purchaseDateField.clear();
+        purchaseDatePicker.setValue(null);
         priceField.clear();
         statusComboBox.getSelectionModel().clearSelection();
         notesField.clear();
@@ -87,7 +87,7 @@ public class EquipmentAddFormController implements Initializable {
             if (result == ButtonType.OK) {
                 String equipmentName = equipmentNameField.getText();
                 String category = categoryField.getText();
-                String purchaseDate = purchaseDateField.getText();
+                String purchaseDate = String.valueOf(purchaseDatePicker.getValue());
                 BigDecimal price = new BigDecimal(priceField.getText());
                 String status = statusComboBox.getValue();
                 String notes = notesField.getText();
@@ -121,7 +121,7 @@ public class EquipmentAddFormController implements Initializable {
 
         String equipmentName = equipmentNameField.getText();
         String category = categoryField.getText();
-        String purchaseDate = purchaseDateField.getText();
+        String purchaseDate = String.valueOf(purchaseDatePicker.getValue());
         String priceStr = priceField.getText();
         String status = statusComboBox.getValue();
         String notes = notesField.getText();

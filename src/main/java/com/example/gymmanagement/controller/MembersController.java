@@ -94,6 +94,12 @@ public class MembersController implements Initializable {
     private ObservableList<Members> membersData = FXCollections.observableArrayList();
     private FilteredList<Members> filteredMembersList;
 
+    private int currentPage = 1;
+    private int pageSize = 10;
+
+    private int totalPage = membersRepository.getTotalMembers() / pageSize;
+    @FXML
+    private Pagination pagination;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -112,14 +118,13 @@ public class MembersController implements Initializable {
 
         setupActionColumn();
 
-        // Lấy dữ liệu từ cơ sở dữ liệu và đổ vào TableView
-        List<Members> membersList = membersRepository.getAllMembers();
-        membersData.addAll(membersList);
-        member_tableView.setItems(membersData);
-
-
-        //search
-        membersData = FXCollections.observableArrayList(membersService.getAllMembers());
+        pagination.setPageCount(totalPage);
+        pagination.setCurrentPageIndex(currentPage - 1);
+        pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
+            currentPage = newIndex.intValue() + 1;
+            loadMembersData();
+        });
+        loadMembersData();
 
         // Sử dụng FilteredList để lọc danh sách thành viên dựa trên tên
         filteredMembersList = new FilteredList<>(membersData, p -> true);
@@ -150,6 +155,29 @@ public class MembersController implements Initializable {
         });
     }
 
+    @FXML
+    private void previousPage() {
+        if (currentPage > 1) {
+            pagination.setCurrentPageIndex(currentPage - 2); // Đặt trang trước đó
+            loadMembersData();
+        }
+    }
+
+    @FXML
+    private void nextPage() {
+        if (currentPage < totalPage) {
+            pagination.setCurrentPageIndex(currentPage); // Đặt trang tiếp theo
+            loadMembersData();
+        }
+    }
+
+    private void loadMembersData() {
+        List<Members> membersList = membersRepository.getMembersByPage(currentPage, pageSize);
+        membersData.clear();
+        membersData.addAll(membersList);
+        member_tableView.setItems(membersData);
+    }
+
 
     @FXML
     void close(MouseEvent event) {
@@ -171,10 +199,28 @@ public class MembersController implements Initializable {
 
     @FXML
     void logOut(MouseEvent event) {
-        stage.close();
-        Stage loginStage = new Stage();
-        stageManager.setCurrentStage(loginStage);
-        stageManager.loadLoginStage();
+        Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationDialog.setTitle("Confirmation");
+        confirmationDialog.setHeaderText("Are you sure you want to log out?");
+        confirmationDialog.setContentText("Press OK to log out or Cancel to stay logged in.");
+
+        // Show the dialog and wait for a result
+        ButtonType result = confirmationDialog.showAndWait().orElse(ButtonType.CANCEL);
+
+        // If the user clicks OK, proceed with the logout
+        if (result == ButtonType.OK) {
+            // Close the current stage
+            stage.close();
+
+            // Create a new login stage
+            Stage loginStage = new Stage();
+
+            // Set the current stage in the stageManager
+            stageManager.setCurrentStage(loginStage);
+
+            // Load and display the login stage
+            stageManager.loadLoginStage();
+        }
     }
 
     private void setupActionColumn() {
@@ -193,8 +239,7 @@ public class MembersController implements Initializable {
                     Optional<ButtonType> result = confirmDeleteAlert.showAndWait();
                     if (result.isPresent() && result.get() == ButtonType.OK) {
                         membersService.deleteMember(member.getMember_id());
-                        membersData.remove(member);
-                        member_tableView.refresh();
+                        loadMembersData();
                     }
                 });
 
@@ -203,7 +248,7 @@ public class MembersController implements Initializable {
                     int memberId = member.getMember_id();
                     MemberUpdateFormController memberUpdateFormController = new MemberUpdateFormController(memberId, member_tableView);
                     stageManager.loadMemberUpdateFormDialog(memberUpdateFormController);
-                    member_tableView.refresh();
+                    loadMembersData();
                 });
 
                 // Thiết lập kích thước cho các nút
@@ -234,6 +279,7 @@ public class MembersController implements Initializable {
             }
         });
     }
+
 
     @FXML
     void addMember(MouseEvent event) {

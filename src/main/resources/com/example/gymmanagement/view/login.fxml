@@ -37,7 +37,7 @@
                         <Font size="17.0" />
                      </font>
                   </PasswordField>
-                  <CheckBox fx:id="keepLoggedInCheckbox" layoutX="20.0" layoutY="325.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="121.0" text="Keep me login" textAlignment="CENTER">
+                  <CheckBox fx:id="keepLoggedInCheckbox" layoutX="20.0" layoutY="325.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="153.0" text="Show password" textAlignment="CENTER" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -63,7 +63,7 @@
                         <Font name="Arial Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Hyperlink alignment="CENTER" layoutX="246.0" layoutY="333.0" text="Forgot password?" textAlignment="CENTER" />
+                  <Hyperlink alignment="CENTER" layoutX="246.0" layoutY="333.0" text="Forgot password?" textAlignment="CENTER" visible="false" />
                   <Line endX="12.999984741210938" endY="28.333328247070312" layoutX="135.0" layoutY="75.0" startX="12.999984741210938" startY="-41.66667175292969" />
                   <ImageView fitHeight="160.0" fitWidth="154.0" layoutX="30.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="false">
                      <image>
@@ -75,6 +75,32 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
+                  <TextField fx:id="password_show" layoutX="14.0" layoutY="275.0" prefHeight="39.0" prefWidth="339.0" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;" visible="false">
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="hidden" layoutX="313.0" layoutY="283.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/hidden.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="show" layoutX="313.0" layoutY="283.0" mnemonicParsing="false" style="-fx-background-color: transparent;" visible="false">
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/visible.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </AnchorPane>
             <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="417.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="40.0" prefWidth="247.0" styleClass="nav-btn" stylesheets="@../css/style.css" text="Log in" textFill="#c0b2b2" AnchorPane.rightAnchor="72.0">

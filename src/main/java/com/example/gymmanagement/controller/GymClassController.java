@@ -137,6 +137,7 @@ public class GymClassController implements Initializable {
     @FXML
     void homepage(MouseEvent event) {
         stageManager.loadHomeStage();
+        stage.close();
     }
     @FXML
     void dashboard(MouseEvent event) {
@@ -145,10 +146,28 @@ public class GymClassController implements Initializable {
     }
     @FXML
     void logOut(MouseEvent event) {
-        stage.close();
-        Stage loginStage = new Stage();
-        stageManager.setCurrentStage(loginStage);
-        stageManager.loadLoginStage();
+        Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationDialog.setTitle("Confirmation");
+        confirmationDialog.setHeaderText("Are you sure you want to log out?");
+        confirmationDialog.setContentText("Press OK to log out or Cancel to stay logged in.");
+
+        // Show the dialog and wait for a result
+        ButtonType result = confirmationDialog.showAndWait().orElse(ButtonType.CANCEL);
+
+        // If the user clicks OK, proceed with the logout
+        if (result == ButtonType.OK) {
+            // Close the current stage
+            stage.close();
+
+            // Create a new login stage
+            Stage loginStage = new Stage();
+
+            // Set the current stage in the stageManager
+            stageManager.setCurrentStage(loginStage);
+
+            // Load and display the login stage
+            stageManager.loadLoginStage();
+        }
     }
     private void setupActionColumn() {
         action.setCellFactory(column -> new TableCell<Classes, Void>() {
