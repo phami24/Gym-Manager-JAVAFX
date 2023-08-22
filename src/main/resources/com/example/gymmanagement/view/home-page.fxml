@@ -15,7 +15,7 @@
             <Image url="@../image/bgr3.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="27.0" layoutY="65.0" prefHeight="441.0" prefWidth="981.0">
+      <AnchorPane layoutX="27.0" layoutY="65.0" prefHeight="441.0" prefWidth="821.0">
          <children>
             <Button fx:id="dashBoardButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" graphicTextGap="16.0" layoutX="47.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#toDashBoard" prefHeight="140.0" prefWidth="160.0" styleClass="card" stylesheets="@../css/style.css" text="Dashboard" textAlignment="CENTER">
                <font>
@@ -137,9 +137,9 @@
             <Font name="Leelawadee UI Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="logOutbt" layoutY="542.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="57.0" prefWidth="59.0" styleClass="sign-out" stylesheets="@../css/style.css">
+      <Button fx:id="logOutbt" layoutY="528.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="71.0" prefWidth="75.0" styleClass="sign-out" stylesheets="@../css/style.css">
          <graphic>
-            <ImageView fitHeight="34.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="46.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/logout%205.png" />
                </image>

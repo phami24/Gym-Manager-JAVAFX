@@ -98,7 +98,7 @@ public class InstructorUpdateFormController implements Initializable {
     }
 
     @FXML
-    private void closeForm() {
+        private void closeForm() {
         // Get the Stage for the update form and close it
         Stage currentStage = (Stage) firstNameField.getScene().getWindow();
         currentStage.close();

@@ -98,7 +98,7 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);
     -fx-background-radius: 20px;
     -fx-border-radius: 20px;
-       -fx-text-fill: black;
+    -fx-text-fill: black;
 }
 .admin-label{
     -fx-border-color: #4d668f ;
@@ -128,10 +128,11 @@
     -fx-border-radius:8px;
     -fx-border-width:1px;
     -fx-padding:0px;
+    -fx-border-color:#a8a5a5;
 }
 .table-view .table-column{
     -fx-alignment:CENTER;
-    -fx-border-color:#a8a5a5;
+    -fx-border-color:#f0f0f0;
     -fx-border-width:0px 1px 0px 0px;
 }
 .table-view .column-header-background{
@@ -164,22 +165,27 @@
 
 /* Giao diện khi rê chuột qua hàng */
 .table-row-cell:hover{
-    -fx-background-color: #dedcd7;
+    -fx-background-color: #e3e3e3;
     -fx-text-fill: #0f0f0f;
 }
 
+/* Styling for even rows (zebra striping) */
+.table-row-cell:even {
+    -fx-background-color: #ebe8e8;
+    -fx-text-fill: black;
+}
 
 .btn_tool{
--fx-border-color:#9BABB8;
+-fx-border-color:#648a8c;
 -fx-background-color: rgba(240, 240, 240, 0.5);
 -fx-cursor:hand;
-
+ -fx-border-radius: 10px;
 }
 .add:hover{
   -fx-background-radius: 10px;
    -fx-border-radius: 10px;
-   -fx-text-fill:#fff;
--fx-background-color: linear-gradient(to bottom,#636262,#1f1d1d);
+   -fx-text-fill:black;
+-fx-background-color: linear-gradient(to bottom,#636262,#f0f0f0,#f0f0f0,#f0f0f0,#1f1d1d);
 -fx-border-color: #b8b8ba;
 }
 .pagination {
@@ -204,18 +210,17 @@
 .card{
     -fx-border-color:#9e9e9b;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);
-    -fx-background-radius: 30px;
-    -fx-border-radius: 36px;
+    -fx-background-radius: 32px;
+    -fx-border-radius: 35px;
     -fx-text-fill: black;
-    -fx-background-color: linear-gradient(to bottom,#626362,#8c8b87,#626362);
+    -fx-background-color: linear-gradient(to bottom,#c9c9c9,#cfcfcf,#c9c9c9,#c9c9c9);
 }
 .card:hover{
--fx-background-color: linear-gradient(to bottom,rgb(147,144,141),#828281,#8b8c8c);
+-fx-background-color: linear-gradient(to bottom,#b8b8b8,#828281,#8b8c8c);
 }
 .nav-left{
 -fx-background-color: linear-gradient(to right,#545353,#2e2d2d);
--fx-background-radius: 0 20 0 20;
--fx-cursor:hand;
+-fx-background-radius: 0 0 0 0;
 -fx-text-fill: white;
 
 }

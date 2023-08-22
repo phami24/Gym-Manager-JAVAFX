@@ -1,8 +1,11 @@
 package com.example.gymmanagement.controller;
 
 import com.example.gymmanagement.database.JDBCConnect;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,6 +44,14 @@ public class LoginController implements Initializable {
 
     @FXML
     private AnchorPane sideBar;
+    @FXML
+    private TextField password_show;
+
+    @FXML
+    private Button hidden;
+    @FXML
+    private Button show;
+
 
     @FXML
 
@@ -54,6 +66,8 @@ public class LoginController implements Initializable {
         this.stageManager = new StageManager();
     }
 
+    private boolean isPasswordVisible = false;
+    private Timeline hidePasswordTimeline;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -66,7 +80,48 @@ public class LoginController implements Initializable {
             stage.setX(mouseEvent.getScreenX() - x);
             stage.setY(mouseEvent.getScreenY() - y);
         });
+
+        password_show.setVisible(false);
+
+        hidden.setOnAction(event -> {
+            isPasswordVisible = !isPasswordVisible;
+            if (isPasswordVisible) {
+                // If the checkbox is selected, show the password
+                showPassword();
+            } else {
+                // If the checkbox is not selected, hide the password
+                hidePassword();
+            }
+        });
+
+        // Initialize the Timeline to hide the password after 5 seconds (5000 milliseconds)
+        hidePasswordTimeline = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                hidePassword();
+            }
+        }));
+        hidePasswordTimeline.setCycleCount(1); // Only run once
     }
+
+    private void showPassword() {
+        passwordField.setVisible(false);
+        password_show.setText(passwordField.getText());
+        password_show.setVisible(true);
+        hidden.setVisible(false);
+        show.setVisible(true);
+        hidePasswordTimeline.stop(); // Stop any previous timeline
+        hidePasswordTimeline.play(); // Start the timeline to hide the password after 5 seconds
+    }
+
+    private void hidePassword() {
+        password_show.setVisible(false);
+        passwordField.setVisible(true);
+        hidden.setVisible(true);
+        show.setVisible(false);
+        hidePasswordTimeline.stop(); // Stop any previous timeline
+    }
+
 
     public void setStage(Stage stage) {
         this.stage = stage;

@@ -5,6 +5,7 @@ import com.example.gymmanagement.model.entity.Event;
 import com.example.gymmanagement.model.entity.Members;
 import com.example.gymmanagement.model.repository.EventRepository;
 import com.example.gymmanagement.model.repository.MembersRepository;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,12 +23,16 @@ import javafx.stage.Stage;
 
 import java.math.BigDecimal;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
+
+import javafx.util.Callback;
+import javafx.util.StringConverter;
+import javafx.util.converter.LocalDateStringConverter;
 
 public class EventController implements Initializable {
     @FXML
@@ -55,9 +60,9 @@ public class EventController implements Initializable {
     @FXML
     private TableColumn<Event, String> discountColumn;
     @FXML
-    private TableColumn<Event, LocalDate> startDateColumn;
+    private TableColumn<Event, String> startDateColumn;
     @FXML
-    private TableColumn<Event, LocalDate> endDateColumn;
+    private TableColumn<Event, String> endDateColumn;
     @FXML
     private TableColumn<Event, String> statusColumn;
     @FXML
@@ -74,7 +79,21 @@ public class EventController implements Initializable {
     private EventRepository eventRepository = new EventRepository();
     private ObservableList<Event> eventData = FXCollections.observableArrayList();
     private MembersRepository membersRepository = new MembersRepository();
+    private final StringConverter<LocalDate> localDateStringConverter = new LocalDateStringConverter();
 
+
+    public static String formatLocalDate(LocalDate date, String pattern) {
+        // Check for null date
+        if (date == null) {
+            return "";
+        }
+
+        // Create a DateTimeFormatter with the specified pattern
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+
+        // Format the LocalDate to a string
+        return date.format(formatter);
+    }
     @FXML
     private void handleUpdateButton(ActionEvent event) {
         // Handle the update button click event
@@ -98,7 +117,7 @@ public class EventController implements Initializable {
                 String dis = discount.getText();
                 String startDate = String.valueOf(start_date.getValue());
                 String endDate = String.valueOf(end_date.getValue());
-//                String status = statusColumn.getText();
+//                String statuss = statusColumn.getText();
 
                 events.setEvent_name(eventName);
                 events.setDescription(des);
@@ -109,14 +128,18 @@ public class EventController implements Initializable {
                 events.setStart_date(startDate);
                 events.setEnd_date(endDate);
 
-//                events.setStatus(Integer.parseInt(status));
+//                int statusValue = stringToInt(statuss);
+//                events.setStatus(statusValue);
 
                 eventRepository.updateEvent(events);
+                initializeTableColumns();
+                clearField();
                 tableView.refresh();
 
             }
         }
     }
+
 
     @FXML
     private void handleAddButton(ActionEvent event) {
@@ -140,33 +163,32 @@ public class EventController implements Initializable {
                 String discountText = discount.getText();
                 LocalDate start = start_date.getValue();
                 LocalDate endDate = end_date.getValue();
-                String statuses = status.getText();
+//                String statuss = status.getText();
 
 
                 Event newEvent = new Event();
                 newEvent.setEvent_name(eventNameText);
 
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                String startDateString = start.format(formatter);
-                newEvent.setStart_date(startDateString);
+                newEvent.setStart_date(String.valueOf(start));
 
-                String endDateString = endDate.format(formatter);
-                newEvent.setEnd_date(endDateString);
-
+                newEvent.setEnd_date(String.valueOf(endDate));
 
                 BigDecimal discountPercent = new BigDecimal(discountText);
                 newEvent.setDiscount_percent(discountPercent);
 
                 newEvent.setDescription(eventDes);
 
-//                int memberId = calculateMemberId(); // You need to implement this logic
-//                newEvent.setMember_id(memberId);
+                Members m = new Members();
+                int memberId = m.getMember_id(); // You need to implement this logic
+                newEvent.setMember_id(memberId);
 
-                newEvent.setStatus(Integer.parseInt(statuses));
-
+//                int statusValue = stringToInt(statuss);
+//                newEvent.setStatus(statusValue);
 
                 eventRepository.addEvent(newEvent);
                 tableView.getItems().add(newEvent);
+                initializeTableColumns();
+                clearField();
                 tableView.refresh();
 
             } catch (NumberFormatException e) {
@@ -194,6 +216,28 @@ public class EventController implements Initializable {
 
         status.getItems().addAll(unexpiredMenuItem, expiredMenuItem);
     }
+    public static String intToString(int status) {
+        switch (status) {
+            case 0:
+                return "Unexpired";
+            case 1:
+                return "Expired";
+            // Thêm các trường hợp khác nếu cần
+            default:
+                return "";
+        }
+    }
+    public static int stringToInt(String status) {
+        switch (status.toLowerCase()) {
+            case "Unexpired":
+                return 0;
+            case "Expired":
+                return 1;
+            // Thêm các trường hợp khác nếu cần
+            default:
+                return 1; // Giá trị mặc định hoặc lỗi
+        }
+    }
 
     @FXML
     public void close(MouseEvent event) {
@@ -215,10 +259,28 @@ public class EventController implements Initializable {
 
     @FXML
     void logOut(MouseEvent event) {
-        stage.close();
-        Stage loginStage = new Stage();
-        stageManager.setCurrentStage(loginStage);
-        stageManager.loadLoginStage();
+        Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationDialog.setTitle("Confirmation");
+        confirmationDialog.setHeaderText("Are you sure you want to log out?");
+        confirmationDialog.setContentText("Press OK to log out or Cancel to stay logged in.");
+
+        // Show the dialog and wait for a result
+        ButtonType result = confirmationDialog.showAndWait().orElse(ButtonType.CANCEL);
+
+        // If the user clicks OK, proceed with the logout
+        if (result == ButtonType.OK) {
+            // Close the current stage
+            stage.close();
+
+            // Create a new login stage
+            Stage loginStage = new Stage();
+
+            // Set the current stage in the stageManager
+            stageManager.setCurrentStage(loginStage);
+
+            // Load and display the login stage
+            stageManager.loadLoginStage();
+        }
     }
 
 
@@ -228,9 +290,18 @@ public class EventController implements Initializable {
         discount.setText(String.valueOf(event.getDiscount_percent()));
         start_date.setValue(LocalDate.parse(event.getStart_date()));
         end_date.setValue(LocalDate.parse(event.getEnd_date()));
-        status.setText(String.valueOf(event.getStatus()));
+//        String statusString = intToString(event.getStatus());
+//        status.setText(statusString);
     }
 
+    public String formatLocalDate(LocalDate date) {
+        if (date == null) {
+            return "";
+        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return date.format(formatter);
+    }
 
     private void initializeTableColumns() {
 //        eventNameColumn = new TableColumn<>("Event Name");
@@ -247,25 +318,77 @@ public class EventController implements Initializable {
         discountColumn.setCellValueFactory(new PropertyValueFactory<>("discount_percent"));
         startDateColumn.setCellValueFactory(new PropertyValueFactory<>("start_date"));
         endDateColumn.setCellValueFactory(new PropertyValueFactory<>("end_date"));
-        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        // Create a custom cell factory for the startDateTableColumn
+        startDateColumn.setCellFactory(new Callback<TableColumn<Event, String>, TableCell<Event, String>>() {
+            @Override
+            public TableCell<Event, String> call(TableColumn<Event, String> column) {
+                return new TableCell<Event, String>() {
+                    private final DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    private final DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item != null && !empty) {
+                            try {
+                                Date date = inputFormat.parse(item);
+                                setText(outputFormat.format(date));
+                            } catch (ParseException e) {
+                                setText("");
+                            }
+                        } else {
+                            setText("");
+                        }
+                    }
+                };
+            }
+        });
+        endDateColumn.setCellFactory(new Callback<TableColumn<Event, String>, TableCell<Event, String>>() {
+            @Override
+            public TableCell<Event, String> call(TableColumn<Event, String> column) {
+                return new TableCell<Event, String>() {
+                    private final DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    private final DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item != null && !empty) {
+                            try {
+                                Date date = inputFormat.parse(item);
+                                setText(outputFormat.format(date));
+                            } catch (ParseException e) {
+                                setText("");
+                            }
+                        } else {
+                            setText("");
+                        }
+                    }
+                };
+            }
+        });
+
+
+//        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         // Set up the Action column
 
         actionColumn.setCellFactory(column -> new TableCell<Event, Void>() {
             private final Button deleteButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/removed.png"))));
-            private final Button emailButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/refresh.png"))));
+                private final Button emailButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/message.png"))));
 
             {
                 deleteButton.setOnAction(event -> {
                     Event member = getTableView().getItems().get(getIndex());
                     Alert confirmDeleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
                     confirmDeleteAlert.setTitle("Confirm Delete");
-                    confirmDeleteAlert.setHeaderText("Are you sure you want to delete this member?");
-                    confirmDeleteAlert.setContentText("Member: " + member.getEvent_name());
+                    confirmDeleteAlert.setHeaderText("Are you sure you want to delete this event?");
+                    confirmDeleteAlert.setContentText("Event: " + member.getEvent_name());
 
                     Optional<ButtonType> result = confirmDeleteAlert.showAndWait();
                     if (result.isPresent() && result.get() == ButtonType.OK) {
-                        eventRepository.deleteEvent(member.getEvent_id());
+                        eventRepository.deleteEvent(member.getEvent_name());
                         eventData.remove(member);
                         tableView.refresh();
                     }
@@ -304,8 +427,8 @@ public class EventController implements Initializable {
             }
         });
 
-        List<Event> events = eventRepository.getAllEvents();
-        tableView.getItems().addAll(events);
+//        List<Event> events = eventRepository.getAllEvents();
+//        tableView.getItems().addAll(events);
 
 
 //        actionColumn.setCellFactory(param -> new TableCell<>() {
@@ -416,6 +539,13 @@ public class EventController implements Initializable {
         emailService.sendEmailToMembers(memberEmails, "New Event Notification", content);
     }
 
+    public void clearField(){
+        event_name.clear();
+        discount.clear();
+        description.clear();
+        start_date.setValue(null);
+        end_date.setValue(null);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -430,28 +560,26 @@ public class EventController implements Initializable {
 //                startDateColumn, endDateColumn, statusColumn, actionColumn);
 
         // Example: Adding items to the status MenuButton
-        MenuItem unexpiredMenuItem = new MenuItem("Unexpired");
-        MenuItem expiredMenuItem = new MenuItem("Expired");
+//        MenuItem unexpiredMenuItem = new MenuItem("Unexpired");
+//        MenuItem expiredMenuItem = new MenuItem("Expired");
+//
+//        unexpiredMenuItem.setOnAction(event -> {
+//            status.setText(unexpiredMenuItem.getText());
+//        });
+//
+//        expiredMenuItem.setOnAction(event -> {
+//            status.setText(expiredMenuItem.getText());
+//        });
+//
+//        status.getItems().addAll(unexpiredMenuItem, expiredMenuItem);
 
-        unexpiredMenuItem.setOnAction(event -> {
-            status.setText(unexpiredMenuItem.getText());
-        });
-
-        expiredMenuItem.setOnAction(event -> {
-            status.setText(expiredMenuItem.getText());
-        });
-
-        status.getItems().addAll(unexpiredMenuItem, expiredMenuItem);
-
+        statusMenu();
         // Example: Adding event handlers to buttons
         updateButton.setOnAction(this::handleUpdateButton);
         addButton.setOnAction(this::handleAddButton);
-//        EventRepository eventRepository = new EventRepository();
-//        List<Event> events = eventRepository.getAllEvents();
-//        tableView.getItems().addAll(events);
 
-//        List<Event> events1 = eventRepository.getAllEvents();
-//        tableView.getItems().addAll(events1);
+        List<Event> events = eventRepository.getAllEvents();
+        tableView.getItems().addAll(events);
         tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 showEventDetails(newValue);

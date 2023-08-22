@@ -21,6 +21,14 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class DashBoardController implements Initializable {
+    private Stage stage;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    private final StageManager stageManager = new StageManager();
+
     private final MembersRepository membersRepository = new MembersRepository();
     private MembersService membersService = new MemberServiceImpl();
 
@@ -37,7 +45,6 @@ public class DashBoardController implements Initializable {
     private RevenueService revenueService = new RevenueServiceImpl();
 
 
-    private Stage stage;
     @FXML
     private Label classNum;
     @FXML
@@ -88,15 +95,17 @@ public class DashBoardController implements Initializable {
     }
 
     RevenueService serviceWage = new RevenueServiceImpl();
-//take data(year) from MenuButton
+
+    //take data(year) from MenuButton
     public void valueToChart() {
         yearRevenueBtn.getItems().forEach(menuItem -> {
-                Integer selectedValue = Integer.parseInt(menuItem.getText());
-                fetchChartData(selectedValue);
+            Integer selectedValue = Integer.parseInt(menuItem.getText());
+            fetchChartData(selectedValue);
         });
     }
-//    fetch data(year) from MenuButton, then create LineChart add X,Y to display Yearly Revenue
-    public void fetchChartData(Integer selectedValue){
+
+    //    fetch data(year) from MenuButton, then create LineChart add X,Y to display Yearly Revenue
+    public void fetchChartData(Integer selectedValue) {
         BigDecimal januaryRevenue = serviceWage.calculateTotalRevenueByMonth(selectedValue, 1);
         BigDecimal februaryRevenue = serviceWage.calculateTotalRevenueByMonth(selectedValue, 2);
         BigDecimal marchRevenue = serviceWage.calculateTotalRevenueByMonth(selectedValue, 3);
@@ -126,11 +135,18 @@ public class DashBoardController implements Initializable {
         lineChart.getData().clear();
         lineChart.getData().add(series);
     }
-//    Back to home page or close stage
-//        @FXML
-//    public void exit(MouseEvent event){
-//        stage.close();
-//    }
+
+    //    Back to home page or close stage
+    @FXML
+    public void close(MouseEvent event) {
+        stageManager.loadHomeStage();
+        stage.close();
+    }
+    @FXML
+    void homepage(MouseEvent event) {
+        stageManager.loadHomeStage();
+        stage.close();
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         yearRevenueBtn.setText(Integer.toString(Calendar.getInstance().get(Calendar.YEAR)));

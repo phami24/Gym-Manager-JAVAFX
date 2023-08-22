@@ -13,22 +13,22 @@ public class EventRepository {
     private final JDBCConnect jdbcConnect = new JDBCConnect();
 
     public void addEvent(Event event) {
-        String query = "INSERT INTO events (event_name, start_date, end_date, discount_percent, description, status) " +
-                "VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO events (event_name, start_date, end_date, discount_percent, description) " +
+                "VALUES (?, ?, ?, ?, ?)";
         executeEventQuery(query, event);
     }
 
     public void updateEvent(Event event) {
         String query = "UPDATE events " +
-                "SET event_name = ?, start_date = ?, end_date = ?, discount_percent = ?, description = ?, status = ? " +
+                "SET event_name = ?, start_date = ?, end_date = ?, discount_percent = ?, description = ?" +
                 "WHERE event_id = ?";
         executeEventQuery(query, event);
     }
 
-    public void deleteEvent(int eventId) {
+    public void deleteEvent(String eventName) {
         try (Connection connection = jdbcConnect.getJDBCConnection();
-             PreparedStatement statement = connection.prepareStatement("DELETE FROM events WHERE event_id = ?")) {
-            statement.setInt(1, eventId);
+             PreparedStatement statement = connection.prepareStatement("DELETE FROM events WHERE event_name = ?")) {
+            statement.setString(1, eventName);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,7 +53,7 @@ public class EventRepository {
     public List<Event> getAllEvents() {
         List<Event> eventsList = new ArrayList<>();
         try (Connection connection = jdbcConnect.getJDBCConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM events WHERE status = 1");
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM events ");
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 eventsList.add(fromResultSet(resultSet));
@@ -73,7 +73,7 @@ public class EventRepository {
         event.setDiscount_percent(resultSet.getBigDecimal("discount_percent"));
         event.setDescription(resultSet.getString("description"));
         event.setMember_id(resultSet.getInt("member_id"));
-        event.setStatus(resultSet.getInt("status"));
+//        event.setStatus(resultSet.getInt("status"));
         return event;
     }
 
@@ -85,9 +85,11 @@ public class EventRepository {
             statement.setString(3, event.getEnd_date());
             statement.setBigDecimal(4, event.getDiscount_percent());
             statement.setString(5, event.getDescription());
-//            statement.setInt(6, event.getMember_id());
-            statement.setInt(6, event.getStatus());
-//            statement.setInt(8, event.getEvent_id());
+//            statement.setInt(7, event.getMember_id());
+//            statement.setInt(8, event.getStatus());
+            if (query.contains("UPDATE")) {
+                statement.setInt(6, event.getEvent_id());
+            }
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

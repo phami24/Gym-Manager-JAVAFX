@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -17,57 +16,45 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="770.0" prefWidth="1091.0" styleClass="borderCSS" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gymmanagement.controller.DashBoardController">
+<AnchorPane prefHeight="600.0" prefWidth="1100.0" styleClass="borderCSS" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <!-- Stylesheet -->
    <stylesheets>
       <URL value="@../css/style4dashboard.css" />
    </stylesheets>
    <children>
-      <Label fx:id="exit" layoutX="1044.0" layoutY="12.0" prefHeight="9.0" prefWidth="0.0">
-         <graphic>
-            <ImageView fitHeight="32.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/close.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <padding>
-            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-         </padding>
-      </Label>
-      <Label layoutX="31.0" layoutY="15.0" prefHeight="53.0" prefWidth="182.0" text="DashBoard">
+      <Label layoutX="47.0" layoutY="14.0" prefHeight="53.0" prefWidth="182.0" text="DashBoard">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Pane layoutX="267.0" layoutY="565.0" prefHeight="184.0" prefWidth="778.0" styleClass="borderCSS">
+      <Pane layoutX="191.0" layoutY="495.0" prefHeight="123.0" prefWidth="854.0" styleClass="borderCSS">
          <children>
-            <Label layoutX="92.0" layoutY="113.0" prefHeight="19.0" prefWidth="81.0" styleClass="textCSS" text="Total Staffs" textFill="WHITE">
+            <Label layoutX="77.0" layoutY="83.0" prefHeight="19.0" prefWidth="81.0" styleClass="textCSS" text="Total Staffs" textFill="WHITE">
                <font>
                   <Font name="Corbel Bold" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="261.0" layoutY="114.0" styleClass="textCSS" text="Total Customers" textFill="WHITE">
+            <Label layoutX="234.0" layoutY="85.0" styleClass="textCSS" text="Total Customers" textFill="WHITE">
                <font>
                   <Font name="Corbel Bold" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="440.0" layoutY="110.0" prefHeight="22.0" prefWidth="134.0" styleClass="textCSS" text="Total Class Availables" textFill="#fcf8f8">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="408.0" layoutY="86.0" prefHeight="22.0" prefWidth="134.0" styleClass="textCSS" text="Total Class Availables" textFill="#fcf8f8">
                <font>
                   <Font name="Corbel Bold" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="staffNum" layoutX="98.0" layoutY="55.0" prefHeight="47.0" prefWidth="34.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="staffNum" layoutX="97.0" layoutY="20.0" prefHeight="70.0" prefWidth="72.0" text="0" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="classNum" layoutX="457.0" layoutY="53.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="classNum" layoutX="448.0" layoutY="20.0" prefHeight="70.0" prefWidth="65.0" text="0" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="memberNum" layoutX="266.0" layoutY="55.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="memberNum" layoutX="263.0" layoutY="20.0" prefHeight="70.0" prefWidth="81.0" text="0" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
@@ -87,12 +74,12 @@
                   <Image url="@../image/sport.png" />
                </image>
             </ImageView>
-            <Label fx:id="stuffNum" layoutX="659.0" layoutY="51.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="stuffNum" layoutX="660.0" layoutY="20.0" prefHeight="70.0" prefWidth="81.0" text="0" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="622.0" layoutY="108.0" prefHeight="22.0" prefWidth="134.0" styleClass="textCSS" text="Total Equidment" textFill="#fcf8f8">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="607.0" layoutY="88.0" prefHeight="22.0" prefWidth="134.0" styleClass="textCSS" text="Total Equidment" textFill="#fcf8f8">
                <font>
                   <Font name="Corbel Bold" size="13.0" />
                </font>
@@ -104,7 +91,7 @@
             </ImageView>
          </children>
       </Pane>
-      <LineChart fx:id="lineChart" layoutX="43.0" layoutY="162.0" prefHeight="384.0" prefWidth="572.0" styleClass="chartCSS">
+      <LineChart fx:id="lineChart" layoutX="39.0" layoutY="141.0" prefHeight="341.0" prefWidth="572.0" styleClass="chartCSS">
          <xAxis>
             <CategoryAxis side="BOTTOM" />
          </xAxis>
@@ -112,7 +99,7 @@
             <NumberAxis side="LEFT" tickLabelFill="#646c71" />
          </yAxis>
       </LineChart>
-      <StackedBarChart layoutX="626.0" layoutY="173.0" prefHeight="373.0" prefWidth="419.0" styleClass="chartCSS">
+      <StackedBarChart layoutX="618.0" layoutY="141.0" prefHeight="341.0" prefWidth="419.0" styleClass="chartCSS">
          <xAxis>
             <CategoryAxis side="BOTTOM" />
          </xAxis>
@@ -120,7 +107,7 @@
             <NumberAxis side="LEFT" tickLabelFill="#646c71" />
          </yAxis>
       </StackedBarChart>
-      <MenuButton fx:id="yearRevenueBtn" layoutX="498.0" layoutY="125.0" mnemonicParsing="false" text="MenuButton">
+      <MenuButton fx:id="yearRevenueBtn" layoutX="491.0" layoutY="106.0" mnemonicParsing="false" text="MenuButton">
          <items>
             <MenuItem mnemonicParsing="false" text="2026" />
             <MenuItem mnemonicParsing="false" text="2025" />
@@ -129,37 +116,41 @@
             <MenuItem mnemonicParsing="false" text="2022" />
          </items>
       </MenuButton>
-      <MenuButton layoutX="931.0" layoutY="133.0" mnemonicParsing="false" text="MenuButton">
+      <MenuButton layoutX="923.0" layoutY="106.0" mnemonicParsing="false" text="MenuButton">
          <items>
             <MenuItem mnemonicParsing="false" text="Action 1" />
             <MenuItem mnemonicParsing="false" text="Action 2" />
          </items>
       </MenuButton>
-      <Separator layoutX="20.0" layoutY="73.0" prefHeight="3.0" prefWidth="1053.0" />
-      <Label layoutX="89.0" layoutY="120.0" prefHeight="32.0" prefWidth="129.0" style="-fx-text-fill: black;" text="Total Revenue:" textFill="#fcf8f8">
+      <Separator layoutY="75.0" prefHeight="3.0" prefWidth="1053.0" />
+      <Label layoutX="79.0" layoutY="92.0" prefHeight="32.0" prefWidth="129.0" style="-fx-text-fill: black;" text="Total Revenue:" textFill="#fcf8f8">
          <font>
             <Font name="Corbel Bold" size="17.0" />
          </font>
       </Label>
-      <Label fx:id="revenueNUM" layoutX="207.0" layoutY="109.0" prefHeight="54.0" prefWidth="245.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+      <Label fx:id="revenueNUM" layoutX="208.0" layoutY="81.0" prefHeight="54.0" prefWidth="72.0" text="0" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="30.0" />
          </font>
       </Label>
-      <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="55.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="47.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/sale.png" />
          </image>
       </ImageView>
-      <Button alignment="BASELINE_RIGHT" layoutX="47.0" layoutY="584.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="201.0" style="-fx-background-radius: 25px; -fx-text-fill: white; -fx-border-color: #646c71; -fx-background-color: #f34235;" text="Back To Home" textAlignment="RIGHT">
+      <Button layoutX="1060.0" layoutY="8.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="34.0" styleClass="close" stylesheets="@../css/style.css" text="x" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="8.0">
          <font>
-            <Font name="System Bold" size="19.0" />
+            <Font name="Leelawadee UI Bold" size="14.0" />
          </font>
       </Button>
-      <ImageView fitHeight="60.0" fitWidth="61.0" layoutX="47.0" layoutY="630.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/backtohomeBTN.png" />
-         </image>
-      </ImageView>
+      <Button layoutX="14.0" layoutY="536.0" mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="61.0" prefWidth="65.0" styleClass="btn-nav-left" stylesheets="@../css/style.css">
+         <graphic>
+            <ImageView fitHeight="43.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/home.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
