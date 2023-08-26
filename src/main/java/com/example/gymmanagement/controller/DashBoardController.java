@@ -1,24 +1,28 @@
 package com.example.gymmanagement.controller;
 
+import com.example.gymmanagement.model.entity.Members;
+import com.example.gymmanagement.model.entity.Transaction;
 import com.example.gymmanagement.model.repository.*;
 import com.example.gymmanagement.model.service.*;
 import com.example.gymmanagement.model.service.impl.*;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
+import org.apache.poi.ss.formula.functions.T;
 
 
 import java.math.BigDecimal;
 import java.net.URL;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DashBoardController implements Initializable {
     private Stage stage;
@@ -58,11 +62,32 @@ public class DashBoardController implements Initializable {
     @FXML
     private Label stuffNum;
     @FXML
-    private MenuButton yearRevenueBtn;
+    private ComboBox<Integer> yearRevenueBtn;
     @FXML
     private LineChart<String, BigDecimal> lineChart;
+
     @FXML
-    private BarChart<?, ?> barChart;
+    private TableColumn<Transaction, String> nameColumn;
+    @FXML
+    private TableColumn<Transaction, String> transactionTypeColumn;
+    @FXML
+    private TableColumn<Transaction, String> transactionDateColumn;
+    @FXML
+    private TableColumn<Transaction, Double> amountColumn;
+    @FXML
+    private Pagination pagination;
+    @FXML
+    private TableView<Transaction> transactionTableView;
+
+
+    private ObservableList<Transaction> transactionData = FXCollections.observableArrayList();
+
+    private final TransactionRepository transactionRepository = new TransactionRepository();
+
+    private int currentPage = 1;
+    private int pageSize = 9;
+
+    private int totalPage = transactionRepository.getTotalTransactions() / pageSize;
 
     //    get total of data from database
     public void getMembernum() {
@@ -89,19 +114,19 @@ public class DashBoardController implements Initializable {
     }
 
     //    get total of data from database
-    public void getRevenue() {
-        int getSalesNum = revenueRepository.getTotalRevenue();
-        revenueNUM.setText(Integer.toString(getSalesNum));
+    public void getRevenueTotal() {
+        BigDecimal totalRevenue = revenueRepository.getTotalRevenue();
+        revenueNUM.setText(totalRevenue.toString());
     }
 
     RevenueService serviceWage = new RevenueServiceImpl();
 
     //take data(year) from MenuButton
-    public void valueToChart() {
-        yearRevenueBtn.getItems().forEach(menuItem -> {
-            Integer selectedValue = Integer.parseInt(menuItem.getText());
-            fetchChartData(selectedValue);
-        });
+    public void valueToChartByYear() {
+        Integer selectedYear = yearRevenueBtn.getValue();
+        if (selectedYear != null) {
+            fetchChartData(selectedYear);
+        }
     }
 
     //    fetch data(year) from MenuButton, then create LineChart add X,Y to display Yearly Revenue
@@ -142,20 +167,88 @@ public class DashBoardController implements Initializable {
         stageManager.loadHomeStage();
         stage.close();
     }
+
     @FXML
     void homepage(MouseEvent event) {
         stageManager.loadHomeStage();
         stage.close();
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        yearRevenueBtn.setText(Integer.toString(Calendar.getInstance().get(Calendar.YEAR)));
+
+        transactionTypeColumn.setCellValueFactory(new PropertyValueFactory<>("transactionType"));
+        transactionDateColumn.setCellValueFactory(new PropertyValueFactory<>("transactionDate"));
+        amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        nameColumn.setCellValueFactory(cellData -> {
+            String transactionType = cellData.getValue().getTransactionType(); // Get the transaction type
+            Long memberId = cellData.getValue().getMemberId(); // Get member_id
+            Long equipmentId = cellData.getValue().getEquipmentId(); // Get equipment_id
+
+            if (transactionType != null) {
+                if (transactionType.startsWith("Membership Purchase") || transactionType.startsWith("Membership Renewal")) {
+                    return new SimpleStringProperty(membersRepository.getMemberById(Integer.parseInt(memberId.toString())).getFirst_name() +membersRepository.getMemberById(Integer.parseInt(memberId.toString())).getLast_name());
+                } else if (transactionType.startsWith("Equipment Purchase")) {
+                    String equipmentName = equipmentRepository.getEquipmentNameById(equipmentId); // Get equipment name
+                    return new SimpleStringProperty(equipmentName);
+                }
+            }
+            if (equipmentId != null) {
+                String equipmentName = equipmentRepository.getEquipmentNameById(equipmentId);
+                return new SimpleStringProperty(equipmentName);
+            }
+
+            return new SimpleStringProperty("");
+        });
+        pagination.setPageCount(totalPage);
+        pagination.setCurrentPageIndex(currentPage - 1);
+        pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
+            currentPage = newIndex.intValue() + 1;
+            loadTransactionData();
+        });
+        loadTransactionData();
         getMembernum();
         getClassnum();
         getPTnum();
         getEquipmentnum();
-        getRevenue();
-        valueToChart();
-//        exit();
+        getRevenueTotal();
+
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        List<Integer> years = new ArrayList<>();
+        for (int year = 2022; year <= currentYear; year++) {
+            years.add(year);
+        }
+
+        // Đặt danh sách năm vào ComboBox
+        yearRevenueBtn.getItems().addAll(years);
+        //Set default
+        yearRevenueBtn.setValue(currentYear);
+        fetchChartData(currentYear);
+        yearRevenueBtn.setOnAction(event -> valueToChartByYear());
     }
+
+
+    @FXML
+    private void previousPage() {
+        if (currentPage > 1) {
+            pagination.setCurrentPageIndex(currentPage - 2); // Đặt trang trước đó
+            loadTransactionData();
+        }
+    }
+
+    @FXML
+    private void nextPage() {
+        if (currentPage < totalPage) {
+            pagination.setCurrentPageIndex(currentPage); // Đặt trang tiếp theo
+            loadTransactionData();
+        }
+    }
+
+    private void loadTransactionData() {
+        List<Transaction> transactionList = transactionRepository.getTransactionsByPage(currentPage, pageSize);
+        transactionData.clear();
+        transactionData.addAll(transactionList);
+        transactionTableView.setItems(transactionData);
+    }
+
 }

@@ -80,6 +80,14 @@ public class EquipmentController implements Initializable {
 
     @FXML
     private Button buttonAdd;
+    private int currentPage = 1;
+    private int pageSize = 10;
+
+    private int totalPage = equipmentRepository.getTotalEquipment() / pageSize;
+
+    @FXML
+    private Pagination pagination;
+
 
     private ObservableList<Equipment> equipmentData = FXCollections.observableArrayList();
     @FXML
@@ -138,12 +146,16 @@ public class EquipmentController implements Initializable {
 
         setupActionColumn();
 
-        // Lấy dữ liệu từ cơ sở dữ liệu và đổ vào TableView
-        List<Equipment> equipmentList = equipmentRepository.getAllEquipment();
-        equipmentData.addAll(equipmentList);
-        equipment_tableView.setItems(equipmentData);
-        //search
+        pagination.setPageCount(totalPage);
+        pagination.setCurrentPageIndex(currentPage - 1);
+        pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
+            currentPage = newIndex.intValue() + 1;
+            loadEquipmentData();
+        });
+        loadEquipmentData();
 
+
+        //search
         equipmentData = FXCollections.observableArrayList(equipmentService.getAllEquipment());
 
         // Sử dụng FilteredList để lọc danh sách thành viên dựa trên tên
@@ -172,6 +184,29 @@ public class EquipmentController implements Initializable {
                 return false; // Không tìm thấy tên trong thành viên
             });
         });
+    }
+
+    @FXML
+    private void previousPage() {
+        if (currentPage > 1) {
+            pagination.setCurrentPageIndex(currentPage - 2); // Đặt trang trước đó
+            loadEquipmentData();
+        }
+    }
+
+    @FXML
+    private void nextPage() {
+        if (currentPage < totalPage) {
+            pagination.setCurrentPageIndex(currentPage); // Đặt trang tiếp theo
+            loadEquipmentData();
+        }
+    }
+
+    private void loadEquipmentData() {
+        List<Equipment> equipmentList = equipmentRepository.getEquipmentByPage(currentPage, pageSize);
+        equipmentData.clear();
+        equipmentData.addAll(equipmentList);
+        equipment_tableView.setItems(equipmentData);
     }
 
     private void setupActionColumn() {

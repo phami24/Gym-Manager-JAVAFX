@@ -11,7 +11,6 @@
     -fx-background-radius: 6px;
     -fx-border-radius: 6px;
     -fx-border-width: 0.5 ;
-    -fx-text-fill: white;
 }
 .btn-add{
 -fx-background-color:transparent;

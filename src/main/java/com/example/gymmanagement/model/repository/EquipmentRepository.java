@@ -202,6 +202,7 @@ public class EquipmentRepository {
             jdbcConnect.closePreparedStatement(statement);
         }
     }
+
     public int getTotalEquipment() {
         try (Connection connection = jdbcConnect.getJDBCConnection();
              PreparedStatement statement = connection.prepareStatement("SELECT COUNT(equipment_id) as count FROM equipment");
@@ -214,6 +215,56 @@ public class EquipmentRepository {
         }
         return 0;
     }
+
+    // Add a method to get equipment name by equipment id
+    public String getEquipmentNameById(Long equipmentId) {
+        String query = "SELECT equipment_name FROM equipment WHERE equipment_id = ?";
+        Connection connection = jdbcConnect.getJDBCConnection();
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, equipmentId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getString("equipment_name");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Equipment> getEquipmentByPage(int currentPage, int pageSize) {
+        // Calculate the starting index for the current page
+        int startIndex = (currentPage - 1) * pageSize;
+
+        List<Equipment> equipmentList = new ArrayList<>();
+
+        try (Connection connection = jdbcConnect.getJDBCConnection()) {
+            // Construct the SQL query with the LIMIT and OFFSET clauses
+            String query = "SELECT * FROM equipment LIMIT ?, ?";
+
+            // Create a PreparedStatement
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                statement.setInt(1, startIndex);
+                statement.setInt(2, pageSize);
+
+                // Execute the query and retrieve the result set
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    // Loop through the result set and populate the equipment list
+                    while (resultSet.next()) {
+                        Equipment equipment = fromResultSet(resultSet);
+                        equipmentList.add(equipment);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+
+        return equipmentList;
+    }
+
+
 }
 
 

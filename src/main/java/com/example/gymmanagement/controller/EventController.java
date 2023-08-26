@@ -82,6 +82,9 @@ public class EventController implements Initializable {
     private final StringConverter<LocalDate> localDateStringConverter = new LocalDateStringConverter();
 
 
+    @FXML
+    private Pagination pagination;
+
     public static String formatLocalDate(LocalDate date, String pattern) {
         // Check for null date
         if (date == null) {

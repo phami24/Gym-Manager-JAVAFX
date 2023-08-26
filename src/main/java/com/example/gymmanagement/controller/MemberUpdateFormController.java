@@ -46,12 +46,6 @@ public class MemberUpdateFormController implements Initializable {
     private TextField addressField;
 
     @FXML
-    private DatePicker joinDatePicker;
-
-    @FXML
-    private DatePicker endDatePicker;
-
-    @FXML
     private ComboBox<String> membershipStatusComboBox;
 
     @FXML
@@ -101,8 +95,6 @@ public class MemberUpdateFormController implements Initializable {
         emailField.setText(member.getEmail());
         phoneNumberField.setText(member.getPhone_number());
         addressField.setText(member.getAddress());
-        joinDatePicker.setValue(LocalDate.parse(member.getJoin_date())); // Assuming getJoinDate() returns a LocalDate
-        endDatePicker.setValue(LocalDate.parse(member.getEnd_date())); // Assuming getEndDate() returns a LocalDate
         membershipStatusComboBox.setValue(membershipStatusRepository.getStatusNameById(member.getMembership_status_id()));
         membershipTypeComboBox.setValue(membershipTypesRepository.getTypeNameById(member.getMembership_type_id()));
         instructorComboBox.setValue(instructorRepository.getInstructorNameById(member.getInstructorId()));
@@ -222,23 +214,6 @@ public class MemberUpdateFormController implements Initializable {
         }
     }
 
-    private void updateJoinDate(int memberId) {
-        String newJoinDate = joinDatePicker.getValue().toString();
-        if (ValidateMember.isValidDate(newJoinDate)) {
-            membersRepository.updateJoinDate(memberId, newJoinDate);
-        } else {
-            errors.add("ERROR : Invalid join date");
-        }
-    }
-
-    private void updateEndDate(int memberId) {
-        String newEndDate = endDatePicker.getValue().toString();
-        if (ValidateMember.isValidDate(newEndDate)) {
-            membersRepository.updateEndDate(memberId, newEndDate);
-        } else {
-            errors.add("ERROR : Invalid end date");
-        }
-    }
 
     private void updateInstructor(int memberId) {
         String selectedInstructor = instructorComboBox.getValue();
@@ -285,8 +260,6 @@ public class MemberUpdateFormController implements Initializable {
                 updateEmail(memberID);
                 updatePhoneNumber(memberID);
                 updateAddress(memberID);
-                updateJoinDate(memberID);
-                updateEndDate(memberID);
                 updateInstructor(memberID);
                 updateMembershipStatus(memberID);
                 updateMembershipType(memberID);

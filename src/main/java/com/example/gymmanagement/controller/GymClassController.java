@@ -83,6 +83,12 @@ public class GymClassController implements Initializable {
 
     private ObservableList<Classes> classesData = FXCollections.observableArrayList();
     private FilteredList<Classes> filteredMembersList;
+    private int currentPage = 1;
+    private int pageSize = 10;
+
+    int totalPage = (int) Math.ceil((double) gymClassRepository.getTotalClasses() / pageSize);
+    @FXML
+    private Pagination pagination;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -95,12 +101,14 @@ public class GymClassController implements Initializable {
 
         setupActionColumn();
 
-        List<Classes> classesList = gymClassRepository.getAllClasses();
-        classesData.addAll(classesList);
-        class_tableView.setItems(classesData);
 
-        //search
-        classesData = FXCollections.observableArrayList(gymClassRepository.getAllClasses());
+        pagination.setPageCount(totalPage);
+        pagination.setCurrentPageIndex(currentPage - 1);
+        pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
+            currentPage = newIndex.intValue() + 1;
+            loadInstructorsData();
+        });
+        loadInstructorsData();
 
         // Sử dụng FilteredList để lọc danh sách thành viên dựa trên tên
         filteredMembersList = new FilteredList<>(classesData, p -> true);
@@ -128,6 +136,29 @@ public class GymClassController implements Initializable {
                 return false; // Không tìm thấy tên trong thành viên
             });
         });
+    }
+
+    @FXML
+    private void previousPage() {
+        if (currentPage > 1) {
+            pagination.setCurrentPageIndex(currentPage - 2); // Đặt trang trước đó
+            loadInstructorsData();
+        }
+    }
+
+    @FXML
+    private void nextPage() {
+        if (currentPage < totalPage) {
+            pagination.setCurrentPageIndex(currentPage); // Đặt trang tiếp theo
+            loadInstructorsData();
+        }
+    }
+
+    private void loadInstructorsData() {
+        List<Classes>  classesList = gymClassRepository.getClassByPage(currentPage, pageSize);
+        classesData.clear();
+        classesData.addAll(classesList);
+        class_tableView.setItems(classesData);
     }
     @FXML
     public void close() {

@@ -374,4 +374,32 @@ public class MembersRepository {
         return membersList;
     }
 
+    public String getMemberNameById(Long memberId) {
+        Connection connection = jdbcConnect.getJDBCConnection();
+        String query = "SELECT CONCAT(first_name, ' ', last_name) AS member_name FROM members WHERE member_id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, memberId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getString("member_name");
+                }
+                return null; // Return null if member not found
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null; // Ném lại ngoại lệ để lớp gọi viên có thể xử lý ngoại lệ này
+        }
+    }
+    public void updateMembershipStatusBasedOnEndDate() {
+        String query = "UPDATE members SET membership_status_id = ? WHERE end_date < ?";
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, 2); // Thay thế EXPIRED_STATUS_ID bằng ID của trạng thái 'Expired'
+            statement.setDate(2, Date.valueOf(LocalDate.now())); // Lấy ngày hiện tại
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -36,7 +36,7 @@
                 <TableColumn fx:id="action" prefWidth="104.66668701171875" text="Action" />
             </columns>
         </TableView>
-        <Pagination layoutX="450.0" layoutY="522.0" prefHeight="58.0" prefWidth="200.0" />
+        <Pagination fx:id="pagination" layoutX="450.0" layoutY="522.0" prefHeight="58.0" prefWidth="200.0" />
         <TextField fx:id="searchQuipment" layoutX="840.0" layoutY="84.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" style="-fx-border-radius: 10px;" styleClass="btn_tool" stylesheets="@../css/style.css" />
         <ImageView fitHeight="15.0" fitWidth="14.0" layoutX="1052.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
             <image>

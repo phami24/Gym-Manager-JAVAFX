@@ -4,12 +4,13 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.chart.StackedBarChart?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -27,7 +28,7 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Pane layoutX="191.0" layoutY="495.0" prefHeight="123.0" prefWidth="854.0" styleClass="borderCSS">
+      <Pane layoutX="191.0" layoutY="495.0" prefHeight="123.0" prefWidth="885.0" styleClass="borderCSS">
          <children>
             <Label layoutX="77.0" layoutY="83.0" prefHeight="19.0" prefWidth="81.0" styleClass="textCSS" text="Total Staffs" textFill="WHITE">
                <font>
@@ -91,7 +92,7 @@
             </ImageView>
          </children>
       </Pane>
-      <LineChart fx:id="lineChart" layoutX="39.0" layoutY="141.0" prefHeight="341.0" prefWidth="572.0" styleClass="chartCSS">
+      <LineChart fx:id="lineChart" layoutX="39.0" layoutY="125.0" prefHeight="357.0" prefWidth="572.0" styleClass="chartCSS">
          <xAxis>
             <CategoryAxis side="BOTTOM" />
          </xAxis>
@@ -99,41 +100,18 @@
             <NumberAxis side="LEFT" tickLabelFill="#646c71" />
          </yAxis>
       </LineChart>
-      <StackedBarChart layoutX="618.0" layoutY="141.0" prefHeight="341.0" prefWidth="419.0" styleClass="chartCSS">
-         <xAxis>
-            <CategoryAxis side="BOTTOM" />
-         </xAxis>
-         <yAxis>
-            <NumberAxis side="LEFT" tickLabelFill="#646c71" />
-         </yAxis>
-      </StackedBarChart>
-      <MenuButton fx:id="yearRevenueBtn" layoutX="491.0" layoutY="106.0" mnemonicParsing="false" text="MenuButton">
-         <items>
-            <MenuItem mnemonicParsing="false" text="2026" />
-            <MenuItem mnemonicParsing="false" text="2025" />
-            <MenuItem mnemonicParsing="false" text="2024" />
-            <MenuItem mnemonicParsing="false" text="2023" />
-            <MenuItem mnemonicParsing="false" text="2022" />
-         </items>
-      </MenuButton>
-      <MenuButton layoutX="923.0" layoutY="106.0" mnemonicParsing="false" text="MenuButton">
-         <items>
-            <MenuItem mnemonicParsing="false" text="Action 1" />
-            <MenuItem mnemonicParsing="false" text="Action 2" />
-         </items>
-      </MenuButton>
-      <Separator layoutY="75.0" prefHeight="3.0" prefWidth="1053.0" />
-      <Label layoutX="79.0" layoutY="92.0" prefHeight="32.0" prefWidth="129.0" style="-fx-text-fill: black;" text="Total Revenue:" textFill="#fcf8f8">
+      <Separator layoutX="-4.0" layoutY="65.0" prefHeight="3.0" prefWidth="1053.0" />
+      <Label layoutX="82.0" layoutY="87.0" prefHeight="32.0" prefWidth="129.0" style="-fx-text-fill: black;" text="Total Revenue:" textFill="#fcf8f8">
          <font>
             <Font name="Corbel Bold" size="17.0" />
          </font>
       </Label>
-      <Label fx:id="revenueNUM" layoutX="208.0" layoutY="81.0" prefHeight="54.0" prefWidth="72.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+      <Label fx:id="revenueNUM" layoutX="211.0" layoutY="76.0" prefHeight="54.0" prefWidth="294.0" text="0" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="30.0" />
          </font>
       </Label>
-      <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="47.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="38.0" fitWidth="43.0" layoutX="50.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/sale.png" />
          </image>
@@ -145,12 +123,35 @@
       </Button>
       <Button layoutX="14.0" layoutY="536.0" mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="61.0" prefWidth="65.0" styleClass="btn-nav-left" stylesheets="@../css/style.css">
          <graphic>
-            <ImageView fitHeight="43.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/home.png" />
                </image>
             </ImageView>
-         </graphic>
-      </Button>
+         </graphic></Button>
+      <ComboBox fx:id="yearRevenueBtn" layoutX="509.0" layoutY="88.0" prefHeight="14.0" prefWidth="75.0" promptText="Year" />
+      <Label layoutX="66.0" layoutY="137.0" prefHeight="28.0" prefWidth="143.0" text="Revenue Chart">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Pane layoutX="624.0" layoutY="123.0" prefHeight="359.0" prefWidth="449.0" styleClass="borderCSS">
+         <children>
+            <Label layoutX="21.0" layoutY="19.0" prefHeight="28.0" prefWidth="209.0" text="History Transactions :">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <TableView fx:id="transactionTableView" layoutX="12.0" layoutY="53.0" prefHeight="255.0" prefWidth="424.0">
+              <columns>
+                <TableColumn fx:id="nameColumn" prefWidth="102.6666259765625" text="Member" />
+                <TableColumn fx:id="transactionTypeColumn" prefWidth="119.99993896484375" text="Transaction Type" />
+                  <TableColumn fx:id="transactionDateColumn" prefWidth="110.0" text="Date" />
+                  <TableColumn fx:id="amountColumn" prefWidth="90.0" text="Amout" />
+              </columns>
+            </TableView>
+            <Pagination fx:id="pagination" layoutX="146.0" layoutY="314.0" prefHeight="32.0" prefWidth="168.0" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

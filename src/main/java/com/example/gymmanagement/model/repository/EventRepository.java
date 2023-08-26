@@ -72,8 +72,7 @@ public class EventRepository {
         event.setEnd_date(resultSet.getString("end_date"));
         event.setDiscount_percent(resultSet.getBigDecimal("discount_percent"));
         event.setDescription(resultSet.getString("description"));
-        event.setMember_id(resultSet.getInt("member_id"));
-//        event.setStatus(resultSet.getInt("status"));
+        event.setStatus(resultSet.getInt("status"));
         return event;
     }
 
@@ -86,7 +85,7 @@ public class EventRepository {
             statement.setBigDecimal(4, event.getDiscount_percent());
             statement.setString(5, event.getDescription());
 //            statement.setInt(7, event.getMember_id());
-//            statement.setInt(8, event.getStatus());
+            statement.setInt(8, event.getStatus());
             if (query.contains("UPDATE")) {
                 statement.setInt(6, event.getEvent_id());
             }

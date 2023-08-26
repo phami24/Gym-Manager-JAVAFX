@@ -48,7 +48,7 @@ public class RevenueServiceImpl implements RevenueService {
         return revenueRepository.getAllRevenue();
     }
     @Override
-    public int getTotalRevenue() {return revenueRepository.getTotalRevenue();}
+    public BigDecimal getTotalRevenue() {return revenueRepository.getTotalRevenue();}
     @Override
     public BigDecimal calculateTotalRevenueByMonth(int year, int month) {
         List<Revenue> revenues = revenueRepository.getRevenueByYearAndMonth(year, month);

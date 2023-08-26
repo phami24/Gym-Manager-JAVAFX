@@ -19,5 +19,5 @@ public interface RevenueService {
     BigDecimal calculateTotalRevenueByMonth(int year, int month);
 
     BigDecimal calculateTotalRevenueForMemberType(int year, int month, int membershipTypeId);
-    int getTotalRevenue();
+    BigDecimal getTotalRevenue();
 }

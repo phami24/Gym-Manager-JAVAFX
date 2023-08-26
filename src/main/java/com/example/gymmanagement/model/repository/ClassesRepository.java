@@ -20,16 +20,13 @@ public class ClassesRepository {
 
     // Phương thức để thêm một lớp học vào cơ sở dữ liệu
     public void addClass(Classes classes) {
-        String query = "INSERT INTO classes (class_name, instructor_id, schedule, capacity) " +
-                "VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO classes (class_name, instructor_id, schedule, capacity) " + "VALUES (?, ?, ?, ?)";
         executeClassesQuery(query, classes);
     }
 
     // Phương thức để cập nhật thông tin lớp học trong cơ sở dữ liệu
     public void updateClass(Classes classes) {
-        String query = "UPDATE classes " +
-                "SET class_name = ?, instructor_id = ?, schedule = ?, capacity = ? " +
-                "WHERE class_id = ?";
+        String query = "UPDATE classes " + "SET class_name = ?, instructor_id = ?, schedule = ?, capacity = ? " + "WHERE class_id = ?";
         executeClassesQuery(query, classes);
     }
 
@@ -115,8 +112,7 @@ public class ClassesRepository {
 
     public List<Classes> getClassesByInstructorId(int instructorId) {
         List<Classes> classesList = new ArrayList<>();
-        try (Connection connection = jdbcConnect.getJDBCConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM classes WHERE instructor_id = ?")) {
+        try (Connection connection = jdbcConnect.getJDBCConnection(); PreparedStatement statement = connection.prepareStatement("SELECT * FROM classes WHERE instructor_id = ?")) {
             statement.setInt(1, instructorId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
@@ -167,8 +163,7 @@ public class ClassesRepository {
     // Phương thức để cập nhật tên lớp học
     public void updateClassName(int gymClassID, String newClassName) {
         String query = "UPDATE classes SET class_name = ? WHERE class_id = ?";
-        try (Connection connection = jdbcConnect.getJDBCConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+        try (Connection connection = jdbcConnect.getJDBCConnection(); PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, newClassName);
             statement.setInt(2, gymClassID);
@@ -183,8 +178,7 @@ public class ClassesRepository {
     public void updateInstructor(int gymClassID, String newInstructor) {
         String query = "UPDATE classes SET instructor_id = ? WHERE class_id = ?";
         int instructorId = instructorRepository.getInstructorIdByName(newInstructor); // Chưa biết phương thức này trong instructorRepository
-        try (Connection connection = jdbcConnect.getJDBCConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+        try (Connection connection = jdbcConnect.getJDBCConnection(); PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, instructorId);
             statement.setInt(2, gymClassID);
@@ -198,8 +192,7 @@ public class ClassesRepository {
     // Phương thức để cập nhật lịch học
     public void updateSchedule(int gymClassID, String newSchedule) {
         String query = "UPDATE classes SET schedule = ? WHERE class_id = ?";
-        try (Connection connection = jdbcConnect.getJDBCConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+        try (Connection connection = jdbcConnect.getJDBCConnection(); PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, newSchedule);
             statement.setInt(2, gymClassID);
@@ -213,8 +206,7 @@ public class ClassesRepository {
     // Phương thức để cập nhật sức chứa
     public void updateCapacity(int gymClassID, int newCapacity) {
         String query = "UPDATE classes SET capacity = ? WHERE class_id = ?";
-        try (Connection connection = jdbcConnect.getJDBCConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
+        try (Connection connection = jdbcConnect.getJDBCConnection(); PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setInt(1, newCapacity);
             statement.setInt(2, gymClassID);
@@ -224,10 +216,9 @@ public class ClassesRepository {
             System.out.println(e.getMessage());
         }
     }
+
     public int getTotalClasses() {
-        try (Connection connection = jdbcConnect.getJDBCConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT COUNT(class_id) as count FROM classes");
-             ResultSet resultSet = statement.executeQuery()) {
+        try (Connection connection = jdbcConnect.getJDBCConnection(); PreparedStatement statement = connection.prepareStatement("SELECT COUNT(class_id) as count FROM classes"); ResultSet resultSet = statement.executeQuery()) {
             if (resultSet.next()) {
                 return resultSet.getInt("count");
             }
@@ -236,4 +227,28 @@ public class ClassesRepository {
         }
         return 0;
     }
+
+    public List<Classes> getClassByPage(int pageNumber, int pageSize) {
+        List<Classes> classList = new ArrayList<>();
+        int offset = (pageNumber - 1) * pageSize;
+        String query = "SELECT * FROM classes LIMIT ? OFFSET ?";
+
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, pageSize);
+            statement.setInt(2, offset);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    classList.add(fromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return classList;
+    }
+
+
 }

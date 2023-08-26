@@ -8,6 +8,7 @@ import com.example.gymmanagement.model.repository.InstructorRepository;
 import com.example.gymmanagement.model.repository.MembersRepository;
 import com.example.gymmanagement.model.repository.MembershipStatusRepository;
 import com.example.gymmanagement.model.repository.MembershipTypesRepository;
+import com.example.gymmanagement.model.service.EmailService;
 import com.example.gymmanagement.validation.ValidateMember;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -60,11 +61,17 @@ public class MemberAddFormController {
     private MembershipTypesRepository membershipTypesRepository = new MembershipTypesRepository();
     private InstructorRepository instructorRepository = new InstructorRepository();
     private TableView<Members> memberTableView;
+    private int currentPage;
+    private int pageSize;
 
     // Constructor
-    public MemberAddFormController(TableView<Members> memberTableView) {
+    public MemberAddFormController(TableView<Members> memberTableView ,int currentPage , int pageSize) {
         this.memberTableView = memberTableView;
+        this.currentPage = currentPage;
+        this.pageSize = pageSize;
     }
+
+    private final EmailService emailService = new EmailService();
 
     @FXML
     private void initialize() {
@@ -160,13 +167,7 @@ public class MemberAddFormController {
                 // Sau khi thêm thành viên cập nhật TableView
                 Platform.runLater(() -> {
                     // Thêm member mới vào cơ sở dữ liệu
-
-                    // Cập nhật dữ liệu trong TableView
-                    ObservableList<Members> membersData = FXCollections.observableArrayList();
-                    List<Members> membersList = membersRepository.getAllMembers();
-                    membersData.addAll(membersList);
-                    memberTableView.setItems(membersData);
-                    memberTableView.refresh();
+                    loadMembersData();
                 });
 
                 showSuccessAlert();
@@ -175,6 +176,15 @@ public class MemberAddFormController {
 
             }
         });
+    }  // Cập nhật dữ liệu trong TableView
+
+    ObservableList<Members> membersData = FXCollections.observableArrayList();
+
+    private void loadMembersData() {
+        List<Members> membersList = membersRepository.getMembersByPage(currentPage, pageSize);
+        membersData.clear();
+        membersData.addAll(membersList);
+        memberTableView.setItems(membersData);
     }
 
     private boolean validateAndAddMember() {
@@ -245,6 +255,10 @@ public class MemberAddFormController {
 
         // Nếu tất cả dữ liệu hợp lệ, thêm thành viên
         addMember();
+        List<String> emails = new ArrayList<>();
+        emails.add(email);
+        emailService.sendThankYouEmail(emails);
+        emails.clear();
         return true;
     }
 

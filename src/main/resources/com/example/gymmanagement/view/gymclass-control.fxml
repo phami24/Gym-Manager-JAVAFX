@@ -34,7 +34,7 @@
             <TableColumn fx:id="action" prefWidth="131.33331298828125" text="Action" />
          </columns>
       </TableView>
-      <Pagination layoutX="450.0" layoutY="522.0" prefHeight="58.0" prefWidth="200.0" />
+      <Pagination  fx:id="pagination" layoutX="450.0" layoutY="522.0"/>
       <TextField fx:id="searchClass" layoutX="851.0" layoutY="85.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" style="-fx-border-radius: 10px;" styleClass="btn_tool" stylesheets="@../css/style.css" />
       <Button layoutX="82.0" layoutY="74.0" mnemonicParsing="false" onMouseClicked="#addClass" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/style.css" text=" Add class">
          <styleClass>

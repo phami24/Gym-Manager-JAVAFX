@@ -307,6 +307,16 @@ public class StageManager {
         dashBoardScene.setFill(Color.TRANSPARENT);
         showStage();
     }
+    public void loadMemberType(){
+        Stage memberTypeStage = new Stage();
+        memberTypeStage.initModality(Modality.APPLICATION_MODAL);
+        Scene dashBoardScene = sceneManager.loadScene("member-type.fxml");
+        memberTypeStage.setScene(dashBoardScene);
+        setCurrentStage(memberTypeStage);
+//        currentStage.initStyle(StageStyle.TRANSPARENT);
+//        dashBoardScene.setFill(Color.TRANSPARENT);
+        showStage();
+    }
 
 }
 

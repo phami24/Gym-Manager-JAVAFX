@@ -17,9 +17,6 @@ import java.util.List;
 
 public class GymClassAddFormController {
     @FXML
-    private TextField classIdField;
-
-    @FXML
     private TextField classNameField;
 
     @FXML
@@ -53,7 +50,6 @@ public class GymClassAddFormController {
 
     // Xóa dữ liệu khỏi các trường nhập liệu
     private void clearFields() {
-        classIdField.clear();
         classNameField.clear();
         instructorComboBox.getSelectionModel().clearSelection();
         scheduleField.clear();

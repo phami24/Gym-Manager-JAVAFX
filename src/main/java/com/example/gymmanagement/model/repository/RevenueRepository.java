@@ -111,17 +111,17 @@ public class RevenueRepository {
             e.printStackTrace();
         }
     }
-    public int getTotalRevenue() {
+    public BigDecimal getTotalRevenue() {
         try (Connection connection = jdbcConnect.getJDBCConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT COUNT(revenue_id) as count FROM revenue");
+             PreparedStatement statement = connection.prepareStatement("SELECT SUM(total_amount) as count FROM revenue");
              ResultSet resultSet = statement.executeQuery()) {
             if (resultSet.next()) {
-                return resultSet.getInt("count");
+                return resultSet.getBigDecimal("count");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return 0;
+        return BigDecimal.ZERO;
     }
 
 }

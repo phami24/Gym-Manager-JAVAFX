@@ -100,5 +100,11 @@
             <Image url="@../image/file.png" />
          </image>
       </ImageView>
+      <Button layoutX="393.0" layoutY="74.0" mnemonicParsing="false" onMouseClicked="#membertype" prefHeight="40.0" prefWidth="129.0" stylesheets="@../css/style.css" text="Member Type">
+         <styleClass>
+            <String fx:value="btn_tool" />
+            <String fx:value="add" />
+         </styleClass>
+      </Button>
    </children>
 </AnchorPane>

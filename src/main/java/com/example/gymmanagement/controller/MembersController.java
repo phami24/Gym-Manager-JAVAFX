@@ -197,6 +197,12 @@ public class MembersController implements Initializable {
     }
 
     @FXML
+    void membertype(MouseEvent event) {
+        stageManager.loadMemberType();
+    }
+
+
+    @FXML
     void logOut(MouseEvent event) {
         Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
         confirmationDialog.setTitle("Confirmation");
@@ -282,8 +288,9 @@ public class MembersController implements Initializable {
 
     @FXML
     void addMember(MouseEvent event) {
-        MemberAddFormController addFormController = new MemberAddFormController(member_tableView);
+        MemberAddFormController addFormController = new MemberAddFormController(member_tableView, currentPage, pageSize);
         stageManager.loadMemberAddFormDialog(addFormController);
+        loadMembersData();
     }
 
     public static void exportToExcel(List<Members> membersList) {

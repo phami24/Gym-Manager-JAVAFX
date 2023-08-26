@@ -38,4 +38,35 @@ public class EmailService {
             e.printStackTrace();
         }
     }
+
+    public void sendThankYouEmail(List<String> memberEmails) {
+        String subject = "Thank You for Joining Our Gym";
+        String content = "<html>"
+                + "<head>"
+                + "<style>"
+                + "body { font-family: Arial, sans-serif; margin: 0; padding: 0; }"
+                + ".container { max-width: 600px; margin: 0 auto; padding: 20px; }"
+                + ".header { background-color: #f2f2f2; padding: 20px; text-align: center; }"
+                + ".content { padding: 20px; }"
+                + ".footer { background-color: #f2f2f2; padding: 10px; text-align: center; }"
+                + "</style>"
+                + "</head>"
+                + "<body>"
+                + "<div class='container'>"
+                + "<div class='header'>"
+                + "<h2>Thank You for Joining Our Gym!</h2>"
+                + "</div>"
+                + "<div class='content'>"
+                + "<p>We are delighted to welcome you. We hope you will have a great experience at our gym.</p>"
+                + "</div>"
+                + "<div class='footer'>"
+                + "<p>Best regards,</p>"
+                + "<p>XYZ Gym</p>"
+                + "</div>"
+                + "</div>"
+                + "</body>"
+                + "</html>";
+
+        sendEmailToMembers(memberEmails, subject, content);
+    }
 }
