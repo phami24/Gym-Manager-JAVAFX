@@ -9,6 +9,7 @@ import com.example.gymmanagement.model.repository.MembershipTypesRepository;
 import com.example.gymmanagement.model.service.MembersService;
 import com.example.gymmanagement.model.service.impl.MemberServiceImpl;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -20,6 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
@@ -32,6 +34,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -87,73 +90,37 @@ public class MembersController implements Initializable {
     private TableColumn<Members, Integer> stt;
     @FXML
     private TableColumn<Members, String> instructor;
-    @FXML
-    private Button buttonAdd;
-
     private MembersService membersService = new MemberServiceImpl();
     private ObservableList<Members> membersData = FXCollections.observableArrayList();
-    private FilteredList<Members> filteredMembersList;
-
     private int currentPage = 1;
     private int pageSize = 10;
-
-    private int totalPage = membersRepository.getTotalMembers() / pageSize;
+    private int totalPage = (int) Math.ceil((double) membersRepository.getTotalMembers() / pageSize);
     @FXML
     private Pagination pagination;
+    @FXML
+    private ImageView searchBtn;
+
+    @FXML
+    private Label closeSearchBtn;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Cài đặt cách dữ liệu của các cột sẽ được lấy từ đối tượng Members và gắn vào TableView
-        stt.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(member_tableView.getItems().indexOf(cellData.getValue()) + 1));
-        memberId.setCellValueFactory(new PropertyValueFactory<>("member_id"));
-        fullName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFirst_name() + " " + cellData.getValue().getLast_name()));
-        gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
-        email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        phone.setCellValueFactory(new PropertyValueFactory<>("phone_number"));
+        setupColumn();
+        loadMembersData();
+        setupPagination();
+    }
 
-        // Hiển thị status, type và instructor dựa trên ID
-        status.setCellValueFactory(cellData -> new SimpleStringProperty(membershipStatusRepository.getStatusNameById(cellData.getValue().getMembership_status_id())));
-        type.setCellValueFactory(cellData -> new SimpleStringProperty(membershipTypesRepository.getTypeNameById(cellData.getValue().getMembership_type_id())));
-        instructor.setCellValueFactory(cellData -> new SimpleStringProperty(instructorRepository.getInstructorNameById(cellData.getValue().getInstructorId())));
-
-        setupActionColumn();
-
+    private void setupPagination() {
         pagination.setPageCount(totalPage);
         pagination.setCurrentPageIndex(currentPage - 1);
         pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
             currentPage = newIndex.intValue() + 1;
             loadMembersData();
         });
-        loadMembersData();
-
-        // Sử dụng FilteredList để lọc danh sách thành viên dựa trên tên
-        filteredMembersList = new FilteredList<>(membersData, p -> true);
-
-        // Liên kết TableView với FilteredList để hiển thị danh sách đã lọc
-        member_tableView.setItems(filteredMembersList);
-
-        // Bắt sự kiện khi người dùng nhập tên vào TextField
-        searchMember.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Lọc danh sách thành viên dựa trên tên mới
-            filteredMembersList.setPredicate(member -> {
-                // Nếu không có tên nào được nhập, hiển thị tất cả các thành viên
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-
-                // Chuyển đổi tên thành viên và tên mới sang chữ thường để so sánh không phân biệt chữ hoa/thường
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                // Kiểm tra nếu tên thành viên chứa tên mới
-                if (member.getFirst_name().toLowerCase().contains(lowerCaseFilter) ||
-                        member.getLast_name().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Thành viên thỏa mãn điều kiện lọc
-                }
-
-                return false; // Không tìm thấy tên trong thành viên
-            });
-        });
     }
+
+    int rowIndex = 0;
 
     @FXML
     private void previousPage() {
@@ -178,6 +145,80 @@ public class MembersController implements Initializable {
         member_tableView.setItems(membersData);
     }
 
+    private void setupColumn() {
+        // Cài đặt cách dữ liệu của các cột sẽ được lấy từ đối tượng Members và gắn vào TableView
+        stt.setCellValueFactory(cellData -> {
+            Members member = cellData.getValue();
+            rowIndex = membersData.indexOf(member);
+            int sttValue = (currentPage - 1) * pageSize + rowIndex + 1;
+            return new SimpleIntegerProperty(sttValue).asObject();
+        });
+        memberId.setCellValueFactory(new PropertyValueFactory<>("member_id"));
+        fullName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFirst_name() + " " + cellData.getValue().getLast_name()));
+        gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        phone.setCellValueFactory(new PropertyValueFactory<>("phone_number"));
+
+        // Hiển thị status, type và instructor dựa trên ID
+        status.setCellValueFactory(cellData -> new SimpleStringProperty(membershipStatusRepository.getStatusNameById(cellData.getValue().getMembership_status_id())));
+        type.setCellValueFactory(cellData -> new SimpleStringProperty(membershipTypesRepository.getTypeNameById(cellData.getValue().getMembership_type_id())));
+        instructor.setCellValueFactory(cellData -> new SimpleStringProperty(instructorRepository.getInstructorNameById(cellData.getValue().getInstructorId())));
+
+        action.setCellFactory(column -> new TableCell<Members, Void>() {
+            private final Button deleteButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/removed.png"))));
+            private final Button showDetailButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/refresh.png"))));
+
+            {
+                deleteButton.setOnAction(event -> {
+                    Members member = getTableView().getItems().get(getIndex());
+                    Alert confirmDeleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                    confirmDeleteAlert.setTitle("Confirm Delete");
+                    confirmDeleteAlert.setHeaderText("Are you sure you want to delete this member?");
+                    confirmDeleteAlert.setContentText("Member: " + member.getFirst_name() + " " + member.getLast_name());
+
+                    Optional<ButtonType> result = confirmDeleteAlert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK) {
+                        membersService.deleteMember(member.getMember_id());
+                        member_tableView.getItems().clear();
+                        loadMembersData();
+                    }
+                });
+
+                showDetailButton.setOnAction(event -> {
+                    Members member = getTableView().getItems().get(getIndex());
+                    int memberId = member.getMember_id();
+                    MemberUpdateFormController memberUpdateFormController = new MemberUpdateFormController(memberId, member_tableView);
+                    stageManager.loadMemberUpdateFormDialog(memberUpdateFormController);
+                });
+
+                // Thiết lập kích thước cho các nút
+                deleteButton.setPrefSize(10, 10);
+                showDetailButton.setPrefSize(10, 10);
+                ImageView deleteImageView = (ImageView) deleteButton.getGraphic();
+                deleteImageView.setFitWidth(20);
+                deleteImageView.setFitHeight(20);
+
+                ImageView showDetailImageView = (ImageView) showDetailButton.getGraphic();
+                showDetailImageView.setFitWidth(20);
+                showDetailImageView.setFitHeight(20);
+                deleteButton.getStyleClass().add("transparent-button");
+                showDetailButton.getStyleClass().add("transparent-button");
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    HBox buttons = new HBox(5);
+                    buttons.setAlignment(Pos.CENTER);
+                    buttons.getChildren().addAll(deleteButton, showDetailButton);
+                    setGraphic(buttons);
+                }
+            }
+        });
+    }
 
     @FXML
     void close(MouseEvent event) {
@@ -228,68 +269,13 @@ public class MembersController implements Initializable {
         }
     }
 
-    private void setupActionColumn() {
-        action.setCellFactory(column -> new TableCell<Members, Void>() {
-            private final Button deleteButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/removed.png"))));
-            private final Button showDetailButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/refresh.png"))));
-
-            {
-                deleteButton.setOnAction(event -> {
-                    Members member = getTableView().getItems().get(getIndex());
-                    Alert confirmDeleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
-                    confirmDeleteAlert.setTitle("Confirm Delete");
-                    confirmDeleteAlert.setHeaderText("Are you sure you want to delete this member?");
-                    confirmDeleteAlert.setContentText("Member: " + member.getFirst_name() + " " + member.getLast_name());
-
-                    Optional<ButtonType> result = confirmDeleteAlert.showAndWait();
-                    if (result.isPresent() && result.get() == ButtonType.OK) {
-                        membersService.deleteMember(member.getMember_id());
-                        loadMembersData();
-                    }
-                });
-
-                showDetailButton.setOnAction(event -> {
-                    Members member = getTableView().getItems().get(getIndex());
-                    int memberId = member.getMember_id();
-                    MemberUpdateFormController memberUpdateFormController = new MemberUpdateFormController(memberId, member_tableView);
-                    stageManager.loadMemberUpdateFormDialog(memberUpdateFormController);
-                    loadMembersData();
-                });
-
-                // Thiết lập kích thước cho các nút
-                deleteButton.setPrefSize(10, 10);
-                showDetailButton.setPrefSize(10, 10);
-                ImageView deleteImageView = (ImageView) deleteButton.getGraphic();
-                deleteImageView.setFitWidth(20);
-                deleteImageView.setFitHeight(20);
-
-                ImageView showDetailImageView = (ImageView) showDetailButton.getGraphic();
-                showDetailImageView.setFitWidth(20);
-                showDetailImageView.setFitHeight(20);
-                deleteButton.getStyleClass().add("transparent-button");
-                showDetailButton.getStyleClass().add("transparent-button");
-            }
-
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    HBox buttons = new HBox(5);
-                    buttons.setAlignment(Pos.CENTER);
-                    buttons.getChildren().addAll(deleteButton, showDetailButton);
-                    setGraphic(buttons);
-                }
-            }
-        });
-    }
-
 
     @FXML
     void addMember(MouseEvent event) {
-        MemberAddFormController addFormController = new MemberAddFormController(member_tableView, currentPage, pageSize);
-        stageManager.loadMemberAddFormDialog(addFormController);
+        Stage memberAddFormDialogStage = new Stage();
+        MemberAddFormController addFormController = new MemberAddFormController(member_tableView, currentPage, pageSize, memberAddFormDialogStage);
+        stageManager.loadMemberAddFormDialog(addFormController, memberAddFormDialogStage);
+        totalPage = (int) Math.ceil((double) membersRepository.getTotalMembers() / pageSize);
         loadMembersData();
     }
 
@@ -348,30 +334,38 @@ public class MembersController implements Initializable {
     private void handleExportMemberButtonAction() {
         List<Members> membersList = member_tableView.getItems(); // Get data from TableView
         exportToExcel(membersList); // Call the exportToExcel() method of ExcelExporter class
-
     }
 
     @FXML
     private void searchMembers() {
         String searchTerm = searchMember.getText().trim();
-
         // Kiểm tra xem người dùng đã nhập tên cần tìm kiếm hay chưa
         if (searchTerm.isEmpty()) {
             // Hiển thị thông báo lỗi nếu người dùng chưa nhập tên
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Thông báo");
+            alert.setTitle("Notification");
             alert.setHeaderText(null);
-            alert.setContentText("Vui lòng nhập tên thành viên cần tìm kiếm.");
+            alert.setContentText("Please enter member name to search.");
             alert.showAndWait();
-            return;
+        } else {
+            // Thực hiện tìm kiếm thành viên trong cơ sở dữ liệu
+            List<Members> searchResults = membersService.searchMembersByName(searchTerm);
+            // Hiển thị kết quả lên TableView
+            member_tableView.getItems().clear();
+            member_tableView.getItems().addAll(searchResults);
+            searchBtn.setVisible(false);
+            pagination.setVisible(false);
+            closeSearchBtn.setVisible(true);
         }
 
-        // Thực hiện tìm kiếm thành viên trong cơ sở dữ liệu
-        List<Members> searchResults = membersService.searchMembersByName(searchTerm);
-
-        // Hiển thị kết quả lên TableView
-        member_tableView.getItems().clear();
-        member_tableView.getItems().addAll(searchResults);
     }
 
+    @FXML
+    private void closeSearchForm() {
+        searchMember.clear();
+        closeSearchBtn.setVisible(false);
+        searchBtn.setVisible(true);
+        pagination.setVisible(true);
+        loadMembersData();
+    }
 }

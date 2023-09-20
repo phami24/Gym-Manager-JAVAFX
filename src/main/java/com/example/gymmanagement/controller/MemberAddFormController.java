@@ -64,11 +64,14 @@ public class MemberAddFormController {
     private int currentPage;
     private int pageSize;
 
+    private Stage stage;
+
     // Constructor
-    public MemberAddFormController(TableView<Members> memberTableView ,int currentPage , int pageSize) {
+    public MemberAddFormController(TableView<Members> memberTableView, int currentPage, int pageSize , Stage memberAddFormDialogStage) {
         this.memberTableView = memberTableView;
         this.currentPage = currentPage;
         this.pageSize = pageSize;
+        this.stage = memberAddFormDialogStage;
     }
 
     private final EmailService emailService = new EmailService();
@@ -136,7 +139,6 @@ public class MemberAddFormController {
                 String email = emailField.getText();
                 String phoneNumber = phoneNumberField.getText();
                 String address = addressField.getText();
-                String statusName = membershipStatusComboBox.getValue();
                 String typeName = membershipTypeComboBox.getValue();
                 String instructorName = instructorComboBox.getValue();
 
@@ -158,18 +160,11 @@ public class MemberAddFormController {
                 newMember.setAddress(address);
                 newMember.setJoin_date(joinDate.toString());
                 newMember.setEnd_date(endDate.toString());
-                newMember.setMembership_status_id(membershipStatusRepository.getStatusIdByName(statusName));
+                newMember.setMembership_status_id(1);
                 newMember.setMembership_type_id(membershipTypesRepository.getTypeIDByName(typeName));
                 newMember.setInstructorId(instructorRepository.getInstructorIdByName(instructorName));
 
-
                 membersRepository.addMember(newMember);
-                // Sau khi thêm thành viên cập nhật TableView
-                Platform.runLater(() -> {
-                    // Thêm member mới vào cơ sở dữ liệu
-                    loadMembersData();
-                });
-
                 showSuccessAlert();
                 // Xóa dữ liệu khỏi các trường nhập liệu
                 clearFields();
@@ -202,7 +197,6 @@ public class MemberAddFormController {
         String email = emailField.getText();
         String phoneNumber = phoneNumberField.getText();
         String address = addressField.getText();
-        String statusName = membershipStatusComboBox.getValue();
         String typeName = membershipTypeComboBox.getValue();
         String instructorName = instructorComboBox.getValue();
 
@@ -235,10 +229,6 @@ public class MemberAddFormController {
             errors.add("Error: Invalid Address - Please enter a valid address.");
         }
 
-        if (!ValidateMember.isValidMembershipStatus(statusName)) {
-            errors.add("Error: Invalid Membership Status - Please select a valid membership status.");
-        }
-
         if (!ValidateMember.isValidMembershipType(typeName)) {
             errors.add("Error: Invalid Membership Type - Please select a valid membership type.");
         }
@@ -252,13 +242,14 @@ public class MemberAddFormController {
             showErrorAlert("Validation Errors", String.join("\n", errors));
             return false;
         }
-
         // Nếu tất cả dữ liệu hợp lệ, thêm thành viên
         addMember();
         List<String> emails = new ArrayList<>();
         emails.add(email);
         emailService.sendThankYouEmail(emails);
         emails.clear();
+        loadMembersData();
+        stage.close();
         return true;
     }
 
@@ -286,4 +277,5 @@ public class MemberAddFormController {
         // Đóng cửa sổ hiện tại
         currentStage.close();
     }
+
 }

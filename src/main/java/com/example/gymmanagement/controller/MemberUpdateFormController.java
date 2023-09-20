@@ -264,8 +264,6 @@ public class MemberUpdateFormController implements Initializable {
                 updateMembershipStatus(memberID);
                 updateMembershipType(memberID);
                 Platform.runLater(() -> {
-                    // Thêm member mới vào cơ sở dữ liệu
-
                     // Cập nhật dữ liệu trong TableView
                     ObservableList<Members> membersData = FXCollections.observableArrayList();
                     List<Members> membersList = membersRepository.getAllMembers();

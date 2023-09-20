@@ -32,7 +32,14 @@ public class MainApplication extends Application {
 
     public void scheduledTask() {
         // Thực hiện các tác vụ cần lên lịch ở đây
-        new MembersRepository().updateMembershipStatusBasedOnEndDate();
+        Runnable task = () -> {
+            new MembersRepository().updateMembershipStatusBasedOnEndDate();
+        };
+
+        // Chạy nhiệm vụ trong một luồng riêng biệt
+        Thread backgroundThread = new Thread(task);
+        backgroundThread.setDaemon(true); // Đặt luồng là daemon để cho phép ứng dụng thoát
+        backgroundThread.start();
     }
 
     public static void main(String[] args) {

@@ -44,11 +44,6 @@
       </TableView>
       <Pagination fx:id="pagination" layoutX="200.0" layoutY="528.0" pageCount="1" />
       <TextField fx:id="searchMember" layoutX="853.0" layoutY="80.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" style="-fx-border-radius: 10px;" styleClass="btn_tool" stylesheets="@../css/style.css" />
-      <ImageView fitHeight="15.0" fitWidth="14.0" layoutX="1063.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/search.png" />
-         </image>
-      </ImageView>
       <Button fx:id="buttonAdd" layoutX="82.0" layoutY="74.0" mnemonicParsing="false" onMouseClicked="#addMember" prefHeight="40.0" prefWidth="129.0" stylesheets="@../css/style.css" text="Add member">
          <styleClass>
             <String fx:value="btn_tool" />
@@ -106,5 +101,15 @@
             <String fx:value="add" />
          </styleClass>
       </Button>
+      <ImageView fx:id="searchBtn" fitHeight="15.0" fitWidth="14.0" layoutX="1063.0" layoutY="87.0" onMouseClicked="#searchMembers" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/search.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="closeSearchBtn" alignment="CENTER" layoutX="1060.0" layoutY="85.0" onMouseClicked="#closeSearchForm" prefHeight="17.0" prefWidth="19.0" text="X" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

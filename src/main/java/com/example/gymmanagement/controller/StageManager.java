@@ -203,8 +203,7 @@ public class StageManager {
         showStage();
     }
 
-    public void loadMemberAddFormDialog(MemberAddFormController addFormController) {
-        Stage memberAddFormDialogStage = new Stage();
+    public void loadMemberAddFormDialog(MemberAddFormController addFormController , Stage memberAddFormDialogStage) {
         memberAddFormDialogStage.initModality(Modality.APPLICATION_MODAL);
         Scene memberAddFormScene = sceneManager.loadScene("member-add-form.fxml", addFormController);
         memberAddFormDialogStage.setScene(memberAddFormScene);
