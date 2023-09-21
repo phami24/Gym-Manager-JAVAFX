@@ -13,6 +13,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -36,6 +37,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Year;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -101,6 +104,12 @@ public class InstructorController implements Initializable {
     private int totalPage = instructorRepository.getTotalInstructor() / pageSize;
     @FXML
     private Pagination pagination;
+    @FXML
+    private Button dashboard;
+    @FXML
+    private Button homePage;
+    @FXML
+    private Button logout;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -163,6 +172,16 @@ public class InstructorController implements Initializable {
                 return false; // Không tìm thấy tên trong thành viên
             });
         });
+
+        Tooltip tooltipH = new Tooltip("Home");
+        tooltipH.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
+        homePage.setTooltip(tooltipH);
+        Tooltip tooltipD = new Tooltip("Dashboard");
+        tooltipD.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
+        dashboard.setTooltip(tooltipD);
+        Tooltip tooltipL = new Tooltip("Logout");
+        tooltipL.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
+        logout.setTooltip(tooltipL);
     }
 
     @FXML
@@ -297,6 +316,9 @@ public class InstructorController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files","*.xlsx"));
+        LocalDate currentDate = LocalDate.now();
+        Year currentYear = Year.of(currentDate.getYear());
+        fileChooser.setInitialFileName("list_instructor_"  + currentYear + ".xlsx");
         File file = fileChooser.showSaveDialog(null);
         if (file == null) {
             return; // User cancelled the save dialog
@@ -344,8 +366,16 @@ public class InstructorController implements Initializable {
     }
     @FXML
     private void handleExportButtonAction() {
-        List<Instructors> instructorsList = tableView.getItems(); // Get data from TableView
+        List<Instructors> instructorsList = instructorsService.getAllInstructors(); // Get data from TableView
         exportToExcel(instructorsList); // Call the exportToExcel() method of ExcelExporter class
+
+    }
+    @FXML
+    private Button minimizeButton;
+    @FXML
+    void minimize(ActionEvent event) {
+        Stage stage = (Stage) minimizeButton.getScene().getWindow();
+        stage.setIconified(true);
 
     }
 
