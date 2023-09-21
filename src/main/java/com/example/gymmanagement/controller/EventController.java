@@ -35,6 +35,9 @@ import javafx.util.StringConverter;
 import javafx.util.converter.LocalDateStringConverter;
 
 public class EventController implements Initializable {
+
+    @FXML
+    private Button minimizeButton;
     @FXML
     private TableView<Event> tableView;
     @FXML
@@ -379,23 +382,29 @@ public class EventController implements Initializable {
 
         actionColumn.setCellFactory(column -> new TableCell<Event, Void>() {
             private final Button deleteButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/removed.png"))));
-                private final Button emailButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/message.png"))));
+            private final Button emailButton = new Button("", new ImageView(new Image(getClass().getResourceAsStream("/com/example/gymmanagement/image/message.png"))));
 
             {
                 deleteButton.setOnAction(event -> {
-                    Event member = getTableView().getItems().get(getIndex());
+                    Event eventt = getTableView().getItems().get(getIndex());
                     Alert confirmDeleteAlert = new Alert(Alert.AlertType.CONFIRMATION);
                     confirmDeleteAlert.setTitle("Confirm Delete");
                     confirmDeleteAlert.setHeaderText("Are you sure you want to delete this event?");
-                    confirmDeleteAlert.setContentText("Event: " + member.getEvent_name());
+                    confirmDeleteAlert.setContentText("Event: " + eventt.getEvent_name());
 
                     Optional<ButtonType> result = confirmDeleteAlert.showAndWait();
                     if (result.isPresent() && result.get() == ButtonType.OK) {
-                        eventRepository.deleteEvent(member.getEvent_name());
-                        eventData.remove(member);
-                        tableView.refresh();
+                        eventRepository.deleteEvent(eventt.getEvent_name());
+
+                        // Remove the deleted item from the observable list
+                        eventData.remove(eventt);
+
+
+                        // Refresh the TableView to reflect the updated data
+                        tableView.getItems().addAll(eventRepository.getAllEvents());
                     }
                 });
+
 
                 emailButton.setOnAction(event -> {
                     Event eventEmail = getTableView().getItems().get(getIndex());
@@ -484,7 +493,12 @@ public class EventController implements Initializable {
         }
     }
 
+    @FXML
+    void minimize(ActionEvent event) {
+        Stage stage = (Stage) minimizeButton.getScene().getWindow();
+        stage.setIconified(true);
 
+    }
     private String loadHtmlTemplate(Event event) {
         String template = "<html>" +
                 "<head>" +
@@ -549,6 +563,12 @@ public class EventController implements Initializable {
         start_date.setValue(null);
         end_date.setValue(null);
     }
+    @FXML
+    private Button dashboard;
+    @FXML
+    private Button homePage;
+    @FXML
+    private Button logout;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -589,5 +609,15 @@ public class EventController implements Initializable {
             }
         });
         initializeTableColumns();
+
+        Tooltip tooltipH = new Tooltip("Home");
+        tooltipH.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
+        homePage.setTooltip(tooltipH);
+        Tooltip tooltipD = new Tooltip("Dashboard");
+        tooltipD.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
+        dashboard.setTooltip(tooltipD);
+        Tooltip tooltipL = new Tooltip("Logout");
+        tooltipL.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
+        logout.setTooltip(tooltipL);
     }
 }
