@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -12,6 +13,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
@@ -19,7 +21,7 @@
    <left>
       <AnchorPane fx:id="sideBar" prefHeight="550.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane layoutX="39.0" layoutY="51.0" opacity="0.71" prefHeight="550.0" prefWidth="375.3333333333333" style="-fx-background-color: #ffffff; -fx-border-radius: 30px; -fx-background-radius: 30px;" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="15.0">
+            <AnchorPane layoutX="39.0" layoutY="51.0" opacity="0.71" prefHeight="550.0" prefWidth="400.0" style="-fx-background-color: #ffffff; -fx-border-radius: 30px; -fx-background-radius: 30px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <TextField fx:id="usernameField" layoutX="14.0" layoutY="222.0" prefHeight="39.0" prefWidth="339.0" promptText="Username" style="-fx-border-style: hidden hidden solid hidden; -fx-background-color: transparent;">
                      <cursor>
@@ -58,7 +60,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="172.0" layoutY="27.0" prefHeight="51.0" prefWidth="196.0" stylesheets="@../../../../../../../../LoginForm/src/main/resources/com/example/css/style.css" text="F I T N E S S">
+                  <Label layoutX="172.0" layoutY="27.0" prefHeight="51.0" prefWidth="196.0" stylesheets="@../css/form_style.css" text="F I T N E S S">
                      <font>
                         <Font name="Arial Bold" size="30.0" />
                      </font>
@@ -122,11 +124,18 @@
                   <Image url="@../image/loginGym.jpg" />
                </image>
             </ImageView>
-            <Button layoutX="369.0" layoutY="1.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="34.0" styleClass="close" stylesheets="@../css/style.css" text="x" textFill="WHITE" AnchorPane.bottomAnchor="522.0" AnchorPane.leftAnchor="369.3333333333333" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <font>
-                  <Font name="Leelawadee UI Bold" size="14.0" />
-               </font>
-            </Button>
+            <HBox alignment="TOP_RIGHT" layoutX="202.0" layoutY="1.0" prefHeight="47.0" prefWidth="181.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#close" prefHeight="29.0" prefWidth="50.0" style="-fx-border-radius: 0px; -fx-background-radius: 0px;" styleClass="close" stylesheets="@../css/style.css" text="x" textFill="WHITE">
+                     <font>
+                        <Font name="Leelawadee UI Bold" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets right="2.0" top="2.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </center>

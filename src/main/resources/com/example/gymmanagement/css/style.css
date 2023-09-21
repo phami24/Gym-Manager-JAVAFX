@@ -48,11 +48,26 @@
 }
 .close{
     -fx-cursor:hand;
-    -fx-background-color:transparent;
+    -fx-background-color:#D8D9DA;
+    -fx-background-radius:0px;
+    -fx-border-radius: 0px ;
+
 }
 .close:hover{
     -fx-background-color:#cc1c16;
-     -fx-background-radius: 10px;
+    -fx-background-radius:0px ;
+    -fx-border-radius:0px;
+}
+.mini{
+    -fx-cursor:hand;
+    -fx-background-color:#D8D9DA;
+    -fx-background-radius:0px ;
+    -fx-border-radius: 0px ;
+}
+.mini:hover{
+    -fx-background-color:#C8C2BC;
+    -fx-background-radius:0px ;
+    -fx-border-radius:0px;
 }
 #btn{
     -fx-cursor:hand;
@@ -183,10 +198,11 @@
 }
 .add:hover{
   -fx-background-radius: 10px;
-   -fx-border-radius: 10px;
-   -fx-text-fill:black;
--fx-background-color: linear-gradient(to bottom,#636262,#f0f0f0,#f0f0f0,#f0f0f0,#1f1d1d);
--fx-border-color: #b8b8ba;
+   -fx-border-radius:10px;
+   -fx-text-fill:#20262E;
+ -fx-background-color: #94969c;
+-fx-border-color: #BDCDD6;
+-fx-effect: dropshadow(gaussian, rgba(120, 126, 138, 0.8), 0, 0, 0, 0.8);
 }
 .pagination {
     -fx-skin: "com.sun.javafx.scene.control.skin.PaginationSkin";
