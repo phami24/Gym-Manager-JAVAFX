@@ -10,6 +10,7 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -33,6 +34,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Year;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -132,6 +135,13 @@ public class EquipmentController implements Initializable {
     }
     @FXML
     private TextField searchQuipment;
+    @FXML
+    private Button dashboard;
+    @FXML
+    private Button homePage;
+    @FXML
+    private Button logout;
+
     private FilteredList<Equipment> filteredMembersList;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -184,6 +194,15 @@ public class EquipmentController implements Initializable {
                 return false; // Không tìm thấy tên trong thành viên
             });
         });
+        Tooltip tooltipH = new Tooltip("Home");
+        tooltipH.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
+        homePage.setTooltip(tooltipH);
+        Tooltip tooltipD = new Tooltip("Dashboard");
+        tooltipD.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
+        dashboard.setTooltip(tooltipD);
+        Tooltip tooltipL = new Tooltip("Logout");
+        tooltipL.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
+        logout.setTooltip(tooltipL);
     }
 
     @FXML
@@ -276,6 +295,9 @@ public class EquipmentController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files","*.xlsx"));
+        LocalDate currentDate = LocalDate.now();
+        Year currentYear = Year.of(currentDate.getYear());
+        fileChooser.setInitialFileName("list_equipment_"  + currentYear + ".xlsx");
         File file = fileChooser.showSaveDialog(null);
         if (file == null) {
             return; // User cancelled the save dialog
@@ -320,8 +342,16 @@ public class EquipmentController implements Initializable {
     }
     @FXML
     private void handleExportButtonAction() {
-        List<Equipment> equipmentList = equipment_tableView.getItems(); // Get data from TableView
+        List<Equipment> equipmentList = equipmentRepository.getAllEquipment(); // Get data from TableView
         exportToExcel(equipmentList); // Call the exportToExcel() method of ExcelExporter class
+
+    }
+    @FXML
+    private Button minimizeButton;
+    @FXML
+    void minimize(ActionEvent event) {
+        Stage stage = (Stage) minimizeButton.getScene().getWindow();
+        stage.setIconified(true);
 
     }
 
