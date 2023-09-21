@@ -8,6 +8,7 @@ import com.example.gymmanagement.model.service.impl.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
@@ -88,6 +89,14 @@ public class DashBoardController implements Initializable {
     private int pageSize = 9;
 
     private int totalPage = transactionRepository.getTotalTransactions() / pageSize;
+    @FXML
+    private Button minimizeButton;
+    @FXML
+    void minimize(ActionEvent event) {
+        Stage stage = (Stage) minimizeButton.getScene().getWindow();
+        stage.setIconified(true);
+
+    }
 
     //    get total of data from database
     public void getMembernum() {

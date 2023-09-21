@@ -14,10 +14,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1100.0" styleClass="borderCSS" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <!-- Stylesheet -->
    <stylesheets>
       <URL value="@../css/style4dashboard.css" />
@@ -28,19 +29,19 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Pane layoutX="191.0" layoutY="495.0" prefHeight="123.0" prefWidth="885.0" styleClass="borderCSS">
+      <Pane layoutX="37.0" layoutY="485.0" prefHeight="125.0" prefWidth="1039.0" styleClass="borderCSS">
          <children>
             <Label layoutX="77.0" layoutY="83.0" prefHeight="19.0" prefWidth="81.0" styleClass="textCSS" text="Total Staffs" textFill="WHITE">
                <font>
                   <Font name="Corbel Bold" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="234.0" layoutY="85.0" styleClass="textCSS" text="Total Customers" textFill="WHITE">
+            <Label layoutX="286.0" layoutY="85.0" styleClass="textCSS" text="Total Customers" textFill="WHITE">
                <font>
                   <Font name="Corbel Bold" size="13.0" />
                </font>
             </Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="408.0" layoutY="86.0" prefHeight="22.0" prefWidth="134.0" styleClass="textCSS" text="Total Class Availables" textFill="#fcf8f8">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="507.0" layoutY="87.0" prefHeight="22.0" prefWidth="134.0" styleClass="textCSS" text="Total Class Availables" textFill="#fcf8f8">
                <font>
                   <Font name="Corbel Bold" size="13.0" />
                </font>
@@ -50,46 +51,26 @@
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="classNum" layoutX="448.0" layoutY="20.0" prefHeight="70.0" prefWidth="65.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="classNum" layoutX="547.0" layoutY="21.0" prefHeight="70.0" prefWidth="65.0" text="0" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="memberNum" layoutX="263.0" layoutY="20.0" prefHeight="70.0" prefWidth="81.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="memberNum" layoutX="315.0" layoutY="20.0" prefHeight="70.0" prefWidth="81.0" text="0" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <ImageView fitHeight="61.0" fitWidth="57.0" layoutX="40.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/staffNEWest.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="49.0" fitWidth="43.0" layoutX="212.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/cusnew.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="54.0" fitWidth="50.0" layoutX="398.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/sport.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="stuffNum" layoutX="660.0" layoutY="20.0" prefHeight="70.0" prefWidth="81.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="stuffNum" layoutX="808.0" layoutY="23.0" prefHeight="70.0" prefWidth="81.0" text="0" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="607.0" layoutY="88.0" prefHeight="22.0" prefWidth="134.0" styleClass="textCSS" text="Total Equidment" textFill="#fcf8f8">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="755.0" layoutY="91.0" prefHeight="22.0" prefWidth="134.0" styleClass="textCSS" text="Total Equidment" textFill="#fcf8f8">
                <font>
                   <Font name="Corbel Bold" size="13.0" />
                </font>
             </Label>
-            <ImageView fitHeight="58.0" fitWidth="55.0" layoutX="595.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/addPNG.png" />
-               </image>
-            </ImageView>
          </children>
       </Pane>
       <LineChart fx:id="lineChart" layoutX="39.0" layoutY="125.0" prefHeight="357.0" prefWidth="572.0" styleClass="chartCSS">
@@ -100,7 +81,7 @@
             <NumberAxis side="LEFT" tickLabelFill="#646c71" />
          </yAxis>
       </LineChart>
-      <Separator layoutX="-4.0" layoutY="65.0" prefHeight="3.0" prefWidth="1053.0" />
+      <Separator layoutX="5.0" layoutY="65.0" prefHeight="4.0" prefWidth="1091.0" />
       <Label layoutX="82.0" layoutY="87.0" prefHeight="32.0" prefWidth="129.0" style="-fx-text-fill: black;" text="Total Revenue:" textFill="#fcf8f8">
          <font>
             <Font name="Corbel Bold" size="17.0" />
@@ -116,12 +97,7 @@
             <Image url="@../image/sale.png" />
          </image>
       </ImageView>
-      <Button layoutX="1060.0" layoutY="8.0" mnemonicParsing="false" onMouseClicked="#close" prefHeight="25.0" prefWidth="34.0" styleClass="close" stylesheets="@../css/style.css" text="x" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="8.0">
-         <font>
-            <Font name="Leelawadee UI Bold" size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="14.0" layoutY="536.0" mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="61.0" prefWidth="65.0" styleClass="btn-nav-left" stylesheets="@../css/style.css">
+      <Button layoutX="1027.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="61.0" prefWidth="65.0" styleClass="btn-nav-left" stylesheets="@../css/style.css">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -153,5 +129,19 @@
             <Pagination fx:id="pagination" layoutX="146.0" layoutY="314.0" prefHeight="32.0" prefWidth="168.0" />
          </children>
       </Pane>
+      <HBox alignment="TOP_RIGHT" layoutX="900.0" layoutY="-36.0" prefHeight="61.0" prefWidth="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="minimizeButton" mnemonicParsing="false" onAction="#minimize" prefHeight="29.0" prefWidth="50.0" styleClass="mini" stylesheets="@../css/style.css" text="─">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onMouseClicked="#close" prefHeight="29.0" prefWidth="50.0" styleClass="close" stylesheets="@../css/style.css" text="x">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
