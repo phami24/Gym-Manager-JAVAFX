@@ -1,5 +1,6 @@
 package com.example.gymmanagement.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -101,7 +102,14 @@ public class HomePageController implements Initializable {
 
         }
     }
+    @FXML
+    private Button minimizeButton;
+    @FXML
+    void minimize(ActionEvent event) {
+        Stage stage = (Stage) minimizeButton.getScene().getWindow();
+        stage.setIconified(true);
 
+    }
     @FXML
     void toClass(MouseEvent event) {
         stageManager.loadClassesControlStage();
