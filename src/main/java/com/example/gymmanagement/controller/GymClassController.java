@@ -11,6 +11,7 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -34,6 +35,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Year;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -77,6 +80,13 @@ public class GymClassController implements Initializable {
 
     @FXML
     private Button buttonAdd;
+    @FXML
+    private Button dashboard;
+    @FXML
+    private Button homePage;
+    @FXML
+    private Button logout;
+
 
     @FXML
     private TextField searchClass;
@@ -136,6 +146,16 @@ public class GymClassController implements Initializable {
                 return false; // Không tìm thấy tên trong thành viên
             });
         });
+
+        Tooltip tooltipH = new Tooltip("Home");
+        tooltipH.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
+        homePage.setTooltip(tooltipH);
+        Tooltip tooltipD = new Tooltip("Dashboard");
+        tooltipD.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
+        dashboard.setTooltip(tooltipD);
+        Tooltip tooltipL = new Tooltip("Logout");
+        tooltipL.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
+        logout.setTooltip(tooltipL);
     }
 
     @FXML
@@ -269,6 +289,9 @@ public class GymClassController implements Initializable {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files","*.xlsx"));
+        LocalDate currentDate = LocalDate.now();
+        Year currentYear = Year.of(currentDate.getYear());
+        fileChooser.setInitialFileName("list_class_"  + currentYear + ".xlsx");
         File file = fileChooser.showSaveDialog(null);
         if (file == null) {
             return; // User cancelled the save dialog
@@ -312,8 +335,16 @@ public class GymClassController implements Initializable {
     }
     @FXML
     private void handleExportClassButtonAction() {
-        List<Classes> classesList = class_tableView.getItems(); // Get data from TableView
+        List<Classes> classesList = gymClassRepository.getAllClasses(); // Get data from TableView
         exportToExcel(classesList); // Call the exportToExcel() method of ExcelExporter class
+
+    }
+    @FXML
+    private Button minimizeButton;
+    @FXML
+    void minimize(ActionEvent event) {
+        Stage stage = (Stage) minimizeButton.getScene().getWindow();
+        stage.setIconified(true);
 
     }
 }

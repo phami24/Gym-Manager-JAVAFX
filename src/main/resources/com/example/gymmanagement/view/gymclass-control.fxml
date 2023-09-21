@@ -10,17 +10,32 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="-6.0" prefHeight="55.0" prefWidth="1100.0" style="-fx-border-radius: 0 0 30 0;" styleClass="border" stylesheets="@../css/style.css" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane layoutX="-6.0" prefHeight="55.0" prefWidth="1100.0" styleClass="border" stylesheets="@../css/style.css" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="1.0" prefHeight="50.0" prefWidth="121.0" text="Classes">
                <font>
                   <Font name="Book Antiqua Bold" size="27.0" />
                </font>
             </Label>
+            <HBox alignment="TOP_RIGHT" layoutX="613.0" layoutY="-24.0" prefHeight="45.0" prefWidth="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="minimizeButton" mnemonicParsing="false" onAction="#minimize" prefHeight="29.0" prefWidth="50.0" styleClass="mini" stylesheets="@../css/style.css" text="─">
+                     <font>
+                        <Font name="Leelawadee UI Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#close" prefHeight="29.0" prefWidth="50.0" styleClass="close" stylesheets="@../css/style.css" text="x">
+                     <font>
+                        <Font name="Leelawadee UI Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
       <TableView fx:id="class_tableView" layoutX="28.0" layoutY="132.0" prefHeight="376.0" prefWidth="1131.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="132.0">
@@ -34,18 +49,12 @@
             <TableColumn fx:id="action" prefWidth="131.33331298828125" text="Action" />
          </columns>
       </TableView>
-      <Pagination  fx:id="pagination" layoutX="450.0" layoutY="522.0"/>
       <TextField fx:id="searchClass" layoutX="851.0" layoutY="85.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" style="-fx-border-radius: 10px;" styleClass="btn_tool" stylesheets="@../css/style.css" />
       <Button layoutX="82.0" layoutY="74.0" mnemonicParsing="false" onMouseClicked="#addClass" prefHeight="40.0" prefWidth="110.0" stylesheets="@../css/style.css" text=" Add class">
          <styleClass>
             <String fx:value="btn_tool" />
             <String fx:value="add" />
          </styleClass></Button>
-      <Button layoutX="1107.0" layoutY="9.0" mnemonicParsing="false" onAction="#close" prefHeight="25.0" prefWidth="34.0" styleClass="close" stylesheets="@../css/style.css" text="x" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <font>
-            <Font name="Leelawadee UI Bold" size="14.0" />
-         </font>
-      </Button>
       <Button fx:id="handleExport_btn" layoutX="233.0" layoutY="74.0" mnemonicParsing="false" onAction="#handleExportClassButtonAction" onMouseClicked="#addClass" prefHeight="40.0" prefWidth="157.0" stylesheets="@../css/style.css" text="Export to Excel">
          <styleClass>
             <String fx:value="btn_tool" />
@@ -53,7 +62,7 @@
          </styleClass></Button>
       <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="600.0" prefWidth="70.0" styleClass="nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button layoutX="2.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="39.0" prefWidth="70.0" styleClass="btn-nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <Button fx:id="homePage" layoutX="2.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="39.0" prefWidth="70.0" styleClass="btn-nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <graphic>
                   <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -62,7 +71,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="3.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#dashboard" prefHeight="39.0" prefWidth="70.0" styleClass="btn-nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <Button fx:id="dashboard" layoutX="3.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#dashboard" prefHeight="39.0" prefWidth="70.0" styleClass="btn-nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <graphic>
                   <ImageView fitHeight="37.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -71,7 +80,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="5.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="39.0" prefWidth="71.0" styleClass="btn-nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <Button fx:id="logout" layoutX="5.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="39.0" prefWidth="71.0" styleClass="btn-nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -97,5 +106,10 @@
             <Image url="@../image/file.png" />
          </image>
       </ImageView>
+      <HBox alignment="CENTER" layoutX="70.0" layoutY="530.0" prefHeight="55.0" prefWidth="1030.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Pagination fx:id="pagination" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
