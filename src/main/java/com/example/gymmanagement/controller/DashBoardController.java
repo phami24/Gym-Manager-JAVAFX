@@ -65,7 +65,7 @@ public class DashBoardController implements Initializable {
     @FXML
     private ComboBox<Integer> yearRevenueBtn;
     @FXML
-    private LineChart<String, BigDecimal> lineChart;
+    private BarChart<String, BigDecimal> lineChart;
 
     @FXML
     private TableColumn<Transaction, String> nameColumn;
