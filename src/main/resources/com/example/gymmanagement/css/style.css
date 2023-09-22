@@ -204,6 +204,7 @@
 -fx-border-color: #BDCDD6;
 -fx-effect: dropshadow(gaussian, rgba(120, 126, 138, 0.8), 0, 0, 0, 0.8);
 }
+/*
 .pagination {
     -fx-skin: "com.sun.javafx.scene.control.skin.PaginationSkin";
 }
@@ -222,6 +223,7 @@
 .pagination .arrow-button:hover {
     -fx-background-color: #555;
 }
+*/
 
 .card{
     -fx-border-color:#9e9e9b;

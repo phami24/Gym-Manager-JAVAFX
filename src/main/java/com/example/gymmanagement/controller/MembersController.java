@@ -17,9 +17,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -241,6 +243,7 @@ public class MembersController implements Initializable {
 
     @FXML
     void close(MouseEvent event) {
+        stageManager.loadHomeStage();
         stage.close();
     }
 
@@ -291,9 +294,20 @@ public class MembersController implements Initializable {
 
     @FXML
     void addMember(MouseEvent event) {
+
+        // Làm mờ cửa sổ "MembersController"
+        Stage membersControllerStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        membersControllerStage.getScene().getRoot().setEffect(new GaussianBlur(10)); // Điều chỉnh độ mờ ở đây
+
         Stage memberAddFormDialogStage = new Stage();
         MemberAddFormController addFormController = new MemberAddFormController(member_tableView, currentPage, pageSize, memberAddFormDialogStage);
+
+        // Đặt sự kiện để bỏ mờ cửa sổ "MembersController" khi "memberAddFormDialog" đóng
+        memberAddFormDialogStage.setOnHidden(e -> membersControllerStage.getScene().getRoot().setEffect(null));
+
+        // Load memberAddFormDialog
         stageManager.loadMemberAddFormDialog(addFormController, memberAddFormDialogStage);
+
         totalPage = (int) Math.ceil((double) membersRepository.getTotalMembers() / pageSize);
         loadMembersData();
     }
