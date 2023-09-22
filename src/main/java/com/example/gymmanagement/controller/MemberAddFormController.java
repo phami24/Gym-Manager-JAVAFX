@@ -2,7 +2,6 @@ package com.example.gymmanagement.controller;
 
 import com.example.gymmanagement.model.entity.Instructors;
 import com.example.gymmanagement.model.entity.Members;
-import com.example.gymmanagement.model.entity.MembershipStatus;
 import com.example.gymmanagement.model.entity.MembershipType;
 import com.example.gymmanagement.model.repository.InstructorRepository;
 import com.example.gymmanagement.model.repository.MembersRepository;
@@ -10,7 +9,6 @@ import com.example.gymmanagement.model.repository.MembershipStatusRepository;
 import com.example.gymmanagement.model.repository.MembershipTypesRepository;
 import com.example.gymmanagement.model.service.EmailService;
 import com.example.gymmanagement.validation.ValidateMember;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -33,7 +31,7 @@ public class MemberAddFormController {
     private DatePicker dobPicker;
 
     @FXML
-    private TextField genderField;
+    private ComboBox<String> genderComboBox;
 
     @FXML
     private TextField emailField;
@@ -44,8 +42,7 @@ public class MemberAddFormController {
     @FXML
     private TextField addressField;
 
-    @FXML
-    private ComboBox<String> membershipStatusComboBox;
+
 
     @FXML
     private ComboBox<String> membershipTypeComboBox;
@@ -90,23 +87,17 @@ public class MemberAddFormController {
         firstNameField.clear();
         lastNameField.clear();
         dobPicker.setValue(null);
-        genderField.clear();
+        genderComboBox.getSelectionModel().clearSelection();
         emailField.clear();
         phoneNumberField.clear();
         addressField.clear();
-        membershipStatusComboBox.getSelectionModel().clearSelection();
         membershipTypeComboBox.getSelectionModel().clearSelection();
         instructorComboBox.getSelectionModel().clearSelection();
     }
 
     private void populateComboBoxes() {
-        // Populate Membership Status ComboBox
-        List<MembershipStatus> membershipStatusList = membershipStatusRepository.getAllMembershipStatus();
-        for (MembershipStatus status : membershipStatusList) {
-            if (status.getMembershipStatusId() != 4) {
-                membershipStatusComboBox.getItems().add(status.getMembershipStatusName());
-            }
-        }
+        genderComboBox.getItems().add("Male");
+        genderComboBox.getItems().add("Female");
 
         // Populate Membership Type ComboBox
         List<MembershipType> membershipTypeList = membershipTypesRepository.getAllMembershipTypes();
@@ -135,7 +126,7 @@ public class MemberAddFormController {
                 String firstName = firstNameField.getText();
                 String lastName = lastNameField.getText();
                 String dob = dobPicker.getValue().toString();
-                String gender = genderField.getText();
+                String gender = genderComboBox.getValue();
                 String email = emailField.getText();
                 String phoneNumber = phoneNumberField.getText();
                 String address = addressField.getText();
@@ -193,7 +184,7 @@ public class MemberAddFormController {
             dob = dobPicker.getValue().toString();
             // Tiếp tục xử lý với biến dob
         }
-        String gender = genderField.getText();
+        String gender = genderComboBox.getValue();
         String email = emailField.getText();
         String phoneNumber = phoneNumberField.getText();
         String address = addressField.getText();

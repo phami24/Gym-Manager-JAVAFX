@@ -37,7 +37,7 @@
          <Font size="14.0" />
       </font></Label>
     <DatePicker fx:id="dobPicker" focusTraversable="false" layoutX="158.0" layoutY="180.0" prefHeight="20.0" prefWidth="212.0" style="-fx-background-color: #f4f4f4;" stylesheets="@../css/addmember.css" />
-    <TextField fx:id="genderField" focusTraversable="false" layoutX="28.0" layoutY="216.0" opacity="0.71" prefHeight="31.0" prefWidth="342.0" promptText="Gender" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <TextField fx:id="emailField" focusTraversable="false" layoutX="28.0" layoutY="274.0" opacity="0.71" prefHeight="32.0" prefWidth="342.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -45,7 +45,7 @@
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
       </stylesheets></TextField>
-    <TextField fx:id="emailField" focusTraversable="false" layoutX="28.0" layoutY="251.0" opacity="0.71" prefHeight="32.0" prefWidth="342.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <TextField fx:id="phoneNumberField" focusTraversable="false" layoutX="28.0" layoutY="315.0" opacity="0.71" prefHeight="31.0" prefWidth="342.0" promptText="Phone Number" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -53,15 +53,7 @@
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
       </stylesheets></TextField>
-    <TextField fx:id="phoneNumberField" focusTraversable="false" layoutX="28.0" layoutY="290.0" opacity="0.71" prefHeight="31.0" prefWidth="342.0" promptText="Phone Number" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
-      <font>
-         <Font size="14.0" />
-      </font>
-      <stylesheets>
-         <URL value="@../css/allAddstyle.css" />
-         <URL value="@../css/form_style.css" />
-      </stylesheets></TextField>
-    <TextField fx:id="addressField" focusTraversable="false" layoutX="28.0" layoutY="335.0" opacity="0.71" prefHeight="31.0" prefWidth="342.0" promptText="Address" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <TextField fx:id="addressField" focusTraversable="false" layoutX="28.0" layoutY="364.0" opacity="0.71" prefHeight="31.0" prefWidth="342.0" promptText="Address" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <font>
          <Font size="14.0" />
       </font>
@@ -70,21 +62,21 @@
          <URL value="@../css/form_style.css" />
       </stylesheets></TextField>
     <!-- Membership Type ID -->
-    <Label fx:id="membershipTypeLabel" layoutX="30.0" layoutY="439.0" opacity="0.71" text="Membership Type ID" textFill="#aba4a4">
+    <Label fx:id="membershipTypeLabel" layoutX="29.0" layoutY="421.0" opacity="0.71" text="Membership Type ID" textFill="#aba4a4">
       <font>
          <Font size="14.0" />
       </font></Label>
-    <ComboBox fx:id="membershipTypeComboBox" focusTraversable="false" layoutX="170.0" layoutY="425.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <ComboBox fx:id="membershipTypeComboBox" focusTraversable="false" layoutX="169.0" layoutY="407.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <stylesheets>
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
       </stylesheets></ComboBox>
     <!-- Instructor ID -->
-    <Label fx:id="instructorLabel" layoutX="30.0" layoutY="480.0" opacity="0.71" text="Instructor ID" textFill="#aba4a4">
+    <Label fx:id="instructorLabel" layoutX="29.0" layoutY="462.0" opacity="0.71" text="Instructor ID" textFill="#aba4a4">
       <font>
          <Font size="14.0" />
       </font></Label>
-    <ComboBox fx:id="instructorComboBox" focusTraversable="false" layoutX="170.0" layoutY="475.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+    <ComboBox fx:id="instructorComboBox" focusTraversable="false" layoutX="169.0" layoutY="457.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
       <stylesheets>
          <URL value="@../css/allAddstyle.css" />
          <URL value="@../css/form_style.css" />
@@ -94,16 +86,6 @@
             <Font name="System Bold" size="12.0" />
         </font>
     </Button>
-    <!-- Membership Status ID -->
-    <Label fx:id="membershipStatusLabel" layoutX="30.0" layoutY="382.0" opacity="0.71" prefHeight="27.0" prefWidth="139.0" text="Membership Status ID" textFill="#aba4a4">
-      <font>
-         <Font size="14.0" />
-      </font></Label>
-    <ComboBox fx:id="membershipStatusComboBox" focusTraversable="false" layoutX="170.0" layoutY="377.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
-      <stylesheets>
-         <URL value="@../css/allAddstyle.css" />
-         <URL value="@../css/form_style.css" />
-      </stylesheets></ComboBox>
    <AnchorPane layoutX="48.0" layoutY="17.0" prefHeight="37.0" prefWidth="36.0" style="-fx-background-radius: 10; -fx-background-color: #d8ddd8;" AnchorPane.leftAnchor="31.0">
       <children>
          <ImageView fitHeight="43.0" fitWidth="45.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
@@ -148,6 +130,17 @@
          </ImageView>
       </graphic>
    </Button>
+   <Label fx:id="membershipStatusLabel1" layoutX="29.0" layoutY="234.0" opacity="0.71" prefHeight="27.0" prefWidth="139.0" text="Gender" textFill="#aba4a4">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Label>
+   <ComboBox fx:id="genderComboBox" focusTraversable="false" layoutX="169.0" layoutY="229.0" opacity="0.71" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-border-style: hidden hidden solid hidden;">
+      <stylesheets>
+         <URL value="@../css/allAddstyle.css" />
+         <URL value="@../css/form_style.css" />
+      </stylesheets>
+   </ComboBox>
    <stylesheets>
       <URL value="@../css/style.css" />
       <URL value="@../css/allAddstyle.css" />

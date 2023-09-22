@@ -334,7 +334,7 @@ public class EquipmentController implements Initializable {
 
 
     @FXML
-    private void searchEquipment() {
+    private void searchMembers() {
         String searchTerm = searchEquipment.getText().trim();
         // Kiểm tra xem người dùng đã nhập tên cần tìm kiếm hay chưa
         if (searchTerm.isEmpty()) {

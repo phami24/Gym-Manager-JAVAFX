@@ -107,7 +107,7 @@
               <Pagination fx:id="pagination" prefHeight="58.0" prefWidth="200.0" />
          </children>
       </HBox>
-      <TextField fx:id="searchMember" layoutX="854.0" layoutY="80.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" style="-fx-border-radius: 10px;" styleClass="btn_tool" stylesheets="@../css/style.css" />
+      <TextField fx:id="searchEquipment" layoutX="854.0" layoutY="80.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" style="-fx-border-radius: 10px;" styleClass="btn_tool" stylesheets="@../css/style.css" />
       <ImageView fx:id="searchBtn" fitHeight="15.0" fitWidth="14.0" layoutX="1064.0" layoutY="87.0" onMouseClicked="#searchMembers" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/search.png" />
