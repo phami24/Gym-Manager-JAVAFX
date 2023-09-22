@@ -310,6 +310,8 @@ public class MembersController implements Initializable {
 
         totalPage = (int) Math.ceil((double) membersRepository.getTotalMembers() / pageSize);
         loadMembersData();
+        setupPagination();
+        setupColumn();
     }
 
     public static void exportToExcel(List<Members> membersList) {

@@ -251,4 +251,25 @@ public class ClassesRepository {
     }
 
 
+    public List<Classes> getClassByName(String searchTerm) {
+        List<Classes> classList = new ArrayList<>();
+        String query = "SELECT * FROM classes WHERE class_name LIKE ?";
+
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            // Using '%' to search for classes with names containing the searchTerm
+            statement.setString(1, "%" + searchTerm + "%");
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    classList.add(fromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return classList;
+    }
+
 }

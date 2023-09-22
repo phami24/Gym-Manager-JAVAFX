@@ -100,6 +100,12 @@ public class GymClassController implements Initializable {
     @FXML
     private Pagination pagination;
 
+    @FXML
+    private ImageView searchBtn;
+
+    @FXML
+    private Label closeSearchBtn;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         stt.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(class_tableView.getItems().indexOf(cellData.getValue()) + 1));
@@ -120,32 +126,6 @@ public class GymClassController implements Initializable {
         });
         loadInstructorsData();
 
-        // Sử dụng FilteredList để lọc danh sách thành viên dựa trên tên
-        filteredMembersList = new FilteredList<>(classesData, p -> true);
-
-        // Liên kết TableView với FilteredList để hiển thị danh sách đã lọc
-        class_tableView.setItems(filteredMembersList);
-
-        // Bắt sự kiện khi người dùng nhập tên vào TextField
-        searchClass.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Lọc danh sách thành viên dựa trên tên mới
-            filteredMembersList.setPredicate(classes -> {
-                // Nếu không có tên nào được nhập, hiển thị tất cả các thành viên
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-
-                // Chuyển đổi tên thành viên và tên mới sang chữ thường để so sánh không phân biệt chữ hoa/thường
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                // Kiểm tra nếu tên thành viên chứa tên mới
-                if (classes.getClass_name().toLowerCase().contains(lowerCaseFilter) ) {
-                    return true; // Thành viên thỏa mãn điều kiện lọc
-                }
-
-                return false; // Không tìm thấy tên trong thành viên
-            });
-        });
 
         Tooltip tooltipH = new Tooltip("Home");
         tooltipH.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
@@ -157,6 +137,7 @@ public class GymClassController implements Initializable {
         tooltipL.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
         logout.setTooltip(tooltipL);
     }
+    int rowIndex = 0;
 
     @FXML
     private void previousPage() {
@@ -346,5 +327,38 @@ public class GymClassController implements Initializable {
         Stage stage = (Stage) minimizeButton.getScene().getWindow();
         stage.setIconified(true);
 
+    }
+
+    @FXML
+    private void searchClass() {
+        String searchTerm = searchClass.getText().trim();
+        // Kiểm tra xem người dùng đã nhập tên cần tìm kiếm hay chưa
+        if (searchTerm.isEmpty()) {
+            // Hiển thị thông báo lỗi nếu người dùng chưa nhập tên
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Notification");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter member name to search.");
+            alert.showAndWait();
+        } else {
+            // Thực hiện tìm kiếm thành viên trong cơ sở dữ liệu
+            List<Classes> searchResults = gymClassRepository.getClassByName(searchTerm);
+            // Hiển thị kết quả lên TableView
+            class_tableView.getItems().clear();
+            class_tableView.getItems().addAll(searchResults);
+            searchBtn.setVisible(false);
+            pagination.setVisible(false);
+            closeSearchBtn.setVisible(true);
+        }
+
+    }
+
+    @FXML
+    private void closeSearchForm() {
+        searchClass.clear();
+        closeSearchBtn.setVisible(false);
+        searchBtn.setVisible(true);
+        pagination.setVisible(true);
+        loadInstructorsData();
     }
 }

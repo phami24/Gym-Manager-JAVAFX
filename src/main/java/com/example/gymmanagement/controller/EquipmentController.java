@@ -1,5 +1,6 @@
 package com.example.gymmanagement.controller;
 
+import com.example.gymmanagement.model.entity.Classes;
 import com.example.gymmanagement.model.entity.Equipment;
 import com.example.gymmanagement.model.entity.Instructors;
 import com.example.gymmanagement.model.entity.Members;
@@ -86,7 +87,7 @@ public class EquipmentController implements Initializable {
     private int currentPage = 1;
     private int pageSize = 10;
 
-    private int totalPage = equipmentRepository.getTotalEquipment() / pageSize;
+    private int totalPage =(int) Math.ceil((double) equipmentRepository.getTotalEquipment() / pageSize);
 
     @FXML
     private Pagination pagination;
@@ -134,15 +135,19 @@ public class EquipmentController implements Initializable {
         }
     }
     @FXML
-    private TextField searchQuipment;
+    private TextField searchEquipment;
     @FXML
     private Button dashboard;
     @FXML
     private Button homePage;
     @FXML
     private Button logout;
+    @FXML
+    private ImageView searchBtn;
 
-    private FilteredList<Equipment> filteredMembersList;
+    @FXML
+    private Label closeSearchBtn;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Cài đặt cách dữ liệu của các cột sẽ được lấy từ đối tượng Equipment và gắn vào TableView
@@ -164,36 +169,6 @@ public class EquipmentController implements Initializable {
         });
         loadEquipmentData();
 
-
-        //search
-        equipmentData = FXCollections.observableArrayList(equipmentService.getAllEquipment());
-
-        // Sử dụng FilteredList để lọc danh sách thành viên dựa trên tên
-        filteredMembersList = new FilteredList<>(equipmentData, p -> true);
-
-        // Liên kết TableView với FilteredList để hiển thị danh sách đã lọc
-        equipment_tableView.setItems(filteredMembersList);
-
-        // Bắt sự kiện khi người dùng nhập tên vào TextField
-        searchQuipment.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Lọc danh sách thành viên dựa trên tên mới
-            filteredMembersList.setPredicate(member -> {
-                // Nếu không có tên nào được nhập, hiển thị tất cả các thành viên
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-
-                // Chuyển đổi tên thành viên và tên mới sang chữ thường để so sánh không phân biệt chữ hoa/thường
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                // Kiểm tra nếu tên thành viên chứa tên mới
-                if (member.getEquipmentName().toLowerCase().contains(lowerCaseFilter) ) {
-                    return true; // Thành viên thỏa mãn điều kiện lọc
-                }
-
-                return false; // Không tìm thấy tên trong thành viên
-            });
-        });
         Tooltip tooltipH = new Tooltip("Home");
         tooltipH.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
         homePage.setTooltip(tooltipH);
@@ -204,6 +179,8 @@ public class EquipmentController implements Initializable {
         tooltipL.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
         logout.setTooltip(tooltipL);
     }
+
+    int rowIndex = 0;
 
     @FXML
     private void previousPage() {
@@ -353,6 +330,40 @@ public class EquipmentController implements Initializable {
         Stage stage = (Stage) minimizeButton.getScene().getWindow();
         stage.setIconified(true);
 
+    }
+
+
+    @FXML
+    private void searchEquipment() {
+        String searchTerm = searchEquipment.getText().trim();
+        // Kiểm tra xem người dùng đã nhập tên cần tìm kiếm hay chưa
+        if (searchTerm.isEmpty()) {
+            // Hiển thị thông báo lỗi nếu người dùng chưa nhập tên
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Notification");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter member name to search.");
+            alert.showAndWait();
+        } else {
+            // Thực hiện tìm kiếm thành viên trong cơ sở dữ liệu
+            List<Equipment> searchResults = equipmentRepository.getEquipmentByName(searchTerm);
+            // Hiển thị kết quả lên TableView
+            equipment_tableView.getItems().clear();
+            equipment_tableView.getItems().addAll(searchResults);
+            searchBtn.setVisible(false);
+            pagination.setVisible(false);
+            closeSearchBtn.setVisible(true);
+        }
+
+    }
+
+    @FXML
+    private void closeSearchForm() {
+        searchEquipment.clear();
+        closeSearchBtn.setVisible(false);
+        searchBtn.setVisible(true);
+        pagination.setVisible(true);
+        loadEquipmentData();
     }
 
 }

@@ -51,12 +51,6 @@
                 <TableColumn fx:id="action" prefWidth="104.66668701171875" text="Action" />
             </columns>
         </TableView>
-        <TextField fx:id="searchQuipment" layoutX="840.0" layoutY="84.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" style="-fx-border-radius: 10px;" styleClass="btn_tool" stylesheets="@../css/style.css" />
-        <ImageView fitHeight="15.0" fitWidth="14.0" layoutX="1052.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../image/search.png" />
-            </image>
-        </ImageView>
           <Button fx:id="buttonAdd" layoutX="82.0" layoutY="73.0" mnemonicParsing="false" onMouseClicked="#addEquipment" prefHeight="40.0" prefWidth="140.0" stylesheets="@../css/style.css" text="  Add equipment">
          <styleClass>
             <String fx:value="btn_tool" />
@@ -113,5 +107,16 @@
               <Pagination fx:id="pagination" prefHeight="58.0" prefWidth="200.0" />
          </children>
       </HBox>
+      <TextField fx:id="searchMember" layoutX="854.0" layoutY="80.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" style="-fx-border-radius: 10px;" styleClass="btn_tool" stylesheets="@../css/style.css" />
+      <ImageView fx:id="searchBtn" fitHeight="15.0" fitWidth="14.0" layoutX="1064.0" layoutY="87.0" onMouseClicked="#searchMembers" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/search.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="closeSearchBtn" alignment="CENTER" layoutX="1061.0" layoutY="85.0" onMouseClicked="#closeSearchForm" prefHeight="17.0" prefWidth="19.0" text="X" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

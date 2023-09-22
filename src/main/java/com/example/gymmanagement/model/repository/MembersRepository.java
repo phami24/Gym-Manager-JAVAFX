@@ -402,4 +402,33 @@ public class MembersRepository {
         }
     }
 
+    public List<Members> getMembersWithBirthday() {
+        List<Members> membersWithBirthday = new ArrayList<>();
+
+        // Lấy ngày hiện tại
+        LocalDate currentDate = LocalDate.now();
+
+        String query = "SELECT * FROM members WHERE MONTH(dob) = ? AND DAY(dob) = ?";
+
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            int currentMonth = currentDate.getMonthValue();
+            int currentDay = currentDate.getDayOfMonth();
+
+            statement.setInt(1, currentMonth);
+            statement.setInt(2, currentDay);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Members member = fromResultSet(resultSet);
+                    membersWithBirthday.add(member);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return membersWithBirthday;
+    }
+
 }

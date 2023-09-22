@@ -1,6 +1,7 @@
 package com.example.gymmanagement.model.repository;
 
 import com.example.gymmanagement.database.JDBCConnect;
+import com.example.gymmanagement.model.entity.Classes;
 import com.example.gymmanagement.model.entity.Equipment;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,6 +17,7 @@ public class EquipmentRepository {
     public EquipmentRepository() {
         this.jdbcConnect = new JDBCConnect();
     }
+
 
     // Phương thức để thêm một thiết bị vào cơ sở dữ liệu
     public void addEquipment(Equipment equipment) {
@@ -259,6 +261,36 @@ public class EquipmentRepository {
             }
         } catch (SQLException e) {
             e.printStackTrace(); // Handle the exception appropriately
+        }
+
+        return equipmentList;
+    }
+
+    public List<Equipment> getEquipmentByName(String searchTerm) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        List<Equipment> equipmentList = new ArrayList<>();
+
+        try {
+            connection = jdbcConnect.getJDBCConnection();
+            String query = "SELECT * FROM equipment WHERE equipment_name LIKE ?";
+            statement = connection.prepareStatement(query);
+            statement.setString(1, "%" + searchTerm + "%");
+
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Equipment equipment = fromResultSet(resultSet);
+                equipmentList.add(equipment);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            jdbcConnect.closeConnection(connection);
+            jdbcConnect.closeResultSet(resultSet);
+            jdbcConnect.closePreparedStatement(statement);
         }
 
         return equipmentList;
