@@ -24,53 +24,73 @@
       <URL value="@../css/style4dashboard.css" />
    </stylesheets>
    <children>
-      <Label layoutX="47.0" layoutY="14.0" prefHeight="53.0" prefWidth="182.0" text="DashBoard">
+      <Label layoutX="47.0" layoutY="14.0" prefHeight="53.0" prefWidth="182.0" text="Dashboard">
          <font>
-            <Font name="System Bold" size="30.0" />
+            <Font name="Book Antiqua Bold" size="30.0" />
          </font>
       </Label>
       <Pane layoutX="37.0" layoutY="485.0" prefHeight="125.0" prefWidth="1039.0" styleClass="borderCSS">
          <children>
-            <Label layoutX="70.0" layoutY="83.0" prefHeight="28.0" prefWidth="88.0" styleClass="textCSS" text="Total Staffs" textFill="WHITE">
+            <Label layoutX="58.0" layoutY="5.0" prefHeight="28.0" prefWidth="88.0" styleClass="textCSS" text="Total Staffs" textFill="WHITE">
                <font>
-                  <Font name="Corbel Bold" size="13.0" />
+                  <Font name="Corbel Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="279.0" layoutY="85.0" prefHeight="25.0" prefWidth="106.0" styleClass="textCSS" text="Total Customers" textFill="WHITE">
+            <Label layoutX="316.0" layoutY="3.0" prefHeight="25.0" prefWidth="160.0" styleClass="textCSS" text="Total Customers" textFill="WHITE">
                <font>
-                  <Font name="Corbel Bold" size="13.0" />
+                  <Font name="Corbel Bold" size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="507.0" layoutY="87.0" prefHeight="22.0" prefWidth="134.0" styleClass="textCSS" text="Total Class Availables" textFill="#fcf8f8">
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="566.0" layoutY="5.0" prefHeight="22.0" prefWidth="160.0" styleClass="textCSS" text="Total Class Availables" textFill="#fcf8f8">
                <font>
-                  <Font name="Corbel Bold" size="13.0" />
+                  <Font name="Corbel Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="staffNum" layoutX="70.0" layoutY="23.0" prefHeight="54.0" prefWidth="119.0" text="0" textAlignment="RIGHT" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="48.0" />
-               </font>
-            </Label>
-            <Label fx:id="classNum" layoutX="507.0" layoutY="21.0" prefHeight="70.0" prefWidth="119.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="staffNum" alignment="CENTER" contentDisplay="CENTER" layoutX="43.0" layoutY="24.0" prefHeight="54.0" prefWidth="119.0" text="0" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="memberNum" layoutX="279.0" layoutY="21.0" prefHeight="70.0" prefWidth="143.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="classNum" alignment="CENTER" contentDisplay="CENTER" layoutX="574.0" layoutY="28.0" prefHeight="70.0" prefWidth="134.0" text="0" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="stuffNum" layoutX="789.0" layoutY="23.0" prefHeight="70.0" prefWidth="143.0" text="0" textFill="WHITE">
+            <Label fx:id="memberNum" alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="29.0" prefHeight="61.0" prefWidth="143.0" text="0" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="755.0" layoutY="91.0" prefHeight="22.0" prefWidth="134.0" styleClass="textCSS" text="Total Equidment" textFill="#fcf8f8">
+            <Label fx:id="stuffNum" alignment="CENTER" layoutX="826.0" layoutY="35.0" prefHeight="70.0" prefWidth="119.0" text="0" textFill="WHITE">
                <font>
-                  <Font name="Corbel Bold" size="13.0" />
+                  <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="811.0" layoutY="-3.0" prefHeight="38.0" prefWidth="134.0" styleClass="textCSS" text="Total Equidment" textFill="#fcf8f8">
+               <font>
+                  <Font name="Corbel Bold" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="945.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/kettlebell.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="45.0" fitWidth="54.0" layoutX="726.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/gym%20(1).png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="446.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/group%20(1).png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="162.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/driving-instructor%20(2).png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Separator layoutX="5.0" layoutY="65.0" prefHeight="4.0" prefWidth="1091.0" />

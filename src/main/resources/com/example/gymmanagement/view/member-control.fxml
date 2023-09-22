@@ -71,9 +71,9 @@
             </Button>
             <Button fx:id="logout" layoutX="5.0" layoutY="373.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="39.0" prefWidth="71.0" styleClass="btn-nav-left" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="37.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/logout%20(3).png" />
+                        <Image url="@../image/exit%20(4).png" />
                      </image>
                   </ImageView>
                </graphic>

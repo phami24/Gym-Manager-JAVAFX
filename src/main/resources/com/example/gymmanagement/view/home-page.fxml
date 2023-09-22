@@ -14,12 +14,12 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="1000.0" opacity="0.8" pickOnBounds="true" preserveRatio="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../image/Screenshot%202023-09-22%20010432.png" />
+            <Image url="@../image/Screenshot%202023-09-23%20015938.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="322.0" layoutY="80.0" prefHeight="440.0" prefWidth="664.0">
+      <AnchorPane layoutX="168.0" layoutY="115.0" prefHeight="440.0" prefWidth="664.0">
          <children>
-            <Button fx:id="dashBoardButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" graphicTextGap="16.0" layoutX="16.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#toDashBoard" prefHeight="140.0" prefWidth="160.0" styleClass="card" stylesheets="@../css/style.css" text="Dashboard" textAlignment="CENTER">
+            <Button fx:id="dashBoardButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" graphicTextGap="16.0" layoutX="16.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#toDashBoard" prefHeight="140.0" prefWidth="160.0" stylesheets="@../css/style.css" text="Dashboard" textAlignment="CENTER">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
@@ -36,6 +36,10 @@
                      </image>
                   </ImageView>
                </graphic>
+               <styleClass>
+                  <String fx:value="card" />
+                  <String fx:value="nav-admin" />
+               </styleClass>
             </Button>
             <Button fx:id="membersButton" alignment="BOTTOM_CENTER" contentDisplay="TOP" graphicTextGap="16.0" layoutX="498.0" layoutY="60.0" mnemonicParsing="false" onMouseClicked="#toMembers" prefHeight="140.0" prefWidth="160.0" stylesheets="@../css/style.css" text="Members" textAlignment="CENTER" textFill="WHITE">
                <font>
@@ -132,13 +136,18 @@
                   <String fx:value="card" />
                </styleClass>
             </Button>
+            <Label layoutX="177.0" layoutY="-15.0" prefHeight="57.0" prefWidth="325.0" text="GYM MANAGEMENT">
+               <font>
+                  <Font name="Berlin Sans FB" size="36.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="logOutbt" layoutY="528.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="71.0" prefWidth="75.0" styleClass="sign-out" stylesheets="@../css/style.css">
+      <Button fx:id="logOutbt" layoutY="542.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="57.0" prefWidth="138.0" styleClass="sign-out" stylesheets="@../css/style.css">
          <graphic>
             <ImageView fitHeight="46.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../image/logout%205.png" />
+                  <Image url="@../image/exit%20(1).png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -146,11 +155,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="82.0" layoutY="34.0" prefHeight="57.0" prefWidth="417.0" text="GYM MANAGEMENT">
-         <font>
-            <Font name="Berlin Sans FB" size="36.0" />
-         </font>
-      </Label>
       <HBox alignment="TOP_RIGHT" layoutX="792.0" layoutY="6.0" prefHeight="63.0" prefWidth="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button fx:id="minimizeButton" mnemonicParsing="false" onAction="#minimize" prefHeight="29.0" prefWidth="50.0" styleClass="mini" stylesheets="@../css/style.css" text="─">
