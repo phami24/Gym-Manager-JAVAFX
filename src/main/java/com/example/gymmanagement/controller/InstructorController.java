@@ -1,13 +1,10 @@
 package com.example.gymmanagement.controller;
 
-import com.example.gymmanagement.model.entity.Classes;
 import com.example.gymmanagement.model.entity.Instructors;
 import com.example.gymmanagement.model.entity.Members;
 import com.example.gymmanagement.model.repository.InstructorRepository;
 import com.example.gymmanagement.model.service.InstructorsService;
-import com.example.gymmanagement.model.service.MembersService;
 import com.example.gymmanagement.model.service.impl.InstructorsServiceImpl;
-import com.example.gymmanagement.model.service.impl.MemberServiceImpl;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -19,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.beans.property.SimpleStringProperty;
@@ -29,9 +27,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.control.Pagination;
-import javafx.util.Callback;
 
-import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -58,6 +54,7 @@ public class InstructorController implements Initializable {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
     private final StageManager stageManager = new StageManager();
     @FXML
     private Button exportedInstructor_btn;
@@ -101,7 +98,7 @@ public class InstructorController implements Initializable {
     private int currentPage = 1;
     private int pageSize = 10;
 
-    private int totalPage = instructorRepository.getTotalInstructor() / pageSize;
+    private int totalPage = (int) Math.ceil((double)instructorRepository.getTotalInstructor() / pageSize);
     @FXML
     private Pagination pagination;
     @FXML
@@ -110,6 +107,13 @@ public class InstructorController implements Initializable {
     private Button homePage;
     @FXML
     private Button logout;
+
+    @FXML
+    private ImageView searchBtn;
+
+    @FXML
+    private Label closeSearchBtn;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -136,7 +140,6 @@ public class InstructorController implements Initializable {
         setupActionColumn();
 
 
-
         pagination.setPageCount(totalPage);
         pagination.setCurrentPageIndex(currentPage - 1);
         pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
@@ -145,33 +148,6 @@ public class InstructorController implements Initializable {
         });
         loadInstructorsData();
 
-        // Sử dụng FilteredList để lọc danh sách thành viên dựa trên tên
-        filteredInstructorList = new FilteredList<>(instructorsData, p -> true);
-
-        // Liên kết TableView với FilteredList để hiển thị danh sách đã lọc
-        tableView.setItems(filteredInstructorList);
-
-        // Bắt sự kiện khi người dùng nhập tên vào TextField
-        searchInstructor.textProperty().addListener((observable, oldValue, newValue) -> {
-            // Lọc danh sách thành viên dựa trên tên mới
-            filteredInstructorList.setPredicate(member -> {
-                // Nếu không có tên nào được nhập, hiển thị tất cả các thành viên
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-
-                // Chuyển đổi tên thành viên và tên mới sang chữ thường để so sánh không phân biệt chữ hoa/thường
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                // Kiểm tra nếu tên thành viên chứa tên mới
-                if (member.getFirst_name().toLowerCase().contains(lowerCaseFilter) ||
-                        member.getLast_name().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Thành viên thỏa mãn điều kiện lọc
-                }
-
-                return false; // Không tìm thấy tên trong thành viên
-            });
-        });
 
         Tooltip tooltipH = new Tooltip("Home");
         tooltipH.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
@@ -183,6 +159,18 @@ public class InstructorController implements Initializable {
         tooltipL.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
         logout.setTooltip(tooltipL);
     }
+
+
+    private void setupPagination() {
+        pagination.setPageCount(totalPage);
+        pagination.setCurrentPageIndex(currentPage - 1);
+        pagination.currentPageIndexProperty().addListener((obs, oldIndex, newIndex) -> {
+            currentPage = newIndex.intValue() + 1;
+            loadInstructorsData();
+        });
+    }
+
+    int rowIndex = 0;
 
     @FXML
     private void previousPage() {
@@ -213,16 +201,19 @@ public class InstructorController implements Initializable {
         stageManager.loadHomeStage();
         stage.close();
     }
+
     @FXML
     void homepage(MouseEvent event) {
         stageManager.loadHomeStage();
         stage.close();
     }
+
     @FXML
     void dashboard(MouseEvent event) {
         stageManager.loadDashBoard();
         stage.close();
     }
+
     @FXML
     void logOut(MouseEvent event) {
         Alert confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION);
@@ -311,14 +302,15 @@ public class InstructorController implements Initializable {
         InstructorAddFormController addFormController = new InstructorAddFormController(tableView);
         stageManager.loadInstructorAddFormDialog(addFormController);
     }
+
     public static void exportToExcel(List<Instructors> instructorsList) {
         String[] columns = {"ID", "First Name", "Last Name", "DOB", "Gender", "Email", "Phone", "Address", "Hire Date", "Experience Years"};
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files","*.xlsx"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Files", "*.xlsx"));
         LocalDate currentDate = LocalDate.now();
         Year currentYear = Year.of(currentDate.getYear());
-        fileChooser.setInitialFileName("list_instructor_"  + currentYear + ".xlsx");
+        fileChooser.setInitialFileName("list_instructor_" + currentYear + ".xlsx");
         File file = fileChooser.showSaveDialog(null);
         if (file == null) {
             return; // User cancelled the save dialog
@@ -364,14 +356,17 @@ public class InstructorController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void handleExportButtonAction() {
         List<Instructors> instructorsList = instructorsService.getAllInstructors(); // Get data from TableView
         exportToExcel(instructorsList); // Call the exportToExcel() method of ExcelExporter class
 
     }
+
     @FXML
     private Button minimizeButton;
+
     @FXML
     void minimize(ActionEvent event) {
         Stage stage = (Stage) minimizeButton.getScene().getWindow();
@@ -379,4 +374,36 @@ public class InstructorController implements Initializable {
 
     }
 
+    @FXML
+    private void searchInstructors() {
+        String searchTerm = searchInstructor.getText().trim();
+        // Kiểm tra xem người dùng đã nhập tên cần tìm kiếm hay chưa
+        if (searchTerm.isEmpty()) {
+            // Hiển thị thông báo lỗi nếu người dùng chưa nhập tên
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Notification");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter member name to search.");
+            alert.showAndWait();
+        } else {
+            // Thực hiện tìm kiếm thành viên trong cơ sở dữ liệu
+            List<Instructors> searchResults = instructorRepository.getInstructorByName(searchTerm);
+            // Hiển thị kết quả lên TableView
+            tableView.getItems().clear();
+            tableView.getItems().addAll(searchResults);
+            searchBtn.setVisible(false);
+            pagination.setVisible(false);
+            closeSearchBtn.setVisible(true);
+        }
+
+    }
+
+    @FXML
+    private void closeSearchForm() {
+        searchInstructor.clear();
+        closeSearchBtn.setVisible(false);
+        searchBtn.setVisible(true);
+        pagination.setVisible(true);
+        loadInstructorsData();
+    }
 }

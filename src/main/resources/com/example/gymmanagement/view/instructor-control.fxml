@@ -37,17 +37,11 @@
                 <TableColumn fx:id="action" prefWidth="134.666748046875" text="Action" />
             </columns>
         </TableView>
-        <TextField fx:id="searchInstructor" layoutX="854.0" layoutY="85.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" style="-fx-border-radius: 10px;" styleClass="btn_tool" stylesheets="@../css/style.css" />
         <Button layoutX="82.0" layoutY="73.0" mnemonicParsing="false" onMouseClicked="#addInstructor" prefHeight="40.0" prefWidth="135.0" stylesheets="@../css/style.css" text=" Add instructor">
          <styleClass>
             <String fx:value="btn_tool" />
             <String fx:value="add" />
          </styleClass></Button>
-        <ImageView fitHeight="15.0" fitWidth="14.0" layoutX="1059.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../image/search.png" />
-            </image>
-        </ImageView>
         <Button fx:id="exportedInstructor_btn" layoutX="233.0" layoutY="74.0" mnemonicParsing="false" onAction="#handleExportButtonAction" onMouseClicked="#addInstructor" prefHeight="40.0" prefWidth="135.0" stylesheets="@../css/style.css" text="Export to Excel">
          <styleClass>
             <String fx:value="btn_tool" />
@@ -113,5 +107,16 @@
               </Button>
          </children>
       </HBox>
+      <TextField fx:id="searchInstructor" layoutX="852.0" layoutY="81.0" prefHeight="25.0" prefWidth="231.0" promptText="Search" style="-fx-border-radius: 10px;" styleClass="btn_tool" stylesheets="@../css/style.css" />
+      <ImageView fx:id="searchBtn" fitHeight="15.0" fitWidth="14.0" layoutX="1062.0" layoutY="88.0" onMouseClicked="#searchInstructors" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/search.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="closeSearchBtn" alignment="CENTER" layoutX="1059.0" layoutY="86.0" onMouseClicked="#closeSearchForm" prefHeight="17.0" prefWidth="19.0" text="X" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

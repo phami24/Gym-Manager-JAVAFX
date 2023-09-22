@@ -2,6 +2,7 @@ package com.example.gymmanagement.model.repository;
 
 import com.example.gymmanagement.database.JDBCConnect;
 import com.example.gymmanagement.model.entity.Instructors;
+import com.example.gymmanagement.model.entity.Members;
 
 import java.math.BigDecimal;
 import java.sql.*;
@@ -329,6 +330,30 @@ public class InstructorRepository {
 
             statement.setInt(1, pageSize);
             statement.setInt(2, offset);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    instructorsList.add(fromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return instructorsList;
+    }
+
+    public List<Instructors> getInstructorByName(String searchTerm) {
+        List<Instructors> instructorsList = new ArrayList<>();
+
+        // Define your SQL query to search for instructors by name
+        String query = "SELECT * FROM instructors WHERE CONCAT(first_name, ' ', last_name) LIKE ?";
+
+        try (Connection connection = jdbcConnect.getJDBCConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            // Use wildcard '%' to search for names containing the searchTerm
+            statement.setString(1, "%" + searchTerm + "%");
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
