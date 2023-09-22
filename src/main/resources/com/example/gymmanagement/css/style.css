@@ -91,11 +91,11 @@
 .sign-out{
     -fx-background-color:transparent;
     -fx-cursor:hand;
-    -fx-background-radius: 10px;
 }
 .sign-out:hover{
--fx-background-radius: 10px;
-    -fx-background-color:#636262;
+ -fx-cursor:hand;
+    -fx-border-color: #2E2F31;
+-fx-border-width:2px;
 }
 .shadow{
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);
@@ -105,14 +105,6 @@
     -fx-background-radius: 5px;
     /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);*/
     -fx-font-family: 'Ubuntu', sans-serif;
-    -fx-text-fill: black;
-}
-.nav-admin{
-    -fx-background-color:#fff;
-    -fx-border-color:linear-gradient(to bottom,#abb0ac,#7f8280);
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);
-    -fx-background-radius: 20px;
-    -fx-border-radius: 20px;
     -fx-text-fill: black;
 }
 .admin-label{
@@ -226,15 +218,23 @@
 */
 
 .card{
-    -fx-border-color:#9e9e9b;
+    -fx-border-color:#fff;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);
-    -fx-background-radius: 32px;
-    -fx-border-radius: 32px;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
     -fx-text-fill: black;
     -fx-background-color: linear-gradient(to bottom,#c9c9c9,#cfcfcf,#c9c9c9,#c9c9c9);
 }
 .card:hover{
--fx-background-color: linear-gradient(to bottom,#b8b8b8,#828281,#8b8c8c);
+-fx-background-color: linear-gradient(to bottom,#f4f4f4,#ddd,#f4f4f4);
+}
+.nav-admin{
+    -fx-background-color:#fff;
+    -fx-border-color:linear-gradient(to bottom,#abb0ac,#7f8280);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-text-fill: black;
 }
 .nav-left{
 -fx-background-color: linear-gradient(to right,#545353,#2e2d2d);

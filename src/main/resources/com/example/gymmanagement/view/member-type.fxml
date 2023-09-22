@@ -5,12 +5,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <AnchorPane layoutX="-1.0" layoutY="-2.0" opacity="0.89" prefHeight="476.0" prefWidth="818.0" styleClass="background" stylesheets="@../css/membertype.css">
+        <AnchorPane layoutX="-1.0" layoutY="-2.0" opacity="0.89" prefHeight="476.0" prefWidth="818.0" style="-fx-background-color: #f4f4f4;" styleClass="background" stylesheets="@../css/membertype.css">
             <children>
-                <AnchorPane layoutX="56.0" layoutY="76.0" prefHeight="324.0" prefWidth="208.0" styleClass="border" stylesheets="@../css/membertype.css">
+                <AnchorPane layoutX="56.0" layoutY="76.0" prefHeight="324.0" prefWidth="208.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" styleClass="border" stylesheets="@../css/membertype.css">
                     <children>
                         <Text layoutX="85.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="30 days">
                             <font>
@@ -42,7 +41,7 @@
                         </Text>
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="305.0" layoutY="76.0" prefHeight="324.0" prefWidth="208.0" styleClass="border" stylesheets="@../css/membertype.css">
+                <AnchorPane layoutX="305.0" layoutY="76.0" prefHeight="324.0" prefWidth="208.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" styleClass="border" stylesheets="@../css/membertype.css">
                     <children>
                         <Text layoutX="84.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="90 days">
                             <font>
@@ -74,7 +73,7 @@
                         </Text>
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="550.0" layoutY="76.0" prefHeight="324.0" prefWidth="208.0" styleClass="border" stylesheets="@../css/membertype.css">
+                <AnchorPane layoutX="550.0" layoutY="76.0" prefHeight="324.0" prefWidth="208.0" style="-fx-background-color: #fff; -fx-border-color: #ddd;" styleClass="border" stylesheets="@../css/membertype.css">
                     <children>
                         <Text layoutX="85.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="180 days">
                             <font>
