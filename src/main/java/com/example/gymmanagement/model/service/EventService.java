@@ -12,6 +12,8 @@ public interface EventService {
 
     void deleteEvent(String eventId);
 
+    void deleteEvent(int eventId);
+
     Event getEventById(int eventId);
 
     List<Event> getAllEvents();

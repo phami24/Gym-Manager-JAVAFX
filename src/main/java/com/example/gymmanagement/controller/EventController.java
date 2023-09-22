@@ -141,7 +141,8 @@ public class EventController implements Initializable {
                 initializeTableColumns();
                 clearField();
                 tableView.refresh();
-
+                addButton.setDisable(false);
+                updateButton.setDisable(true);
             }
         }
     }
@@ -196,6 +197,8 @@ public class EventController implements Initializable {
                 initializeTableColumns();
                 clearField();
                 tableView.refresh();
+                addButton.setDisable(false);
+                updateButton.setDisable(true);
 
             } catch (NumberFormatException e) {
                 // Xử lý lỗi khi chuyển đổi không thành công
@@ -298,6 +301,9 @@ public class EventController implements Initializable {
         end_date.setValue(LocalDate.parse(event.getEnd_date()));
 //        String statusString = intToString(event.getStatus());
 //        status.setText(statusString);
+        addButton.setDisable(true);
+        updateButton.setDisable(false);
+
     }
 
     public String formatLocalDate(LocalDate date) {
@@ -394,14 +400,14 @@ public class EventController implements Initializable {
 
                     Optional<ButtonType> result = confirmDeleteAlert.showAndWait();
                     if (result.isPresent() && result.get() == ButtonType.OK) {
-                        eventRepository.deleteEvent(eventt.getEvent_name());
+                        eventRepository.deleteEvent(eventt.getEvent_id());
 
                         // Remove the deleted item from the observable list
                         eventData.remove(eventt);
 
 
                         // Refresh the TableView to reflect the updated data
-                        tableView.getItems().addAll(eventRepository.getAllEvents());
+                        tableView.refresh();
                     }
                 });
 
@@ -619,5 +625,6 @@ public class EventController implements Initializable {
         Tooltip tooltipL = new Tooltip("Logout");
         tooltipL.setStyle("-fx-font-size: 15px; -fx-font-family: Arial; -fx-text-fill: #fff;");
         logout.setTooltip(tooltipL);
+        updateButton.setDisable(true);
     }
 }

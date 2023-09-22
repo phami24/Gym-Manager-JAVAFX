@@ -33,13 +33,13 @@
 
         <TextField fx:id="event_name" layoutX="170.0" layoutY="78.0" prefHeight="25.0" prefWidth="337.0" />
         <TextField fx:id="discount" layoutX="617.0" layoutY="133.0" />
-        <Button fx:id="updateButton" layoutX="922.0" layoutY="132.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="111.0" stylesheets="@../css/style.css" text="Update ">
+        <Button fx:id="updateButton" layoutX="902.0" layoutY="132.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="80.0" stylesheets="@../css/style.css" text="Update ">
             <styleClass>
                 <String fx:value="btn_tool" />
                 <String fx:value="add" />
             </styleClass>
         </Button>
-        <Button fx:id="addButton" layoutX="803.0" layoutY="132.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="111.0" stylesheets="@../css/style.css" text="Add">
+        <Button fx:id="addButton" layoutX="803.0" layoutY="132.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="80.0" stylesheets="@../css/style.css" text="Add">
             <styleClass>
                 <String fx:value="btn_tool" />
                 <String fx:value="add" />
@@ -119,5 +119,11 @@
             <Pagination fx:id="pagination" prefHeight="42.0" prefWidth="200.0" />
          </children>
       </HBox>
+      <Button layoutX="994.0" layoutY="132.0" mnemonicParsing="false" onAction="#clearField" prefHeight="28.0" prefWidth="80.0" stylesheets="@../css/style.css" text="Reset">
+         <styleClass>
+            <String fx:value="btn_tool" />
+            <String fx:value="add" />
+         </styleClass>
+      </Button>
     </children>
 </AnchorPane>

@@ -227,7 +227,7 @@
     -fx-border-color:#9e9e9b;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5,0,0,0);
     -fx-background-radius: 32px;
-    -fx-border-radius: 35px;
+    -fx-border-radius: 32px;
     -fx-text-fill: black;
     -fx-background-color: linear-gradient(to bottom,#c9c9c9,#cfcfcf,#c9c9c9,#c9c9c9);
 }

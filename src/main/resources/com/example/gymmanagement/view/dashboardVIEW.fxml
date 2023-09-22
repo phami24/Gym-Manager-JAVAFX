@@ -31,12 +31,12 @@
       </Label>
       <Pane layoutX="37.0" layoutY="485.0" prefHeight="125.0" prefWidth="1039.0" styleClass="borderCSS">
          <children>
-            <Label layoutX="77.0" layoutY="83.0" prefHeight="19.0" prefWidth="81.0" styleClass="textCSS" text="Total Staffs" textFill="WHITE">
+            <Label layoutX="70.0" layoutY="83.0" prefHeight="28.0" prefWidth="88.0" styleClass="textCSS" text="Total Staffs" textFill="WHITE">
                <font>
                   <Font name="Corbel Bold" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="286.0" layoutY="85.0" styleClass="textCSS" text="Total Customers" textFill="WHITE">
+            <Label layoutX="279.0" layoutY="85.0" prefHeight="25.0" prefWidth="106.0" styleClass="textCSS" text="Total Customers" textFill="WHITE">
                <font>
                   <Font name="Corbel Bold" size="13.0" />
                </font>
@@ -46,22 +46,22 @@
                   <Font name="Corbel Bold" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="staffNum" layoutX="97.0" layoutY="20.0" prefHeight="70.0" prefWidth="72.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="staffNum" layoutX="70.0" layoutY="23.0" prefHeight="54.0" prefWidth="119.0" text="0" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="classNum" layoutX="547.0" layoutY="21.0" prefHeight="70.0" prefWidth="65.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="classNum" layoutX="507.0" layoutY="21.0" prefHeight="70.0" prefWidth="119.0" text="0" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="memberNum" layoutX="315.0" layoutY="20.0" prefHeight="70.0" prefWidth="81.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="memberNum" layoutX="279.0" layoutY="21.0" prefHeight="70.0" prefWidth="143.0" text="0" textAlignment="RIGHT" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
             </Label>
-            <Label fx:id="stuffNum" layoutX="808.0" layoutY="23.0" prefHeight="70.0" prefWidth="81.0" text="0" textAlignment="RIGHT" textFill="WHITE">
+            <Label fx:id="stuffNum" layoutX="789.0" layoutY="23.0" prefHeight="70.0" prefWidth="143.0" text="0" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="48.0" />
                </font>
@@ -97,14 +97,6 @@
             <Image url="@../image/sale.png" />
          </image>
       </ImageView>
-      <Button layoutX="1027.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="61.0" prefWidth="65.0" styleClass="btn-nav-left" stylesheets="@../css/style.css">
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/home.png" />
-               </image>
-            </ImageView>
-         </graphic></Button>
       <ComboBox fx:id="yearRevenueBtn" layoutX="509.0" layoutY="88.0" prefHeight="14.0" prefWidth="75.0" promptText="Year" />
       <Label layoutX="66.0" layoutY="137.0" prefHeight="28.0" prefWidth="143.0" text="Revenue Chart">
          <font>
@@ -129,8 +121,20 @@
             <Pagination fx:id="pagination" layoutX="146.0" layoutY="314.0" prefHeight="32.0" prefWidth="168.0" />
          </children>
       </Pane>
-      <HBox alignment="TOP_RIGHT" layoutX="900.0" layoutY="-36.0" prefHeight="61.0" prefWidth="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="TOP_RIGHT" layoutX="847.0" prefHeight="33.0" prefWidth="259.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+            <Button mnemonicParsing="false" onMouseClicked="#homepage" prefHeight="29.0" prefWidth="99.0" styleClass="btn-nav-left" stylesheets="@../css/style.css" text="Go Home">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" rotate="180.0">
+                     <image>
+                        <Image url="@../image/backtohomeBTN.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
             <Button fx:id="minimizeButton" mnemonicParsing="false" onAction="#minimize" prefHeight="29.0" prefWidth="50.0" styleClass="mini" stylesheets="@../css/style.css" text="─">
                <font>
                   <Font name="Leelawadee UI Bold" size="14.0" />
